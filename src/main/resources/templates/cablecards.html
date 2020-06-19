@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org"><head>    <meta charset="UTF-8"/>    <title>watchlist | Cablecard List View</title>    <link th:href="@{/css/site.css}" rel="stylesheet"/></head><body>
+	<div align="center">
+		<h1>Cablecard List</h1>
+		<a th:href="@{/cablecards/new}">Create New Cablecard</a> <br />
+		<br />
+
+	    <table>
+	        <tr>
+            <th>ChannelName</th>
+            <th>ChannelNumber</th>
+            <th>Colh</th>
+            <th>Dt</th>
+            <th>Hd</th>
+            <th>id</th>
+            <th>InNpl</th>
+            <th>Lang</th>
+            <th>Net</th>
+            <th>Od</th>
+            <th>Receiving</th>
+            <th>ShortField</th>
+            <th>Actions</th>
+	        </tr>
+	        <tr th:each="cablecard:${cablecards}">
+	            <td th:text="${cablecard.channelname}"></td>
+	            <td th:text="${cablecard.channelnumber}"></td>
+	            <td th:text="${cablecard.colh}"></td>
+	            <td th:text="${cablecard.dt}"></td>
+	            <td th:text="${cablecard.hd}"></td>
+	            <td th:text="${cablecard.id}"></td>
+	            <td th:text="${cablecard.innpl}"></td>
+	            <td th:text="${cablecard.lang}"></td>
+	            <td th:text="${cablecard.net}"></td>
+	            <td th:text="${cablecard.od}"></td>
+	            <td th:text="${cablecard.receiving}"></td>
+	            <td th:text="${cablecard.shortfield}"></td>
+				<td><a th:href="@{'/cablecards/edit/' + ${cablecard.id}}">Edit</a>
+					&nbsp;&nbsp;&nbsp; <a th:href="@{'/cablecards/delete/' + ${cablecard.id}}">Delete</a>
+				</td>
+
+	        </tr>
+	    </table>
+    </div>
+

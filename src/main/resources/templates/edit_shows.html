@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org"><head>    <meta charset="UTF-8"/>    <title>watchlist | Edit Shows</title>    <link th:href="@{/css/site.css}" rel="stylesheet"/></head><body>
+	<div align="center">
+		<h1 th:if="${shows.id == 0}">Create New Shows</h1>
+		<h1 th:if="${shows.id > 0}">Edit Shows</h1>
+		<br />
+		<form action="#" th:action="@{/showss/save}" th:object="${shows}"
+			method="post">
+
+			<table >
+				<tr th:if="${shows.id > 0}">				
+					<td>id:</td>
+					<td>
+						<input type="text" th:field="*{id}" readonly="readonly" />
+					</td>
+				</tr>
+				<tr>
+            		<td>BestExperience:</td>
+					<td>
+						<input type="text" th:field="*{bestexperience}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>BestExperienceLink:</td>
+					<td>
+						<input type="text" th:field="*{bestexperiencelink}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Cancelled:</td>
+					<td>
+						<input type="text" th:field="*{cancelled}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Comment:</td>
+					<td>
+						<input type="text" th:field="*{comment}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>CommentLink:</td>
+					<td>
+						<input type="text" th:field="*{commentlink}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>EpguidesShowName:</td>
+					<td>
+						<input type="text" th:field="*{epguidesshowname}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>EpguidesShowNameLink:</td>
+					<td>
+						<input type="text" th:field="*{epguidesshownamelink}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Imdb:</td>
+					<td>
+						<input type="text" th:field="*{imdb}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>ImdbLink:</td>
+					<td>
+						<input type="text" th:field="*{imdblink}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>InCanceledAs:</td>
+					<td>
+						<input type="text" th:field="*{incanceledas}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>InCanceledAsLink:</td>
+					<td>
+						<input type="text" th:field="*{incanceledaslink}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>InRokuFeed:</td>
+					<td>
+						<input type="text" th:field="*{inrokufeed}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>InShowRssAs:</td>
+					<td>
+						<input type="text" th:field="*{inshowrssas}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>InShowRssAsLink:</td>
+					<td>
+						<input type="text" th:field="*{inshowrssaslink}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>JustWatch:</td>
+					<td>
+						<input type="text" th:field="*{justwatch}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>JustWatchLink:</td>
+					<td>
+						<input type="text" th:field="*{justwatchlink}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>LastShow:</td>
+					<td>
+						<input type="text" th:field="*{lastshow}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>LastWatched:</td>
+					<td>
+						<input type="text" th:field="*{lastwatched}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Network:</td>
+					<td>
+						<input type="text" th:field="*{network}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>NetworkLink:</td>
+					<td>
+						<input type="text" th:field="*{networklink}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Ota:</td>
+					<td>
+						<input type="text" th:field="*{ota}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Premiere:</td>
+					<td>
+						<input type="text" th:field="*{premiere}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>PremiereDate:</td>
+					<td>
+						<input type="text" th:field="*{premieredate}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Status:</td>
+					<td>
+						<input type="text" th:field="*{status}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>TivoName:</td>
+					<td>
+						<input type="text" th:field="*{tivoname}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>TivoNameLink:</td>
+					<td>
+						<input type="text" th:field="*{tivonamelink}" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><button type="submit" name="action" value="save">save</button> <button type="submit" name="action" value="cancel">cancel</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>

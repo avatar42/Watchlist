@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org"><head>    <meta charset="UTF-8"/>    <title>watchlist | Shows List View</title>    <link th:href="@{/css/site.css}" rel="stylesheet"/></head><body>
+	<div align="center">
+		<h1>Shows List</h1>
+		<a th:href="@{/showss/new}">Create New Shows</a> <br />
+		<br />
+
+	    <table>
+	        <tr>
+            <th>BestExperience</th>
+            <th>BestExperienceLink</th>
+            <th>Cancelled</th>
+            <th>Comment</th>
+            <th>CommentLink</th>
+            <th>EpguidesShowName</th>
+            <th>EpguidesShowNameLink</th>
+            <th>id</th>
+            <th>Imdb</th>
+            <th>ImdbLink</th>
+            <th>InCanceledAs</th>
+            <th>InCanceledAsLink</th>
+            <th>InRokuFeed</th>
+            <th>InShowRssAs</th>
+            <th>InShowRssAsLink</th>
+            <th>JustWatch</th>
+            <th>JustWatchLink</th>
+            <th>LastShow</th>
+            <th>LastWatched</th>
+            <th>Network</th>
+            <th>NetworkLink</th>
+            <th>Ota</th>
+            <th>Premiere</th>
+            <th>PremiereDate</th>
+            <th>Status</th>
+            <th>TivoName</th>
+            <th>TivoNameLink</th>
+            <th>Actions</th>
+	        </tr>
+	        <tr th:each="shows:${showss}">
+	            <td><a th:href="@{${shows.bestexperiencelink}}"><span th:text="${shows.bestexperience}"></span></a></td>
+	            <td th:text="${shows.bestexperiencelink}"></td>
+	            <td th:text="${shows.cancelled}"></td>
+	            <td><a th:href="@{${shows.commentlink}}"><span th:text="${shows.comment}"></span></a></td>
+	            <td th:text="${shows.commentlink}"></td>
+	            <td><a th:href="@{${shows.epguidesshownamelink}}"><span th:text="${shows.epguidesshowname}"></span></a></td>
+	            <td th:text="${shows.epguidesshownamelink}"></td>
+	            <td th:text="${shows.id}"></td>
+	            <td><a th:href="@{${shows.imdblink}}"><span th:text="${shows.imdb}"></span></a></td>
+	            <td th:text="${shows.imdblink}"></td>
+	            <td><a th:href="@{${shows.incanceledaslink}}"><span th:text="${shows.incanceledas}"></span></a></td>
+	            <td th:text="${shows.incanceledaslink}"></td>
+	            <td th:text="${shows.inrokufeed}"></td>
+	            <td><a th:href="@{${shows.inshowrssaslink}}"><span th:text="${shows.inshowrssas}"></span></a></td>
+	            <td th:text="${shows.inshowrssaslink}"></td>
+	            <td><a th:href="@{${shows.justwatchlink}}"><span th:text="${shows.justwatch}"></span></a></td>
+	            <td th:text="${shows.justwatchlink}"></td>
+	            <td th:text="${shows.lastshow}"></td>
+	            <td th:text="${shows.lastwatched}"></td>
+	            <td><a th:href="@{${shows.networklink}}"><span th:text="${shows.network}"></span></a></td>
+	            <td th:text="${shows.networklink}"></td>
+	            <td th:text="${shows.ota}"></td>
+	            <td th:text="${shows.premiere}"></td>
+	            <td th:text="${shows.premieredate}"></td>
+	            <td th:text="${shows.status}"></td>
+	            <td><a th:href="@{${shows.tivonamelink}}"><span th:text="${shows.tivoname}"></span></a></td>
+	            <td th:text="${shows.tivonamelink}"></td>
+				<td><a th:href="@{'/showss/edit/' + ${shows.id}}">Edit</a>
+					&nbsp;&nbsp;&nbsp; <a th:href="@{'/showss/delete/' + ${shows.id}}">Delete</a>
+				</td>
+
+	        </tr>
+	    </table>
+    </div>
+

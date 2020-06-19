@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org"><head>    <meta charset="UTF-8"/>    <title>watchlist | Networks List View</title>    <link th:href="@{/css/site.css}" rel="stylesheet"/></head><body>
+	<div align="center">
+		<h1>Networks List</h1>
+		<a th:href="@{/networkss/new}">Create New Networks</a> <br />
+		<br />
+
+	    <table>
+	        <tr>
+            <th>RokuApp</th>
+            <th>Site</th>
+            <th>Commercials</th>
+            <th>Persistance</th>
+            <th>OnHulu</th>
+            <th>StandardWait</th>
+            <th>Actions</th>
+	        </tr>
+	        <tr th:each="networks:${networkss}">
+	            <td><a th:href="@{${networks.rokuapplink}}"><span th:text="${networks.rokuapp}"></span></a></td>
+	            <td><a th:href="@{${networks.sitelink}}"><span th:text="${networks.site}"></span></a></td>
+	            <td><a th:href="@{${networks.commercialslink}}"><span th:text="${networks.commercials}"></span></a></td>
+	            <td th:text="${networks.persistance}"></td>
+	            <td><a th:href="@{${networks.onhululink}}"><span th:text="${networks.onhulu}"></span></a></td>
+	            <td th:text="${networks.standardwait}"></td>
+				<td><a th:href="@{'/networkss/edit/' + ${networks.id}}">Edit</a>
+					&nbsp;&nbsp;&nbsp; <a th:href="@{'/networkss/delete/' + ${networks.id}}">Delete</a>
+				</td>
+
+	        </tr>
+	    </table>
+    </div>
+

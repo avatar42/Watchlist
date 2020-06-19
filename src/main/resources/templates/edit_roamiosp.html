@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org"><head>    <meta charset="UTF-8"/>    <title>watchlist | Edit Roamiosp</title>    <link th:href="@{/css/site.css}" rel="stylesheet"/></head><body>
+	<div align="center">
+		<h1 th:if="${roamiosp.id == 0}">Create New Roamiosp</h1>
+		<h1 th:if="${roamiosp.id > 0}">Edit Roamiosp</h1>
+		<br />
+		<form action="#" th:action="@{/roamiosps/save}" th:object="${roamiosp}"
+			method="post">
+
+			<table >
+				<tr th:if="${roamiosp.id > 0}">				
+					<td>id:</td>
+					<td>
+						<input type="text" th:field="*{id}" readonly="readonly" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Channel:</td>
+					<td>
+						<input type="text" th:field="*{channel}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>End:</td>
+					<td>
+						<input type="text" th:field="*{end}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Include:</td>
+					<td>
+						<input type="text" th:field="*{include}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Keep:</td>
+					<td>
+						<input type="text" th:field="*{keep}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Num:</td>
+					<td>
+						<input type="text" th:field="*{num}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Priority:</td>
+					<td>
+						<input type="text" th:field="*{priority}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Record:</td>
+					<td>
+						<input type="text" th:field="*{record}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Season:</td>
+					<td>
+						<input type="text" th:field="*{season}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Show:</td>
+					<td>
+						<input type="text" th:field="*{show}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Start:</td>
+					<td>
+						<input type="text" th:field="*{start}" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><button type="submit" name="action" value="save">save</button> <button type="submit" name="action" value="cancel">cancel</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>

@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org"><head>    <meta charset="UTF-8"/>    <title>watchlist | Ota List View</title>    <link th:href="@{/css/site.css}" rel="stylesheet"/></head><body>
+	<div align="center">
+		<h1>Ota List</h1>
+		<a th:href="@{/otas/new}">Create New Ota</a> <br />
+		<br />
+
+	    <table>
+	        <tr>
+            <th>Chan</th>
+            <th>ChannelName</th>
+            <th>ChannelNumber</th>
+            <th>Comments</th>
+            <th>Direction</th>
+            <th>Enabled</th>
+            <th>FccInfo</th>
+            <th>FccInfoLink</th>
+            <th>Freq</th>
+            <th>id</th>
+            <th>Lang</th>
+            <th>Listed</th>
+            <th>MyTivoAvgStrength</th>
+            <th>Network</th>
+            <th>Off</th>
+            <th>RecommendedAntenna</th>
+            <th>Rez</th>
+            <th>Station</th>
+            <th>SubChan</th>
+            <th>TvFoolEstSignal</th>
+            <th>Watchable</th>
+            <th>Actions</th>
+	        </tr>
+	        <tr th:each="ota:${otas}">
+	            <td th:text="${ota.chan}"></td>
+	            <td th:text="${ota.channelname}"></td>
+	            <td th:text="${ota.channelnumber}"></td>
+	            <td th:text="${ota.comments}"></td>
+	            <td th:text="${ota.direction}"></td>
+	            <td th:text="${ota.enabled}"></td>
+	            <td><a th:href="@{${ota.fccinfolink}}"><span th:text="${ota.fccinfo}"></span></a></td>
+	            <td th:text="${ota.fccinfolink}"></td>
+	            <td th:text="${ota.freq}"></td>
+	            <td th:text="${ota.id}"></td>
+	            <td th:text="${ota.lang}"></td>
+	            <td th:text="${ota.listed}"></td>
+	            <td th:text="${ota.mytivoavgstrength}"></td>
+	            <td th:text="${ota.network}"></td>
+	            <td th:text="${ota.off}"></td>
+	            <td th:text="${ota.recommendedantenna}"></td>
+	            <td th:text="${ota.rez}"></td>
+	            <td th:text="${ota.station}"></td>
+	            <td th:text="${ota.subchan}"></td>
+	            <td th:text="${ota.tvfoolestsignal}"></td>
+	            <td th:text="${ota.watchable}"></td>
+				<td><a th:href="@{'/otas/edit/' + ${ota.id}}">Edit</a>
+					&nbsp;&nbsp;&nbsp; <a th:href="@{'/otas/delete/' + ${ota.id}}">Delete</a>
+				</td>
+
+	        </tr>
+	    </table>
+    </div>
+

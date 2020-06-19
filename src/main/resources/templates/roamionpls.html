@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org"><head>    <meta charset="UTF-8"/>    <title>watchlist | Roamionpl List View</title>    <link th:href="@{/css/site.css}" rel="stylesheet"/></head><body>
+	<div align="center">
+		<h1>Roamionpl List</h1>
+		<a th:href="@{/roamionpls/new}">Create New Roamionpl</a> <br />
+		<br />
+
+	    <table>
+	        <tr>
+            <th>BitrateMbps</th>
+            <th>Channel</th>
+            <th>Date</th>
+            <th>Duration</th>
+            <th>Episode</th>
+            <th>id</th>
+            <th>Isnew</th>
+            <th>Show</th>
+            <th>SizeGb</th>
+            <th>SortableDate</th>
+            <th>Title</th>
+            <th>Watchedtime</th>
+            <th>Actions</th>
+	        </tr>
+	        <tr th:each="roamionpl:${roamionpls}">
+	            <td th:text="${roamionpl.bitratembps}"></td>
+	            <td th:text="${roamionpl.channel}"></td>
+	            <td th:text="${roamionpl.date}"></td>
+	            <td th:text="${roamionpl.duration}"></td>
+	            <td th:text="${roamionpl.episode}"></td>
+	            <td th:text="${roamionpl.id}"></td>
+	            <td th:text="${roamionpl.isnew}"></td>
+	            <td th:text="${roamionpl.show}"></td>
+	            <td th:text="${roamionpl.sizegb}"></td>
+	            <td th:text="${roamionpl.sortabledate}"></td>
+	            <td th:text="${roamionpl.title}"></td>
+	            <td th:text="${roamionpl.watchedtime}"></td>
+				<td><a th:href="@{'/roamionpls/edit/' + ${roamionpl.id}}">Edit</a>
+					&nbsp;&nbsp;&nbsp; <a th:href="@{'/roamionpls/delete/' + ${roamionpl.id}}">Delete</a>
+				</td>
+
+	        </tr>
+	    </table>
+    </div>
+

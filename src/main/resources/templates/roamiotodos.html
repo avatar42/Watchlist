@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org"><head>    <meta charset="UTF-8"/>    <title>watchlist | Roamiotodo List View</title>    <link th:href="@{/css/site.css}" rel="stylesheet"/></head><body>
+	<div align="center">
+		<h1>Roamiotodo List</h1>
+		<a th:href="@{/roamiotodos/new}">Create New Roamiotodo</a> <br />
+		<br />
+
+	    <table>
+	        <tr>
+            <th>Channel</th>
+            <th>Date</th>
+            <th>Duration</th>
+            <th>Ep</th>
+            <th>EpisodeName</th>
+            <th>id</th>
+            <th>ShowName</th>
+            <th>ShowTrimmed</th>
+            <th>Actions</th>
+	        </tr>
+	        <tr th:each="roamiotodo:${roamiotodos}">
+	            <td th:text="${roamiotodo.channel}"></td>
+	            <td th:text="${roamiotodo.date}"></td>
+	            <td th:text="${roamiotodo.duration}"></td>
+	            <td th:text="${roamiotodo.ep}"></td>
+	            <td th:text="${roamiotodo.episodename}"></td>
+	            <td th:text="${roamiotodo.id}"></td>
+	            <td th:text="${roamiotodo.showname}"></td>
+	            <td th:text="${roamiotodo.showtrimmed}"></td>
+				<td><a th:href="@{'/roamiotodos/edit/' + ${roamiotodo.id}}">Edit</a>
+					&nbsp;&nbsp;&nbsp; <a th:href="@{'/roamiotodos/delete/' + ${roamiotodo.id}}">Delete</a>
+				</td>
+
+	        </tr>
+	    </table>
+    </div>
+

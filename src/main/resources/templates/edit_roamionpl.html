@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org"><head>    <meta charset="UTF-8"/>    <title>watchlist | Edit Roamionpl</title>    <link th:href="@{/css/site.css}" rel="stylesheet"/></head><body>
+	<div align="center">
+		<h1 th:if="${roamionpl.id == 0}">Create New Roamionpl</h1>
+		<h1 th:if="${roamionpl.id > 0}">Edit Roamionpl</h1>
+		<br />
+		<form action="#" th:action="@{/roamionpls/save}" th:object="${roamionpl}"
+			method="post">
+
+			<table >
+				<tr th:if="${roamionpl.id > 0}">				
+					<td>id:</td>
+					<td>
+						<input type="text" th:field="*{id}" readonly="readonly" />
+					</td>
+				</tr>
+				<tr>
+            		<td>BitrateMbps:</td>
+					<td>
+						<input type="text" th:field="*{bitratembps}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Channel:</td>
+					<td>
+						<input type="text" th:field="*{channel}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Date:</td>
+					<td>
+						<input type="text" th:field="*{date}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Duration:</td>
+					<td>
+						<input type="text" th:field="*{duration}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Episode:</td>
+					<td>
+						<input type="text" th:field="*{episode}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Isnew:</td>
+					<td>
+						<input type="text" th:field="*{isnew}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Show:</td>
+					<td>
+						<input type="text" th:field="*{show}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>SizeGb:</td>
+					<td>
+						<input type="text" th:field="*{sizegb}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>SortableDate:</td>
+					<td>
+						<input type="text" th:field="*{sortabledate}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Title:</td>
+					<td>
+						<input type="text" th:field="*{title}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Watchedtime:</td>
+					<td>
+						<input type="text" th:field="*{watchedtime}" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><button type="submit" name="action" value="save">save</button> <button type="submit" name="action" value="cancel">cancel</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>

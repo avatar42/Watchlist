@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org"><head>    <meta charset="UTF-8"/>    <title>watchlist | Edit Cablecard</title>    <link th:href="@{/css/site.css}" rel="stylesheet"/></head><body>
+	<div align="center">
+		<h1 th:if="${cablecard.id == 0}">Create New Cablecard</h1>
+		<h1 th:if="${cablecard.id > 0}">Edit Cablecard</h1>
+		<br />
+		<form action="#" th:action="@{/cablecards/save}" th:object="${cablecard}"
+			method="post">
+
+			<table >
+				<tr th:if="${cablecard.id > 0}">				
+					<td>id:</td>
+					<td>
+						<input type="text" th:field="*{id}" readonly="readonly" />
+					</td>
+				</tr>
+				<tr>
+            		<td>ChannelName:</td>
+					<td>
+						<input type="text" th:field="*{channelname}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>ChannelNumber:</td>
+					<td>
+						<input type="text" th:field="*{channelnumber}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Colh:</td>
+					<td>
+						<input type="text" th:field="*{colh}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Dt:</td>
+					<td>
+						<input type="text" th:field="*{dt}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Hd:</td>
+					<td>
+						<input type="text" th:field="*{hd}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>InNpl:</td>
+					<td>
+						<input type="text" th:field="*{innpl}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Lang:</td>
+					<td>
+						<input type="text" th:field="*{lang}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Net:</td>
+					<td>
+						<input type="text" th:field="*{net}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Od:</td>
+					<td>
+						<input type="text" th:field="*{od}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>Receiving:</td>
+					<td>
+						<input type="text" th:field="*{receiving}" />
+					</td>
+				</tr>
+				<tr>
+            		<td>ShortField:</td>
+					<td>
+						<input type="text" th:field="*{shortfield}" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><button type="submit" name="action" value="save">save</button> <button type="submit" name="action" value="cancel">cancel</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>

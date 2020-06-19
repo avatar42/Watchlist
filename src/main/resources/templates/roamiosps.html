@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org"><head>    <meta charset="UTF-8"/>    <title>watchlist | Roamiosp List View</title>    <link th:href="@{/css/site.css}" rel="stylesheet"/></head><body>
+	<div align="center">
+		<h1>Roamiosp List</h1>
+		<a th:href="@{/roamiosps/new}">Create New Roamiosp</a> <br />
+		<br />
+
+	    <table>
+	        <tr>
+            <th>Channel</th>
+            <th>End</th>
+            <th>id</th>
+            <th>Include</th>
+            <th>Keep</th>
+            <th>Num</th>
+            <th>Priority</th>
+            <th>Record</th>
+            <th>Season</th>
+            <th>Show</th>
+            <th>Start</th>
+            <th>Actions</th>
+	        </tr>
+	        <tr th:each="roamiosp:${roamiosps}">
+	            <td th:text="${roamiosp.channel}"></td>
+	            <td th:text="${roamiosp.end}"></td>
+	            <td th:text="${roamiosp.id}"></td>
+	            <td th:text="${roamiosp.include}"></td>
+	            <td th:text="${roamiosp.keep}"></td>
+	            <td th:text="${roamiosp.num}"></td>
+	            <td th:text="${roamiosp.priority}"></td>
+	            <td th:text="${roamiosp.record}"></td>
+	            <td th:text="${roamiosp.season}"></td>
+	            <td th:text="${roamiosp.show}"></td>
+	            <td th:text="${roamiosp.start}"></td>
+				<td><a th:href="@{'/roamiosps/edit/' + ${roamiosp.id}}">Edit</a>
+					&nbsp;&nbsp;&nbsp; <a th:href="@{'/roamiosps/delete/' + ${roamiosp.id}}">Delete</a>
+				</td>
+
+	        </tr>
+	    </table>
+    </div>
+

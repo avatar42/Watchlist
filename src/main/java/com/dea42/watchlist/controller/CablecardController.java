@@ -16,9 +16,10 @@ import com.dea42.watchlist.service.CablecardServices;
 
 /**
  * Title: CablecardController <br>
- * Description: Class for  CablecardController. <br>
+ * Description: Class for CablecardController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
+ * 
  * @author Gened by com.dea42.build.GenSpring<br>
  * @version 1.0<br>
  */
@@ -67,4 +68,3 @@ public class CablecardController {
 		return "redirect:/cablecards";
 	}
 }
-

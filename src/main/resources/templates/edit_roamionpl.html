@@ -1,7 +1,24 @@
-<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org"><head>    <meta charset="UTF-8"/>    <title>watchlist | Edit Roamionpl</title>    <link th:href="@{/css/site.css}" rel="stylesheet"/></head><body>
-	<div align="center">
-		<h1 th:if="${roamionpl.id == 0}">Create New Roamionpl</h1>
-		<h1 th:if="${roamionpl.id > 0}">Edit Roamionpl</h1>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="#{edit.edit} + ' ' + #{class.Roamionpl}"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" media="screen"
+	th:href="@{/resources/css/bootstrap.min.css}" />
+<link rel="stylesheet" media="screen"
+	th:href="@{/resources/css/site.css}" />
+<script th:src="@{/resources/js/jquery.min.js}"></script>
+<script th:src="@{/resources/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<div class="container">
+		<h1 th:if="${roamionpl.id == 0}"
+			th:text="#{edit.new} + ' ' + #{class.Roamionpl}"></h1>
+		<h1 th:if="${roamionpl.id > 0}"
+			th:text="#{edit.edit} + ' ' + #{class.Roamionpl}"></h1>
 		<br />
 		<form action="#" th:action="@{/roamionpls/save}" th:object="${roamionpl}"
 			method="post">
@@ -80,7 +97,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2"><button type="submit" name="action" value="save">save</button> <button type="submit" name="action" value="cancel">cancel</button></td>
+					<td colspan="2"><button type="submit" name="action" value="save" th:text="#{edit.save}"></button> <button type="submit" name="action" value="cancel" th:text="#{edit.cancel}"></button></td>
 				</tr>
 			</table>
 		</form>

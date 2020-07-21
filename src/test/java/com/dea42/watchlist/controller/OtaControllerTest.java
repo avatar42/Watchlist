@@ -1,29 +1,13 @@
 package com.dea42.watchlist.controller;
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
-
+import org.springframework.test.web.servlet.ResultActions;
+import com.google.common.collect.ImmutableMap;
+import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Ota;
-import com.dea42.watchlist.service.OtaServices;
 
 /**
  * Title: OtaControllerTest <br>
@@ -33,21 +17,26 @@ import com.dea42.watchlist.service.OtaServices;
  * @author Gened by com.dea42.build.GenSpring<br>
  * @version 1.0<br>
  */
-@RunWith(SpringJUnit4ClassRunner.class)
 @WebMvcTest(OtaController.class)
-public class OtaControllerTest {
-	@MockBean
-	private OtaServices otaService;
-
-	private MockMvc mockMvc;
-
-	@Autowired
-	private WebApplicationContext webApplicationContext;
-
-	@Before()
-	public void setup() {
-		// Init MockMvc Object and build
-		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+public class OtaControllerTest extends MockBase {
+	private Ota getOta(Integer id) {
+		Ota o = new Ota();
+		o.setId(id);
+        o.setChannelname(getTestString(9));
+        o.setComments(getTestString(31));
+        o.setDirection(getTestString(4));
+        o.setEnabled(getTestString(3));
+        o.setFccinfo(getTestString(9));
+        o.setFccinfolink(getTestString(6));
+        o.setLang(getTestString(2));
+        o.setNetwork(getTestString(8));
+        o.setOff(getTestString(3));
+        o.setRecommendedantenna(getTestString(41));
+        o.setRez(getTestString(5));
+        o.setStation(getTestString(9));
+        o.setTvfoolestsignal(getTestString(4));
+        o.setWatchable(getTestString(4));
+		return o;
 	}
 
 	/**
@@ -57,63 +46,48 @@ public class OtaControllerTest {
 	@Test
 	public void testGetAllOtas() throws Exception {
 		List<Ota> list = new ArrayList<>();
-		Ota o = new Ota();
-		o.setId(1);
-         o.setChannelname("ABCDEFGHI");
-         o.setComments("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234");
-         o.setDirection("ABCD");
-         o.setEnabled("ABC");
-         o.setFccinfo("ABCDEFGHI");
-         o.setFccinfolink("ABCDEF");
-         o.setLang("AB");
-         o.setNetwork("ABCDEFGH");
-         o.setOff("ABC");
-         o.setRecommendedantenna("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcd");
-         o.setRez("ABCDE");
-         o.setStation("ABCDEFGHI");
-         o.setTvfoolestsignal("ABCD");
-         o.setWatchable("ABCD");
+		Ota o = getOta(1);
 		list.add(o);
 
-		given(otaService.listAll()).willReturn(list);
+		given(otaServices.listAll()).willReturn(list);
 
-		this.mockMvc.perform(get("/otas").with(user("user").roles("ADMIN"))).andExpect(status().isOk())
-				.andExpect(content().string(containsString("<h1>Ota List</h1>")))
-				.andExpect(content().string(containsString("Chan")))
-				.andExpect(content().string(containsString("ABCDEFGHI")))
-				.andExpect(content().string(containsString("ChannelName")))
-				.andExpect(content().string(containsString("ChannelNumber")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234")))
-				.andExpect(content().string(containsString("Comments")))
-				.andExpect(content().string(containsString("ABCD")))
-				.andExpect(content().string(containsString("Direction")))
-				.andExpect(content().string(containsString("ABC")))
-				.andExpect(content().string(containsString("Enabled")))
-				.andExpect(content().string(containsString("ABCDEFGHI")))
-				.andExpect(content().string(containsString("FccInfo")))
-				.andExpect(content().string(containsString("ABCDEF")))
-				.andExpect(content().string(containsString("FccInfoLink")))
-				.andExpect(content().string(containsString("Freq")))
-				.andExpect(content().string(containsString("id")))
-				.andExpect(content().string(containsString("AB")))
-				.andExpect(content().string(containsString("Lang")))
-				.andExpect(content().string(containsString("Listed")))
-				.andExpect(content().string(containsString("MyTivoAvgStrength")))
-				.andExpect(content().string(containsString("ABCDEFGH")))
-				.andExpect(content().string(containsString("Network")))
-				.andExpect(content().string(containsString("ABC")))
-				.andExpect(content().string(containsString("Off")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcd")))
-				.andExpect(content().string(containsString("RecommendedAntenna")))
-				.andExpect(content().string(containsString("ABCDE")))
-				.andExpect(content().string(containsString("Rez")))
-				.andExpect(content().string(containsString("ABCDEFGHI")))
-				.andExpect(content().string(containsString("Station")))
-				.andExpect(content().string(containsString("SubChan")))
-				.andExpect(content().string(containsString("ABCD")))
-				.andExpect(content().string(containsString("TvFoolEstSignal")))
-				.andExpect(content().string(containsString("ABCD")))
-				.andExpect(content().string(containsString("Watchable")));
+		ResultActions ra = getAsAdmin("/otas");
+		contentContainsMarkup(ra,"<h1>" + getMsg("class.Ota") + " " + getMsg("edit.list") + "</h1>");
+		contentContainsMarkup(ra,"Chan");
+		contentContainsMarkup(ra,getTestString(9));
+		contentContainsMarkup(ra,"ChannelName");
+		contentContainsMarkup(ra,"ChannelNumber");
+		contentContainsMarkup(ra,getTestString(31));
+		contentContainsMarkup(ra,"Comments");
+		contentContainsMarkup(ra,getTestString(4));
+		contentContainsMarkup(ra,"Direction");
+		contentContainsMarkup(ra,getTestString(3));
+		contentContainsMarkup(ra,"Enabled");
+		contentContainsMarkup(ra,getTestString(9));
+		contentContainsMarkup(ra,"FccInfo");
+		contentContainsMarkup(ra,getTestString(6));
+		contentContainsMarkup(ra,"FccInfoLink");
+		contentContainsMarkup(ra,"Freq");
+		contentContainsMarkup(ra,"id");
+		contentContainsMarkup(ra,getTestString(2));
+		contentContainsMarkup(ra,"Lang");
+		contentContainsMarkup(ra,"Listed");
+		contentContainsMarkup(ra,"MyTivoAvgStrength");
+		contentContainsMarkup(ra,getTestString(8));
+		contentContainsMarkup(ra,"Network");
+		contentContainsMarkup(ra,getTestString(3));
+		contentContainsMarkup(ra,"Off");
+		contentContainsMarkup(ra,getTestString(41));
+		contentContainsMarkup(ra,"RecommendedAntenna");
+		contentContainsMarkup(ra,getTestString(5));
+		contentContainsMarkup(ra,"Rez");
+		contentContainsMarkup(ra,getTestString(9));
+		contentContainsMarkup(ra,"Station");
+		contentContainsMarkup(ra,"SubChan");
+		contentContainsMarkup(ra,getTestString(4));
+		contentContainsMarkup(ra,"TvFoolEstSignal");
+		contentContainsMarkup(ra,getTestString(4));
+		contentContainsMarkup(ra,"Watchable");
 	}
 
 	/**
@@ -124,29 +98,29 @@ public class OtaControllerTest {
 	 */
 	@Test
 	public void testShowNewOtaPage() throws Exception {
-		this.mockMvc.perform(get("/otas/new").with(user("user").roles("ADMIN"))).andExpect(status().isOk())
-				.andExpect(content().string(containsString("<h1>Create New Ota</h1>")))
-				.andExpect(content().string(containsString("Chan")))
-				.andExpect(content().string(containsString("ChannelName")))
-				.andExpect(content().string(containsString("ChannelNumber")))
-				.andExpect(content().string(containsString("Comments")))
-				.andExpect(content().string(containsString("Direction")))
-				.andExpect(content().string(containsString("Enabled")))
-				.andExpect(content().string(containsString("FccInfo")))
-				.andExpect(content().string(containsString("FccInfoLink")))
-				.andExpect(content().string(containsString("Freq")))
-				.andExpect(content().string(containsString("id")))
-				.andExpect(content().string(containsString("Lang")))
-				.andExpect(content().string(containsString("Listed")))
-				.andExpect(content().string(containsString("MyTivoAvgStrength")))
-				.andExpect(content().string(containsString("Network")))
-				.andExpect(content().string(containsString("Off")))
-				.andExpect(content().string(containsString("RecommendedAntenna")))
-				.andExpect(content().string(containsString("Rez")))
-				.andExpect(content().string(containsString("Station")))
-				.andExpect(content().string(containsString("SubChan")))
-				.andExpect(content().string(containsString("TvFoolEstSignal")))
-				.andExpect(content().string(containsString("Watchable")));
+		ResultActions ra = getAsAdmin("/otas/new");
+		contentContainsMarkup(ra,"<h1>" + getMsg("edit.new") + " " + getMsg("class.Ota") + "</h1>");
+		contentContainsMarkup(ra,"Chan");
+		contentContainsMarkup(ra,"ChannelName");
+		contentContainsMarkup(ra,"ChannelNumber");
+		contentContainsMarkup(ra,"Comments");
+		contentContainsMarkup(ra,"Direction");
+		contentContainsMarkup(ra,"Enabled");
+		contentContainsMarkup(ra,"FccInfo");
+		contentContainsMarkup(ra,"FccInfoLink");
+		contentContainsMarkup(ra,"Freq");
+		contentContainsMarkup(ra,"id");
+		contentContainsMarkup(ra,"Lang");
+		contentContainsMarkup(ra,"Listed");
+		contentContainsMarkup(ra,"MyTivoAvgStrength");
+		contentContainsMarkup(ra,"Network");
+		contentContainsMarkup(ra,"Off");
+		contentContainsMarkup(ra,"RecommendedAntenna");
+		contentContainsMarkup(ra,"Rez");
+		contentContainsMarkup(ra,"Station");
+		contentContainsMarkup(ra,"SubChan");
+		contentContainsMarkup(ra,"TvFoolEstSignal");
+		contentContainsMarkup(ra,"Watchable");
 	}
 
 	/**
@@ -155,8 +129,10 @@ public class OtaControllerTest {
 	 */
 	@Test
 	public void testSaveOtaCancel() throws Exception {
-		this.mockMvc.perform(post("/otas/save").param("action", "cancel").with(user("user").roles("ADMIN")))
-				.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/otas"));
+		Ota o = getOta(1);
+
+		send(SEND_POST, "/otas/save", "ota", o, ImmutableMap.of("action", "cancel"), ADMIN_USER,
+				"/otas");
 	}
 
 	/**
@@ -165,8 +141,10 @@ public class OtaControllerTest {
 	 */
 	@Test
 	public void testSaveOtaSave() throws Exception {
-		this.mockMvc.perform(post("/otas/save").param("action", "save").with(user("user").roles("ADMIN")))
-				.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/otas"));
+		Ota o = getOta(0);
+
+		send(SEND_POST, "/otas/save", "ota", o, ImmutableMap.of("action", "save"), ADMIN_USER,
+				"/otas");
 	}
 
 	/**
@@ -177,61 +155,46 @@ public class OtaControllerTest {
 	 */
 	@Test
 	public void testShowEditOtaPage() throws Exception {
-		Ota o = new Ota();
-		o.setId(1);
-         o.setChannelname("ABCDEFGHI");
-         o.setComments("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234");
-         o.setDirection("ABCD");
-         o.setEnabled("ABC");
-         o.setFccinfo("ABCDEFGHI");
-         o.setFccinfolink("ABCDEF");
-         o.setLang("AB");
-         o.setNetwork("ABCDEFGH");
-         o.setOff("ABC");
-         o.setRecommendedantenna("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcd");
-         o.setRez("ABCDE");
-         o.setStation("ABCDEFGHI");
-         o.setTvfoolestsignal("ABCD");
-         o.setWatchable("ABCD");
+		Ota o = getOta(1);
 
-		given(otaService.get(1)).willReturn(o);
+		given(otaServices.get(1)).willReturn(o);
 
-		this.mockMvc.perform(get("/otas/edit/1").with(user("user").roles("ADMIN"))).andExpect(status().isOk())
-				.andExpect(content().string(containsString("Chan")))
-				.andExpect(content().string(containsString("ABCDEFGHI")))
-				.andExpect(content().string(containsString("ChannelName")))
-				.andExpect(content().string(containsString("ChannelNumber")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234")))
-				.andExpect(content().string(containsString("Comments")))
-				.andExpect(content().string(containsString("ABCD")))
-				.andExpect(content().string(containsString("Direction")))
-				.andExpect(content().string(containsString("ABC")))
-				.andExpect(content().string(containsString("Enabled")))
-				.andExpect(content().string(containsString("ABCDEFGHI")))
-				.andExpect(content().string(containsString("FccInfo")))
-				.andExpect(content().string(containsString("ABCDEF")))
-				.andExpect(content().string(containsString("FccInfoLink")))
-				.andExpect(content().string(containsString("Freq")))
-				.andExpect(content().string(containsString("id")))
-				.andExpect(content().string(containsString("AB")))
-				.andExpect(content().string(containsString("Lang")))
-				.andExpect(content().string(containsString("Listed")))
-				.andExpect(content().string(containsString("MyTivoAvgStrength")))
-				.andExpect(content().string(containsString("ABCDEFGH")))
-				.andExpect(content().string(containsString("Network")))
-				.andExpect(content().string(containsString("ABC")))
-				.andExpect(content().string(containsString("Off")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcd")))
-				.andExpect(content().string(containsString("RecommendedAntenna")))
-				.andExpect(content().string(containsString("ABCDE")))
-				.andExpect(content().string(containsString("Rez")))
-				.andExpect(content().string(containsString("ABCDEFGHI")))
-				.andExpect(content().string(containsString("Station")))
-				.andExpect(content().string(containsString("SubChan")))
-				.andExpect(content().string(containsString("ABCD")))
-				.andExpect(content().string(containsString("TvFoolEstSignal")))
-				.andExpect(content().string(containsString("ABCD")))
-				.andExpect(content().string(containsString("Watchable")));
+		ResultActions ra = getAsAdmin("/otas/edit/1");
+		contentContainsMarkup(ra,"Chan");
+		contentContainsMarkup(ra,o.getChannelname());
+		contentContainsMarkup(ra,"ChannelName");
+		contentContainsMarkup(ra,"ChannelNumber");
+		contentContainsMarkup(ra,o.getComments());
+		contentContainsMarkup(ra,"Comments");
+		contentContainsMarkup(ra,o.getDirection());
+		contentContainsMarkup(ra,"Direction");
+		contentContainsMarkup(ra,o.getEnabled());
+		contentContainsMarkup(ra,"Enabled");
+		contentContainsMarkup(ra,o.getFccinfo());
+		contentContainsMarkup(ra,"FccInfo");
+		contentContainsMarkup(ra,o.getFccinfolink());
+		contentContainsMarkup(ra,"FccInfoLink");
+		contentContainsMarkup(ra,"Freq");
+		contentContainsMarkup(ra,"id");
+		contentContainsMarkup(ra,o.getLang());
+		contentContainsMarkup(ra,"Lang");
+		contentContainsMarkup(ra,"Listed");
+		contentContainsMarkup(ra,"MyTivoAvgStrength");
+		contentContainsMarkup(ra,o.getNetwork());
+		contentContainsMarkup(ra,"Network");
+		contentContainsMarkup(ra,o.getOff());
+		contentContainsMarkup(ra,"Off");
+		contentContainsMarkup(ra,o.getRecommendedantenna());
+		contentContainsMarkup(ra,"RecommendedAntenna");
+		contentContainsMarkup(ra,o.getRez());
+		contentContainsMarkup(ra,"Rez");
+		contentContainsMarkup(ra,o.getStation());
+		contentContainsMarkup(ra,"Station");
+		contentContainsMarkup(ra,"SubChan");
+		contentContainsMarkup(ra,o.getTvfoolestsignal());
+		contentContainsMarkup(ra,"TvFoolEstSignal");
+		contentContainsMarkup(ra,o.getWatchable());
+		contentContainsMarkup(ra,"Watchable");
 	}
 
 	/**
@@ -240,8 +203,7 @@ public class OtaControllerTest {
 	 */
 	@Test
 	public void testDeleteOta() throws Exception {
-		this.mockMvc.perform(get("/otas/delete/1").with(user("user").roles("ADMIN")))
-				.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/otas"));
+		getAsAdminRedirectExpected("/otas/delete/1","/otas");
 	}
 
 }

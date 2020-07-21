@@ -1,29 +1,13 @@
 package com.dea42.watchlist.controller;
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
-
+import org.springframework.test.web.servlet.ResultActions;
+import com.google.common.collect.ImmutableMap;
+import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Networks;
-import com.dea42.watchlist.service.NetworksServices;
 
 /**
  * Title: NetworksControllerTest <br>
@@ -33,21 +17,18 @@ import com.dea42.watchlist.service.NetworksServices;
  * @author Gened by com.dea42.build.GenSpring<br>
  * @version 1.0<br>
  */
-@RunWith(SpringJUnit4ClassRunner.class)
 @WebMvcTest(NetworksController.class)
-public class NetworksControllerTest {
-	@MockBean
-	private NetworksServices networksService;
-
-	private MockMvc mockMvc;
-
-	@Autowired
-	private WebApplicationContext webApplicationContext;
-
-	@Before()
-	public void setup() {
-		// Init MockMvc Object and build
-		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+public class NetworksControllerTest extends MockBase {
+	private Networks getNetworks(Integer id) {
+		Networks o = new Networks();
+		o.setId(id);
+        o.setRokuapp(getTestString(97));
+        o.setSite(getTestString(28));
+        o.setCommercials(getTestString(68));
+        o.setPersistance(getTestString(70));
+        o.setOnhulu(getTestString(14));
+        o.setStandardwait(getTestString(17));
+		return o;
 	}
 
 	/**
@@ -57,32 +38,25 @@ public class NetworksControllerTest {
 	@Test
 	public void testGetAllNetworkss() throws Exception {
 		List<Networks> list = new ArrayList<>();
-		Networks o = new Networks();
-		o.setId(1);
-         o.setRokuapp("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setSite("ABCDEFGHIJKLMNOPQRSTUVWXYZ01");
-         o.setCommercials("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setPersistance("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setOnhulu("ABCDEFGHIJKLMN");
-         o.setStandardwait("ABCDEFGHIJKLMNOPQ");
+		Networks o = getNetworks(1);
 		list.add(o);
 
-		given(networksService.listAll()).willReturn(list);
+		given(networksServices.listAll()).willReturn(list);
 
-		this.mockMvc.perform(get("/networkss").with(user("user").roles("ADMIN"))).andExpect(status().isOk())
-				.andExpect(content().string(containsString("<h1>Networks List</h1>")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("RokuApp")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01")))
-				.andExpect(content().string(containsString("Site")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("Commercials")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("Persistance")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMN")))
-				.andExpect(content().string(containsString("OnHulu")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQ")))
-				.andExpect(content().string(containsString("StandardWait")));
+		ResultActions ra = getAsAdmin("/networkss");
+		contentContainsMarkup(ra,"<h1>" + getMsg("class.Networks") + " " + getMsg("edit.list") + "</h1>");
+		contentContainsMarkup(ra,getTestString(97));
+		contentContainsMarkup(ra,"RokuApp");
+		contentContainsMarkup(ra,getTestString(28));
+		contentContainsMarkup(ra,"Site");
+		contentContainsMarkup(ra,getTestString(68));
+		contentContainsMarkup(ra,"Commercials");
+		contentContainsMarkup(ra,getTestString(70));
+		contentContainsMarkup(ra,"Persistance");
+		contentContainsMarkup(ra,getTestString(14));
+		contentContainsMarkup(ra,"OnHulu");
+		contentContainsMarkup(ra,getTestString(17));
+		contentContainsMarkup(ra,"StandardWait");
 	}
 
 	/**
@@ -93,42 +67,42 @@ public class NetworksControllerTest {
 	 */
 	@Test
 	public void testShowNewNetworksPage() throws Exception {
-		this.mockMvc.perform(get("/networkss/new").with(user("user").roles("ADMIN"))).andExpect(status().isOk())
-				.andExpect(content().string(containsString("<h1>Create New Networks</h1>")))
-				.andExpect(content().string(containsString("AndroidApp")))
-				.andExpect(content().string(containsString("AndroidAppLink")))
-				.andExpect(content().string(containsString("Comment")))
-				.andExpect(content().string(containsString("CommentLink")))
-				.andExpect(content().string(containsString("Commercials")))
-				.andExpect(content().string(containsString("CommercialsLink")))
-				.andExpect(content().string(containsString("FireApp")))
-				.andExpect(content().string(containsString("FireAppLink")))
-				.andExpect(content().string(containsString("FreeWithTwcId")))
-				.andExpect(content().string(containsString("FreeWithTwcIdLink")))
-				.andExpect(content().string(containsString("HasDirectBuyOption")))
-				.andExpect(content().string(containsString("HasDirectBuyOptionLink")))
-				.andExpect(content().string(containsString("HasWatchList")))
-				.andExpect(content().string(containsString("ICanOta")))
-				.andExpect(content().string(containsString("ICanOtaLink")))
-				.andExpect(content().string(containsString("id")))
-				.andExpect(content().string(containsString("IptvService")))
-				.andExpect(content().string(containsString("IptvServiceLink")))
-				.andExpect(content().string(containsString("OnHulu")))
-				.andExpect(content().string(containsString("OnHuluLink")))
-				.andExpect(content().string(containsString("Persistance")))
-				.andExpect(content().string(containsString("RemembersPlaceInEpisode")))
-				.andExpect(content().string(containsString("RemembersWatchedEpisodes")))
-				.andExpect(content().string(containsString("RokuApp")))
-				.andExpect(content().string(containsString("RokuAppLink")))
-				.andExpect(content().string(containsString("ShowsInTivoNpl")))
-				.andExpect(content().string(containsString("Site")))
-				.andExpect(content().string(containsString("SiteLink")))
-				.andExpect(content().string(containsString("StandardWait")))
-				.andExpect(content().string(containsString("TivoApp")))
-				.andExpect(content().string(containsString("TivoAppLink")))
-				.andExpect(content().string(containsString("TivoShortName")))
-				.andExpect(content().string(containsString("WebInterface")))
-				.andExpect(content().string(containsString("WebInterfaceLink")));
+		ResultActions ra = getAsAdmin("/networkss/new");
+		contentContainsMarkup(ra,"<h1>" + getMsg("edit.new") + " " + getMsg("class.Networks") + "</h1>");
+		contentContainsMarkup(ra,"AndroidApp");
+		contentContainsMarkup(ra,"AndroidAppLink");
+		contentContainsMarkup(ra,"Comment");
+		contentContainsMarkup(ra,"CommentLink");
+		contentContainsMarkup(ra,"Commercials");
+		contentContainsMarkup(ra,"CommercialsLink");
+		contentContainsMarkup(ra,"FireApp");
+		contentContainsMarkup(ra,"FireAppLink");
+		contentContainsMarkup(ra,"FreeWithTwcId");
+		contentContainsMarkup(ra,"FreeWithTwcIdLink");
+		contentContainsMarkup(ra,"HasDirectBuyOption");
+		contentContainsMarkup(ra,"HasDirectBuyOptionLink");
+		contentContainsMarkup(ra,"HasWatchList");
+		contentContainsMarkup(ra,"ICanOta");
+		contentContainsMarkup(ra,"ICanOtaLink");
+		contentContainsMarkup(ra,"id");
+		contentContainsMarkup(ra,"IptvService");
+		contentContainsMarkup(ra,"IptvServiceLink");
+		contentContainsMarkup(ra,"OnHulu");
+		contentContainsMarkup(ra,"OnHuluLink");
+		contentContainsMarkup(ra,"Persistance");
+		contentContainsMarkup(ra,"RemembersPlaceInEpisode");
+		contentContainsMarkup(ra,"RemembersWatchedEpisodes");
+		contentContainsMarkup(ra,"RokuApp");
+		contentContainsMarkup(ra,"RokuAppLink");
+		contentContainsMarkup(ra,"ShowsInTivoNpl");
+		contentContainsMarkup(ra,"Site");
+		contentContainsMarkup(ra,"SiteLink");
+		contentContainsMarkup(ra,"StandardWait");
+		contentContainsMarkup(ra,"TivoApp");
+		contentContainsMarkup(ra,"TivoAppLink");
+		contentContainsMarkup(ra,"TivoShortName");
+		contentContainsMarkup(ra,"WebInterface");
+		contentContainsMarkup(ra,"WebInterfaceLink");
 	}
 
 	/**
@@ -137,8 +111,10 @@ public class NetworksControllerTest {
 	 */
 	@Test
 	public void testSaveNetworksCancel() throws Exception {
-		this.mockMvc.perform(post("/networkss/save").param("action", "cancel").with(user("user").roles("ADMIN")))
-				.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/networkss"));
+		Networks o = getNetworks(1);
+
+		send(SEND_POST, "/networkss/save", "networks", o, ImmutableMap.of("action", "cancel"), ADMIN_USER,
+				"/networkss");
 	}
 
 	/**
@@ -147,8 +123,10 @@ public class NetworksControllerTest {
 	 */
 	@Test
 	public void testSaveNetworksSave() throws Exception {
-		this.mockMvc.perform(post("/networkss/save").param("action", "save").with(user("user").roles("ADMIN")))
-				.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/networkss"));
+		Networks o = getNetworks(0);
+
+		send(SEND_POST, "/networkss/save", "networks", o, ImmutableMap.of("action", "save"), ADMIN_USER,
+				"/networkss");
 	}
 
 	/**
@@ -159,110 +137,77 @@ public class NetworksControllerTest {
 	 */
 	@Test
 	public void testShowEditNetworksPage() throws Exception {
-		Networks o = new Networks();
-		o.setId(1);
-         o.setAndroidapp("A");
-         o.setAndroidapplink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setComment("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setCommentlink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setCommercials("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setCommercialslink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890");
-         o.setFireapp("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrs");
-         o.setFireapplink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghi");
-         o.setFreewithtwcid("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrst");
-         o.setFreewithtwcidlink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklm");
-         o.setHasdirectbuyoption("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setHasdirectbuyoptionlink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqr");
-         o.setHaswatchlist("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghi");
-         o.setIcanota("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzyz");
-         o.setIcanotalink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setIptvservice("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setIptvservicelink("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
-         o.setOnhulu("ABCDEFGHIJKLMN");
-         o.setOnhululink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setPersistance("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setRemembersplaceinepisode("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrst");
-         o.setRememberswatchedepisodes("ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678");
-         o.setRokuapp("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setRokuapplink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghi");
-         o.setSite("ABCDEFGHIJKLMNOPQRSTUVWXYZ01");
-         o.setSitelink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmno");
-         o.setStandardwait("ABCDEFGHIJKLMNOPQ");
-         o.setTivoapp("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwz");
-         o.setTivoapplink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567");
-         o.setTivoshortname("ABCDEFGHIJ");
-         o.setWebinterface("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrs");
-         o.setWebinterfacelink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcd");
+		Networks o = getNetworks(1);
 
-		given(networksService.get(1)).willReturn(o);
+		given(networksServices.get(1)).willReturn(o);
 
-		this.mockMvc.perform(get("/networkss/edit/1").with(user("user").roles("ADMIN"))).andExpect(status().isOk())
-				.andExpect(content().string(containsString("A")))
-				.andExpect(content().string(containsString("AndroidApp")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("AndroidAppLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("Comment")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("CommentLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("Commercials")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890")))
-				.andExpect(content().string(containsString("CommercialsLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrs")))
-				.andExpect(content().string(containsString("FireApp")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghi")))
-				.andExpect(content().string(containsString("FireAppLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrst")))
-				.andExpect(content().string(containsString("FreeWithTwcId")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklm")))
-				.andExpect(content().string(containsString("FreeWithTwcIdLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("HasDirectBuyOption")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqr")))
-				.andExpect(content().string(containsString("HasDirectBuyOptionLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghi")))
-				.andExpect(content().string(containsString("HasWatchList")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzyz")))
-				.andExpect(content().string(containsString("ICanOta")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("ICanOtaLink")))
-				.andExpect(content().string(containsString("id")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("IptvService")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")))
-				.andExpect(content().string(containsString("IptvServiceLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMN")))
-				.andExpect(content().string(containsString("OnHulu")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("OnHuluLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("Persistance")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrst")))
-				.andExpect(content().string(containsString("RemembersPlaceInEpisode")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678")))
-				.andExpect(content().string(containsString("RemembersWatchedEpisodes")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("RokuApp")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghi")))
-				.andExpect(content().string(containsString("RokuAppLink")))
-				.andExpect(content().string(containsString("ShowsInTivoNpl")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01")))
-				.andExpect(content().string(containsString("Site")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmno")))
-				.andExpect(content().string(containsString("SiteLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQ")))
-				.andExpect(content().string(containsString("StandardWait")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwz")))
-				.andExpect(content().string(containsString("TivoApp")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567")))
-				.andExpect(content().string(containsString("TivoAppLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJ")))
-				.andExpect(content().string(containsString("TivoShortName")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrs")))
-				.andExpect(content().string(containsString("WebInterface")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcd")))
-				.andExpect(content().string(containsString("WebInterfaceLink")));
+		ResultActions ra = getAsAdmin("/networkss/edit/1");
+		contentContainsMarkup(ra,o.getAndroidapp());
+		contentContainsMarkup(ra,"AndroidApp");
+		contentContainsMarkup(ra,o.getAndroidapplink());
+		contentContainsMarkup(ra,"AndroidAppLink");
+		contentContainsMarkup(ra,o.getComment());
+		contentContainsMarkup(ra,"Comment");
+		contentContainsMarkup(ra,o.getCommentlink());
+		contentContainsMarkup(ra,"CommentLink");
+		contentContainsMarkup(ra,o.getCommercials());
+		contentContainsMarkup(ra,"Commercials");
+		contentContainsMarkup(ra,o.getCommercialslink());
+		contentContainsMarkup(ra,"CommercialsLink");
+		contentContainsMarkup(ra,o.getFireapp());
+		contentContainsMarkup(ra,"FireApp");
+		contentContainsMarkup(ra,o.getFireapplink());
+		contentContainsMarkup(ra,"FireAppLink");
+		contentContainsMarkup(ra,o.getFreewithtwcid());
+		contentContainsMarkup(ra,"FreeWithTwcId");
+		contentContainsMarkup(ra,o.getFreewithtwcidlink());
+		contentContainsMarkup(ra,"FreeWithTwcIdLink");
+		contentContainsMarkup(ra,o.getHasdirectbuyoption());
+		contentContainsMarkup(ra,"HasDirectBuyOption");
+		contentContainsMarkup(ra,o.getHasdirectbuyoptionlink());
+		contentContainsMarkup(ra,"HasDirectBuyOptionLink");
+		contentContainsMarkup(ra,o.getHaswatchlist());
+		contentContainsMarkup(ra,"HasWatchList");
+		contentContainsMarkup(ra,o.getIcanota());
+		contentContainsMarkup(ra,"ICanOta");
+		contentContainsMarkup(ra,o.getIcanotalink());
+		contentContainsMarkup(ra,"ICanOtaLink");
+		contentContainsMarkup(ra,"id");
+		contentContainsMarkup(ra,o.getIptvservice());
+		contentContainsMarkup(ra,"IptvService");
+		contentContainsMarkup(ra,o.getIptvservicelink());
+		contentContainsMarkup(ra,"IptvServiceLink");
+		contentContainsMarkup(ra,o.getOnhulu());
+		contentContainsMarkup(ra,"OnHulu");
+		contentContainsMarkup(ra,o.getOnhululink());
+		contentContainsMarkup(ra,"OnHuluLink");
+		contentContainsMarkup(ra,o.getPersistance());
+		contentContainsMarkup(ra,"Persistance");
+		contentContainsMarkup(ra,o.getRemembersplaceinepisode());
+		contentContainsMarkup(ra,"RemembersPlaceInEpisode");
+		contentContainsMarkup(ra,o.getRememberswatchedepisodes());
+		contentContainsMarkup(ra,"RemembersWatchedEpisodes");
+		contentContainsMarkup(ra,o.getRokuapp());
+		contentContainsMarkup(ra,"RokuApp");
+		contentContainsMarkup(ra,o.getRokuapplink());
+		contentContainsMarkup(ra,"RokuAppLink");
+		contentContainsMarkup(ra,"ShowsInTivoNpl");
+		contentContainsMarkup(ra,o.getSite());
+		contentContainsMarkup(ra,"Site");
+		contentContainsMarkup(ra,o.getSitelink());
+		contentContainsMarkup(ra,"SiteLink");
+		contentContainsMarkup(ra,o.getStandardwait());
+		contentContainsMarkup(ra,"StandardWait");
+		contentContainsMarkup(ra,o.getTivoapp());
+		contentContainsMarkup(ra,"TivoApp");
+		contentContainsMarkup(ra,o.getTivoapplink());
+		contentContainsMarkup(ra,"TivoAppLink");
+		contentContainsMarkup(ra,o.getTivoshortname());
+		contentContainsMarkup(ra,"TivoShortName");
+		contentContainsMarkup(ra,o.getWebinterface());
+		contentContainsMarkup(ra,"WebInterface");
+		contentContainsMarkup(ra,o.getWebinterfacelink());
+		contentContainsMarkup(ra,"WebInterfaceLink");
 	}
 
 	/**
@@ -271,8 +216,7 @@ public class NetworksControllerTest {
 	 */
 	@Test
 	public void testDeleteNetworks() throws Exception {
-		this.mockMvc.perform(get("/networkss/delete/1").with(user("user").roles("ADMIN")))
-				.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/networkss"));
+		getAsAdminRedirectExpected("/networkss/delete/1","/networkss");
 	}
 
 }

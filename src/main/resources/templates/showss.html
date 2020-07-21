@@ -1,8 +1,22 @@
-<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org"><head>    <meta charset="UTF-8"/>    <title>watchlist | Shows List View</title>    <link th:href="@{/css/site.css}" rel="stylesheet"/></head><body>
-	<div align="center">
-		<h1>Shows List</h1>
-		<a th:href="@{/showss/new}">Create New Shows</a> <br />
-		<br />
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="#{edit.listView} + ' ' + #{class.Shows}"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" media="screen"
+	th:href="@{/resources/css/bootstrap.min.css}" />
+<link rel="stylesheet" media="screen"
+	th:href="@{/resources/css/site.css}" />
+<script th:src="@{/resources/js/jquery.min.js}"></script>
+<script th:src="@{/resources/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<div class="container">
+		<h1 th:text="#{class.Shows} + ' ' + #{edit.list}"></h1>
+		<a th:href="@{/showss/new}" th:text="#{edit.new} + ' ' + #{class.Shows}"></a> <br /><br />
 
 	    <table>
 	        <tr>
@@ -63,8 +77,8 @@
 	            <td th:text="${shows.status}"></td>
 	            <td><a th:href="@{${shows.tivonamelink}}"><span th:text="${shows.tivoname}"></span></a></td>
 	            <td th:text="${shows.tivonamelink}"></td>
-				<td><a th:href="@{'/showss/edit/' + ${shows.id}}">Edit</a>
-					&nbsp;&nbsp;&nbsp; <a th:href="@{'/showss/delete/' + ${shows.id}}">Delete</a>
+				<td><a th:href="@{'/showss/edit/' + ${shows.id}}" th:text="#{edit.edit}"></a>
+					&nbsp;&nbsp;&nbsp; <a th:href="@{'/showss/delete/' + ${shows.id}}" th:text="#{edit.delete}"></a>
 				</td>
 
 	        </tr>

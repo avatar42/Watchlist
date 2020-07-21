@@ -1,8 +1,22 @@
-<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org"><head>    <meta charset="UTF-8"/>    <title>watchlist | Roamiosp List View</title>    <link th:href="@{/css/site.css}" rel="stylesheet"/></head><body>
-	<div align="center">
-		<h1>Roamiosp List</h1>
-		<a th:href="@{/roamiosps/new}">Create New Roamiosp</a> <br />
-		<br />
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="#{edit.listView} + ' ' + #{class.Roamiosp}"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" media="screen"
+	th:href="@{/resources/css/bootstrap.min.css}" />
+<link rel="stylesheet" media="screen"
+	th:href="@{/resources/css/site.css}" />
+<script th:src="@{/resources/js/jquery.min.js}"></script>
+<script th:src="@{/resources/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<div class="container">
+		<h1 th:text="#{class.Roamiosp} + ' ' + #{edit.list}"></h1>
+		<a th:href="@{/roamiosps/new}" th:text="#{edit.new} + ' ' + #{class.Roamiosp}"></a> <br /><br />
 
 	    <table>
 	        <tr>
@@ -31,8 +45,8 @@
 	            <td th:text="${roamiosp.season}"></td>
 	            <td th:text="${roamiosp.show}"></td>
 	            <td th:text="${roamiosp.start}"></td>
-				<td><a th:href="@{'/roamiosps/edit/' + ${roamiosp.id}}">Edit</a>
-					&nbsp;&nbsp;&nbsp; <a th:href="@{'/roamiosps/delete/' + ${roamiosp.id}}">Delete</a>
+				<td><a th:href="@{'/roamiosps/edit/' + ${roamiosp.id}}" th:text="#{edit.edit}"></a>
+					&nbsp;&nbsp;&nbsp; <a th:href="@{'/roamiosps/delete/' + ${roamiosp.id}}" th:text="#{edit.delete}"></a>
 				</td>
 
 	        </tr>

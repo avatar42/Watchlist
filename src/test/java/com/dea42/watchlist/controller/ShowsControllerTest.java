@@ -1,29 +1,13 @@
 package com.dea42.watchlist.controller;
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
-
+import org.springframework.test.web.servlet.ResultActions;
+import com.google.common.collect.ImmutableMap;
+import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Shows;
-import com.dea42.watchlist.service.ShowsServices;
 
 /**
  * Title: ShowsControllerTest <br>
@@ -33,21 +17,37 @@ import com.dea42.watchlist.service.ShowsServices;
  * @author Gened by com.dea42.build.GenSpring<br>
  * @version 1.0<br>
  */
-@RunWith(SpringJUnit4ClassRunner.class)
 @WebMvcTest(ShowsController.class)
-public class ShowsControllerTest {
-	@MockBean
-	private ShowsServices showsService;
-
-	private MockMvc mockMvc;
-
-	@Autowired
-	private WebApplicationContext webApplicationContext;
-
-	@Before()
-	public void setup() {
-		// Init MockMvc Object and build
-		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+public class ShowsControllerTest extends MockBase {
+	private Shows getShows(Integer id) {
+		Shows o = new Shows();
+		o.setId(id);
+        o.setBestexperience(getTestString(17));
+        o.setBestexperiencelink(getTestString(306));
+        o.setCancelled(getTestString(65));
+        o.setComment(getTestString(181));
+        o.setCommentlink(getTestString(228));
+        o.setEpguidesshowname(getTestString(47));
+        o.setEpguidesshownamelink(getTestString(60));
+        o.setImdb(getTestString(1));
+        o.setImdblink(getTestString(63));
+        o.setIncanceledas(getTestString(47));
+        o.setIncanceledaslink(getTestString(70));
+        o.setInrokufeed(getTestString(1));
+        o.setInshowrssas(getTestString(47));
+        o.setInshowrssaslink(getTestString(32));
+        o.setJustwatch(getTestString(2));
+        o.setJustwatchlink(getTestString(75));
+        o.setLastshow(getTestString(10));
+        o.setLastwatched(getTestString(10));
+        o.setNetwork(getTestString(14));
+        o.setNetworklink(getTestString(306));
+        o.setOta(getTestString(3));
+        o.setPremiere(getTestString(65));
+        o.setStatus(getTestString(65));
+        o.setTivoname(getTestString(47));
+        o.setTivonamelink(getTestString(31));
+		return o;
 	}
 
 	/**
@@ -57,91 +57,65 @@ public class ShowsControllerTest {
 	@Test
 	public void testGetAllShowss() throws Exception {
 		List<Shows> list = new ArrayList<>();
-		Shows o = new Shows();
-		o.setId(1);
-         o.setBestexperience("ABCDEFGHIJKLMNOPQ");
-         o.setBestexperiencelink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setCancelled("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setComment("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setCommentlink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setEpguidesshowname("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghij");
-         o.setEpguidesshownamelink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvw");
-         o.setImdb("A");
-         o.setImdblink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzyz");
-         o.setIncanceledas("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghij");
-         o.setIncanceledaslink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setInrokufeed("A");
-         o.setInshowrssas("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghij");
-         o.setInshowrssaslink("ABCDEFGHIJKLMNOPQRSTUVWXYZ012345");
-         o.setJustwatch("AB");
-         o.setJustwatchlink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setLastshow("ABCDEFGHIJ");
-         o.setLastwatched("ABCDEFGHIJ");
-         o.setNetwork("ABCDEFGHIJKLMN");
-         o.setNetworklink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setOta("ABC");
-         o.setPremiere("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setStatus("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setTivoname("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghij");
-         o.setTivonamelink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234");
+		Shows o = getShows(1);
 		list.add(o);
 
-		given(showsService.listAll()).willReturn(list);
+		given(showsServices.listAll()).willReturn(list);
 
-		this.mockMvc.perform(get("/showss").with(user("user").roles("ADMIN"))).andExpect(status().isOk())
-				.andExpect(content().string(containsString("<h1>Shows List</h1>")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQ")))
-				.andExpect(content().string(containsString("BestExperience")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("BestExperienceLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("Cancelled")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("Comment")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("CommentLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghij")))
-				.andExpect(content().string(containsString("EpguidesShowName")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvw")))
-				.andExpect(content().string(containsString("EpguidesShowNameLink")))
-				.andExpect(content().string(containsString("id")))
-				.andExpect(content().string(containsString("A")))
-				.andExpect(content().string(containsString("Imdb")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzyz")))
-				.andExpect(content().string(containsString("ImdbLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghij")))
-				.andExpect(content().string(containsString("InCanceledAs")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("InCanceledAsLink")))
-				.andExpect(content().string(containsString("A")))
-				.andExpect(content().string(containsString("InRokuFeed")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghij")))
-				.andExpect(content().string(containsString("InShowRssAs")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ012345")))
-				.andExpect(content().string(containsString("InShowRssAsLink")))
-				.andExpect(content().string(containsString("AB")))
-				.andExpect(content().string(containsString("JustWatch")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("JustWatchLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJ")))
-				.andExpect(content().string(containsString("LastShow")))
-				.andExpect(content().string(containsString("ABCDEFGHIJ")))
-				.andExpect(content().string(containsString("LastWatched")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMN")))
-				.andExpect(content().string(containsString("Network")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("NetworkLink")))
-				.andExpect(content().string(containsString("ABC")))
-				.andExpect(content().string(containsString("Ota")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("Premiere")))
-				.andExpect(content().string(containsString("PremiereDate")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("Status")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghij")))
-				.andExpect(content().string(containsString("TivoName")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234")))
-				.andExpect(content().string(containsString("TivoNameLink")));
+		ResultActions ra = getAsAdmin("/showss");
+		contentContainsMarkup(ra,"<h1>" + getMsg("class.Shows") + " " + getMsg("edit.list") + "</h1>");
+		contentContainsMarkup(ra,getTestString(17));
+		contentContainsMarkup(ra,"BestExperience");
+		contentContainsMarkup(ra,getTestString(306));
+		contentContainsMarkup(ra,"BestExperienceLink");
+		contentContainsMarkup(ra,getTestString(65));
+		contentContainsMarkup(ra,"Cancelled");
+		contentContainsMarkup(ra,getTestString(181));
+		contentContainsMarkup(ra,"Comment");
+		contentContainsMarkup(ra,getTestString(228));
+		contentContainsMarkup(ra,"CommentLink");
+		contentContainsMarkup(ra,getTestString(47));
+		contentContainsMarkup(ra,"EpguidesShowName");
+		contentContainsMarkup(ra,getTestString(60));
+		contentContainsMarkup(ra,"EpguidesShowNameLink");
+		contentContainsMarkup(ra,"id");
+		contentContainsMarkup(ra,getTestString(1));
+		contentContainsMarkup(ra,"Imdb");
+		contentContainsMarkup(ra,getTestString(63));
+		contentContainsMarkup(ra,"ImdbLink");
+		contentContainsMarkup(ra,getTestString(47));
+		contentContainsMarkup(ra,"InCanceledAs");
+		contentContainsMarkup(ra,getTestString(70));
+		contentContainsMarkup(ra,"InCanceledAsLink");
+		contentContainsMarkup(ra,getTestString(1));
+		contentContainsMarkup(ra,"InRokuFeed");
+		contentContainsMarkup(ra,getTestString(47));
+		contentContainsMarkup(ra,"InShowRssAs");
+		contentContainsMarkup(ra,getTestString(32));
+		contentContainsMarkup(ra,"InShowRssAsLink");
+		contentContainsMarkup(ra,getTestString(2));
+		contentContainsMarkup(ra,"JustWatch");
+		contentContainsMarkup(ra,getTestString(75));
+		contentContainsMarkup(ra,"JustWatchLink");
+		contentContainsMarkup(ra,getTestString(10));
+		contentContainsMarkup(ra,"LastShow");
+		contentContainsMarkup(ra,getTestString(10));
+		contentContainsMarkup(ra,"LastWatched");
+		contentContainsMarkup(ra,getTestString(14));
+		contentContainsMarkup(ra,"Network");
+		contentContainsMarkup(ra,getTestString(306));
+		contentContainsMarkup(ra,"NetworkLink");
+		contentContainsMarkup(ra,getTestString(3));
+		contentContainsMarkup(ra,"Ota");
+		contentContainsMarkup(ra,getTestString(65));
+		contentContainsMarkup(ra,"Premiere");
+		contentContainsMarkup(ra,"PremiereDate");
+		contentContainsMarkup(ra,getTestString(65));
+		contentContainsMarkup(ra,"Status");
+		contentContainsMarkup(ra,getTestString(47));
+		contentContainsMarkup(ra,"TivoName");
+		contentContainsMarkup(ra,getTestString(31));
+		contentContainsMarkup(ra,"TivoNameLink");
 	}
 
 	/**
@@ -152,35 +126,35 @@ public class ShowsControllerTest {
 	 */
 	@Test
 	public void testShowNewShowsPage() throws Exception {
-		this.mockMvc.perform(get("/showss/new").with(user("user").roles("ADMIN"))).andExpect(status().isOk())
-				.andExpect(content().string(containsString("<h1>Create New Shows</h1>")))
-				.andExpect(content().string(containsString("BestExperience")))
-				.andExpect(content().string(containsString("BestExperienceLink")))
-				.andExpect(content().string(containsString("Cancelled")))
-				.andExpect(content().string(containsString("Comment")))
-				.andExpect(content().string(containsString("CommentLink")))
-				.andExpect(content().string(containsString("EpguidesShowName")))
-				.andExpect(content().string(containsString("EpguidesShowNameLink")))
-				.andExpect(content().string(containsString("id")))
-				.andExpect(content().string(containsString("Imdb")))
-				.andExpect(content().string(containsString("ImdbLink")))
-				.andExpect(content().string(containsString("InCanceledAs")))
-				.andExpect(content().string(containsString("InCanceledAsLink")))
-				.andExpect(content().string(containsString("InRokuFeed")))
-				.andExpect(content().string(containsString("InShowRssAs")))
-				.andExpect(content().string(containsString("InShowRssAsLink")))
-				.andExpect(content().string(containsString("JustWatch")))
-				.andExpect(content().string(containsString("JustWatchLink")))
-				.andExpect(content().string(containsString("LastShow")))
-				.andExpect(content().string(containsString("LastWatched")))
-				.andExpect(content().string(containsString("Network")))
-				.andExpect(content().string(containsString("NetworkLink")))
-				.andExpect(content().string(containsString("Ota")))
-				.andExpect(content().string(containsString("Premiere")))
-				.andExpect(content().string(containsString("PremiereDate")))
-				.andExpect(content().string(containsString("Status")))
-				.andExpect(content().string(containsString("TivoName")))
-				.andExpect(content().string(containsString("TivoNameLink")));
+		ResultActions ra = getAsAdmin("/showss/new");
+		contentContainsMarkup(ra,"<h1>" + getMsg("edit.new") + " " + getMsg("class.Shows") + "</h1>");
+		contentContainsMarkup(ra,"BestExperience");
+		contentContainsMarkup(ra,"BestExperienceLink");
+		contentContainsMarkup(ra,"Cancelled");
+		contentContainsMarkup(ra,"Comment");
+		contentContainsMarkup(ra,"CommentLink");
+		contentContainsMarkup(ra,"EpguidesShowName");
+		contentContainsMarkup(ra,"EpguidesShowNameLink");
+		contentContainsMarkup(ra,"id");
+		contentContainsMarkup(ra,"Imdb");
+		contentContainsMarkup(ra,"ImdbLink");
+		contentContainsMarkup(ra,"InCanceledAs");
+		contentContainsMarkup(ra,"InCanceledAsLink");
+		contentContainsMarkup(ra,"InRokuFeed");
+		contentContainsMarkup(ra,"InShowRssAs");
+		contentContainsMarkup(ra,"InShowRssAsLink");
+		contentContainsMarkup(ra,"JustWatch");
+		contentContainsMarkup(ra,"JustWatchLink");
+		contentContainsMarkup(ra,"LastShow");
+		contentContainsMarkup(ra,"LastWatched");
+		contentContainsMarkup(ra,"Network");
+		contentContainsMarkup(ra,"NetworkLink");
+		contentContainsMarkup(ra,"Ota");
+		contentContainsMarkup(ra,"Premiere");
+		contentContainsMarkup(ra,"PremiereDate");
+		contentContainsMarkup(ra,"Status");
+		contentContainsMarkup(ra,"TivoName");
+		contentContainsMarkup(ra,"TivoNameLink");
 	}
 
 	/**
@@ -189,8 +163,10 @@ public class ShowsControllerTest {
 	 */
 	@Test
 	public void testSaveShowsCancel() throws Exception {
-		this.mockMvc.perform(post("/showss/save").param("action", "cancel").with(user("user").roles("ADMIN")))
-				.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/showss"));
+		Shows o = getShows(1);
+
+		send(SEND_POST, "/showss/save", "shows", o, ImmutableMap.of("action", "cancel"), ADMIN_USER,
+				"/showss");
 	}
 
 	/**
@@ -199,8 +175,10 @@ public class ShowsControllerTest {
 	 */
 	@Test
 	public void testSaveShowsSave() throws Exception {
-		this.mockMvc.perform(post("/showss/save").param("action", "save").with(user("user").roles("ADMIN")))
-				.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/showss"));
+		Shows o = getShows(0);
+
+		send(SEND_POST, "/showss/save", "shows", o, ImmutableMap.of("action", "save"), ADMIN_USER,
+				"/showss");
 	}
 
 	/**
@@ -211,89 +189,63 @@ public class ShowsControllerTest {
 	 */
 	@Test
 	public void testShowEditShowsPage() throws Exception {
-		Shows o = new Shows();
-		o.setId(1);
-         o.setBestexperience("ABCDEFGHIJKLMNOPQ");
-         o.setBestexperiencelink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setCancelled("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setComment("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setCommentlink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setEpguidesshowname("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghij");
-         o.setEpguidesshownamelink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvw");
-         o.setImdb("A");
-         o.setImdblink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzyz");
-         o.setIncanceledas("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghij");
-         o.setIncanceledaslink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setInrokufeed("A");
-         o.setInshowrssas("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghij");
-         o.setInshowrssaslink("ABCDEFGHIJKLMNOPQRSTUVWXYZ012345");
-         o.setJustwatch("AB");
-         o.setJustwatchlink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setLastshow("ABCDEFGHIJ");
-         o.setLastwatched("ABCDEFGHIJ");
-         o.setNetwork("ABCDEFGHIJKLMN");
-         o.setNetworklink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setOta("ABC");
-         o.setPremiere("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setStatus("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy");
-         o.setTivoname("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghij");
-         o.setTivonamelink("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234");
+		Shows o = getShows(1);
 
-		given(showsService.get(1)).willReturn(o);
+		given(showsServices.get(1)).willReturn(o);
 
-		this.mockMvc.perform(get("/showss/edit/1").with(user("user").roles("ADMIN"))).andExpect(status().isOk())
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQ")))
-				.andExpect(content().string(containsString("BestExperience")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("BestExperienceLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("Cancelled")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("Comment")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("CommentLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghij")))
-				.andExpect(content().string(containsString("EpguidesShowName")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvw")))
-				.andExpect(content().string(containsString("EpguidesShowNameLink")))
-				.andExpect(content().string(containsString("id")))
-				.andExpect(content().string(containsString("A")))
-				.andExpect(content().string(containsString("Imdb")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzyz")))
-				.andExpect(content().string(containsString("ImdbLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghij")))
-				.andExpect(content().string(containsString("InCanceledAs")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("InCanceledAsLink")))
-				.andExpect(content().string(containsString("A")))
-				.andExpect(content().string(containsString("InRokuFeed")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghij")))
-				.andExpect(content().string(containsString("InShowRssAs")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ012345")))
-				.andExpect(content().string(containsString("InShowRssAsLink")))
-				.andExpect(content().string(containsString("AB")))
-				.andExpect(content().string(containsString("JustWatch")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("JustWatchLink")))
-				.andExpect(content().string(containsString("ABCDEFGHIJ")))
-				.andExpect(content().string(containsString("LastShow")))
-				.andExpect(content().string(containsString("ABCDEFGHIJ")))
-				.andExpect(content().string(containsString("LastWatched")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMN")))
-				.andExpect(content().string(containsString("Network")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("NetworkLink")))
-				.andExpect(content().string(containsString("ABC")))
-				.andExpect(content().string(containsString("Ota")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("Premiere")))
-				.andExpect(content().string(containsString("PremiereDate")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzy")))
-				.andExpect(content().string(containsString("Status")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghij")))
-				.andExpect(content().string(containsString("TivoName")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRSTUVWXYZ01234")))
-				.andExpect(content().string(containsString("TivoNameLink")));
+		ResultActions ra = getAsAdmin("/showss/edit/1");
+		contentContainsMarkup(ra,o.getBestexperience());
+		contentContainsMarkup(ra,"BestExperience");
+		contentContainsMarkup(ra,o.getBestexperiencelink());
+		contentContainsMarkup(ra,"BestExperienceLink");
+		contentContainsMarkup(ra,o.getCancelled());
+		contentContainsMarkup(ra,"Cancelled");
+		contentContainsMarkup(ra,o.getComment());
+		contentContainsMarkup(ra,"Comment");
+		contentContainsMarkup(ra,o.getCommentlink());
+		contentContainsMarkup(ra,"CommentLink");
+		contentContainsMarkup(ra,o.getEpguidesshowname());
+		contentContainsMarkup(ra,"EpguidesShowName");
+		contentContainsMarkup(ra,o.getEpguidesshownamelink());
+		contentContainsMarkup(ra,"EpguidesShowNameLink");
+		contentContainsMarkup(ra,"id");
+		contentContainsMarkup(ra,o.getImdb());
+		contentContainsMarkup(ra,"Imdb");
+		contentContainsMarkup(ra,o.getImdblink());
+		contentContainsMarkup(ra,"ImdbLink");
+		contentContainsMarkup(ra,o.getIncanceledas());
+		contentContainsMarkup(ra,"InCanceledAs");
+		contentContainsMarkup(ra,o.getIncanceledaslink());
+		contentContainsMarkup(ra,"InCanceledAsLink");
+		contentContainsMarkup(ra,o.getInrokufeed());
+		contentContainsMarkup(ra,"InRokuFeed");
+		contentContainsMarkup(ra,o.getInshowrssas());
+		contentContainsMarkup(ra,"InShowRssAs");
+		contentContainsMarkup(ra,o.getInshowrssaslink());
+		contentContainsMarkup(ra,"InShowRssAsLink");
+		contentContainsMarkup(ra,o.getJustwatch());
+		contentContainsMarkup(ra,"JustWatch");
+		contentContainsMarkup(ra,o.getJustwatchlink());
+		contentContainsMarkup(ra,"JustWatchLink");
+		contentContainsMarkup(ra,o.getLastshow());
+		contentContainsMarkup(ra,"LastShow");
+		contentContainsMarkup(ra,o.getLastwatched());
+		contentContainsMarkup(ra,"LastWatched");
+		contentContainsMarkup(ra,o.getNetwork());
+		contentContainsMarkup(ra,"Network");
+		contentContainsMarkup(ra,o.getNetworklink());
+		contentContainsMarkup(ra,"NetworkLink");
+		contentContainsMarkup(ra,o.getOta());
+		contentContainsMarkup(ra,"Ota");
+		contentContainsMarkup(ra,o.getPremiere());
+		contentContainsMarkup(ra,"Premiere");
+		contentContainsMarkup(ra,"PremiereDate");
+		contentContainsMarkup(ra,o.getStatus());
+		contentContainsMarkup(ra,"Status");
+		contentContainsMarkup(ra,o.getTivoname());
+		contentContainsMarkup(ra,"TivoName");
+		contentContainsMarkup(ra,o.getTivonamelink());
+		contentContainsMarkup(ra,"TivoNameLink");
 	}
 
 	/**
@@ -302,8 +254,7 @@ public class ShowsControllerTest {
 	 */
 	@Test
 	public void testDeleteShows() throws Exception {
-		this.mockMvc.perform(get("/showss/delete/1").with(user("user").roles("ADMIN")))
-				.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/showss"));
+		getAsAdminRedirectExpected("/showss/delete/1","/showss");
 	}
 
 }

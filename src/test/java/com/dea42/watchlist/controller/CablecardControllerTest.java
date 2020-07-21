@@ -1,29 +1,13 @@
 package com.dea42.watchlist.controller;
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
-
+import org.springframework.test.web.servlet.ResultActions;
+import com.google.common.collect.ImmutableMap;
+import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Cablecard;
-import com.dea42.watchlist.service.CablecardServices;
 
 /**
  * Title: CablecardControllerTest <br>
@@ -33,21 +17,18 @@ import com.dea42.watchlist.service.CablecardServices;
  * @author Gened by com.dea42.build.GenSpring<br>
  * @version 1.0<br>
  */
-@RunWith(SpringJUnit4ClassRunner.class)
 @WebMvcTest(CablecardController.class)
-public class CablecardControllerTest {
-	@MockBean
-	private CablecardServices cablecardService;
-
-	private MockMvc mockMvc;
-
-	@Autowired
-	private WebApplicationContext webApplicationContext;
-
-	@Before()
-	public void setup() {
-		// Init MockMvc Object and build
-		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+public class CablecardControllerTest extends MockBase {
+	private Cablecard getCablecard(Integer id) {
+		Cablecard o = new Cablecard();
+		o.setId(id);
+        o.setChannelname(getTestString(12));
+        o.setLang(getTestString(2));
+        o.setNet(getTestString(12));
+        o.setOd(getTestString(20));
+        o.setReceiving(getTestString(3));
+        o.setShortfield(getTestString(12));
+		return o;
 	}
 
 	/**
@@ -57,38 +38,31 @@ public class CablecardControllerTest {
 	@Test
 	public void testGetAllCablecards() throws Exception {
 		List<Cablecard> list = new ArrayList<>();
-		Cablecard o = new Cablecard();
-		o.setId(1);
-         o.setChannelname("ABCDEFGHIJKL");
-         o.setLang("AB");
-         o.setNet("ABCDEFGHIJKL");
-         o.setOd("ABCDEFGHIJKLMNOPQRST");
-         o.setReceiving("ABC");
-         o.setShortfield("ABCDEFGHIJKL");
+		Cablecard o = getCablecard(1);
 		list.add(o);
 
-		given(cablecardService.listAll()).willReturn(list);
+		given(cablecardServices.listAll()).willReturn(list);
 
-		this.mockMvc.perform(get("/cablecards").with(user("user").roles("ADMIN"))).andExpect(status().isOk())
-				.andExpect(content().string(containsString("<h1>Cablecard List</h1>")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKL")))
-				.andExpect(content().string(containsString("ChannelName")))
-				.andExpect(content().string(containsString("ChannelNumber")))
-				.andExpect(content().string(containsString("Colh")))
-				.andExpect(content().string(containsString("Dt")))
-				.andExpect(content().string(containsString("Hd")))
-				.andExpect(content().string(containsString("id")))
-				.andExpect(content().string(containsString("InNpl")))
-				.andExpect(content().string(containsString("AB")))
-				.andExpect(content().string(containsString("Lang")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKL")))
-				.andExpect(content().string(containsString("Net")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRST")))
-				.andExpect(content().string(containsString("Od")))
-				.andExpect(content().string(containsString("ABC")))
-				.andExpect(content().string(containsString("Receiving")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKL")))
-				.andExpect(content().string(containsString("ShortField")));
+		ResultActions ra = getAsAdmin("/cablecards");
+		contentContainsMarkup(ra,"<h1>" + getMsg("class.Cablecard") + " " + getMsg("edit.list") + "</h1>");
+		contentContainsMarkup(ra,getTestString(12));
+		contentContainsMarkup(ra,"ChannelName");
+		contentContainsMarkup(ra,"ChannelNumber");
+		contentContainsMarkup(ra,"Colh");
+		contentContainsMarkup(ra,"Dt");
+		contentContainsMarkup(ra,"Hd");
+		contentContainsMarkup(ra,"id");
+		contentContainsMarkup(ra,"InNpl");
+		contentContainsMarkup(ra,getTestString(2));
+		contentContainsMarkup(ra,"Lang");
+		contentContainsMarkup(ra,getTestString(12));
+		contentContainsMarkup(ra,"Net");
+		contentContainsMarkup(ra,getTestString(20));
+		contentContainsMarkup(ra,"Od");
+		contentContainsMarkup(ra,getTestString(3));
+		contentContainsMarkup(ra,"Receiving");
+		contentContainsMarkup(ra,getTestString(12));
+		contentContainsMarkup(ra,"ShortField");
 	}
 
 	/**
@@ -99,20 +73,20 @@ public class CablecardControllerTest {
 	 */
 	@Test
 	public void testShowNewCablecardPage() throws Exception {
-		this.mockMvc.perform(get("/cablecards/new").with(user("user").roles("ADMIN"))).andExpect(status().isOk())
-				.andExpect(content().string(containsString("<h1>Create New Cablecard</h1>")))
-				.andExpect(content().string(containsString("ChannelName")))
-				.andExpect(content().string(containsString("ChannelNumber")))
-				.andExpect(content().string(containsString("Colh")))
-				.andExpect(content().string(containsString("Dt")))
-				.andExpect(content().string(containsString("Hd")))
-				.andExpect(content().string(containsString("id")))
-				.andExpect(content().string(containsString("InNpl")))
-				.andExpect(content().string(containsString("Lang")))
-				.andExpect(content().string(containsString("Net")))
-				.andExpect(content().string(containsString("Od")))
-				.andExpect(content().string(containsString("Receiving")))
-				.andExpect(content().string(containsString("ShortField")));
+		ResultActions ra = getAsAdmin("/cablecards/new");
+		contentContainsMarkup(ra,"<h1>" + getMsg("edit.new") + " " + getMsg("class.Cablecard") + "</h1>");
+		contentContainsMarkup(ra,"ChannelName");
+		contentContainsMarkup(ra,"ChannelNumber");
+		contentContainsMarkup(ra,"Colh");
+		contentContainsMarkup(ra,"Dt");
+		contentContainsMarkup(ra,"Hd");
+		contentContainsMarkup(ra,"id");
+		contentContainsMarkup(ra,"InNpl");
+		contentContainsMarkup(ra,"Lang");
+		contentContainsMarkup(ra,"Net");
+		contentContainsMarkup(ra,"Od");
+		contentContainsMarkup(ra,"Receiving");
+		contentContainsMarkup(ra,"ShortField");
 	}
 
 	/**
@@ -121,8 +95,10 @@ public class CablecardControllerTest {
 	 */
 	@Test
 	public void testSaveCablecardCancel() throws Exception {
-		this.mockMvc.perform(post("/cablecards/save").param("action", "cancel").with(user("user").roles("ADMIN")))
-				.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/cablecards"));
+		Cablecard o = getCablecard(1);
+
+		send(SEND_POST, "/cablecards/save", "cablecard", o, ImmutableMap.of("action", "cancel"), ADMIN_USER,
+				"/cablecards");
 	}
 
 	/**
@@ -131,8 +107,10 @@ public class CablecardControllerTest {
 	 */
 	@Test
 	public void testSaveCablecardSave() throws Exception {
-		this.mockMvc.perform(post("/cablecards/save").param("action", "save").with(user("user").roles("ADMIN")))
-				.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/cablecards"));
+		Cablecard o = getCablecard(0);
+
+		send(SEND_POST, "/cablecards/save", "cablecard", o, ImmutableMap.of("action", "save"), ADMIN_USER,
+				"/cablecards");
 	}
 
 	/**
@@ -143,36 +121,29 @@ public class CablecardControllerTest {
 	 */
 	@Test
 	public void testShowEditCablecardPage() throws Exception {
-		Cablecard o = new Cablecard();
-		o.setId(1);
-         o.setChannelname("ABCDEFGHIJKL");
-         o.setLang("AB");
-         o.setNet("ABCDEFGHIJKL");
-         o.setOd("ABCDEFGHIJKLMNOPQRST");
-         o.setReceiving("ABC");
-         o.setShortfield("ABCDEFGHIJKL");
+		Cablecard o = getCablecard(1);
 
-		given(cablecardService.get(1)).willReturn(o);
+		given(cablecardServices.get(1)).willReturn(o);
 
-		this.mockMvc.perform(get("/cablecards/edit/1").with(user("user").roles("ADMIN"))).andExpect(status().isOk())
-				.andExpect(content().string(containsString("ABCDEFGHIJKL")))
-				.andExpect(content().string(containsString("ChannelName")))
-				.andExpect(content().string(containsString("ChannelNumber")))
-				.andExpect(content().string(containsString("Colh")))
-				.andExpect(content().string(containsString("Dt")))
-				.andExpect(content().string(containsString("Hd")))
-				.andExpect(content().string(containsString("id")))
-				.andExpect(content().string(containsString("InNpl")))
-				.andExpect(content().string(containsString("AB")))
-				.andExpect(content().string(containsString("Lang")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKL")))
-				.andExpect(content().string(containsString("Net")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKLMNOPQRST")))
-				.andExpect(content().string(containsString("Od")))
-				.andExpect(content().string(containsString("ABC")))
-				.andExpect(content().string(containsString("Receiving")))
-				.andExpect(content().string(containsString("ABCDEFGHIJKL")))
-				.andExpect(content().string(containsString("ShortField")));
+		ResultActions ra = getAsAdmin("/cablecards/edit/1");
+		contentContainsMarkup(ra,o.getChannelname());
+		contentContainsMarkup(ra,"ChannelName");
+		contentContainsMarkup(ra,"ChannelNumber");
+		contentContainsMarkup(ra,"Colh");
+		contentContainsMarkup(ra,"Dt");
+		contentContainsMarkup(ra,"Hd");
+		contentContainsMarkup(ra,"id");
+		contentContainsMarkup(ra,"InNpl");
+		contentContainsMarkup(ra,o.getLang());
+		contentContainsMarkup(ra,"Lang");
+		contentContainsMarkup(ra,o.getNet());
+		contentContainsMarkup(ra,"Net");
+		contentContainsMarkup(ra,o.getOd());
+		contentContainsMarkup(ra,"Od");
+		contentContainsMarkup(ra,o.getReceiving());
+		contentContainsMarkup(ra,"Receiving");
+		contentContainsMarkup(ra,o.getShortfield());
+		contentContainsMarkup(ra,"ShortField");
 	}
 
 	/**
@@ -181,8 +152,7 @@ public class CablecardControllerTest {
 	 */
 	@Test
 	public void testDeleteCablecard() throws Exception {
-		this.mockMvc.perform(get("/cablecards/delete/1").with(user("user").roles("ADMIN")))
-				.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/cablecards"));
+		getAsAdminRedirectExpected("/cablecards/delete/1","/cablecards");
 	}
 
 }

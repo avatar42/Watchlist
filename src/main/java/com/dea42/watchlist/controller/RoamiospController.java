@@ -16,10 +16,10 @@ import com.dea42.watchlist.service.RoamiospServices;
 
 /**
  * Title: RoamiospController <br>
- * Description: Class for  RoamiospController. <br>
+ * Description: RoamiospController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
  * @version 1.0<br>
  */
 @Controller

@@ -20,19 +20,19 @@
 
 	    <table>
 	        <tr>
-            <th>ChannelName</th>
-            <th>ChannelNumber</th>
-            <th>Colh</th>
-            <th>Dt</th>
-            <th>Hd</th>
-            <th>id</th>
-            <th>InNpl</th>
-            <th>Lang</th>
-            <th>Net</th>
-            <th>Od</th>
-            <th>Receiving</th>
-            <th>ShortField</th>
-            <th>Actions</th>
+            <th th:text="#{Cablecard.channelname}">ChannelName</th>
+            <th th:text="#{Cablecard.channelnumber}">ChannelNumber</th>
+            <th th:text="#{Cablecard.colh}">Colh</th>
+            <th th:text="#{Cablecard.dt}">Dt</th>
+            <th th:text="#{Cablecard.hd}">Hd</th>
+            <th th:text="#{Cablecard.id}">id</th>
+            <th th:text="#{Cablecard.innpl}">InNpl</th>
+            <th th:text="#{Cablecard.lang}">Lang</th>
+            <th th:text="#{Cablecard.net}">Net</th>
+            <th th:text="#{Cablecard.od}">Od</th>
+            <th th:text="#{Cablecard.receiving}">Receiving</th>
+            <th th:text="#{Cablecard.shortfield}">ShortField</th>
+            <th th:text="#{edit.actions}"></th>
 	        </tr>
 	        <tr th:each="cablecard:${cablecards}">
 	            <td th:text="${cablecard.channelname}"></td>
@@ -55,3 +55,5 @@
 	    </table>
     </div>
 
+	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+</body></html>

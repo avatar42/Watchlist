@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Description: Class for holding data from the roamionpl table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
  * @version 1.0<br>
  */
 @Entity
@@ -17,42 +17,42 @@ public class Roamionpl implements Serializable {
 private static final long serialVersionUID = 1L;
 
 	@Column(name="BitrateMbps")
-private Integer bitratembps;
+	private Integer bitratembps;
 	@Column(name="Channel", length=16)
-private String channel;
+	private String channel;
 	@Column(name="Date")
-private String date;
+	private String date;
 	@Column(name="Duration")
-private String duration;
+	private String duration;
 	@Column(name="Episode", length=4)
-private String episode;
+	private String episode;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-private Integer id;
+	private Integer id;
 	@Column(name="Isnew")
-private Integer isnew;
+	private Integer isnew;
 	@Column(name="Show", length=49)
-private String show;
+	private String show;
 	@Column(name="SizeGb")
-private Integer sizegb;
+	private Integer sizegb;
 	@Column(name="SortableDate")
-private Integer sortabledate;
+	private Integer sortabledate;
 	@Column(name="Title", length=71)
-private String title;
+	private String title;
 	@Column(name="Watchedtime")
-private Integer watchedtime;
+	private Integer watchedtime;
 
-/**
- * Basic constructor
- */
-public Roamionpl() {
-}
+	/**
+	 * Basic constructor
+	 */
+	public Roamionpl() {
+	}
 
-/**
- * Full constructor
- *
- */
+	/**
+	 * Full constructor
+	 *
+	 */
 	public Roamionpl(Integer bitratembps, String channel, String date, String duration, String episode, Integer id, Integer isnew, String show, Integer sizegb, Integer sortabledate, String title, Integer watchedtime) {
 		this.bitratembps = bitratembps;
 		this.channel = channel;
@@ -73,9 +73,9 @@ public Roamionpl() {
 	 * @return value of this column in this row
 	 */
 	public Integer getBitratembps() {
-	if (bitratembps== null)
-	    return 0;
-	return bitratembps.intValue();
+		if (bitratembps== null)
+	    	return 0;
+		return bitratembps.intValue();
 	}
 
 	/**
@@ -83,7 +83,7 @@ public Roamionpl() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setBitratembps(Integer newVal) {
-	bitratembps = newVal;
+		bitratembps = newVal;
 	}
 
 	/**
@@ -92,7 +92,7 @@ public Roamionpl() {
 	 * @return value of this column in this row
 	 */
 	public String getChannel() {
-	return channel;
+		return channel;
 	}
 
 	/**
@@ -102,10 +102,10 @@ public Roamionpl() {
 	 */
 	public void setChannel(String newVal) {
 		if (channel != null && channel.length() > 16){
-	    channel = newVal.substring(0,15);
-	} else {
-	    channel = newVal;
-	}
+			channel = newVal.substring(0,15);
+		} else {
+	    	channel = newVal;
+		}
 	}
 
 	/**
@@ -114,7 +114,7 @@ public Roamionpl() {
 	 * @return value of this column in this row
 	 */
 	public String getDate() {
-	return date;
+		return date;
 	}
 
 	/**
@@ -122,7 +122,7 @@ public Roamionpl() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setDate(String newVal) {
-	date = newVal;
+		date = newVal;
 	}
 
 	/**
@@ -131,7 +131,7 @@ public Roamionpl() {
 	 * @return value of this column in this row
 	 */
 	public String getDuration() {
-	return duration;
+		return duration;
 	}
 
 	/**
@@ -139,7 +139,7 @@ public Roamionpl() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setDuration(String newVal) {
-	duration = newVal;
+		duration = newVal;
 	}
 
 	/**
@@ -148,7 +148,7 @@ public Roamionpl() {
 	 * @return value of this column in this row
 	 */
 	public String getEpisode() {
-	return episode;
+		return episode;
 	}
 
 	/**
@@ -158,10 +158,10 @@ public Roamionpl() {
 	 */
 	public void setEpisode(String newVal) {
 		if (episode != null && episode.length() > 4){
-	    episode = newVal.substring(0,3);
-	} else {
-	    episode = newVal;
-	}
+			episode = newVal.substring(0,3);
+		} else {
+	    	episode = newVal;
+		}
 	}
 
 	/**
@@ -170,9 +170,9 @@ public Roamionpl() {
 	 * @return value of this column in this row
 	 */
 	public Integer getId() {
-	if (id== null)
-	    return 0;
-	return id.intValue();
+		if (id== null)
+	    	return 0;
+		return id.intValue();
 	}
 
 	/**
@@ -181,7 +181,7 @@ public Roamionpl() {
 	 * This is the primary key for this table
 	 */
 	public void setId(Integer newVal) {
-	id = newVal;
+		id = newVal;
 	}
 
 	/**
@@ -190,9 +190,9 @@ public Roamionpl() {
 	 * @return value of this column in this row
 	 */
 	public Integer getIsnew() {
-	if (isnew== null)
-	    return 0;
-	return isnew.intValue();
+		if (isnew== null)
+	    	return 0;
+		return isnew.intValue();
 	}
 
 	/**
@@ -200,7 +200,7 @@ public Roamionpl() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setIsnew(Integer newVal) {
-	isnew = newVal;
+		isnew = newVal;
 	}
 
 	/**
@@ -209,7 +209,7 @@ public Roamionpl() {
 	 * @return value of this column in this row
 	 */
 	public String getShow() {
-	return show;
+		return show;
 	}
 
 	/**
@@ -219,10 +219,10 @@ public Roamionpl() {
 	 */
 	public void setShow(String newVal) {
 		if (show != null && show.length() > 49){
-	    show = newVal.substring(0,48);
-	} else {
-	    show = newVal;
-	}
+			show = newVal.substring(0,48);
+		} else {
+	    	show = newVal;
+		}
 	}
 
 	/**
@@ -231,9 +231,9 @@ public Roamionpl() {
 	 * @return value of this column in this row
 	 */
 	public Integer getSizegb() {
-	if (sizegb== null)
-	    return 0;
-	return sizegb.intValue();
+		if (sizegb== null)
+	    	return 0;
+		return sizegb.intValue();
 	}
 
 	/**
@@ -241,7 +241,7 @@ public Roamionpl() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setSizegb(Integer newVal) {
-	sizegb = newVal;
+		sizegb = newVal;
 	}
 
 	/**
@@ -250,9 +250,9 @@ public Roamionpl() {
 	 * @return value of this column in this row
 	 */
 	public Integer getSortabledate() {
-	if (sortabledate== null)
-	    return 0;
-	return sortabledate.intValue();
+		if (sortabledate== null)
+	    	return 0;
+		return sortabledate.intValue();
 	}
 
 	/**
@@ -260,7 +260,7 @@ public Roamionpl() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setSortabledate(Integer newVal) {
-	sortabledate = newVal;
+		sortabledate = newVal;
 	}
 
 	/**
@@ -269,7 +269,7 @@ public Roamionpl() {
 	 * @return value of this column in this row
 	 */
 	public String getTitle() {
-	return title;
+		return title;
 	}
 
 	/**
@@ -279,10 +279,10 @@ public Roamionpl() {
 	 */
 	public void setTitle(String newVal) {
 		if (title != null && title.length() > 71){
-	    title = newVal.substring(0,70);
-	} else {
-	    title = newVal;
-	}
+			title = newVal.substring(0,70);
+		} else {
+	    	title = newVal;
+		}
 	}
 
 	/**
@@ -291,9 +291,9 @@ public Roamionpl() {
 	 * @return value of this column in this row
 	 */
 	public Integer getWatchedtime() {
-	if (watchedtime== null)
-	    return 0;
-	return watchedtime.intValue();
+		if (watchedtime== null)
+	    	return 0;
+		return watchedtime.intValue();
 	}
 
 	/**
@@ -301,8 +301,9 @@ public Roamionpl() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setWatchedtime(Integer newVal) {
-	watchedtime = newVal;
+		watchedtime = newVal;
 	}
+
 
 
 }

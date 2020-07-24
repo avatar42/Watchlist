@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Description: Class for holding data from the roamiosp table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
  * @version 1.0<br>
  */
 @Entity
@@ -17,40 +17,40 @@ public class Roamiosp implements Serializable {
 private static final long serialVersionUID = 1L;
 
 	@Column(name="Channel", length=14)
-private String channel;
+	private String channel;
 	@Column(name="End")
-private Integer end;
+	private Integer end;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-private Integer id;
+	private Integer id;
 	@Column(name="Include", length=6)
-private String include;
+	private String include;
 	@Column(name="Keep", length=7)
-private String keep;
+	private String keep;
 	@Column(name="Num")
-private Integer num;
+	private Integer num;
 	@Column(name="Priority")
-private Integer priority;
+	private Integer priority;
 	@Column(name="Record", length=13)
-private String record;
+	private String record;
 	@Column(name="Season")
-private Integer season;
+	private Integer season;
 	@Column(name="Show", length=53)
-private String show;
+	private String show;
 	@Column(name="Start")
-private Integer start;
+	private Integer start;
 
-/**
- * Basic constructor
- */
-public Roamiosp() {
-}
+	/**
+	 * Basic constructor
+	 */
+	public Roamiosp() {
+	}
 
-/**
- * Full constructor
- *
- */
+	/**
+	 * Full constructor
+	 *
+	 */
 	public Roamiosp(String channel, Integer end, Integer id, String include, String keep, Integer num, Integer priority, String record, Integer season, String show, Integer start) {
 		this.channel = channel;
 		this.end = end;
@@ -70,7 +70,7 @@ public Roamiosp() {
 	 * @return value of this column in this row
 	 */
 	public String getChannel() {
-	return channel;
+		return channel;
 	}
 
 	/**
@@ -80,10 +80,10 @@ public Roamiosp() {
 	 */
 	public void setChannel(String newVal) {
 		if (channel != null && channel.length() > 14){
-	    channel = newVal.substring(0,13);
-	} else {
-	    channel = newVal;
-	}
+			channel = newVal.substring(0,13);
+		} else {
+	    	channel = newVal;
+		}
 	}
 
 	/**
@@ -92,9 +92,9 @@ public Roamiosp() {
 	 * @return value of this column in this row
 	 */
 	public Integer getEnd() {
-	if (end== null)
-	    return 0;
-	return end.intValue();
+		if (end== null)
+	    	return 0;
+		return end.intValue();
 	}
 
 	/**
@@ -102,7 +102,7 @@ public Roamiosp() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setEnd(Integer newVal) {
-	end = newVal;
+		end = newVal;
 	}
 
 	/**
@@ -111,9 +111,9 @@ public Roamiosp() {
 	 * @return value of this column in this row
 	 */
 	public Integer getId() {
-	if (id== null)
-	    return 0;
-	return id.intValue();
+		if (id== null)
+	    	return 0;
+		return id.intValue();
 	}
 
 	/**
@@ -122,7 +122,7 @@ public Roamiosp() {
 	 * This is the primary key for this table
 	 */
 	public void setId(Integer newVal) {
-	id = newVal;
+		id = newVal;
 	}
 
 	/**
@@ -131,7 +131,7 @@ public Roamiosp() {
 	 * @return value of this column in this row
 	 */
 	public String getInclude() {
-	return include;
+		return include;
 	}
 
 	/**
@@ -141,10 +141,10 @@ public Roamiosp() {
 	 */
 	public void setInclude(String newVal) {
 		if (include != null && include.length() > 6){
-	    include = newVal.substring(0,5);
-	} else {
-	    include = newVal;
-	}
+			include = newVal.substring(0,5);
+		} else {
+	    	include = newVal;
+		}
 	}
 
 	/**
@@ -153,7 +153,7 @@ public Roamiosp() {
 	 * @return value of this column in this row
 	 */
 	public String getKeep() {
-	return keep;
+		return keep;
 	}
 
 	/**
@@ -163,10 +163,10 @@ public Roamiosp() {
 	 */
 	public void setKeep(String newVal) {
 		if (keep != null && keep.length() > 7){
-	    keep = newVal.substring(0,6);
-	} else {
-	    keep = newVal;
-	}
+			keep = newVal.substring(0,6);
+		} else {
+	    	keep = newVal;
+		}
 	}
 
 	/**
@@ -175,9 +175,9 @@ public Roamiosp() {
 	 * @return value of this column in this row
 	 */
 	public Integer getNum() {
-	if (num== null)
-	    return 0;
-	return num.intValue();
+		if (num== null)
+	    	return 0;
+		return num.intValue();
 	}
 
 	/**
@@ -185,7 +185,7 @@ public Roamiosp() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setNum(Integer newVal) {
-	num = newVal;
+		num = newVal;
 	}
 
 	/**
@@ -194,9 +194,9 @@ public Roamiosp() {
 	 * @return value of this column in this row
 	 */
 	public Integer getPriority() {
-	if (priority== null)
-	    return 0;
-	return priority.intValue();
+		if (priority== null)
+	    	return 0;
+		return priority.intValue();
 	}
 
 	/**
@@ -204,7 +204,7 @@ public Roamiosp() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setPriority(Integer newVal) {
-	priority = newVal;
+		priority = newVal;
 	}
 
 	/**
@@ -213,7 +213,7 @@ public Roamiosp() {
 	 * @return value of this column in this row
 	 */
 	public String getRecord() {
-	return record;
+		return record;
 	}
 
 	/**
@@ -223,10 +223,10 @@ public Roamiosp() {
 	 */
 	public void setRecord(String newVal) {
 		if (record != null && record.length() > 13){
-	    record = newVal.substring(0,12);
-	} else {
-	    record = newVal;
-	}
+			record = newVal.substring(0,12);
+		} else {
+	    	record = newVal;
+		}
 	}
 
 	/**
@@ -235,9 +235,9 @@ public Roamiosp() {
 	 * @return value of this column in this row
 	 */
 	public Integer getSeason() {
-	if (season== null)
-	    return 0;
-	return season.intValue();
+		if (season== null)
+	    	return 0;
+		return season.intValue();
 	}
 
 	/**
@@ -245,7 +245,7 @@ public Roamiosp() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setSeason(Integer newVal) {
-	season = newVal;
+		season = newVal;
 	}
 
 	/**
@@ -254,7 +254,7 @@ public Roamiosp() {
 	 * @return value of this column in this row
 	 */
 	public String getShow() {
-	return show;
+		return show;
 	}
 
 	/**
@@ -264,10 +264,10 @@ public Roamiosp() {
 	 */
 	public void setShow(String newVal) {
 		if (show != null && show.length() > 53){
-	    show = newVal.substring(0,52);
-	} else {
-	    show = newVal;
-	}
+			show = newVal.substring(0,52);
+		} else {
+	    	show = newVal;
+		}
 	}
 
 	/**
@@ -276,9 +276,9 @@ public Roamiosp() {
 	 * @return value of this column in this row
 	 */
 	public Integer getStart() {
-	if (start== null)
-	    return 0;
-	return start.intValue();
+		if (start== null)
+	    	return 0;
+		return start.intValue();
 	}
 
 	/**
@@ -286,8 +286,9 @@ public Roamiosp() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setStart(Integer newVal) {
-	start = newVal;
+		start = newVal;
 	}
+
 
 
 }

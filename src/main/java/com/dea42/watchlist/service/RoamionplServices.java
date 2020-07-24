@@ -3,7 +3,6 @@ package com.dea42.watchlist.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.dea42.watchlist.entity.Roamionpl;
@@ -11,10 +10,10 @@ import com.dea42.watchlist.repo.RoamionplRepository;
 
 /**
  * Title: RoamionplServices <br>
- * Description: Class for the RoamionplServices. <br>
+ * Description: RoamionplServices. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
  * @version 1.0<br>
  */
 @Service
@@ -26,8 +25,8 @@ public class RoamionplServices {
 		return (List<Roamionpl>) roamionplRepository.findAll();
 	}
 	
-	public void save(Roamionpl product) {
-		roamionplRepository.save(product);
+	public void save(Roamionpl item) {
+		roamionplRepository.save(item);
 	}
 	
 	public Roamionpl get(Integer id) {

@@ -20,28 +20,27 @@
 
 	    <table>
 	        <tr>
-            <th>Chan</th>
-            <th>ChannelName</th>
-            <th>ChannelNumber</th>
-            <th>Comments</th>
-            <th>Direction</th>
-            <th>Enabled</th>
-            <th>FccInfo</th>
-            <th>FccInfoLink</th>
-            <th>Freq</th>
-            <th>id</th>
-            <th>Lang</th>
-            <th>Listed</th>
-            <th>MyTivoAvgStrength</th>
-            <th>Network</th>
-            <th>Off</th>
-            <th>RecommendedAntenna</th>
-            <th>Rez</th>
-            <th>Station</th>
-            <th>SubChan</th>
-            <th>TvFoolEstSignal</th>
-            <th>Watchable</th>
-            <th>Actions</th>
+            <th th:text="#{Ota.chan}">Chan</th>
+            <th th:text="#{Ota.channelname}">ChannelName</th>
+            <th th:text="#{Ota.channelnumber}">ChannelNumber</th>
+            <th th:text="#{Ota.comments}">Comments</th>
+            <th th:text="#{Ota.direction}">Direction</th>
+            <th th:text="#{Ota.enabled}">Enabled</th>
+            <th th:text="#{Ota.fccinfo}">FccInfo</th>
+            <th th:text="#{Ota.freq}">Freq</th>
+            <th th:text="#{Ota.id}">id</th>
+            <th th:text="#{Ota.lang}">Lang</th>
+            <th th:text="#{Ota.listed}">Listed</th>
+            <th th:text="#{Ota.mytivoavgstrength}">MyTivoAvgStrength</th>
+            <th th:text="#{Ota.network}">Network</th>
+            <th th:text="#{Ota.off}">Off</th>
+            <th th:text="#{Ota.recommendedantenna}">RecommendedAntenna</th>
+            <th th:text="#{Ota.rez}">Rez</th>
+            <th th:text="#{Ota.station}">Station</th>
+            <th th:text="#{Ota.subchan}">SubChan</th>
+            <th th:text="#{Ota.tvfoolestsignal}">TvFoolEstSignal</th>
+            <th th:text="#{Ota.watchable}">Watchable</th>
+            <th th:text="#{edit.actions}"></th>
 	        </tr>
 	        <tr th:each="ota:${otas}">
 	            <td th:text="${ota.chan}"></td>
@@ -50,8 +49,7 @@
 	            <td th:text="${ota.comments}"></td>
 	            <td th:text="${ota.direction}"></td>
 	            <td th:text="${ota.enabled}"></td>
-	            <td><a th:href="@{${ota.fccinfolink}}"><span th:text="${ota.fccinfo}"></span></a></td>
-	            <td th:text="${ota.fccinfolink}"></td>
+	            <td><a th:href="@{${ota.fccinfolink}}" th:text="${ota.fccinfo}"></a></td>
 	            <td th:text="${ota.freq}"></td>
 	            <td th:text="${ota.id}"></td>
 	            <td th:text="${ota.lang}"></td>
@@ -73,3 +71,5 @@
 	    </table>
     </div>
 
+	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+</body></html>

@@ -6,15 +6,16 @@ import org.junit.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.ResultActions;
 import com.google.common.collect.ImmutableMap;
+
 import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Cablecard;
 
 /**
  * Title: CablecardControllerTest <br>
- * Description: Class for testing the CablecardController. <br>
+ * Description: CablecardController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
  * @version 1.0<br>
  */
 @WebMvcTest(CablecardController.class)
@@ -46,23 +47,23 @@ public class CablecardControllerTest extends MockBase {
 		ResultActions ra = getAsAdmin("/cablecards");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Cablecard") + " " + getMsg("edit.list") + "</h1>");
 		contentContainsMarkup(ra,getTestString(12));
-		contentContainsMarkup(ra,"ChannelName");
-		contentContainsMarkup(ra,"ChannelNumber");
-		contentContainsMarkup(ra,"Colh");
-		contentContainsMarkup(ra,"Dt");
-		contentContainsMarkup(ra,"Hd");
-		contentContainsMarkup(ra,"id");
-		contentContainsMarkup(ra,"InNpl");
+		contentContainsMarkup(ra,getMsg("Cablecard.channelname"));
+		contentContainsMarkup(ra,getMsg("Cablecard.channelnumber"));
+		contentContainsMarkup(ra,getMsg("Cablecard.colh"));
+		contentContainsMarkup(ra,getMsg("Cablecard.dt"));
+		contentContainsMarkup(ra,getMsg("Cablecard.hd"));
+		contentContainsMarkup(ra,getMsg("Cablecard.id"));
+		contentContainsMarkup(ra,getMsg("Cablecard.innpl"));
 		contentContainsMarkup(ra,getTestString(2));
-		contentContainsMarkup(ra,"Lang");
+		contentContainsMarkup(ra,getMsg("Cablecard.lang"));
 		contentContainsMarkup(ra,getTestString(12));
-		contentContainsMarkup(ra,"Net");
+		contentContainsMarkup(ra,getMsg("Cablecard.net"));
 		contentContainsMarkup(ra,getTestString(20));
-		contentContainsMarkup(ra,"Od");
+		contentContainsMarkup(ra,getMsg("Cablecard.od"));
 		contentContainsMarkup(ra,getTestString(3));
-		contentContainsMarkup(ra,"Receiving");
+		contentContainsMarkup(ra,getMsg("Cablecard.receiving"));
 		contentContainsMarkup(ra,getTestString(12));
-		contentContainsMarkup(ra,"ShortField");
+		contentContainsMarkup(ra,getMsg("Cablecard.shortfield"));
 	}
 
 	/**

@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Description: Class for holding data from the shows table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
  * @version 1.0<br>
  */
 @Entity
@@ -17,72 +17,72 @@ public class Shows implements Serializable {
 private static final long serialVersionUID = 1L;
 
 	@Column(name="BestExperience", length=17)
-private String bestexperience;
+	private String bestexperience;
 	@Column(name="BestExperienceLink", length=306)
-private String bestexperiencelink;
+	private String bestexperiencelink;
 	@Column(name="Cancelled", length=65)
-private String cancelled;
+	private String cancelled;
 	@Column(name="Comment", length=181)
-private String comment;
+	private String comment;
 	@Column(name="CommentLink", length=228)
-private String commentlink;
+	private String commentlink;
 	@Column(name="EpguidesShowName", length=47)
-private String epguidesshowname;
+	private String epguidesshowname;
 	@Column(name="EpguidesShowNameLink", length=60)
-private String epguidesshownamelink;
+	private String epguidesshownamelink;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-private Integer id;
+	private Integer id;
 	@Column(name="Imdb", length=1)
-private String imdb;
+	private String imdb;
 	@Column(name="ImdbLink", length=63)
-private String imdblink;
+	private String imdblink;
 	@Column(name="InCanceledAs", length=47)
-private String incanceledas;
+	private String incanceledas;
 	@Column(name="InCanceledAsLink", length=70)
-private String incanceledaslink;
+	private String incanceledaslink;
 	@Column(name="InRokuFeed", length=1)
-private String inrokufeed;
+	private String inrokufeed;
 	@Column(name="InShowRssAs", length=47)
-private String inshowrssas;
+	private String inshowrssas;
 	@Column(name="InShowRssAsLink", length=32)
-private String inshowrssaslink;
+	private String inshowrssaslink;
 	@Column(name="JustWatch", length=2)
-private String justwatch;
+	private String justwatch;
 	@Column(name="JustWatchLink", length=75)
-private String justwatchlink;
+	private String justwatchlink;
 	@Column(name="LastShow", length=10)
-private String lastshow;
+	private String lastshow;
 	@Column(name="LastWatched", length=10)
-private String lastwatched;
+	private String lastwatched;
 	@Column(name="Network", length=14)
-private String network;
+	private String network;
 	@Column(name="NetworkLink", length=306)
-private String networklink;
+	private String networklink;
 	@Column(name="Ota", length=3)
-private String ota;
+	private String ota;
 	@Column(name="Premiere", length=65)
-private String premiere;
+	private String premiere;
 	@Column(name="PremiereDate")
-private String premieredate;
+	private String premieredate;
 	@Column(name="Status", length=65)
-private String status;
+	private String status;
 	@Column(name="TivoName", length=47)
-private String tivoname;
+	private String tivoname;
 	@Column(name="TivoNameLink", length=31)
-private String tivonamelink;
+	private String tivonamelink;
 
-/**
- * Basic constructor
- */
-public Shows() {
-}
+	/**
+	 * Basic constructor
+	 */
+	public Shows() {
+	}
 
-/**
- * Full constructor
- *
- */
+	/**
+	 * Full constructor
+	 *
+	 */
 	public Shows(String bestexperience, String bestexperiencelink, String cancelled, String comment, String commentlink, String epguidesshowname, String epguidesshownamelink, Integer id, String imdb, String imdblink, String incanceledas, String incanceledaslink, String inrokufeed, String inshowrssas, String inshowrssaslink, String justwatch, String justwatchlink, String lastshow, String lastwatched, String network, String networklink, String ota, String premiere, String premieredate, String status, String tivoname, String tivonamelink) {
 		this.bestexperience = bestexperience;
 		this.bestexperiencelink = bestexperiencelink;
@@ -118,7 +118,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getBestexperience() {
-	return bestexperience;
+		return bestexperience;
 	}
 
 	/**
@@ -128,10 +128,10 @@ public Shows() {
 	 */
 	public void setBestexperience(String newVal) {
 		if (bestexperience != null && bestexperience.length() > 17){
-	    bestexperience = newVal.substring(0,16);
-	} else {
-	    bestexperience = newVal;
-	}
+			bestexperience = newVal.substring(0,16);
+		} else {
+	    	bestexperience = newVal;
+		}
 	}
 
 	/**
@@ -140,7 +140,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getBestexperiencelink() {
-	return bestexperiencelink;
+		return bestexperiencelink;
 	}
 
 	/**
@@ -150,10 +150,10 @@ public Shows() {
 	 */
 	public void setBestexperiencelink(String newVal) {
 		if (bestexperiencelink != null && bestexperiencelink.length() > 306){
-	    bestexperiencelink = newVal.substring(0,305);
-	} else {
-	    bestexperiencelink = newVal;
-	}
+			bestexperiencelink = newVal.substring(0,305);
+		} else {
+	    	bestexperiencelink = newVal;
+		}
 	}
 
 	/**
@@ -162,7 +162,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getCancelled() {
-	return cancelled;
+		return cancelled;
 	}
 
 	/**
@@ -172,10 +172,10 @@ public Shows() {
 	 */
 	public void setCancelled(String newVal) {
 		if (cancelled != null && cancelled.length() > 65){
-	    cancelled = newVal.substring(0,64);
-	} else {
-	    cancelled = newVal;
-	}
+			cancelled = newVal.substring(0,64);
+		} else {
+	    	cancelled = newVal;
+		}
 	}
 
 	/**
@@ -184,7 +184,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getComment() {
-	return comment;
+		return comment;
 	}
 
 	/**
@@ -194,10 +194,10 @@ public Shows() {
 	 */
 	public void setComment(String newVal) {
 		if (comment != null && comment.length() > 181){
-	    comment = newVal.substring(0,180);
-	} else {
-	    comment = newVal;
-	}
+			comment = newVal.substring(0,180);
+		} else {
+	    	comment = newVal;
+		}
 	}
 
 	/**
@@ -206,7 +206,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getCommentlink() {
-	return commentlink;
+		return commentlink;
 	}
 
 	/**
@@ -216,10 +216,10 @@ public Shows() {
 	 */
 	public void setCommentlink(String newVal) {
 		if (commentlink != null && commentlink.length() > 228){
-	    commentlink = newVal.substring(0,227);
-	} else {
-	    commentlink = newVal;
-	}
+			commentlink = newVal.substring(0,227);
+		} else {
+	    	commentlink = newVal;
+		}
 	}
 
 	/**
@@ -228,7 +228,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getEpguidesshowname() {
-	return epguidesshowname;
+		return epguidesshowname;
 	}
 
 	/**
@@ -238,10 +238,10 @@ public Shows() {
 	 */
 	public void setEpguidesshowname(String newVal) {
 		if (epguidesshowname != null && epguidesshowname.length() > 47){
-	    epguidesshowname = newVal.substring(0,46);
-	} else {
-	    epguidesshowname = newVal;
-	}
+			epguidesshowname = newVal.substring(0,46);
+		} else {
+	    	epguidesshowname = newVal;
+		}
 	}
 
 	/**
@@ -250,7 +250,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getEpguidesshownamelink() {
-	return epguidesshownamelink;
+		return epguidesshownamelink;
 	}
 
 	/**
@@ -260,10 +260,10 @@ public Shows() {
 	 */
 	public void setEpguidesshownamelink(String newVal) {
 		if (epguidesshownamelink != null && epguidesshownamelink.length() > 60){
-	    epguidesshownamelink = newVal.substring(0,59);
-	} else {
-	    epguidesshownamelink = newVal;
-	}
+			epguidesshownamelink = newVal.substring(0,59);
+		} else {
+	    	epguidesshownamelink = newVal;
+		}
 	}
 
 	/**
@@ -272,9 +272,9 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public Integer getId() {
-	if (id== null)
-	    return 0;
-	return id.intValue();
+		if (id== null)
+	    	return 0;
+		return id.intValue();
 	}
 
 	/**
@@ -283,7 +283,7 @@ public Shows() {
 	 * This is the primary key for this table
 	 */
 	public void setId(Integer newVal) {
-	id = newVal;
+		id = newVal;
 	}
 
 	/**
@@ -292,7 +292,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getImdb() {
-	return imdb;
+		return imdb;
 	}
 
 	/**
@@ -302,10 +302,10 @@ public Shows() {
 	 */
 	public void setImdb(String newVal) {
 		if (imdb != null && imdb.length() > 1){
-	    imdb = newVal.substring(0,0);
-	} else {
-	    imdb = newVal;
-	}
+			imdb = newVal.substring(0,0);
+		} else {
+	    	imdb = newVal;
+		}
 	}
 
 	/**
@@ -314,7 +314,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getImdblink() {
-	return imdblink;
+		return imdblink;
 	}
 
 	/**
@@ -324,10 +324,10 @@ public Shows() {
 	 */
 	public void setImdblink(String newVal) {
 		if (imdblink != null && imdblink.length() > 63){
-	    imdblink = newVal.substring(0,62);
-	} else {
-	    imdblink = newVal;
-	}
+			imdblink = newVal.substring(0,62);
+		} else {
+	    	imdblink = newVal;
+		}
 	}
 
 	/**
@@ -336,7 +336,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getIncanceledas() {
-	return incanceledas;
+		return incanceledas;
 	}
 
 	/**
@@ -346,10 +346,10 @@ public Shows() {
 	 */
 	public void setIncanceledas(String newVal) {
 		if (incanceledas != null && incanceledas.length() > 47){
-	    incanceledas = newVal.substring(0,46);
-	} else {
-	    incanceledas = newVal;
-	}
+			incanceledas = newVal.substring(0,46);
+		} else {
+	    	incanceledas = newVal;
+		}
 	}
 
 	/**
@@ -358,7 +358,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getIncanceledaslink() {
-	return incanceledaslink;
+		return incanceledaslink;
 	}
 
 	/**
@@ -368,10 +368,10 @@ public Shows() {
 	 */
 	public void setIncanceledaslink(String newVal) {
 		if (incanceledaslink != null && incanceledaslink.length() > 70){
-	    incanceledaslink = newVal.substring(0,69);
-	} else {
-	    incanceledaslink = newVal;
-	}
+			incanceledaslink = newVal.substring(0,69);
+		} else {
+	    	incanceledaslink = newVal;
+		}
 	}
 
 	/**
@@ -380,7 +380,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getInrokufeed() {
-	return inrokufeed;
+		return inrokufeed;
 	}
 
 	/**
@@ -390,10 +390,10 @@ public Shows() {
 	 */
 	public void setInrokufeed(String newVal) {
 		if (inrokufeed != null && inrokufeed.length() > 1){
-	    inrokufeed = newVal.substring(0,0);
-	} else {
-	    inrokufeed = newVal;
-	}
+			inrokufeed = newVal.substring(0,0);
+		} else {
+	    	inrokufeed = newVal;
+		}
 	}
 
 	/**
@@ -402,7 +402,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getInshowrssas() {
-	return inshowrssas;
+		return inshowrssas;
 	}
 
 	/**
@@ -412,10 +412,10 @@ public Shows() {
 	 */
 	public void setInshowrssas(String newVal) {
 		if (inshowrssas != null && inshowrssas.length() > 47){
-	    inshowrssas = newVal.substring(0,46);
-	} else {
-	    inshowrssas = newVal;
-	}
+			inshowrssas = newVal.substring(0,46);
+		} else {
+	    	inshowrssas = newVal;
+		}
 	}
 
 	/**
@@ -424,7 +424,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getInshowrssaslink() {
-	return inshowrssaslink;
+		return inshowrssaslink;
 	}
 
 	/**
@@ -434,10 +434,10 @@ public Shows() {
 	 */
 	public void setInshowrssaslink(String newVal) {
 		if (inshowrssaslink != null && inshowrssaslink.length() > 32){
-	    inshowrssaslink = newVal.substring(0,31);
-	} else {
-	    inshowrssaslink = newVal;
-	}
+			inshowrssaslink = newVal.substring(0,31);
+		} else {
+	    	inshowrssaslink = newVal;
+		}
 	}
 
 	/**
@@ -446,7 +446,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getJustwatch() {
-	return justwatch;
+		return justwatch;
 	}
 
 	/**
@@ -456,10 +456,10 @@ public Shows() {
 	 */
 	public void setJustwatch(String newVal) {
 		if (justwatch != null && justwatch.length() > 2){
-	    justwatch = newVal.substring(0,1);
-	} else {
-	    justwatch = newVal;
-	}
+			justwatch = newVal.substring(0,1);
+		} else {
+	    	justwatch = newVal;
+		}
 	}
 
 	/**
@@ -468,7 +468,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getJustwatchlink() {
-	return justwatchlink;
+		return justwatchlink;
 	}
 
 	/**
@@ -478,10 +478,10 @@ public Shows() {
 	 */
 	public void setJustwatchlink(String newVal) {
 		if (justwatchlink != null && justwatchlink.length() > 75){
-	    justwatchlink = newVal.substring(0,74);
-	} else {
-	    justwatchlink = newVal;
-	}
+			justwatchlink = newVal.substring(0,74);
+		} else {
+	    	justwatchlink = newVal;
+		}
 	}
 
 	/**
@@ -490,7 +490,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getLastshow() {
-	return lastshow;
+		return lastshow;
 	}
 
 	/**
@@ -500,10 +500,10 @@ public Shows() {
 	 */
 	public void setLastshow(String newVal) {
 		if (lastshow != null && lastshow.length() > 10){
-	    lastshow = newVal.substring(0,9);
-	} else {
-	    lastshow = newVal;
-	}
+			lastshow = newVal.substring(0,9);
+		} else {
+	    	lastshow = newVal;
+		}
 	}
 
 	/**
@@ -512,7 +512,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getLastwatched() {
-	return lastwatched;
+		return lastwatched;
 	}
 
 	/**
@@ -522,10 +522,10 @@ public Shows() {
 	 */
 	public void setLastwatched(String newVal) {
 		if (lastwatched != null && lastwatched.length() > 10){
-	    lastwatched = newVal.substring(0,9);
-	} else {
-	    lastwatched = newVal;
-	}
+			lastwatched = newVal.substring(0,9);
+		} else {
+	    	lastwatched = newVal;
+		}
 	}
 
 	/**
@@ -534,7 +534,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getNetwork() {
-	return network;
+		return network;
 	}
 
 	/**
@@ -544,10 +544,10 @@ public Shows() {
 	 */
 	public void setNetwork(String newVal) {
 		if (network != null && network.length() > 14){
-	    network = newVal.substring(0,13);
-	} else {
-	    network = newVal;
-	}
+			network = newVal.substring(0,13);
+		} else {
+	    	network = newVal;
+		}
 	}
 
 	/**
@@ -556,7 +556,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getNetworklink() {
-	return networklink;
+		return networklink;
 	}
 
 	/**
@@ -566,10 +566,10 @@ public Shows() {
 	 */
 	public void setNetworklink(String newVal) {
 		if (networklink != null && networklink.length() > 306){
-	    networklink = newVal.substring(0,305);
-	} else {
-	    networklink = newVal;
-	}
+			networklink = newVal.substring(0,305);
+		} else {
+	    	networklink = newVal;
+		}
 	}
 
 	/**
@@ -578,7 +578,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getOta() {
-	return ota;
+		return ota;
 	}
 
 	/**
@@ -588,10 +588,10 @@ public Shows() {
 	 */
 	public void setOta(String newVal) {
 		if (ota != null && ota.length() > 3){
-	    ota = newVal.substring(0,2);
-	} else {
-	    ota = newVal;
-	}
+			ota = newVal.substring(0,2);
+		} else {
+	    	ota = newVal;
+		}
 	}
 
 	/**
@@ -600,7 +600,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getPremiere() {
-	return premiere;
+		return premiere;
 	}
 
 	/**
@@ -610,10 +610,10 @@ public Shows() {
 	 */
 	public void setPremiere(String newVal) {
 		if (premiere != null && premiere.length() > 65){
-	    premiere = newVal.substring(0,64);
-	} else {
-	    premiere = newVal;
-	}
+			premiere = newVal.substring(0,64);
+		} else {
+	    	premiere = newVal;
+		}
 	}
 
 	/**
@@ -622,7 +622,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getPremieredate() {
-	return premieredate;
+		return premieredate;
 	}
 
 	/**
@@ -630,7 +630,7 @@ public Shows() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setPremieredate(String newVal) {
-	premieredate = newVal;
+		premieredate = newVal;
 	}
 
 	/**
@@ -639,7 +639,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getStatus() {
-	return status;
+		return status;
 	}
 
 	/**
@@ -649,10 +649,10 @@ public Shows() {
 	 */
 	public void setStatus(String newVal) {
 		if (status != null && status.length() > 65){
-	    status = newVal.substring(0,64);
-	} else {
-	    status = newVal;
-	}
+			status = newVal.substring(0,64);
+		} else {
+	    	status = newVal;
+		}
 	}
 
 	/**
@@ -661,7 +661,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getTivoname() {
-	return tivoname;
+		return tivoname;
 	}
 
 	/**
@@ -671,10 +671,10 @@ public Shows() {
 	 */
 	public void setTivoname(String newVal) {
 		if (tivoname != null && tivoname.length() > 47){
-	    tivoname = newVal.substring(0,46);
-	} else {
-	    tivoname = newVal;
-	}
+			tivoname = newVal.substring(0,46);
+		} else {
+	    	tivoname = newVal;
+		}
 	}
 
 	/**
@@ -683,7 +683,7 @@ public Shows() {
 	 * @return value of this column in this row
 	 */
 	public String getTivonamelink() {
-	return tivonamelink;
+		return tivonamelink;
 	}
 
 	/**
@@ -693,11 +693,12 @@ public Shows() {
 	 */
 	public void setTivonamelink(String newVal) {
 		if (tivonamelink != null && tivonamelink.length() > 31){
-	    tivonamelink = newVal.substring(0,30);
-	} else {
-	    tivonamelink = newVal;
+			tivonamelink = newVal.substring(0,30);
+		} else {
+	    	tivonamelink = newVal;
+		}
 	}
-	}
+
 
 
 }

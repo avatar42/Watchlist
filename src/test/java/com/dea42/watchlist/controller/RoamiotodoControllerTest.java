@@ -6,15 +6,16 @@ import org.junit.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.ResultActions;
 import com.google.common.collect.ImmutableMap;
+
 import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Roamiotodo;
 
 /**
  * Title: RoamiotodoControllerTest <br>
- * Description: Class for testing the RoamiotodoController. <br>
+ * Description: RoamiotodoController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
  * @version 1.0<br>
  */
 @WebMvcTest(RoamiotodoController.class)
@@ -45,18 +46,18 @@ public class RoamiotodoControllerTest extends MockBase {
 		ResultActions ra = getAsAdmin("/roamiotodos");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Roamiotodo") + " " + getMsg("edit.list") + "</h1>");
 		contentContainsMarkup(ra,getTestString(16));
-		contentContainsMarkup(ra,"Channel");
-		contentContainsMarkup(ra,"Date");
+		contentContainsMarkup(ra,getMsg("Roamiotodo.channel"));
+		contentContainsMarkup(ra,getMsg("Roamiotodo.date"));
 		contentContainsMarkup(ra,getTestString(4));
-		contentContainsMarkup(ra,"Duration");
-		contentContainsMarkup(ra,"Ep");
+		contentContainsMarkup(ra,getMsg("Roamiotodo.duration"));
+		contentContainsMarkup(ra,getMsg("Roamiotodo.ep"));
 		contentContainsMarkup(ra,getTestString(1));
-		contentContainsMarkup(ra,"EpisodeName");
-		contentContainsMarkup(ra,"id");
+		contentContainsMarkup(ra,getMsg("Roamiotodo.episodename"));
+		contentContainsMarkup(ra,getMsg("Roamiotodo.id"));
 		contentContainsMarkup(ra,getTestString(67));
-		contentContainsMarkup(ra,"ShowName");
+		contentContainsMarkup(ra,getMsg("Roamiotodo.showname"));
 		contentContainsMarkup(ra,getTestString(66));
-		contentContainsMarkup(ra,"ShowTrimmed");
+		contentContainsMarkup(ra,getMsg("Roamiotodo.showtrimmed"));
 	}
 
 	/**

@@ -6,15 +6,16 @@ import org.junit.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.ResultActions;
 import com.google.common.collect.ImmutableMap;
+
 import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Roamionpl;
 
 /**
  * Title: RoamionplControllerTest <br>
- * Description: Class for testing the RoamionplController. <br>
+ * Description: RoamionplController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
  * @version 1.0<br>
  */
 @WebMvcTest(RoamionplController.class)
@@ -43,22 +44,22 @@ public class RoamionplControllerTest extends MockBase {
 
 		ResultActions ra = getAsAdmin("/roamionpls");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Roamionpl") + " " + getMsg("edit.list") + "</h1>");
-		contentContainsMarkup(ra,"BitrateMbps");
+		contentContainsMarkup(ra,getMsg("Roamionpl.bitratembps"));
 		contentContainsMarkup(ra,getTestString(16));
-		contentContainsMarkup(ra,"Channel");
-		contentContainsMarkup(ra,"Date");
-		contentContainsMarkup(ra,"Duration");
+		contentContainsMarkup(ra,getMsg("Roamionpl.channel"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.date"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.duration"));
 		contentContainsMarkup(ra,getTestString(4));
-		contentContainsMarkup(ra,"Episode");
-		contentContainsMarkup(ra,"id");
-		contentContainsMarkup(ra,"Isnew");
+		contentContainsMarkup(ra,getMsg("Roamionpl.episode"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.id"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.isnew"));
 		contentContainsMarkup(ra,getTestString(49));
-		contentContainsMarkup(ra,"Show");
-		contentContainsMarkup(ra,"SizeGb");
-		contentContainsMarkup(ra,"SortableDate");
+		contentContainsMarkup(ra,getMsg("Roamionpl.show"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.sizegb"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.sortabledate"));
 		contentContainsMarkup(ra,getTestString(71));
-		contentContainsMarkup(ra,"Title");
-		contentContainsMarkup(ra,"Watchedtime");
+		contentContainsMarkup(ra,getMsg("Roamionpl.title"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.watchedtime"));
 	}
 
 	/**

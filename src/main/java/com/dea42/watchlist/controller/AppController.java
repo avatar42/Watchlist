@@ -22,14 +22,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.dea42.watchlist.entity.Account;
 import com.dea42.watchlist.form.SignupForm;
 import com.dea42.watchlist.service.AccountService;
-import com.dea42.watchlist.utils.AjaxUtils;
+import com.dea42.watchlist.utils.Utils;
 import com.dea42.watchlist.utils.MessageHelper;
 
 /**
  * Title: AppController <br>
  * Description: Class main web Controller. <br>
  * 
- * @author Gened by com.dea42.build.GenSpring<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
  * @version 1.0<br>
  */
 @Controller
@@ -62,7 +62,7 @@ public class AppController {
 	@GetMapping("signup")
 	String signup(Model model, @RequestHeader(value = "X-Requested-With", required = false) String requestedWith) {
 		model.addAttribute(new SignupForm());
-		if (AjaxUtils.isAjaxRequest(requestedWith)) {
+		if (Utils.isAjaxRequest(requestedWith)) {
 			return SIGNUP_VIEW_NAME.concat(" :: signupForm");
 		}
 		return SIGNUP_VIEW_NAME;
@@ -96,7 +96,7 @@ public class AppController {
 			signupForm.setReferer(ref);
 		}
 
-		if (AjaxUtils.isAjaxRequest(requestedWith)) {
+		if (Utils.isAjaxRequest(requestedWith)) {
 			return SIGNIN_VIEW_NAME.concat(" :: signupForm");
 		}
 		return SIGNIN_VIEW_NAME;

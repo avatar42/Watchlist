@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Description: Class for holding data from the roamiotodo table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
  * @version 1.0<br>
  */
 @Entity
@@ -17,34 +17,34 @@ public class Roamiotodo implements Serializable {
 private static final long serialVersionUID = 1L;
 
 	@Column(name="Channel", length=16)
-private String channel;
+	private String channel;
 	@Column(name="Date")
-private String date;
+	private String date;
 	@Column(name="Duration", length=4)
-private String duration;
+	private String duration;
 	@Column(name="Ep")
-private Integer ep;
+	private Integer ep;
 	@Column(name="EpisodeName", length=1)
-private String episodename;
+	private String episodename;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-private Integer id;
+	private Integer id;
 	@Column(name="ShowName", length=67)
-private String showname;
+	private String showname;
 	@Column(name="ShowTrimmed", length=66)
-private String showtrimmed;
+	private String showtrimmed;
 
-/**
- * Basic constructor
- */
-public Roamiotodo() {
-}
+	/**
+	 * Basic constructor
+	 */
+	public Roamiotodo() {
+	}
 
-/**
- * Full constructor
- *
- */
+	/**
+	 * Full constructor
+	 *
+	 */
 	public Roamiotodo(String channel, String date, String duration, Integer ep, String episodename, Integer id, String showname, String showtrimmed) {
 		this.channel = channel;
 		this.date = date;
@@ -61,7 +61,7 @@ public Roamiotodo() {
 	 * @return value of this column in this row
 	 */
 	public String getChannel() {
-	return channel;
+		return channel;
 	}
 
 	/**
@@ -71,10 +71,10 @@ public Roamiotodo() {
 	 */
 	public void setChannel(String newVal) {
 		if (channel != null && channel.length() > 16){
-	    channel = newVal.substring(0,15);
-	} else {
-	    channel = newVal;
-	}
+			channel = newVal.substring(0,15);
+		} else {
+	    	channel = newVal;
+		}
 	}
 
 	/**
@@ -83,7 +83,7 @@ public Roamiotodo() {
 	 * @return value of this column in this row
 	 */
 	public String getDate() {
-	return date;
+		return date;
 	}
 
 	/**
@@ -91,7 +91,7 @@ public Roamiotodo() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setDate(String newVal) {
-	date = newVal;
+		date = newVal;
 	}
 
 	/**
@@ -100,7 +100,7 @@ public Roamiotodo() {
 	 * @return value of this column in this row
 	 */
 	public String getDuration() {
-	return duration;
+		return duration;
 	}
 
 	/**
@@ -110,10 +110,10 @@ public Roamiotodo() {
 	 */
 	public void setDuration(String newVal) {
 		if (duration != null && duration.length() > 4){
-	    duration = newVal.substring(0,3);
-	} else {
-	    duration = newVal;
-	}
+			duration = newVal.substring(0,3);
+		} else {
+	    	duration = newVal;
+		}
 	}
 
 	/**
@@ -122,9 +122,9 @@ public Roamiotodo() {
 	 * @return value of this column in this row
 	 */
 	public Integer getEp() {
-	if (ep== null)
-	    return 0;
-	return ep.intValue();
+		if (ep== null)
+	    	return 0;
+		return ep.intValue();
 	}
 
 	/**
@@ -132,7 +132,7 @@ public Roamiotodo() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setEp(Integer newVal) {
-	ep = newVal;
+		ep = newVal;
 	}
 
 	/**
@@ -141,7 +141,7 @@ public Roamiotodo() {
 	 * @return value of this column in this row
 	 */
 	public String getEpisodename() {
-	return episodename;
+		return episodename;
 	}
 
 	/**
@@ -151,10 +151,10 @@ public Roamiotodo() {
 	 */
 	public void setEpisodename(String newVal) {
 		if (episodename != null && episodename.length() > 1){
-	    episodename = newVal.substring(0,0);
-	} else {
-	    episodename = newVal;
-	}
+			episodename = newVal.substring(0,0);
+		} else {
+	    	episodename = newVal;
+		}
 	}
 
 	/**
@@ -163,9 +163,9 @@ public Roamiotodo() {
 	 * @return value of this column in this row
 	 */
 	public Integer getId() {
-	if (id== null)
-	    return 0;
-	return id.intValue();
+		if (id== null)
+	    	return 0;
+		return id.intValue();
 	}
 
 	/**
@@ -174,7 +174,7 @@ public Roamiotodo() {
 	 * This is the primary key for this table
 	 */
 	public void setId(Integer newVal) {
-	id = newVal;
+		id = newVal;
 	}
 
 	/**
@@ -183,7 +183,7 @@ public Roamiotodo() {
 	 * @return value of this column in this row
 	 */
 	public String getShowname() {
-	return showname;
+		return showname;
 	}
 
 	/**
@@ -193,10 +193,10 @@ public Roamiotodo() {
 	 */
 	public void setShowname(String newVal) {
 		if (showname != null && showname.length() > 67){
-	    showname = newVal.substring(0,66);
-	} else {
-	    showname = newVal;
-	}
+			showname = newVal.substring(0,66);
+		} else {
+	    	showname = newVal;
+		}
 	}
 
 	/**
@@ -205,7 +205,7 @@ public Roamiotodo() {
 	 * @return value of this column in this row
 	 */
 	public String getShowtrimmed() {
-	return showtrimmed;
+		return showtrimmed;
 	}
 
 	/**
@@ -215,11 +215,12 @@ public Roamiotodo() {
 	 */
 	public void setShowtrimmed(String newVal) {
 		if (showtrimmed != null && showtrimmed.length() > 66){
-	    showtrimmed = newVal.substring(0,65);
-	} else {
-	    showtrimmed = newVal;
+			showtrimmed = newVal.substring(0,65);
+		} else {
+	    	showtrimmed = newVal;
+		}
 	}
-	}
+
 
 
 }

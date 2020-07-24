@@ -6,15 +6,16 @@ import org.junit.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.ResultActions;
 import com.google.common.collect.ImmutableMap;
+
 import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Shows;
 
 /**
  * Title: ShowsControllerTest <br>
- * Description: Class for testing the ShowsController. <br>
+ * Description: ShowsController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
  * @version 1.0<br>
  */
 @WebMvcTest(ShowsController.class)
@@ -65,57 +66,48 @@ public class ShowsControllerTest extends MockBase {
 		ResultActions ra = getAsAdmin("/showss");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Shows") + " " + getMsg("edit.list") + "</h1>");
 		contentContainsMarkup(ra,getTestString(17));
-		contentContainsMarkup(ra,"BestExperience");
+		contentContainsMarkup(ra,getMsg("Shows.bestexperience"));
 		contentContainsMarkup(ra,getTestString(306));
-		contentContainsMarkup(ra,"BestExperienceLink");
 		contentContainsMarkup(ra,getTestString(65));
-		contentContainsMarkup(ra,"Cancelled");
+		contentContainsMarkup(ra,getMsg("Shows.cancelled"));
 		contentContainsMarkup(ra,getTestString(181));
-		contentContainsMarkup(ra,"Comment");
+		contentContainsMarkup(ra,getMsg("Shows.comment"));
 		contentContainsMarkup(ra,getTestString(228));
-		contentContainsMarkup(ra,"CommentLink");
 		contentContainsMarkup(ra,getTestString(47));
-		contentContainsMarkup(ra,"EpguidesShowName");
+		contentContainsMarkup(ra,getMsg("Shows.epguidesshowname"));
 		contentContainsMarkup(ra,getTestString(60));
-		contentContainsMarkup(ra,"EpguidesShowNameLink");
-		contentContainsMarkup(ra,"id");
+		contentContainsMarkup(ra,getMsg("Shows.id"));
 		contentContainsMarkup(ra,getTestString(1));
-		contentContainsMarkup(ra,"Imdb");
+		contentContainsMarkup(ra,getMsg("Shows.imdb"));
 		contentContainsMarkup(ra,getTestString(63));
-		contentContainsMarkup(ra,"ImdbLink");
 		contentContainsMarkup(ra,getTestString(47));
-		contentContainsMarkup(ra,"InCanceledAs");
+		contentContainsMarkup(ra,getMsg("Shows.incanceledas"));
 		contentContainsMarkup(ra,getTestString(70));
-		contentContainsMarkup(ra,"InCanceledAsLink");
 		contentContainsMarkup(ra,getTestString(1));
-		contentContainsMarkup(ra,"InRokuFeed");
+		contentContainsMarkup(ra,getMsg("Shows.inrokufeed"));
 		contentContainsMarkup(ra,getTestString(47));
-		contentContainsMarkup(ra,"InShowRssAs");
+		contentContainsMarkup(ra,getMsg("Shows.inshowrssas"));
 		contentContainsMarkup(ra,getTestString(32));
-		contentContainsMarkup(ra,"InShowRssAsLink");
 		contentContainsMarkup(ra,getTestString(2));
-		contentContainsMarkup(ra,"JustWatch");
+		contentContainsMarkup(ra,getMsg("Shows.justwatch"));
 		contentContainsMarkup(ra,getTestString(75));
-		contentContainsMarkup(ra,"JustWatchLink");
 		contentContainsMarkup(ra,getTestString(10));
-		contentContainsMarkup(ra,"LastShow");
+		contentContainsMarkup(ra,getMsg("Shows.lastshow"));
 		contentContainsMarkup(ra,getTestString(10));
-		contentContainsMarkup(ra,"LastWatched");
+		contentContainsMarkup(ra,getMsg("Shows.lastwatched"));
 		contentContainsMarkup(ra,getTestString(14));
-		contentContainsMarkup(ra,"Network");
+		contentContainsMarkup(ra,getMsg("Shows.network"));
 		contentContainsMarkup(ra,getTestString(306));
-		contentContainsMarkup(ra,"NetworkLink");
 		contentContainsMarkup(ra,getTestString(3));
-		contentContainsMarkup(ra,"Ota");
+		contentContainsMarkup(ra,getMsg("Shows.ota"));
 		contentContainsMarkup(ra,getTestString(65));
-		contentContainsMarkup(ra,"Premiere");
-		contentContainsMarkup(ra,"PremiereDate");
+		contentContainsMarkup(ra,getMsg("Shows.premiere"));
+		contentContainsMarkup(ra,getMsg("Shows.premieredate"));
 		contentContainsMarkup(ra,getTestString(65));
-		contentContainsMarkup(ra,"Status");
+		contentContainsMarkup(ra,getMsg("Shows.status"));
 		contentContainsMarkup(ra,getTestString(47));
-		contentContainsMarkup(ra,"TivoName");
+		contentContainsMarkup(ra,getMsg("Shows.tivoname"));
 		contentContainsMarkup(ra,getTestString(31));
-		contentContainsMarkup(ra,"TivoNameLink");
 	}
 
 	/**

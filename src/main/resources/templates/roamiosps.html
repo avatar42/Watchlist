@@ -20,18 +20,18 @@
 
 	    <table>
 	        <tr>
-            <th>Channel</th>
-            <th>End</th>
-            <th>id</th>
-            <th>Include</th>
-            <th>Keep</th>
-            <th>Num</th>
-            <th>Priority</th>
-            <th>Record</th>
-            <th>Season</th>
-            <th>Show</th>
-            <th>Start</th>
-            <th>Actions</th>
+            <th th:text="#{Roamiosp.channel}">Channel</th>
+            <th th:text="#{Roamiosp.end}">End</th>
+            <th th:text="#{Roamiosp.id}">id</th>
+            <th th:text="#{Roamiosp.include}">Include</th>
+            <th th:text="#{Roamiosp.keep}">Keep</th>
+            <th th:text="#{Roamiosp.num}">Num</th>
+            <th th:text="#{Roamiosp.priority}">Priority</th>
+            <th th:text="#{Roamiosp.record}">Record</th>
+            <th th:text="#{Roamiosp.season}">Season</th>
+            <th th:text="#{Roamiosp.show}">Show</th>
+            <th th:text="#{Roamiosp.start}">Start</th>
+            <th th:text="#{edit.actions}"></th>
 	        </tr>
 	        <tr th:each="roamiosp:${roamiosps}">
 	            <td th:text="${roamiosp.channel}"></td>
@@ -53,3 +53,5 @@
 	    </table>
     </div>
 
+	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+</body></html>

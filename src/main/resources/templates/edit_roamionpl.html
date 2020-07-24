@@ -25,7 +25,7 @@
 
 			<table >
 				<tr th:if="${roamionpl.id > 0}">				
-					<td>id:</td>
+					<td th:text="#{Roamionpl.id} + ':'">id:</td>
 					<td>
 						<input type="text" th:field="*{id}" readonly="readonly" />
 					</td>
@@ -102,3 +102,5 @@
 			</table>
 		</form>
 	</div>
+	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+</body></html>

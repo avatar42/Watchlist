@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Description: Class for holding data from the networks table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
  * @version 1.0<br>
  */
 @Entity
@@ -17,86 +17,86 @@ public class Networks implements Serializable {
 private static final long serialVersionUID = 1L;
 
 	@Column(name="AndroidApp", length=1)
-private String androidapp;
+	private String androidapp;
 	@Column(name="AndroidAppLink", length=74)
-private String androidapplink;
+	private String androidapplink;
 	@Column(name="Comment", length=458)
-private String comment;
+	private String comment;
 	@Column(name="CommentLink", length=80)
-private String commentlink;
+	private String commentlink;
 	@Column(name="Commercials", length=68)
-private String commercials;
+	private String commercials;
 	@Column(name="CommercialsLink", length=37)
-private String commercialslink;
+	private String commercialslink;
 	@Column(name="FireApp", length=56)
-private String fireapp;
+	private String fireapp;
 	@Column(name="FireAppLink", length=46)
-private String fireapplink;
+	private String fireapplink;
 	@Column(name="FreeWithTwcId", length=57)
-private String freewithtwcid;
+	private String freewithtwcid;
 	@Column(name="FreeWithTwcIdLink", length=50)
-private String freewithtwcidlink;
+	private String freewithtwcidlink;
 	@Column(name="HasDirectBuyOption", length=79)
-private String hasdirectbuyoption;
+	private String hasdirectbuyoption;
 	@Column(name="HasDirectBuyOptionLink", length=55)
-private String hasdirectbuyoptionlink;
+	private String hasdirectbuyoptionlink;
 	@Column(name="HasWatchList", length=46)
-private String haswatchlist;
+	private String haswatchlist;
 	@Column(name="ICanOta", length=63)
-private String icanota;
+	private String icanota;
 	@Column(name="ICanOtaLink", length=216)
-private String icanotalink;
+	private String icanotalink;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-private Integer id;
+	private Integer id;
 	@Column(name="IptvService", length=214)
-private String iptvservice;
+	private String iptvservice;
 	@Column(name="IptvServiceLink", length=36)
-private String iptvservicelink;
+	private String iptvservicelink;
 	@Column(name="OnHulu", length=14)
-private String onhulu;
+	private String onhulu;
 	@Column(name="OnHuluLink", length=118)
-private String onhululink;
+	private String onhululink;
 	@Column(name="Persistance", length=70)
-private String persistance;
+	private String persistance;
 	@Column(name="RemembersPlaceInEpisode", length=57)
-private String remembersplaceinepisode;
+	private String remembersplaceinepisode;
 	@Column(name="RemembersWatchedEpisodes", length=35)
-private String rememberswatchedepisodes;
+	private String rememberswatchedepisodes;
 	@Column(name="RokuApp", length=97)
-private String rokuapp;
+	private String rokuapp;
 	@Column(name="RokuAppLink", length=46)
-private String rokuapplink;
+	private String rokuapplink;
 	@Column(name="ShowsInTivoNpl")
-private Integer showsintivonpl;
+	private Integer showsintivonpl;
 	@Column(name="Site", length=28)
-private String site;
+	private String site;
 	@Column(name="SiteLink", length=52)
-private String sitelink;
+	private String sitelink;
 	@Column(name="StandardWait", length=17)
-private String standardwait;
+	private String standardwait;
 	@Column(name="TivoApp", length=61)
-private String tivoapp;
+	private String tivoapp;
 	@Column(name="TivoAppLink", length=34)
-private String tivoapplink;
+	private String tivoapplink;
 	@Column(name="TivoShortName", length=10)
-private String tivoshortname;
+	private String tivoshortname;
 	@Column(name="WebInterface", length=56)
-private String webinterface;
+	private String webinterface;
 	@Column(name="WebInterfaceLink", length=41)
-private String webinterfacelink;
+	private String webinterfacelink;
 
-/**
- * Basic constructor
- */
-public Networks() {
-}
+	/**
+	 * Basic constructor
+	 */
+	public Networks() {
+	}
 
-/**
- * Full constructor
- *
- */
+	/**
+	 * Full constructor
+	 *
+	 */
 	public Networks(String androidapp, String androidapplink, String comment, String commentlink, String commercials, String commercialslink, String fireapp, String fireapplink, String freewithtwcid, String freewithtwcidlink, String hasdirectbuyoption, String hasdirectbuyoptionlink, String haswatchlist, String icanota, String icanotalink, Integer id, String iptvservice, String iptvservicelink, String onhulu, String onhululink, String persistance, String remembersplaceinepisode, String rememberswatchedepisodes, String rokuapp, String rokuapplink, Integer showsintivonpl, String site, String sitelink, String standardwait, String tivoapp, String tivoapplink, String tivoshortname, String webinterface, String webinterfacelink) {
 		this.androidapp = androidapp;
 		this.androidapplink = androidapplink;
@@ -139,7 +139,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getAndroidapp() {
-	return androidapp;
+		return androidapp;
 	}
 
 	/**
@@ -149,10 +149,10 @@ public Networks() {
 	 */
 	public void setAndroidapp(String newVal) {
 		if (androidapp != null && androidapp.length() > 1){
-	    androidapp = newVal.substring(0,0);
-	} else {
-	    androidapp = newVal;
-	}
+			androidapp = newVal.substring(0,0);
+		} else {
+	    	androidapp = newVal;
+		}
 	}
 
 	/**
@@ -161,7 +161,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getAndroidapplink() {
-	return androidapplink;
+		return androidapplink;
 	}
 
 	/**
@@ -171,10 +171,10 @@ public Networks() {
 	 */
 	public void setAndroidapplink(String newVal) {
 		if (androidapplink != null && androidapplink.length() > 74){
-	    androidapplink = newVal.substring(0,73);
-	} else {
-	    androidapplink = newVal;
-	}
+			androidapplink = newVal.substring(0,73);
+		} else {
+	    	androidapplink = newVal;
+		}
 	}
 
 	/**
@@ -183,7 +183,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getComment() {
-	return comment;
+		return comment;
 	}
 
 	/**
@@ -193,10 +193,10 @@ public Networks() {
 	 */
 	public void setComment(String newVal) {
 		if (comment != null && comment.length() > 458){
-	    comment = newVal.substring(0,457);
-	} else {
-	    comment = newVal;
-	}
+			comment = newVal.substring(0,457);
+		} else {
+	    	comment = newVal;
+		}
 	}
 
 	/**
@@ -205,7 +205,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getCommentlink() {
-	return commentlink;
+		return commentlink;
 	}
 
 	/**
@@ -215,10 +215,10 @@ public Networks() {
 	 */
 	public void setCommentlink(String newVal) {
 		if (commentlink != null && commentlink.length() > 80){
-	    commentlink = newVal.substring(0,79);
-	} else {
-	    commentlink = newVal;
-	}
+			commentlink = newVal.substring(0,79);
+		} else {
+	    	commentlink = newVal;
+		}
 	}
 
 	/**
@@ -227,7 +227,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getCommercials() {
-	return commercials;
+		return commercials;
 	}
 
 	/**
@@ -237,10 +237,10 @@ public Networks() {
 	 */
 	public void setCommercials(String newVal) {
 		if (commercials != null && commercials.length() > 68){
-	    commercials = newVal.substring(0,67);
-	} else {
-	    commercials = newVal;
-	}
+			commercials = newVal.substring(0,67);
+		} else {
+	    	commercials = newVal;
+		}
 	}
 
 	/**
@@ -249,7 +249,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getCommercialslink() {
-	return commercialslink;
+		return commercialslink;
 	}
 
 	/**
@@ -259,10 +259,10 @@ public Networks() {
 	 */
 	public void setCommercialslink(String newVal) {
 		if (commercialslink != null && commercialslink.length() > 37){
-	    commercialslink = newVal.substring(0,36);
-	} else {
-	    commercialslink = newVal;
-	}
+			commercialslink = newVal.substring(0,36);
+		} else {
+	    	commercialslink = newVal;
+		}
 	}
 
 	/**
@@ -271,7 +271,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getFireapp() {
-	return fireapp;
+		return fireapp;
 	}
 
 	/**
@@ -281,10 +281,10 @@ public Networks() {
 	 */
 	public void setFireapp(String newVal) {
 		if (fireapp != null && fireapp.length() > 56){
-	    fireapp = newVal.substring(0,55);
-	} else {
-	    fireapp = newVal;
-	}
+			fireapp = newVal.substring(0,55);
+		} else {
+	    	fireapp = newVal;
+		}
 	}
 
 	/**
@@ -293,7 +293,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getFireapplink() {
-	return fireapplink;
+		return fireapplink;
 	}
 
 	/**
@@ -303,10 +303,10 @@ public Networks() {
 	 */
 	public void setFireapplink(String newVal) {
 		if (fireapplink != null && fireapplink.length() > 46){
-	    fireapplink = newVal.substring(0,45);
-	} else {
-	    fireapplink = newVal;
-	}
+			fireapplink = newVal.substring(0,45);
+		} else {
+	    	fireapplink = newVal;
+		}
 	}
 
 	/**
@@ -315,7 +315,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getFreewithtwcid() {
-	return freewithtwcid;
+		return freewithtwcid;
 	}
 
 	/**
@@ -325,10 +325,10 @@ public Networks() {
 	 */
 	public void setFreewithtwcid(String newVal) {
 		if (freewithtwcid != null && freewithtwcid.length() > 57){
-	    freewithtwcid = newVal.substring(0,56);
-	} else {
-	    freewithtwcid = newVal;
-	}
+			freewithtwcid = newVal.substring(0,56);
+		} else {
+	    	freewithtwcid = newVal;
+		}
 	}
 
 	/**
@@ -337,7 +337,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getFreewithtwcidlink() {
-	return freewithtwcidlink;
+		return freewithtwcidlink;
 	}
 
 	/**
@@ -347,10 +347,10 @@ public Networks() {
 	 */
 	public void setFreewithtwcidlink(String newVal) {
 		if (freewithtwcidlink != null && freewithtwcidlink.length() > 50){
-	    freewithtwcidlink = newVal.substring(0,49);
-	} else {
-	    freewithtwcidlink = newVal;
-	}
+			freewithtwcidlink = newVal.substring(0,49);
+		} else {
+	    	freewithtwcidlink = newVal;
+		}
 	}
 
 	/**
@@ -359,7 +359,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getHasdirectbuyoption() {
-	return hasdirectbuyoption;
+		return hasdirectbuyoption;
 	}
 
 	/**
@@ -369,10 +369,10 @@ public Networks() {
 	 */
 	public void setHasdirectbuyoption(String newVal) {
 		if (hasdirectbuyoption != null && hasdirectbuyoption.length() > 79){
-	    hasdirectbuyoption = newVal.substring(0,78);
-	} else {
-	    hasdirectbuyoption = newVal;
-	}
+			hasdirectbuyoption = newVal.substring(0,78);
+		} else {
+	    	hasdirectbuyoption = newVal;
+		}
 	}
 
 	/**
@@ -381,7 +381,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getHasdirectbuyoptionlink() {
-	return hasdirectbuyoptionlink;
+		return hasdirectbuyoptionlink;
 	}
 
 	/**
@@ -391,10 +391,10 @@ public Networks() {
 	 */
 	public void setHasdirectbuyoptionlink(String newVal) {
 		if (hasdirectbuyoptionlink != null && hasdirectbuyoptionlink.length() > 55){
-	    hasdirectbuyoptionlink = newVal.substring(0,54);
-	} else {
-	    hasdirectbuyoptionlink = newVal;
-	}
+			hasdirectbuyoptionlink = newVal.substring(0,54);
+		} else {
+	    	hasdirectbuyoptionlink = newVal;
+		}
 	}
 
 	/**
@@ -403,7 +403,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getHaswatchlist() {
-	return haswatchlist;
+		return haswatchlist;
 	}
 
 	/**
@@ -413,10 +413,10 @@ public Networks() {
 	 */
 	public void setHaswatchlist(String newVal) {
 		if (haswatchlist != null && haswatchlist.length() > 46){
-	    haswatchlist = newVal.substring(0,45);
-	} else {
-	    haswatchlist = newVal;
-	}
+			haswatchlist = newVal.substring(0,45);
+		} else {
+	    	haswatchlist = newVal;
+		}
 	}
 
 	/**
@@ -425,7 +425,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getIcanota() {
-	return icanota;
+		return icanota;
 	}
 
 	/**
@@ -435,10 +435,10 @@ public Networks() {
 	 */
 	public void setIcanota(String newVal) {
 		if (icanota != null && icanota.length() > 63){
-	    icanota = newVal.substring(0,62);
-	} else {
-	    icanota = newVal;
-	}
+			icanota = newVal.substring(0,62);
+		} else {
+	    	icanota = newVal;
+		}
 	}
 
 	/**
@@ -447,7 +447,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getIcanotalink() {
-	return icanotalink;
+		return icanotalink;
 	}
 
 	/**
@@ -457,10 +457,10 @@ public Networks() {
 	 */
 	public void setIcanotalink(String newVal) {
 		if (icanotalink != null && icanotalink.length() > 216){
-	    icanotalink = newVal.substring(0,215);
-	} else {
-	    icanotalink = newVal;
-	}
+			icanotalink = newVal.substring(0,215);
+		} else {
+	    	icanotalink = newVal;
+		}
 	}
 
 	/**
@@ -469,9 +469,9 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public Integer getId() {
-	if (id== null)
-	    return 0;
-	return id.intValue();
+		if (id== null)
+	    	return 0;
+		return id.intValue();
 	}
 
 	/**
@@ -480,7 +480,7 @@ public Networks() {
 	 * This is the primary key for this table
 	 */
 	public void setId(Integer newVal) {
-	id = newVal;
+		id = newVal;
 	}
 
 	/**
@@ -489,7 +489,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getIptvservice() {
-	return iptvservice;
+		return iptvservice;
 	}
 
 	/**
@@ -499,10 +499,10 @@ public Networks() {
 	 */
 	public void setIptvservice(String newVal) {
 		if (iptvservice != null && iptvservice.length() > 214){
-	    iptvservice = newVal.substring(0,213);
-	} else {
-	    iptvservice = newVal;
-	}
+			iptvservice = newVal.substring(0,213);
+		} else {
+	    	iptvservice = newVal;
+		}
 	}
 
 	/**
@@ -511,7 +511,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getIptvservicelink() {
-	return iptvservicelink;
+		return iptvservicelink;
 	}
 
 	/**
@@ -521,10 +521,10 @@ public Networks() {
 	 */
 	public void setIptvservicelink(String newVal) {
 		if (iptvservicelink != null && iptvservicelink.length() > 36){
-	    iptvservicelink = newVal.substring(0,35);
-	} else {
-	    iptvservicelink = newVal;
-	}
+			iptvservicelink = newVal.substring(0,35);
+		} else {
+	    	iptvservicelink = newVal;
+		}
 	}
 
 	/**
@@ -533,7 +533,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getOnhulu() {
-	return onhulu;
+		return onhulu;
 	}
 
 	/**
@@ -543,10 +543,10 @@ public Networks() {
 	 */
 	public void setOnhulu(String newVal) {
 		if (onhulu != null && onhulu.length() > 14){
-	    onhulu = newVal.substring(0,13);
-	} else {
-	    onhulu = newVal;
-	}
+			onhulu = newVal.substring(0,13);
+		} else {
+	    	onhulu = newVal;
+		}
 	}
 
 	/**
@@ -555,7 +555,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getOnhululink() {
-	return onhululink;
+		return onhululink;
 	}
 
 	/**
@@ -565,10 +565,10 @@ public Networks() {
 	 */
 	public void setOnhululink(String newVal) {
 		if (onhululink != null && onhululink.length() > 118){
-	    onhululink = newVal.substring(0,117);
-	} else {
-	    onhululink = newVal;
-	}
+			onhululink = newVal.substring(0,117);
+		} else {
+	    	onhululink = newVal;
+		}
 	}
 
 	/**
@@ -577,7 +577,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getPersistance() {
-	return persistance;
+		return persistance;
 	}
 
 	/**
@@ -587,10 +587,10 @@ public Networks() {
 	 */
 	public void setPersistance(String newVal) {
 		if (persistance != null && persistance.length() > 70){
-	    persistance = newVal.substring(0,69);
-	} else {
-	    persistance = newVal;
-	}
+			persistance = newVal.substring(0,69);
+		} else {
+	    	persistance = newVal;
+		}
 	}
 
 	/**
@@ -599,7 +599,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getRemembersplaceinepisode() {
-	return remembersplaceinepisode;
+		return remembersplaceinepisode;
 	}
 
 	/**
@@ -609,10 +609,10 @@ public Networks() {
 	 */
 	public void setRemembersplaceinepisode(String newVal) {
 		if (remembersplaceinepisode != null && remembersplaceinepisode.length() > 57){
-	    remembersplaceinepisode = newVal.substring(0,56);
-	} else {
-	    remembersplaceinepisode = newVal;
-	}
+			remembersplaceinepisode = newVal.substring(0,56);
+		} else {
+	    	remembersplaceinepisode = newVal;
+		}
 	}
 
 	/**
@@ -621,7 +621,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getRememberswatchedepisodes() {
-	return rememberswatchedepisodes;
+		return rememberswatchedepisodes;
 	}
 
 	/**
@@ -631,10 +631,10 @@ public Networks() {
 	 */
 	public void setRememberswatchedepisodes(String newVal) {
 		if (rememberswatchedepisodes != null && rememberswatchedepisodes.length() > 35){
-	    rememberswatchedepisodes = newVal.substring(0,34);
-	} else {
-	    rememberswatchedepisodes = newVal;
-	}
+			rememberswatchedepisodes = newVal.substring(0,34);
+		} else {
+	    	rememberswatchedepisodes = newVal;
+		}
 	}
 
 	/**
@@ -643,7 +643,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getRokuapp() {
-	return rokuapp;
+		return rokuapp;
 	}
 
 	/**
@@ -653,10 +653,10 @@ public Networks() {
 	 */
 	public void setRokuapp(String newVal) {
 		if (rokuapp != null && rokuapp.length() > 97){
-	    rokuapp = newVal.substring(0,96);
-	} else {
-	    rokuapp = newVal;
-	}
+			rokuapp = newVal.substring(0,96);
+		} else {
+	    	rokuapp = newVal;
+		}
 	}
 
 	/**
@@ -665,7 +665,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getRokuapplink() {
-	return rokuapplink;
+		return rokuapplink;
 	}
 
 	/**
@@ -675,10 +675,10 @@ public Networks() {
 	 */
 	public void setRokuapplink(String newVal) {
 		if (rokuapplink != null && rokuapplink.length() > 46){
-	    rokuapplink = newVal.substring(0,45);
-	} else {
-	    rokuapplink = newVal;
-	}
+			rokuapplink = newVal.substring(0,45);
+		} else {
+	    	rokuapplink = newVal;
+		}
 	}
 
 	/**
@@ -687,9 +687,9 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public Integer getShowsintivonpl() {
-	if (showsintivonpl== null)
-	    return 0;
-	return showsintivonpl.intValue();
+		if (showsintivonpl== null)
+	    	return 0;
+		return showsintivonpl.intValue();
 	}
 
 	/**
@@ -697,7 +697,7 @@ public Networks() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setShowsintivonpl(Integer newVal) {
-	showsintivonpl = newVal;
+		showsintivonpl = newVal;
 	}
 
 	/**
@@ -706,7 +706,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getSite() {
-	return site;
+		return site;
 	}
 
 	/**
@@ -716,10 +716,10 @@ public Networks() {
 	 */
 	public void setSite(String newVal) {
 		if (site != null && site.length() > 28){
-	    site = newVal.substring(0,27);
-	} else {
-	    site = newVal;
-	}
+			site = newVal.substring(0,27);
+		} else {
+	    	site = newVal;
+		}
 	}
 
 	/**
@@ -728,7 +728,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getSitelink() {
-	return sitelink;
+		return sitelink;
 	}
 
 	/**
@@ -738,10 +738,10 @@ public Networks() {
 	 */
 	public void setSitelink(String newVal) {
 		if (sitelink != null && sitelink.length() > 52){
-	    sitelink = newVal.substring(0,51);
-	} else {
-	    sitelink = newVal;
-	}
+			sitelink = newVal.substring(0,51);
+		} else {
+	    	sitelink = newVal;
+		}
 	}
 
 	/**
@@ -750,7 +750,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getStandardwait() {
-	return standardwait;
+		return standardwait;
 	}
 
 	/**
@@ -760,10 +760,10 @@ public Networks() {
 	 */
 	public void setStandardwait(String newVal) {
 		if (standardwait != null && standardwait.length() > 17){
-	    standardwait = newVal.substring(0,16);
-	} else {
-	    standardwait = newVal;
-	}
+			standardwait = newVal.substring(0,16);
+		} else {
+	    	standardwait = newVal;
+		}
 	}
 
 	/**
@@ -772,7 +772,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getTivoapp() {
-	return tivoapp;
+		return tivoapp;
 	}
 
 	/**
@@ -782,10 +782,10 @@ public Networks() {
 	 */
 	public void setTivoapp(String newVal) {
 		if (tivoapp != null && tivoapp.length() > 61){
-	    tivoapp = newVal.substring(0,60);
-	} else {
-	    tivoapp = newVal;
-	}
+			tivoapp = newVal.substring(0,60);
+		} else {
+	    	tivoapp = newVal;
+		}
 	}
 
 	/**
@@ -794,7 +794,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getTivoapplink() {
-	return tivoapplink;
+		return tivoapplink;
 	}
 
 	/**
@@ -804,10 +804,10 @@ public Networks() {
 	 */
 	public void setTivoapplink(String newVal) {
 		if (tivoapplink != null && tivoapplink.length() > 34){
-	    tivoapplink = newVal.substring(0,33);
-	} else {
-	    tivoapplink = newVal;
-	}
+			tivoapplink = newVal.substring(0,33);
+		} else {
+	    	tivoapplink = newVal;
+		}
 	}
 
 	/**
@@ -816,7 +816,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getTivoshortname() {
-	return tivoshortname;
+		return tivoshortname;
 	}
 
 	/**
@@ -826,10 +826,10 @@ public Networks() {
 	 */
 	public void setTivoshortname(String newVal) {
 		if (tivoshortname != null && tivoshortname.length() > 10){
-	    tivoshortname = newVal.substring(0,9);
-	} else {
-	    tivoshortname = newVal;
-	}
+			tivoshortname = newVal.substring(0,9);
+		} else {
+	    	tivoshortname = newVal;
+		}
 	}
 
 	/**
@@ -838,7 +838,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getWebinterface() {
-	return webinterface;
+		return webinterface;
 	}
 
 	/**
@@ -848,10 +848,10 @@ public Networks() {
 	 */
 	public void setWebinterface(String newVal) {
 		if (webinterface != null && webinterface.length() > 56){
-	    webinterface = newVal.substring(0,55);
-	} else {
-	    webinterface = newVal;
-	}
+			webinterface = newVal.substring(0,55);
+		} else {
+	    	webinterface = newVal;
+		}
 	}
 
 	/**
@@ -860,7 +860,7 @@ public Networks() {
 	 * @return value of this column in this row
 	 */
 	public String getWebinterfacelink() {
-	return webinterfacelink;
+		return webinterfacelink;
 	}
 
 	/**
@@ -870,11 +870,12 @@ public Networks() {
 	 */
 	public void setWebinterfacelink(String newVal) {
 		if (webinterfacelink != null && webinterfacelink.length() > 41){
-	    webinterfacelink = newVal.substring(0,40);
-	} else {
-	    webinterfacelink = newVal;
+			webinterfacelink = newVal.substring(0,40);
+		} else {
+	    	webinterfacelink = newVal;
+		}
 	}
-	}
+
 
 
 }

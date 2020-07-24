@@ -6,15 +6,16 @@ import org.junit.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.ResultActions;
 import com.google.common.collect.ImmutableMap;
+
 import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Roamiosp;
 
 /**
  * Title: RoamiospControllerTest <br>
- * Description: Class for testing the RoamiospController. <br>
+ * Description: RoamiospController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
  * @version 1.0<br>
  */
 @WebMvcTest(RoamiospController.class)
@@ -45,21 +46,21 @@ public class RoamiospControllerTest extends MockBase {
 		ResultActions ra = getAsAdmin("/roamiosps");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Roamiosp") + " " + getMsg("edit.list") + "</h1>");
 		contentContainsMarkup(ra,getTestString(14));
-		contentContainsMarkup(ra,"Channel");
-		contentContainsMarkup(ra,"End");
-		contentContainsMarkup(ra,"id");
+		contentContainsMarkup(ra,getMsg("Roamiosp.channel"));
+		contentContainsMarkup(ra,getMsg("Roamiosp.end"));
+		contentContainsMarkup(ra,getMsg("Roamiosp.id"));
 		contentContainsMarkup(ra,getTestString(6));
-		contentContainsMarkup(ra,"Include");
+		contentContainsMarkup(ra,getMsg("Roamiosp.include"));
 		contentContainsMarkup(ra,getTestString(7));
-		contentContainsMarkup(ra,"Keep");
-		contentContainsMarkup(ra,"Num");
-		contentContainsMarkup(ra,"Priority");
+		contentContainsMarkup(ra,getMsg("Roamiosp.keep"));
+		contentContainsMarkup(ra,getMsg("Roamiosp.num"));
+		contentContainsMarkup(ra,getMsg("Roamiosp.priority"));
 		contentContainsMarkup(ra,getTestString(13));
-		contentContainsMarkup(ra,"Record");
-		contentContainsMarkup(ra,"Season");
+		contentContainsMarkup(ra,getMsg("Roamiosp.record"));
+		contentContainsMarkup(ra,getMsg("Roamiosp.season"));
 		contentContainsMarkup(ra,getTestString(53));
-		contentContainsMarkup(ra,"Show");
-		contentContainsMarkup(ra,"Start");
+		contentContainsMarkup(ra,getMsg("Roamiosp.show"));
+		contentContainsMarkup(ra,getMsg("Roamiosp.start"));
 	}
 
 	/**

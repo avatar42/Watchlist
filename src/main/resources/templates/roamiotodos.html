@@ -20,15 +20,15 @@
 
 	    <table>
 	        <tr>
-            <th>Channel</th>
-            <th>Date</th>
-            <th>Duration</th>
-            <th>Ep</th>
-            <th>EpisodeName</th>
-            <th>id</th>
-            <th>ShowName</th>
-            <th>ShowTrimmed</th>
-            <th>Actions</th>
+            <th th:text="#{Roamiotodo.channel}">Channel</th>
+            <th th:text="#{Roamiotodo.date}">Date</th>
+            <th th:text="#{Roamiotodo.duration}">Duration</th>
+            <th th:text="#{Roamiotodo.ep}">Ep</th>
+            <th th:text="#{Roamiotodo.episodename}">EpisodeName</th>
+            <th th:text="#{Roamiotodo.id}">id</th>
+            <th th:text="#{Roamiotodo.showname}">ShowName</th>
+            <th th:text="#{Roamiotodo.showtrimmed}">ShowTrimmed</th>
+            <th th:text="#{edit.actions}"></th>
 	        </tr>
 	        <tr th:each="roamiotodo:${roamiotodos}">
 	            <td th:text="${roamiotodo.channel}"></td>
@@ -47,3 +47,5 @@
 	    </table>
     </div>
 
+	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+</body></html>

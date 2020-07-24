@@ -6,15 +6,16 @@ import org.junit.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.ResultActions;
 import com.google.common.collect.ImmutableMap;
+
 import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Ota;
 
 /**
  * Title: OtaControllerTest <br>
- * Description: Class for testing the OtaController. <br>
+ * Description: OtaController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
  * @version 1.0<br>
  */
 @WebMvcTest(OtaController.class)
@@ -53,41 +54,40 @@ public class OtaControllerTest extends MockBase {
 
 		ResultActions ra = getAsAdmin("/otas");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Ota") + " " + getMsg("edit.list") + "</h1>");
-		contentContainsMarkup(ra,"Chan");
+		contentContainsMarkup(ra,getMsg("Ota.chan"));
 		contentContainsMarkup(ra,getTestString(9));
-		contentContainsMarkup(ra,"ChannelName");
-		contentContainsMarkup(ra,"ChannelNumber");
+		contentContainsMarkup(ra,getMsg("Ota.channelname"));
+		contentContainsMarkup(ra,getMsg("Ota.channelnumber"));
 		contentContainsMarkup(ra,getTestString(31));
-		contentContainsMarkup(ra,"Comments");
+		contentContainsMarkup(ra,getMsg("Ota.comments"));
 		contentContainsMarkup(ra,getTestString(4));
-		contentContainsMarkup(ra,"Direction");
+		contentContainsMarkup(ra,getMsg("Ota.direction"));
 		contentContainsMarkup(ra,getTestString(3));
-		contentContainsMarkup(ra,"Enabled");
+		contentContainsMarkup(ra,getMsg("Ota.enabled"));
 		contentContainsMarkup(ra,getTestString(9));
-		contentContainsMarkup(ra,"FccInfo");
+		contentContainsMarkup(ra,getMsg("Ota.fccinfo"));
 		contentContainsMarkup(ra,getTestString(6));
-		contentContainsMarkup(ra,"FccInfoLink");
-		contentContainsMarkup(ra,"Freq");
-		contentContainsMarkup(ra,"id");
+		contentContainsMarkup(ra,getMsg("Ota.freq"));
+		contentContainsMarkup(ra,getMsg("Ota.id"));
 		contentContainsMarkup(ra,getTestString(2));
-		contentContainsMarkup(ra,"Lang");
-		contentContainsMarkup(ra,"Listed");
-		contentContainsMarkup(ra,"MyTivoAvgStrength");
+		contentContainsMarkup(ra,getMsg("Ota.lang"));
+		contentContainsMarkup(ra,getMsg("Ota.listed"));
+		contentContainsMarkup(ra,getMsg("Ota.mytivoavgstrength"));
 		contentContainsMarkup(ra,getTestString(8));
-		contentContainsMarkup(ra,"Network");
+		contentContainsMarkup(ra,getMsg("Ota.network"));
 		contentContainsMarkup(ra,getTestString(3));
-		contentContainsMarkup(ra,"Off");
+		contentContainsMarkup(ra,getMsg("Ota.off"));
 		contentContainsMarkup(ra,getTestString(41));
-		contentContainsMarkup(ra,"RecommendedAntenna");
+		contentContainsMarkup(ra,getMsg("Ota.recommendedantenna"));
 		contentContainsMarkup(ra,getTestString(5));
-		contentContainsMarkup(ra,"Rez");
+		contentContainsMarkup(ra,getMsg("Ota.rez"));
 		contentContainsMarkup(ra,getTestString(9));
-		contentContainsMarkup(ra,"Station");
-		contentContainsMarkup(ra,"SubChan");
+		contentContainsMarkup(ra,getMsg("Ota.station"));
+		contentContainsMarkup(ra,getMsg("Ota.subchan"));
 		contentContainsMarkup(ra,getTestString(4));
-		contentContainsMarkup(ra,"TvFoolEstSignal");
+		contentContainsMarkup(ra,getMsg("Ota.tvfoolestsignal"));
 		contentContainsMarkup(ra,getTestString(4));
-		contentContainsMarkup(ra,"Watchable");
+		contentContainsMarkup(ra,getMsg("Ota.watchable"));
 	}
 
 	/**

@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Description: Class for holding data from the ota table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
  * @version 1.0<br>
  */
 @Entity
@@ -17,60 +17,60 @@ public class Ota implements Serializable {
 private static final long serialVersionUID = 1L;
 
 	@Column(name="Chan")
-private Integer chan;
+	private Integer chan;
 	@Column(name="ChannelName", length=9)
-private String channelname;
+	private String channelname;
 	@Column(name="ChannelNumber")
-private Float channelnumber;
+	private Float channelnumber;
 	@Column(name="Comments", length=31)
-private String comments;
+	private String comments;
 	@Column(name="Direction", length=4)
-private String direction;
+	private String direction;
 	@Column(name="Enabled", length=3)
-private String enabled;
+	private String enabled;
 	@Column(name="FccInfo", length=9)
-private String fccinfo;
+	private String fccinfo;
 	@Column(name="FccInfoLink", length=6)
-private String fccinfolink;
+	private String fccinfolink;
 	@Column(name="Freq")
-private Integer freq;
+	private Integer freq;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-private Integer id;
+	private Integer id;
 	@Column(name="Lang", length=2)
-private String lang;
+	private String lang;
 	@Column(name="Listed")
-private Integer listed;
+	private Integer listed;
 	@Column(name="MyTivoAvgStrength")
-private Integer mytivoavgstrength;
+	private Integer mytivoavgstrength;
 	@Column(name="Network", length=8)
-private String network;
+	private String network;
 	@Column(name="Off", length=3)
-private String off;
+	private String off;
 	@Column(name="RecommendedAntenna", length=41)
-private String recommendedantenna;
+	private String recommendedantenna;
 	@Column(name="Rez", length=5)
-private String rez;
+	private String rez;
 	@Column(name="Station", length=9)
-private String station;
+	private String station;
 	@Column(name="SubChan")
-private Integer subchan;
+	private Integer subchan;
 	@Column(name="TvFoolEstSignal", length=4)
-private String tvfoolestsignal;
+	private String tvfoolestsignal;
 	@Column(name="Watchable", length=4)
-private String watchable;
+	private String watchable;
 
-/**
- * Basic constructor
- */
-public Ota() {
-}
+	/**
+	 * Basic constructor
+	 */
+	public Ota() {
+	}
 
-/**
- * Full constructor
- *
- */
+	/**
+	 * Full constructor
+	 *
+	 */
 	public Ota(Integer chan, String channelname, Float channelnumber, String comments, String direction, String enabled, String fccinfo, String fccinfolink, Integer freq, Integer id, String lang, Integer listed, Integer mytivoavgstrength, String network, String off, String recommendedantenna, String rez, String station, Integer subchan, String tvfoolestsignal, String watchable) {
 		this.chan = chan;
 		this.channelname = channelname;
@@ -100,9 +100,9 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public Integer getChan() {
-	if (chan== null)
-	    return 0;
-	return chan.intValue();
+		if (chan== null)
+	    	return 0;
+		return chan.intValue();
 	}
 
 	/**
@@ -110,7 +110,7 @@ public Ota() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setChan(Integer newVal) {
-	chan = newVal;
+		chan = newVal;
 	}
 
 	/**
@@ -119,7 +119,7 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public String getChannelname() {
-	return channelname;
+		return channelname;
 	}
 
 	/**
@@ -129,10 +129,10 @@ public Ota() {
 	 */
 	public void setChannelname(String newVal) {
 		if (channelname != null && channelname.length() > 9){
-	    channelname = newVal.substring(0,8);
-	} else {
-	    channelname = newVal;
-	}
+			channelname = newVal.substring(0,8);
+		} else {
+	    	channelname = newVal;
+		}
 	}
 
 	/**
@@ -141,9 +141,9 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public Float getChannelnumber() {
-	if (channelnumber== null)
-	    return 0.0f;
-	return channelnumber.floatValue();
+		if (channelnumber== null)
+	    	return 0.0f;
+		return channelnumber.floatValue();
 	}
 
 	/**
@@ -151,7 +151,7 @@ public Ota() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setChannelnumber(Float newVal) {
-	channelnumber = newVal;
+		channelnumber = newVal;
 	}
 
 	/**
@@ -160,7 +160,7 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public String getComments() {
-	return comments;
+		return comments;
 	}
 
 	/**
@@ -170,10 +170,10 @@ public Ota() {
 	 */
 	public void setComments(String newVal) {
 		if (comments != null && comments.length() > 31){
-	    comments = newVal.substring(0,30);
-	} else {
-	    comments = newVal;
-	}
+			comments = newVal.substring(0,30);
+		} else {
+	    	comments = newVal;
+		}
 	}
 
 	/**
@@ -182,7 +182,7 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public String getDirection() {
-	return direction;
+		return direction;
 	}
 
 	/**
@@ -192,10 +192,10 @@ public Ota() {
 	 */
 	public void setDirection(String newVal) {
 		if (direction != null && direction.length() > 4){
-	    direction = newVal.substring(0,3);
-	} else {
-	    direction = newVal;
-	}
+			direction = newVal.substring(0,3);
+		} else {
+	    	direction = newVal;
+		}
 	}
 
 	/**
@@ -204,7 +204,7 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public String getEnabled() {
-	return enabled;
+		return enabled;
 	}
 
 	/**
@@ -214,10 +214,10 @@ public Ota() {
 	 */
 	public void setEnabled(String newVal) {
 		if (enabled != null && enabled.length() > 3){
-	    enabled = newVal.substring(0,2);
-	} else {
-	    enabled = newVal;
-	}
+			enabled = newVal.substring(0,2);
+		} else {
+	    	enabled = newVal;
+		}
 	}
 
 	/**
@@ -226,7 +226,7 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public String getFccinfo() {
-	return fccinfo;
+		return fccinfo;
 	}
 
 	/**
@@ -236,10 +236,10 @@ public Ota() {
 	 */
 	public void setFccinfo(String newVal) {
 		if (fccinfo != null && fccinfo.length() > 9){
-	    fccinfo = newVal.substring(0,8);
-	} else {
-	    fccinfo = newVal;
-	}
+			fccinfo = newVal.substring(0,8);
+		} else {
+	    	fccinfo = newVal;
+		}
 	}
 
 	/**
@@ -248,7 +248,7 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public String getFccinfolink() {
-	return fccinfolink;
+		return fccinfolink;
 	}
 
 	/**
@@ -258,10 +258,10 @@ public Ota() {
 	 */
 	public void setFccinfolink(String newVal) {
 		if (fccinfolink != null && fccinfolink.length() > 6){
-	    fccinfolink = newVal.substring(0,5);
-	} else {
-	    fccinfolink = newVal;
-	}
+			fccinfolink = newVal.substring(0,5);
+		} else {
+	    	fccinfolink = newVal;
+		}
 	}
 
 	/**
@@ -270,9 +270,9 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public Integer getFreq() {
-	if (freq== null)
-	    return 0;
-	return freq.intValue();
+		if (freq== null)
+	    	return 0;
+		return freq.intValue();
 	}
 
 	/**
@@ -280,7 +280,7 @@ public Ota() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setFreq(Integer newVal) {
-	freq = newVal;
+		freq = newVal;
 	}
 
 	/**
@@ -289,9 +289,9 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public Integer getId() {
-	if (id== null)
-	    return 0;
-	return id.intValue();
+		if (id== null)
+	    	return 0;
+		return id.intValue();
 	}
 
 	/**
@@ -300,7 +300,7 @@ public Ota() {
 	 * This is the primary key for this table
 	 */
 	public void setId(Integer newVal) {
-	id = newVal;
+		id = newVal;
 	}
 
 	/**
@@ -309,7 +309,7 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public String getLang() {
-	return lang;
+		return lang;
 	}
 
 	/**
@@ -319,10 +319,10 @@ public Ota() {
 	 */
 	public void setLang(String newVal) {
 		if (lang != null && lang.length() > 2){
-	    lang = newVal.substring(0,1);
-	} else {
-	    lang = newVal;
-	}
+			lang = newVal.substring(0,1);
+		} else {
+	    	lang = newVal;
+		}
 	}
 
 	/**
@@ -331,9 +331,9 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public Integer getListed() {
-	if (listed== null)
-	    return 0;
-	return listed.intValue();
+		if (listed== null)
+	    	return 0;
+		return listed.intValue();
 	}
 
 	/**
@@ -341,7 +341,7 @@ public Ota() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setListed(Integer newVal) {
-	listed = newVal;
+		listed = newVal;
 	}
 
 	/**
@@ -350,9 +350,9 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public Integer getMytivoavgstrength() {
-	if (mytivoavgstrength== null)
-	    return 0;
-	return mytivoavgstrength.intValue();
+		if (mytivoavgstrength== null)
+	    	return 0;
+		return mytivoavgstrength.intValue();
 	}
 
 	/**
@@ -360,7 +360,7 @@ public Ota() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setMytivoavgstrength(Integer newVal) {
-	mytivoavgstrength = newVal;
+		mytivoavgstrength = newVal;
 	}
 
 	/**
@@ -369,7 +369,7 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public String getNetwork() {
-	return network;
+		return network;
 	}
 
 	/**
@@ -379,10 +379,10 @@ public Ota() {
 	 */
 	public void setNetwork(String newVal) {
 		if (network != null && network.length() > 8){
-	    network = newVal.substring(0,7);
-	} else {
-	    network = newVal;
-	}
+			network = newVal.substring(0,7);
+		} else {
+	    	network = newVal;
+		}
 	}
 
 	/**
@@ -391,7 +391,7 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public String getOff() {
-	return off;
+		return off;
 	}
 
 	/**
@@ -401,10 +401,10 @@ public Ota() {
 	 */
 	public void setOff(String newVal) {
 		if (off != null && off.length() > 3){
-	    off = newVal.substring(0,2);
-	} else {
-	    off = newVal;
-	}
+			off = newVal.substring(0,2);
+		} else {
+	    	off = newVal;
+		}
 	}
 
 	/**
@@ -413,7 +413,7 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public String getRecommendedantenna() {
-	return recommendedantenna;
+		return recommendedantenna;
 	}
 
 	/**
@@ -423,10 +423,10 @@ public Ota() {
 	 */
 	public void setRecommendedantenna(String newVal) {
 		if (recommendedantenna != null && recommendedantenna.length() > 41){
-	    recommendedantenna = newVal.substring(0,40);
-	} else {
-	    recommendedantenna = newVal;
-	}
+			recommendedantenna = newVal.substring(0,40);
+		} else {
+	    	recommendedantenna = newVal;
+		}
 	}
 
 	/**
@@ -435,7 +435,7 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public String getRez() {
-	return rez;
+		return rez;
 	}
 
 	/**
@@ -445,10 +445,10 @@ public Ota() {
 	 */
 	public void setRez(String newVal) {
 		if (rez != null && rez.length() > 5){
-	    rez = newVal.substring(0,4);
-	} else {
-	    rez = newVal;
-	}
+			rez = newVal.substring(0,4);
+		} else {
+	    	rez = newVal;
+		}
 	}
 
 	/**
@@ -457,7 +457,7 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public String getStation() {
-	return station;
+		return station;
 	}
 
 	/**
@@ -467,10 +467,10 @@ public Ota() {
 	 */
 	public void setStation(String newVal) {
 		if (station != null && station.length() > 9){
-	    station = newVal.substring(0,8);
-	} else {
-	    station = newVal;
-	}
+			station = newVal.substring(0,8);
+		} else {
+	    	station = newVal;
+		}
 	}
 
 	/**
@@ -479,9 +479,9 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public Integer getSubchan() {
-	if (subchan== null)
-	    return 0;
-	return subchan.intValue();
+		if (subchan== null)
+	    	return 0;
+		return subchan.intValue();
 	}
 
 	/**
@@ -489,7 +489,7 @@ public Ota() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setSubchan(Integer newVal) {
-	subchan = newVal;
+		subchan = newVal;
 	}
 
 	/**
@@ -498,7 +498,7 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public String getTvfoolestsignal() {
-	return tvfoolestsignal;
+		return tvfoolestsignal;
 	}
 
 	/**
@@ -508,10 +508,10 @@ public Ota() {
 	 */
 	public void setTvfoolestsignal(String newVal) {
 		if (tvfoolestsignal != null && tvfoolestsignal.length() > 4){
-	    tvfoolestsignal = newVal.substring(0,3);
-	} else {
-	    tvfoolestsignal = newVal;
-	}
+			tvfoolestsignal = newVal.substring(0,3);
+		} else {
+	    	tvfoolestsignal = newVal;
+		}
 	}
 
 	/**
@@ -520,7 +520,7 @@ public Ota() {
 	 * @return value of this column in this row
 	 */
 	public String getWatchable() {
-	return watchable;
+		return watchable;
 	}
 
 	/**
@@ -530,11 +530,12 @@ public Ota() {
 	 */
 	public void setWatchable(String newVal) {
 		if (watchable != null && watchable.length() > 4){
-	    watchable = newVal.substring(0,3);
-	} else {
-	    watchable = newVal;
+			watchable = newVal.substring(0,3);
+		} else {
+	    	watchable = newVal;
+		}
 	}
-	}
+
 
 
 }

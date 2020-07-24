@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Description: Class for holding data from the cablecard table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
  * @version 1.0<br>
  */
 @Entity
@@ -17,42 +17,42 @@ public class Cablecard implements Serializable {
 private static final long serialVersionUID = 1L;
 
 	@Column(name="ChannelName", length=12)
-private String channelname;
+	private String channelname;
 	@Column(name="ChannelNumber")
-private Integer channelnumber;
+	private Integer channelnumber;
 	@Column(name="Colh")
-private Integer colh;
+	private Integer colh;
 	@Column(name="Dt")
-private Integer dt;
+	private Integer dt;
 	@Column(name="Hd")
-private Integer hd;
+	private Integer hd;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-private Integer id;
+	private Integer id;
 	@Column(name="InNpl")
-private Integer innpl;
+	private Integer innpl;
 	@Column(name="Lang", length=2)
-private String lang;
+	private String lang;
 	@Column(name="Net", length=12)
-private String net;
+	private String net;
 	@Column(name="Od", length=20)
-private String od;
+	private String od;
 	@Column(name="Receiving", length=3)
-private String receiving;
+	private String receiving;
 	@Column(name="ShortField", length=12)
-private String shortfield;
+	private String shortfield;
 
-/**
- * Basic constructor
- */
-public Cablecard() {
-}
+	/**
+	 * Basic constructor
+	 */
+	public Cablecard() {
+	}
 
-/**
- * Full constructor
- *
- */
+	/**
+	 * Full constructor
+	 *
+	 */
 	public Cablecard(String channelname, Integer channelnumber, Integer colh, Integer dt, Integer hd, Integer id, Integer innpl, String lang, String net, String od, String receiving, String shortfield) {
 		this.channelname = channelname;
 		this.channelnumber = channelnumber;
@@ -73,7 +73,7 @@ public Cablecard() {
 	 * @return value of this column in this row
 	 */
 	public String getChannelname() {
-	return channelname;
+		return channelname;
 	}
 
 	/**
@@ -83,10 +83,10 @@ public Cablecard() {
 	 */
 	public void setChannelname(String newVal) {
 		if (channelname != null && channelname.length() > 12){
-	    channelname = newVal.substring(0,11);
-	} else {
-	    channelname = newVal;
-	}
+			channelname = newVal.substring(0,11);
+		} else {
+	    	channelname = newVal;
+		}
 	}
 
 	/**
@@ -95,9 +95,9 @@ public Cablecard() {
 	 * @return value of this column in this row
 	 */
 	public Integer getChannelnumber() {
-	if (channelnumber== null)
-	    return 0;
-	return channelnumber.intValue();
+		if (channelnumber== null)
+	    	return 0;
+		return channelnumber.intValue();
 	}
 
 	/**
@@ -105,7 +105,7 @@ public Cablecard() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setChannelnumber(Integer newVal) {
-	channelnumber = newVal;
+		channelnumber = newVal;
 	}
 
 	/**
@@ -114,9 +114,9 @@ public Cablecard() {
 	 * @return value of this column in this row
 	 */
 	public Integer getColh() {
-	if (colh== null)
-	    return 0;
-	return colh.intValue();
+		if (colh== null)
+	    	return 0;
+		return colh.intValue();
 	}
 
 	/**
@@ -124,7 +124,7 @@ public Cablecard() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setColh(Integer newVal) {
-	colh = newVal;
+		colh = newVal;
 	}
 
 	/**
@@ -133,9 +133,9 @@ public Cablecard() {
 	 * @return value of this column in this row
 	 */
 	public Integer getDt() {
-	if (dt== null)
-	    return 0;
-	return dt.intValue();
+		if (dt== null)
+	    	return 0;
+		return dt.intValue();
 	}
 
 	/**
@@ -143,7 +143,7 @@ public Cablecard() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setDt(Integer newVal) {
-	dt = newVal;
+		dt = newVal;
 	}
 
 	/**
@@ -152,9 +152,9 @@ public Cablecard() {
 	 * @return value of this column in this row
 	 */
 	public Integer getHd() {
-	if (hd== null)
-	    return 0;
-	return hd.intValue();
+		if (hd== null)
+	    	return 0;
+		return hd.intValue();
 	}
 
 	/**
@@ -162,7 +162,7 @@ public Cablecard() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setHd(Integer newVal) {
-	hd = newVal;
+		hd = newVal;
 	}
 
 	/**
@@ -171,9 +171,9 @@ public Cablecard() {
 	 * @return value of this column in this row
 	 */
 	public Integer getId() {
-	if (id== null)
-	    return 0;
-	return id.intValue();
+		if (id== null)
+	    	return 0;
+		return id.intValue();
 	}
 
 	/**
@@ -182,7 +182,7 @@ public Cablecard() {
 	 * This is the primary key for this table
 	 */
 	public void setId(Integer newVal) {
-	id = newVal;
+		id = newVal;
 	}
 
 	/**
@@ -191,9 +191,9 @@ public Cablecard() {
 	 * @return value of this column in this row
 	 */
 	public Integer getInnpl() {
-	if (innpl== null)
-	    return 0;
-	return innpl.intValue();
+		if (innpl== null)
+	    	return 0;
+		return innpl.intValue();
 	}
 
 	/**
@@ -201,7 +201,7 @@ public Cablecard() {
 	 * default value for this field set by the DB is null
 	 */
 	public void setInnpl(Integer newVal) {
-	innpl = newVal;
+		innpl = newVal;
 	}
 
 	/**
@@ -210,7 +210,7 @@ public Cablecard() {
 	 * @return value of this column in this row
 	 */
 	public String getLang() {
-	return lang;
+		return lang;
 	}
 
 	/**
@@ -220,10 +220,10 @@ public Cablecard() {
 	 */
 	public void setLang(String newVal) {
 		if (lang != null && lang.length() > 2){
-	    lang = newVal.substring(0,1);
-	} else {
-	    lang = newVal;
-	}
+			lang = newVal.substring(0,1);
+		} else {
+	    	lang = newVal;
+		}
 	}
 
 	/**
@@ -232,7 +232,7 @@ public Cablecard() {
 	 * @return value of this column in this row
 	 */
 	public String getNet() {
-	return net;
+		return net;
 	}
 
 	/**
@@ -242,10 +242,10 @@ public Cablecard() {
 	 */
 	public void setNet(String newVal) {
 		if (net != null && net.length() > 12){
-	    net = newVal.substring(0,11);
-	} else {
-	    net = newVal;
-	}
+			net = newVal.substring(0,11);
+		} else {
+	    	net = newVal;
+		}
 	}
 
 	/**
@@ -254,7 +254,7 @@ public Cablecard() {
 	 * @return value of this column in this row
 	 */
 	public String getOd() {
-	return od;
+		return od;
 	}
 
 	/**
@@ -264,10 +264,10 @@ public Cablecard() {
 	 */
 	public void setOd(String newVal) {
 		if (od != null && od.length() > 20){
-	    od = newVal.substring(0,19);
-	} else {
-	    od = newVal;
-	}
+			od = newVal.substring(0,19);
+		} else {
+	    	od = newVal;
+		}
 	}
 
 	/**
@@ -276,7 +276,7 @@ public Cablecard() {
 	 * @return value of this column in this row
 	 */
 	public String getReceiving() {
-	return receiving;
+		return receiving;
 	}
 
 	/**
@@ -286,10 +286,10 @@ public Cablecard() {
 	 */
 	public void setReceiving(String newVal) {
 		if (receiving != null && receiving.length() > 3){
-	    receiving = newVal.substring(0,2);
-	} else {
-	    receiving = newVal;
-	}
+			receiving = newVal.substring(0,2);
+		} else {
+	    	receiving = newVal;
+		}
 	}
 
 	/**
@@ -298,7 +298,7 @@ public Cablecard() {
 	 * @return value of this column in this row
 	 */
 	public String getShortfield() {
-	return shortfield;
+		return shortfield;
 	}
 
 	/**
@@ -308,11 +308,12 @@ public Cablecard() {
 	 */
 	public void setShortfield(String newVal) {
 		if (shortfield != null && shortfield.length() > 12){
-	    shortfield = newVal.substring(0,11);
-	} else {
-	    shortfield = newVal;
+			shortfield = newVal.substring(0,11);
+		} else {
+	    	shortfield = newVal;
+		}
 	}
-	}
+
 
 
 }

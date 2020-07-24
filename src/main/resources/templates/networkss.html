@@ -20,20 +20,20 @@
 
 	    <table>
 	        <tr>
-            <th>RokuApp</th>
-            <th>Site</th>
-            <th>Commercials</th>
-            <th>Persistance</th>
-            <th>OnHulu</th>
-            <th>StandardWait</th>
-            <th>Actions</th>
+            <th th:text="#{Networks.rokuapp}">RokuApp</th>
+            <th th:text="#{Networks.site}">Site</th>
+            <th th:text="#{Networks.commercials}">Commercials</th>
+            <th th:text="#{Networks.persistance}">Persistance</th>
+            <th th:text="#{Networks.onhulu}">OnHulu</th>
+            <th th:text="#{Networks.standardwait}">StandardWait</th>
+            <th th:text="#{edit.actions}"></th>
 	        </tr>
 	        <tr th:each="networks:${networkss}">
-	            <td><a th:href="@{${networks.rokuapplink}}"><span th:text="${networks.rokuapp}"></span></a></td>
-	            <td><a th:href="@{${networks.sitelink}}"><span th:text="${networks.site}"></span></a></td>
-	            <td><a th:href="@{${networks.commercialslink}}"><span th:text="${networks.commercials}"></span></a></td>
+	            <td><a th:href="@{${networks.rokuapplink}}" th:text="${networks.rokuapp}"></a></td>
+	            <td><a th:href="@{${networks.sitelink}}" th:text="${networks.site}"></a></td>
+	            <td><a th:href="@{${networks.commercialslink}}" th:text="${networks.commercials}"></a></td>
 	            <td th:text="${networks.persistance}"></td>
-	            <td><a th:href="@{${networks.onhululink}}"><span th:text="${networks.onhulu}"></span></a></td>
+	            <td><a th:href="@{${networks.onhululink}}" th:text="${networks.onhulu}"></a></td>
 	            <td th:text="${networks.standardwait}"></td>
 				<td><a th:href="@{'/networkss/edit/' + ${networks.id}}" th:text="#{edit.edit}"></a>
 					&nbsp;&nbsp;&nbsp; <a th:href="@{'/networkss/delete/' + ${networks.id}}" th:text="#{edit.delete}"></a>
@@ -43,3 +43,5 @@
 	    </table>
     </div>
 
+	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+</body></html>

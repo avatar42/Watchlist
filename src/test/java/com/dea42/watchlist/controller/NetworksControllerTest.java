@@ -6,15 +6,16 @@ import org.junit.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.ResultActions;
 import com.google.common.collect.ImmutableMap;
+
 import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Networks;
 
 /**
  * Title: NetworksControllerTest <br>
- * Description: Class for testing the NetworksController. <br>
+ * Description: NetworksController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
  * @version 1.0<br>
  */
 @WebMvcTest(NetworksController.class)
@@ -46,17 +47,17 @@ public class NetworksControllerTest extends MockBase {
 		ResultActions ra = getAsAdmin("/networkss");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Networks") + " " + getMsg("edit.list") + "</h1>");
 		contentContainsMarkup(ra,getTestString(97));
-		contentContainsMarkup(ra,"RokuApp");
+		contentContainsMarkup(ra,getMsg("Networks.rokuapp"));
 		contentContainsMarkup(ra,getTestString(28));
-		contentContainsMarkup(ra,"Site");
+		contentContainsMarkup(ra,getMsg("Networks.site"));
 		contentContainsMarkup(ra,getTestString(68));
-		contentContainsMarkup(ra,"Commercials");
+		contentContainsMarkup(ra,getMsg("Networks.commercials"));
 		contentContainsMarkup(ra,getTestString(70));
-		contentContainsMarkup(ra,"Persistance");
+		contentContainsMarkup(ra,getMsg("Networks.persistance"));
 		contentContainsMarkup(ra,getTestString(14));
-		contentContainsMarkup(ra,"OnHulu");
+		contentContainsMarkup(ra,getMsg("Networks.onhulu"));
 		contentContainsMarkup(ra,getTestString(17));
-		contentContainsMarkup(ra,"StandardWait");
+		contentContainsMarkup(ra,getMsg("Networks.standardwait"));
 	}
 
 	/**

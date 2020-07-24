@@ -20,19 +20,19 @@
 
 	    <table>
 	        <tr>
-            <th>BitrateMbps</th>
-            <th>Channel</th>
-            <th>Date</th>
-            <th>Duration</th>
-            <th>Episode</th>
-            <th>id</th>
-            <th>Isnew</th>
-            <th>Show</th>
-            <th>SizeGb</th>
-            <th>SortableDate</th>
-            <th>Title</th>
-            <th>Watchedtime</th>
-            <th>Actions</th>
+            <th th:text="#{Roamionpl.bitratembps}">BitrateMbps</th>
+            <th th:text="#{Roamionpl.channel}">Channel</th>
+            <th th:text="#{Roamionpl.date}">Date</th>
+            <th th:text="#{Roamionpl.duration}">Duration</th>
+            <th th:text="#{Roamionpl.episode}">Episode</th>
+            <th th:text="#{Roamionpl.id}">id</th>
+            <th th:text="#{Roamionpl.isnew}">Isnew</th>
+            <th th:text="#{Roamionpl.show}">Show</th>
+            <th th:text="#{Roamionpl.sizegb}">SizeGb</th>
+            <th th:text="#{Roamionpl.sortabledate}">SortableDate</th>
+            <th th:text="#{Roamionpl.title}">Title</th>
+            <th th:text="#{Roamionpl.watchedtime}">Watchedtime</th>
+            <th th:text="#{edit.actions}"></th>
 	        </tr>
 	        <tr th:each="roamionpl:${roamionpls}">
 	            <td th:text="${roamionpl.bitratembps}"></td>
@@ -55,3 +55,5 @@
 	    </table>
     </div>
 
+	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+</body></html>

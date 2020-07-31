@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Description: Class for holding data from the roamiosp table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
  * @version 1.0<br>
  */
 @Entity
@@ -289,6 +289,26 @@ private static final long serialVersionUID = 1L;
 		start = newVal;
 	}
 
+	/**
+	 * Returns a String showing the values of this bean - mainly for debuging
+	 *
+	 * @return String
+	 */
+	public String toString(){
+		StringBuffer sb = new StringBuffer();
+		sb.append("channel= " + channel+'\n');
+		sb.append("end= " + end+'\n');
+		sb.append("id= " + id+'\n');
+		sb.append("include= " + include+'\n');
+		sb.append("keep= " + keep+'\n');
+		sb.append("num= " + num+'\n');
+		sb.append("priority= " + priority+'\n');
+		sb.append("record= " + record+'\n');
+		sb.append("season= " + season+'\n');
+		sb.append("show= " + show+'\n');
+		sb.append("start= " + start+'\n');
+		return sb.toString();
+	}
 
 
 }

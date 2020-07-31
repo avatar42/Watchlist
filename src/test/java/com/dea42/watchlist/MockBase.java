@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.dea42.watchlist;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -29,65 +26,67 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-import com.dea42.watchlist.repo.AccountRepository;
-import com.dea42.watchlist.repo.CablecardRepository;
-import com.dea42.watchlist.repo.NetworksRepository;
-import com.dea42.watchlist.repo.OtaRepository;
-import com.dea42.watchlist.repo.RoamionplRepository;
-import com.dea42.watchlist.repo.RoamiospRepository;
-import com.dea42.watchlist.repo.RoamiotodoRepository;
-import com.dea42.watchlist.repo.ShowsRepository;
 import com.dea42.watchlist.service.AccountService;
-import com.dea42.watchlist.service.CablecardServices;
+import com.dea42.watchlist.repo.AccountRepository;
+import com.dea42.watchlist.repo.NetworksRepository;
 import com.dea42.watchlist.service.NetworksServices;
-import com.dea42.watchlist.service.OtaServices;
-import com.dea42.watchlist.service.RoamionplServices;
-import com.dea42.watchlist.service.RoamiospServices;
-import com.dea42.watchlist.service.RoamiotodoServices;
+import com.dea42.watchlist.repo.ShowsRepository;
 import com.dea42.watchlist.service.ShowsServices;
+import com.dea42.watchlist.repo.RoamiospRepository;
+import com.dea42.watchlist.service.RoamiospServices;
+import com.dea42.watchlist.repo.CablecardRepository;
+import com.dea42.watchlist.service.CablecardServices;
+import com.dea42.watchlist.repo.RoamionplRepository;
+import com.dea42.watchlist.service.RoamionplServices;
+import com.dea42.watchlist.repo.OtaRepository;
+import com.dea42.watchlist.service.OtaServices;
+import com.dea42.watchlist.repo.RoamiotodoRepository;
+import com.dea42.watchlist.service.RoamiotodoServices;
+
 import com.dea42.watchlist.utils.Message;
 import com.dea42.watchlist.utils.Utils;
 
 /**
- * @author avata
- *
+ * Title: MockBase <br>
+ * Description: The base class for mock testing. <br>
+ * Copyright: Copyright (c) 2001-2020<br>
+ * Company: RMRR<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
+ * @version 1.0<br>
  */
 public class MockBase extends UnitBase {
-	@MockBean
-	protected AccountService accountService;
-	@MockBean
-	protected AccountRepository accountRepository;
-	@MockBean
-	protected NetworksServices networksServices;
-	@MockBean
-	protected ShowsServices showsServices;
-	@MockBean
-	protected RoamiospServices roamiospServices;
-	@MockBean
-	protected CablecardServices cablecardServices;
-	@MockBean
-	protected RoamionplServices roamionplServices;
-	@MockBean
-	protected OtaServices otaServices;
-	@MockBean
-	protected RoamiotodoServices roamiotodoServices;
-
-	@MockBean
-	protected NetworksRepository networksRepository;
-	@MockBean
-	protected ShowsRepository showsRepository;
-	@MockBean
-	protected RoamiospRepository roamiospRepository;
-	@MockBean
-	protected CablecardRepository cablecardRepository;
-	@MockBean
-	protected RoamionplRepository roamionplRepository;
-	@MockBean
-	protected OtaRepository otaRepository;
-	@MockBean
-	protected RoamiotodoRepository roamiotodoRepository;
-
+    @MockBean
+    protected AccountService accountService;
+    @MockBean
+    protected AccountRepository accountRepository;
+    @MockBean
+    protected NetworksServices networksServices;
+    @MockBean
+    protected NetworksRepository networksRepository;
+    @MockBean
+    protected ShowsServices showsServices;
+    @MockBean
+    protected ShowsRepository showsRepository;
+    @MockBean
+    protected RoamiospServices roamiospServices;
+    @MockBean
+    protected RoamiospRepository roamiospRepository;
+    @MockBean
+    protected CablecardServices cablecardServices;
+    @MockBean
+    protected CablecardRepository cablecardRepository;
+    @MockBean
+    protected RoamionplServices roamionplServices;
+    @MockBean
+    protected RoamionplRepository roamionplRepository;
+    @MockBean
+    protected OtaServices otaServices;
+    @MockBean
+    protected OtaRepository otaRepository;
+    @MockBean
+    protected RoamiotodoServices roamiotodoServices;
+    @MockBean
+    protected RoamiotodoRepository roamiotodoRepository;
 	@Autowired
 	protected WebApplicationContext webApplicationContext;
 
@@ -329,3 +328,4 @@ public class MockBase extends UnitBase {
 		return rtn;
 	}
 }
+

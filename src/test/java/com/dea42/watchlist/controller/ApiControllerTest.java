@@ -10,39 +10,26 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Networks;
-import com.dea42.watchlist.service.NetworksServices;
 import com.dea42.watchlist.entity.Shows;
-import com.dea42.watchlist.service.ShowsServices;
 import com.dea42.watchlist.entity.Roamiosp;
-import com.dea42.watchlist.service.RoamiospServices;
 import com.dea42.watchlist.entity.Cablecard;
-import com.dea42.watchlist.service.CablecardServices;
 import com.dea42.watchlist.entity.Roamionpl;
-import com.dea42.watchlist.service.RoamionplServices;
 import com.dea42.watchlist.entity.Ota;
-import com.dea42.watchlist.service.OtaServices;
 import com.dea42.watchlist.entity.Roamiotodo;
-import com.dea42.watchlist.service.RoamiotodoServices;
 
 /**
  * Title: ApiControllerTest <br>
  * Description: REST Api Controller Test. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
  * @version 1.0<br>
  */
 @RunWith(SpringJUnit4ClassRunner.class)

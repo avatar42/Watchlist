@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Description: Class for holding data from the roamionpl table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
  * @version 1.0<br>
  */
 @Entity
@@ -304,6 +304,27 @@ private static final long serialVersionUID = 1L;
 		watchedtime = newVal;
 	}
 
+	/**
+	 * Returns a String showing the values of this bean - mainly for debuging
+	 *
+	 * @return String
+	 */
+	public String toString(){
+		StringBuffer sb = new StringBuffer();
+		sb.append("bitratembps= " + bitratembps+'\n');
+		sb.append("channel= " + channel+'\n');
+		sb.append("date= " + date+'\n');
+		sb.append("duration= " + duration+'\n');
+		sb.append("episode= " + episode+'\n');
+		sb.append("id= " + id+'\n');
+		sb.append("isnew= " + isnew+'\n');
+		sb.append("show= " + show+'\n');
+		sb.append("sizegb= " + sizegb+'\n');
+		sb.append("sortabledate= " + sortabledate+'\n');
+		sb.append("title= " + title+'\n');
+		sb.append("watchedtime= " + watchedtime+'\n');
+		return sb.toString();
+	}
 
 
 }

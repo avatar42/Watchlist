@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Description: Class for holding data from the cablecard table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
  * @version 1.0<br>
  */
 @Entity
@@ -314,6 +314,27 @@ private static final long serialVersionUID = 1L;
 		}
 	}
 
+	/**
+	 * Returns a String showing the values of this bean - mainly for debuging
+	 *
+	 * @return String
+	 */
+	public String toString(){
+		StringBuffer sb = new StringBuffer();
+		sb.append("channelname= " + channelname+'\n');
+		sb.append("channelnumber= " + channelnumber+'\n');
+		sb.append("colh= " + colh+'\n');
+		sb.append("dt= " + dt+'\n');
+		sb.append("hd= " + hd+'\n');
+		sb.append("id= " + id+'\n');
+		sb.append("innpl= " + innpl+'\n');
+		sb.append("lang= " + lang+'\n');
+		sb.append("net= " + net+'\n');
+		sb.append("od= " + od+'\n');
+		sb.append("receiving= " + receiving+'\n');
+		sb.append("shortfield= " + shortfield+'\n');
+		return sb.toString();
+	}
 
 
 }

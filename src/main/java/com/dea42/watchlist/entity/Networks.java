@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Description: Class for holding data from the networks table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
  * @version 1.0<br>
  */
 @Entity
@@ -876,6 +876,49 @@ private static final long serialVersionUID = 1L;
 		}
 	}
 
+	/**
+	 * Returns a String showing the values of this bean - mainly for debuging
+	 *
+	 * @return String
+	 */
+	public String toString(){
+		StringBuffer sb = new StringBuffer();
+		sb.append("androidapp= " + androidapp+'\n');
+		sb.append("androidapplink= " + androidapplink+'\n');
+		sb.append("comment= " + comment+'\n');
+		sb.append("commentlink= " + commentlink+'\n');
+		sb.append("commercials= " + commercials+'\n');
+		sb.append("commercialslink= " + commercialslink+'\n');
+		sb.append("fireapp= " + fireapp+'\n');
+		sb.append("fireapplink= " + fireapplink+'\n');
+		sb.append("freewithtwcid= " + freewithtwcid+'\n');
+		sb.append("freewithtwcidlink= " + freewithtwcidlink+'\n');
+		sb.append("hasdirectbuyoption= " + hasdirectbuyoption+'\n');
+		sb.append("hasdirectbuyoptionlink= " + hasdirectbuyoptionlink+'\n');
+		sb.append("haswatchlist= " + haswatchlist+'\n');
+		sb.append("icanota= " + icanota+'\n');
+		sb.append("icanotalink= " + icanotalink+'\n');
+		sb.append("id= " + id+'\n');
+		sb.append("iptvservice= " + iptvservice+'\n');
+		sb.append("iptvservicelink= " + iptvservicelink+'\n');
+		sb.append("onhulu= " + onhulu+'\n');
+		sb.append("onhululink= " + onhululink+'\n');
+		sb.append("persistance= " + persistance+'\n');
+		sb.append("remembersplaceinepisode= " + remembersplaceinepisode+'\n');
+		sb.append("rememberswatchedepisodes= " + rememberswatchedepisodes+'\n');
+		sb.append("rokuapp= " + rokuapp+'\n');
+		sb.append("rokuapplink= " + rokuapplink+'\n');
+		sb.append("showsintivonpl= " + showsintivonpl+'\n');
+		sb.append("site= " + site+'\n');
+		sb.append("sitelink= " + sitelink+'\n');
+		sb.append("standardwait= " + standardwait+'\n');
+		sb.append("tivoapp= " + tivoapp+'\n');
+		sb.append("tivoapplink= " + tivoapplink+'\n');
+		sb.append("tivoshortname= " + tivoshortname+'\n');
+		sb.append("webinterface= " + webinterface+'\n');
+		sb.append("webinterfacelink= " + webinterfacelink+'\n');
+		return sb.toString();
+	}
 
 
 }

@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Description: Class for holding data from the shows table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
  * @version 1.0<br>
  */
 @Entity
@@ -699,6 +699,42 @@ private static final long serialVersionUID = 1L;
 		}
 	}
 
+	/**
+	 * Returns a String showing the values of this bean - mainly for debuging
+	 *
+	 * @return String
+	 */
+	public String toString(){
+		StringBuffer sb = new StringBuffer();
+		sb.append("bestexperience= " + bestexperience+'\n');
+		sb.append("bestexperiencelink= " + bestexperiencelink+'\n');
+		sb.append("cancelled= " + cancelled+'\n');
+		sb.append("comment= " + comment+'\n');
+		sb.append("commentlink= " + commentlink+'\n');
+		sb.append("epguidesshowname= " + epguidesshowname+'\n');
+		sb.append("epguidesshownamelink= " + epguidesshownamelink+'\n');
+		sb.append("id= " + id+'\n');
+		sb.append("imdb= " + imdb+'\n');
+		sb.append("imdblink= " + imdblink+'\n');
+		sb.append("incanceledas= " + incanceledas+'\n');
+		sb.append("incanceledaslink= " + incanceledaslink+'\n');
+		sb.append("inrokufeed= " + inrokufeed+'\n');
+		sb.append("inshowrssas= " + inshowrssas+'\n');
+		sb.append("inshowrssaslink= " + inshowrssaslink+'\n');
+		sb.append("justwatch= " + justwatch+'\n');
+		sb.append("justwatchlink= " + justwatchlink+'\n');
+		sb.append("lastshow= " + lastshow+'\n');
+		sb.append("lastwatched= " + lastwatched+'\n');
+		sb.append("network= " + network+'\n');
+		sb.append("networklink= " + networklink+'\n');
+		sb.append("ota= " + ota+'\n');
+		sb.append("premiere= " + premiere+'\n');
+		sb.append("premieredate= " + premieredate+'\n');
+		sb.append("status= " + status+'\n');
+		sb.append("tivoname= " + tivoname+'\n');
+		sb.append("tivonamelink= " + tivonamelink+'\n');
+		return sb.toString();
+	}
 
 
 }

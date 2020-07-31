@@ -28,7 +28,7 @@ import com.dea42.watchlist.service.AccountService;
  * Title: SecurityConfiguration <br>
  * Description: Class for configuring app security. <br>
  * 
- * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
  * @version 1.0<br>
  */
 @Configuration
@@ -66,7 +66,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests() //.antMatchers("/**").permitAll();
-				.antMatchers("/", "/api/*", "/error", "/home/*","/public/*", "/resources/**", "/signup", "/favicon.ico",
+				.antMatchers("/", "/api/*", "/error", "/home/*", "/public/*", "/resources/**", "/signup", "/favicon.ico",
 						"/authenticate", "/international")
 				.permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login")
 //				// TODO: added successForwardUrl("/home") to get around first click of login

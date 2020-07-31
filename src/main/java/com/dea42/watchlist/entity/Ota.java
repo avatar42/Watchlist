@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Description: Class for holding data from the ota table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.2.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
  * @version 1.0<br>
  */
 @Entity
@@ -536,6 +536,36 @@ private static final long serialVersionUID = 1L;
 		}
 	}
 
+	/**
+	 * Returns a String showing the values of this bean - mainly for debuging
+	 *
+	 * @return String
+	 */
+	public String toString(){
+		StringBuffer sb = new StringBuffer();
+		sb.append("chan= " + chan+'\n');
+		sb.append("channelname= " + channelname+'\n');
+		sb.append("channelnumber= " + channelnumber+'\n');
+		sb.append("comments= " + comments+'\n');
+		sb.append("direction= " + direction+'\n');
+		sb.append("enabled= " + enabled+'\n');
+		sb.append("fccinfo= " + fccinfo+'\n');
+		sb.append("fccinfolink= " + fccinfolink+'\n');
+		sb.append("freq= " + freq+'\n');
+		sb.append("id= " + id+'\n');
+		sb.append("lang= " + lang+'\n');
+		sb.append("listed= " + listed+'\n');
+		sb.append("mytivoavgstrength= " + mytivoavgstrength+'\n');
+		sb.append("network= " + network+'\n');
+		sb.append("off= " + off+'\n');
+		sb.append("recommendedantenna= " + recommendedantenna+'\n');
+		sb.append("rez= " + rez+'\n');
+		sb.append("station= " + station+'\n');
+		sb.append("subchan= " + subchan+'\n');
+		sb.append("tvfoolestsignal= " + tvfoolestsignal+'\n');
+		sb.append("watchable= " + watchable+'\n');
+		return sb.toString();
+	}
 
 
 }

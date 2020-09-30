@@ -15,92 +15,229 @@
 	<div th:replace="fragments/header :: header">&nbsp;</div>
 
 	<div class="container">
-		<h1 th:if="${cablecard.id == 0}"
-			th:text="#{edit.new} + ' ' + #{class.Cablecard}"></h1>
-		<h1 th:if="${cablecard.id > 0}"
-			th:text="#{edit.edit} + ' ' + #{class.Cablecard}"></h1>
-		<br />
-		<form action="#" th:action="@{/cablecards/save}" th:object="${cablecard}"
-			method="post">
+		<form class="form-narrow form-horizontal" method="post"
+			th:action="@{/cablecards/save}" th:object="${cablecardForm}"
+			th:fragment="cablecardForm">
+			<!--/* Show general error messages when form contains errors */-->
+			<th:block th:if="${#fields.hasErrors('${cablecardForm.*}')}">
+				<div th:each="fieldErrors : ${#fields.errors('${cablecardForm.*}')}">
+					<div th:each="message : ${fieldErrors.split(';')}">
+						<div
+							th:replace="fragments/alert :: alert (type='danger', message=${message})">Alert</div>
+					</div>
+				</div>
+			</th:block>
+			<fieldset>
+				<legend th:if="${cablecardForm.id == 0}"
+					th:text="#{edit.new} + ' ' + #{class.Cablecard}"></legend>
+				<legend th:if="${cablecardForm.id > 0}"
+					th:text="#{edit.edit} + ' ' + #{class.Cablecard}"></legend>
 
-			<table >
-				<tr th:if="${cablecard.id > 0}">				
-					<td th:text="#{Cablecard.id} + ':'">id:</td>
-					<td>
-						<input type="text" th:field="*{id}" readonly="readonly" />
-					</td>
-				</tr>
-				<tr>
-            		<td>ChannelName:</td>
-					<td>
-						<input type="text" th:field="*{channelname}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>ChannelNumber:</td>
-					<td>
-						<input type="text" th:field="*{channelnumber}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Colh:</td>
-					<td>
-						<input type="text" th:field="*{colh}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Dt:</td>
-					<td>
-						<input type="text" th:field="*{dt}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Hd:</td>
-					<td>
-						<input type="text" th:field="*{hd}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>InNpl:</td>
-					<td>
-						<input type="text" th:field="*{innpl}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Lang:</td>
-					<td>
-						<input type="text" th:field="*{lang}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Net:</td>
-					<td>
-						<input type="text" th:field="*{net}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Od:</td>
-					<td>
-						<input type="text" th:field="*{od}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Receiving:</td>
-					<td>
-						<input type="text" th:field="*{receiving}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>ShortField:</td>
-					<td>
-						<input type="text" th:field="*{shortfield}" />
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2"><button type="submit" name="action" value="save" th:text="#{edit.save}"></button> <button type="submit" name="action" value="cancel" th:text="#{edit.cancel}"></button></td>
-				</tr>
-			</table>
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('channelname')}? 'has-error'">
+					<label for="channelname" class="col-lg-2 control-label"
+						th:text="#{Cablecard.channelname} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="channelname"
+							th:field="*{channelname}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('channelname')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('channelnumber')}? 'has-error'">
+					<label for="channelnumber" class="col-lg-2 control-label"
+						th:text="#{Cablecard.channelnumber} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="channelnumber"
+							th:field="*{channelnumber}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('channelnumber')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('colh')}? 'has-error'">
+					<label for="colh" class="col-lg-2 control-label"
+						th:text="#{Cablecard.colh} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="colh"
+							th:field="*{colh}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('colh')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('dt')}? 'has-error'">
+					<label for="dt" class="col-lg-2 control-label"
+						th:text="#{Cablecard.dt} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="dt"
+							th:field="*{dt}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('dt')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('hd')}? 'has-error'">
+					<label for="hd" class="col-lg-2 control-label"
+						th:text="#{Cablecard.hd} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="hd"
+							th:field="*{hd}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('hd')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<input type="hidden" class="form-control" id="id" th:field="*{id}" />
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('innpl')}? 'has-error'">
+					<label for="innpl" class="col-lg-2 control-label"
+						th:text="#{Cablecard.innpl} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="innpl"
+							th:field="*{innpl}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('innpl')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('lang')}? 'has-error'">
+					<label for="lang" class="col-lg-2 control-label"
+						th:text="#{Cablecard.lang} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="lang"
+							th:field="*{lang}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('lang')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('net')}? 'has-error'">
+					<label for="net" class="col-lg-2 control-label"
+						th:text="#{Cablecard.net} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="net"
+							th:field="*{net}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('net')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('od')}? 'has-error'">
+					<label for="od" class="col-lg-2 control-label"
+						th:text="#{Cablecard.od} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="od"
+							th:field="*{od}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('od')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('receiving')}? 'has-error'">
+					<label for="receiving" class="col-lg-2 control-label"
+						th:text="#{Cablecard.receiving} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="receiving"
+							th:field="*{receiving}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('receiving')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('shortfield')}? 'has-error'">
+					<label for="shortfield" class="col-lg-2 control-label"
+						th:text="#{Cablecard.shortfield} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="shortfield"
+							th:field="*{shortfield}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('shortfield')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="cablecardForm.account.email" class="col-lg-2 control-label"
+						th:text="#{Account.email} + ':'"></label>
+					<div th:if="${cablecardForm.account != null}" class="col-lg-10" id="cablecardForm.account.email"
+	                        th:text="${cablecardForm.account.email}">
+					</div>
+				<div th:unless="${cablecardForm.account != null}" th:text="${cablecardForm.account}"></div>
+				</div>
+				<input type="hidden" class="form-control" id="account.id" th:field="*{account.id}" />
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="cablecardForm.account.role" class="col-lg-2 control-label"
+						th:text="#{Account.role} + ':'"></label>
+					<div th:if="${cablecardForm.account != null}" class="col-lg-10" id="cablecardForm.account.role"
+	                        th:text="${cablecardForm.account.role}">
+					</div>
+				<div th:unless="${cablecardForm.account != null}" th:text="${cablecardForm.account}"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+						<button type="submit" name="action" value="save"
+							class="btn btn-default" th:text="#{edit.save}"></button>
+						<button type="submit" name="action" value="cancel" class="btn"
+							th:text="#{edit.cancel}"></button>
+					</div>
+				</div>
+			</fieldset>
 		</form>
 	</div>
+
 	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
 </body></html>

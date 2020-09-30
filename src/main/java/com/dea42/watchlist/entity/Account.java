@@ -1,89 +1,162 @@
 package com.dea42.watchlist.entity;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.*;
-import java.time.Instant;
-
-@SuppressWarnings("serial")
+/**
+ * Title: account Bean <br>
+ * Description: Class for holding data from the account table. <br>
+ * Copyright: Copyright (c) 2001-2020<br>
+ * Company: RMRR<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.4.1<br>
+ * @version 1.0.0<br>
+ * Table name: account<br>
+ * Column name: id<br>
+ * Catalog name: null<br>
+ * Primary key sequence: 0<br>
+ * Primary key name: null<br>
+ *  <br> */
 @Entity
-@Table(name = "account")
-public class Account implements java.io.Serializable {
+@Table(name = "`account`")
+public class Account implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue
-	private Long id;
-
-	@Column(unique = true)
+	@Column(name = "Email", unique = true, nullable = false, length = 254)
 	private String email;
-
-	@JsonIgnore
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	private Integer id;
+    @JsonIgnore
+	@Column(name = "Password", nullable = false, length = 30)
 	private String password;
+	@Column(name = "Role", nullable = false, length = 25)
+	private String role;
 
-	private String role = "ROLE_USER";
-
-	private Instant created;
-
-	protected Account() {
-
+	/**
+	 * Basic constructor
+	 */
+	public Account() {
 	}
 
+	/**
+	 * Special constructor for sign up
+	 * @param email
+	 * @param password
+	 * @param role
+	 */
 	public Account(String email, String password, String role) {
 		this.email = email;
 		this.password = password;
 		this.role = role;
-		this.created = Instant.now();
+
 	}
 
-	public Account(String email, String password) {
+	/**
+	 * Full constructor
+	 *
+	 */
+	public Account(String email, Integer id, String password, String role) {
 		this.email = email;
+		this.id = id;
 		this.password = password;
+		this.role = role;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
+	/**
+	 * returns value of the Email column of this row of data
+	 *
+	 * @return value of this column in this row
+	 */
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	/**
+	 * sets value of the Email column of this row of data
+	 * default value for this field set by the DB is null
+	 * This field has a max length of 254
+	 */
+	public void setEmail(String newVal) {
+		email = newVal;
 	}
 
+	/**
+	 * returns value of the id column of this row of data
+	 *
+	 * @return value of this column in this row
+	 */
+	public Integer getId() {
+		if (id == null)
+	    	return 0;
+		return id.intValue();
+	}
+
+	/**
+	 * sets value of the id column of this row of data
+	 * default value for this field set by the DB is null
+	 * This is the primary key for this table
+	 */
+	public void setId(Integer newVal) {
+		id = newVal;
+	}
+
+	/**
+	 * returns value of the Password column of this row of data
+	 *
+	 * @return value of this column in this row
+	 */
 	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	/**
+	 * sets value of the Password column of this row of data
+	 * default value for this field set by the DB is null
+	 * This field has a max length of 30
+	 */
+	public void setPassword(String newVal) {
+		password = newVal;
 	}
 
+	/**
+	 * returns value of the Role column of this row of data
+	 *
+	 * @return value of this column in this row
+	 */
 	public String getRole() {
 		return role;
 	}
 
 	/**
-	 * @param id the id to set
+	 * sets value of the Role column of this row of data
+	 * default value for this field set by the DB is null
+	 * This field has a max length of 25
 	 */
-	public void setId(Long id) {
-		this.id = id;
+	public void setRole(String newVal) {
+		role = newVal;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	public Instant getCreated() {
-		return created;
-	}
-
-	@Override
-	public String toString() {
+	/**
+	 * Returns a String showing the values of this bean - mainly for debuging
+	 *
+	 * @return String
+	 */
+	public String toString(){
 		StringBuilder builder = new StringBuilder();
-		builder.append("Account [id=").append(id).append(", email=").append(email).append(", password=")
-				.append(password).append(", role=").append(role).append(", created=").append(created).append("]");
+		builder.append("Account [");
+		builder.append("email=").append(email);
+		builder.append(", id=").append(id);
+		builder.append(", password=").append(password);
+		builder.append(", role=").append(role);
+		builder.append("]");
 		return builder.toString();
 	}
 
@@ -91,7 +164,7 @@ public class Account implements java.io.Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((created == null) ? 0 : created.hashCode());
+
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
@@ -101,6 +174,8 @@ public class Account implements java.io.Serializable {
 
 	/**
 	 * Mainly for mock testing
+	 *
+	 * @return boolean
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -111,31 +186,31 @@ public class Account implements java.io.Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Account other = (Account) obj;
-//		if (created == null) {
-//			if (other.created != null)
-//				return false;
-//		} else if (!created.equals(other.created))
-//			return false;
-		if (email == null) {
-			if (other.email != null)
+
+		if (getEmail() == null) {
+			if (other.getEmail() != null)
 				return false;
-		} else if (!email.equals(other.email))
+		} else if (!getEmail().equals(other.getEmail()))
 			return false;
-		if (id == null) {
-			if (other.id != null)
+
+		if (getId() == null) {
+			if (other.getId() != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!getId().equals(other.getId()))
 			return false;
-		if (password == null) {
-			if (other.password != null)
+
+		if (getPassword() == null) {
+			if (other.getPassword() != null)
 				return false;
-		} else if (!password.equals(other.password))
+		} else if (!getPassword().equals(other.getPassword()))
 			return false;
-		if (role == null) {
-			if (other.role != null)
+
+		if (getRole() == null) {
+			if (other.getRole() != null)
 				return false;
-		} else if (!role.equals(other.role))
+		} else if (!getRole().equals(other.getRole()))
 			return false;
+
 		return true;
 	}
 

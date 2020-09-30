@@ -20,17 +20,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dea42.watchlist.entity.Account;
-import com.dea42.watchlist.form.SignupForm;
-import com.dea42.watchlist.service.AccountService;
-import com.dea42.watchlist.utils.Utils;
+import com.dea42.watchlist.form.AccountForm;
+import com.dea42.watchlist.form.LoginForm;
+import com.dea42.watchlist.service.AccountServices;
 import com.dea42.watchlist.utils.MessageHelper;
+import com.dea42.watchlist.utils.Utils;
 
 /**
  * Title: AppController <br>
  * Description: Class main web Controller. <br>
  * 
- * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
- * @version 1.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.3<br>
+ * @version 1.0.0<br>
  */
 @Controller
 public class AppController {
@@ -42,7 +43,7 @@ public class AppController {
 	public static final String HOME_NOT_SIGNED_VIEW_NAME = "home/homeNotSignedIn";
 
 	@Autowired
-	private AccountService accountService;
+	private AccountServices accountServices;
 
 	@ModelAttribute("module")
 	String module() {
@@ -61,24 +62,29 @@ public class AppController {
 
 	@GetMapping("signup")
 	String signup(Model model, @RequestHeader(value = "X-Requested-With", required = false) String requestedWith) {
-		model.addAttribute(new SignupForm());
+		model.addAttribute(new AccountForm());
 		if (Utils.isAjaxRequest(requestedWith)) {
-			return SIGNUP_VIEW_NAME.concat(" :: signupForm");
+			return SIGNUP_VIEW_NAME.concat(" :: accountForm");
 		}
 		return SIGNUP_VIEW_NAME;
 	}
 
 	@PostMapping("signup")
-	public String signup(@Valid @ModelAttribute SignupForm signupForm, Errors errors, RedirectAttributes ra) {
+	public String signup(@Valid @ModelAttribute AccountForm accountForm, Errors errors, RedirectAttributes ra) {
 		if (errors.hasErrors()) {
 			return SIGNUP_VIEW_NAME;
 		}
-		Account account = accountService.save(signupForm.createAccount());
+		Account account = null;
+		if (accountForm.getId() == 0)
+			account = new Account(accountForm.getEmail(), accountForm.getPassword(), accountForm.getRole());
+
+		account = accountServices.save(account);
+
 		if (account == null) {
 			MessageHelper.addErrorAttribute(ra, "db.failed");
 			return "redirect:/home";
 		}
-		if (accountService.login(account.getEmail(), account.getPassword())) {
+		if (accountServices.login(account.getEmail(), account.getPassword())) {
 			// see messages.properties and homeSignedIn.html
 			MessageHelper.addSuccessAttribute(ra, "signup.success");
 		} else {
@@ -88,30 +94,30 @@ public class AppController {
 	}
 
 	@RequestMapping("login")
-	String login(HttpServletRequest request, @ModelAttribute SignupForm signupForm,
+	String login(HttpServletRequest request, @ModelAttribute LoginForm loginForm,
 			@RequestHeader(value = "X-Requested-With", required = false) String requestedWith,
 			@RequestHeader(value = "Referer", required = false) String ref) {
 		// deal with loop backs and lost attributes
 		if (!StringUtils.isAllBlank(ref) && !ref.contains("/login")) {
-			signupForm.setReferer(ref);
+			loginForm.setReferer(ref);
 		}
 
 		if (Utils.isAjaxRequest(requestedWith)) {
-			return SIGNIN_VIEW_NAME.concat(" :: signupForm");
+			return SIGNIN_VIEW_NAME.concat(" :: loginForm");
 		}
 		return SIGNIN_VIEW_NAME;
 	}
 
 	@PostMapping("authenticate")
-	public String login(Model model, @Valid @ModelAttribute SignupForm signupForm, Errors errors,
+	public String login(Model model, @Valid @ModelAttribute LoginForm loginForm, Errors errors,
 			RedirectAttributes ra) {
 		if (errors.hasErrors()) {
 			return SIGNIN_VIEW_NAME;
 		}
-		if (accountService.login(signupForm.getEmail(), signupForm.getPassword())) {
+		if (accountServices.login(loginForm.getEmail(), loginForm.getPassword())) {
 			// see messages.properties and homeSignedIn.html
 			MessageHelper.addSuccessAttribute(ra, "signin.success");
-			String referer = signupForm.getReferer();
+			String referer = loginForm.getReferer();
 			if (StringUtils.isAllBlank(referer)) {
 				// TODO: add /?lang=en to set lang to preferred / last selected.
 				referer = "/home";

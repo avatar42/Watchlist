@@ -15,92 +15,373 @@
 	<div th:replace="fragments/header :: header">&nbsp;</div>
 
 	<div class="container">
-		<h1 th:if="${roamionpl.id == 0}"
-			th:text="#{edit.new} + ' ' + #{class.Roamionpl}"></h1>
-		<h1 th:if="${roamionpl.id > 0}"
-			th:text="#{edit.edit} + ' ' + #{class.Roamionpl}"></h1>
-		<br />
-		<form action="#" th:action="@{/roamionpls/save}" th:object="${roamionpl}"
-			method="post">
+		<form class="form-narrow form-horizontal" method="post"
+			th:action="@{/roamionpls/save}" th:object="${roamionplForm}"
+			th:fragment="roamionplForm">
+			<!--/* Show general error messages when form contains errors */-->
+			<th:block th:if="${#fields.hasErrors('${roamionplForm.*}')}">
+				<div th:each="fieldErrors : ${#fields.errors('${roamionplForm.*}')}">
+					<div th:each="message : ${fieldErrors.split(';')}">
+						<div
+							th:replace="fragments/alert :: alert (type='danger', message=${message})">Alert</div>
+					</div>
+				</div>
+			</th:block>
+			<fieldset>
+				<legend th:if="${roamionplForm.id == 0}"
+					th:text="#{edit.new} + ' ' + #{class.Roamionpl}"></legend>
+				<legend th:if="${roamionplForm.id > 0}"
+					th:text="#{edit.edit} + ' ' + #{class.Roamionpl}"></legend>
 
-			<table >
-				<tr th:if="${roamionpl.id > 0}">				
-					<td th:text="#{Roamionpl.id} + ':'">id:</td>
-					<td>
-						<input type="text" th:field="*{id}" readonly="readonly" />
-					</td>
-				</tr>
-				<tr>
-            		<td>BitrateMbps:</td>
-					<td>
-						<input type="text" th:field="*{bitratembps}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Channel:</td>
-					<td>
-						<input type="text" th:field="*{channel}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Date:</td>
-					<td>
-						<input type="text" th:field="*{date}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Duration:</td>
-					<td>
-						<input type="text" th:field="*{duration}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Episode:</td>
-					<td>
-						<input type="text" th:field="*{episode}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Isnew:</td>
-					<td>
-						<input type="text" th:field="*{isnew}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Show:</td>
-					<td>
-						<input type="text" th:field="*{show}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>SizeGb:</td>
-					<td>
-						<input type="text" th:field="*{sizegb}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>SortableDate:</td>
-					<td>
-						<input type="text" th:field="*{sortabledate}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Title:</td>
-					<td>
-						<input type="text" th:field="*{title}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Watchedtime:</td>
-					<td>
-						<input type="text" th:field="*{watchedtime}" />
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2"><button type="submit" name="action" value="save" th:text="#{edit.save}"></button> <button type="submit" name="action" value="cancel" th:text="#{edit.cancel}"></button></td>
-				</tr>
-			</table>
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('bitratembps')}? 'has-error'">
+					<label for="bitratembps" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.bitratembps} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="bitratembps"
+							th:field="*{bitratembps}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('bitratembps')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('chan')}? 'has-error'">
+					<label for="chan" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.chan} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="chan"
+							th:field="*{chan}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('chan')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('channel')}? 'has-error'">
+					<label for="channel" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.channel} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="channel"
+							th:field="*{channel}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('channel')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('date')}? 'has-error'">
+					<label for="date" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.date} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="date"
+							th:field="*{date}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('date')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('duration')}? 'has-error'">
+					<label for="duration" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.duration} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="duration"
+							th:field="*{duration}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('duration')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('episode')}? 'has-error'">
+					<label for="episode" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.episode} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="episode"
+							th:field="*{episode}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('episode')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('f')}? 'has-error'">
+					<label for="f" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.f} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="f"
+							th:field="*{f}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('f')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<input type="hidden" class="form-control" id="id" th:field="*{id}" />
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('innetworkstab')}? 'has-error'">
+					<label for="innetworkstab" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.innetworkstab} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="innetworkstab"
+							th:field="*{innetworkstab}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('innetworkstab')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('isnew')}? 'has-error'">
+					<label for="isnew" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.isnew} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="isnew"
+							th:field="*{isnew}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('isnew')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('isseries')}? 'has-error'">
+					<label for="isseries" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.isseries} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="isseries"
+							th:field="*{isseries}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('isseries')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('network')}? 'has-error'">
+					<label for="network" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.network} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="network"
+							th:field="*{network}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('network')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('rowinshows')}? 'has-error'">
+					<label for="rowinshows" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.rowinshows} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="rowinshows"
+							th:field="*{rowinshows}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('rowinshows')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('seriesep')}? 'has-error'">
+					<label for="seriesep" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.seriesep} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="seriesep"
+							th:field="*{seriesep}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('seriesep')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('show')}? 'has-error'">
+					<label for="show" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.show} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="show"
+							th:field="*{show}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('show')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('sizegb')}? 'has-error'">
+					<label for="sizegb" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.sizegb} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="sizegb"
+							th:field="*{sizegb}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('sizegb')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('sortabledate')}? 'has-error'">
+					<label for="sortabledate" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.sortabledate} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="sortabledate"
+							th:field="*{sortabledate}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('sortabledate')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('spchannel0nosp')}? 'has-error'">
+					<label for="spchannel0nosp" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.spchannel0nosp} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="spchannel0nosp"
+							th:field="*{spchannel0nosp}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('spchannel0nosp')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('title')}? 'has-error'">
+					<label for="title" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.title} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="title"
+							th:field="*{title}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('title')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="roamionplForm.account.email" class="col-lg-2 control-label"
+						th:text="#{Account.email} + ':'"></label>
+					<div th:if="${roamionplForm.account != null}" class="col-lg-10" id="roamionplForm.account.email"
+	                        th:text="${roamionplForm.account.email}">
+					</div>
+				<div th:unless="${roamionplForm.account != null}" th:text="${roamionplForm.account}"></div>
+				</div>
+				<input type="hidden" class="form-control" id="account.id" th:field="*{account.id}" />
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="roamionplForm.account.role" class="col-lg-2 control-label"
+						th:text="#{Account.role} + ':'"></label>
+					<div th:if="${roamionplForm.account != null}" class="col-lg-10" id="roamionplForm.account.role"
+	                        th:text="${roamionplForm.account.role}">
+					</div>
+				<div th:unless="${roamionplForm.account != null}" th:text="${roamionplForm.account}"></div>
+				</div>
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('watched')}? 'has-error'">
+					<label for="watched" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.watched} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="watched"
+							th:field="*{watched}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('watched')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('watchedtime')}? 'has-error'">
+					<label for="watchedtime" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.watchedtime} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="watchedtime"
+							th:field="*{watchedtime}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('watchedtime')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+						<button type="submit" name="action" value="save"
+							class="btn btn-default" th:text="#{edit.save}"></button>
+						<button type="submit" name="action" value="cancel" class="btn"
+							th:text="#{edit.cancel}"></button>
+					</div>
+				</div>
+			</fieldset>
 		</form>
 	</div>
+
 	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
 </body></html>

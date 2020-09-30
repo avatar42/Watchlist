@@ -4,14 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.dea42.watchlist.entity.Account;
+import com.dea42.watchlist.service.AccountServices;
 import com.dea42.watchlist.entity.Networks;
 import com.dea42.watchlist.service.NetworksServices;
 import com.dea42.watchlist.entity.Shows;
 import com.dea42.watchlist.service.ShowsServices;
 import com.dea42.watchlist.entity.Roamiosp;
 import com.dea42.watchlist.service.RoamiospServices;
+import com.dea42.watchlist.entity.Showsuser;
+import com.dea42.watchlist.service.ShowsuserServices;
 import com.dea42.watchlist.entity.Cablecard;
 import com.dea42.watchlist.service.CablecardServices;
+import com.dea42.watchlist.entity.Networksuser;
+import com.dea42.watchlist.service.NetworksuserServices;
 import com.dea42.watchlist.entity.Roamionpl;
 import com.dea42.watchlist.service.RoamionplServices;
 import com.dea42.watchlist.entity.Ota;
@@ -25,13 +31,15 @@ import java.util.List;
  * Description: Api REST Controller. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
- * @version 1.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.4.1<br>
+ * @version 1.0.0<br>
  */
 @RestController
 @RequestMapping("/api")
 public class ApiController {
 
+    @Autowired
+    private AccountServices accountServices;
     @Autowired
     private NetworksServices networksServices;
     @Autowired
@@ -39,7 +47,11 @@ public class ApiController {
     @Autowired
     private RoamiospServices roamiospServices;
     @Autowired
+    private ShowsuserServices showsuserServices;
+    @Autowired
     private CablecardServices cablecardServices;
+    @Autowired
+    private NetworksuserServices networksuserServices;
     @Autowired
     private RoamionplServices roamionplServices;
     @Autowired
@@ -48,6 +60,11 @@ public class ApiController {
     private RoamiotodoServices roamiotodoServices;
 
     public ApiController(){
+    }
+
+    @GetMapping("/accounts")
+    public List<Account> getAllAccounts(){
+        return this.accountServices.listAll();
     }
 
     @GetMapping("/networkss")
@@ -65,9 +82,19 @@ public class ApiController {
         return this.roamiospServices.listAll();
     }
 
+    @GetMapping("/showsusers")
+    public List<Showsuser> getAllShowsusers(){
+        return this.showsuserServices.listAll();
+    }
+
     @GetMapping("/cablecards")
     public List<Cablecard> getAllCablecards(){
         return this.cablecardServices.listAll();
+    }
+
+    @GetMapping("/networksusers")
+    public List<Networksuser> getAllNetworksusers(){
+        return this.networksuserServices.listAll();
     }
 
     @GetMapping("/roamionpls")

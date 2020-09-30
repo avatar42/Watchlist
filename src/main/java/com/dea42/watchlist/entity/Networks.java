@@ -1,90 +1,102 @@
 package com.dea42.watchlist.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 
 /**
  * Title: networks Bean <br>
  * Description: Class for holding data from the networks table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
- * @version 1.0<br>
- */
+ * @author Gened by com.dea42.build.GenSpring version 0.4.1<br>
+ * @version 1.0.0<br>
+ * Table name: networks<br>
+ * Column name: id<br>
+ * Catalog name: null<br>
+ * Primary key sequence: 0<br>
+ * Primary key name: null<br>
+ *  <br> */
 @Entity
-@Table(name = "networks")
+@Table(name = "`networks`")
 public class Networks implements Serializable {
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-	@Column(name="AndroidApp", length=1)
+	@Column(name = "AndroidApp", length = 1)
 	private String androidapp;
-	@Column(name="AndroidAppLink", length=74)
+	@Column(name = "AndroidAppLink", length = 74)
 	private String androidapplink;
-	@Column(name="Comment", length=458)
+	@Column(name = "Comment", length = 458)
 	private String comment;
-	@Column(name="CommentLink", length=80)
+	@Column(name = "CommentLink", length = 80)
 	private String commentlink;
-	@Column(name="Commercials", length=68)
+	@Column(name = "Commercials", length = 68)
 	private String commercials;
-	@Column(name="CommercialsLink", length=37)
+	@Column(name = "CommercialsLink", length = 37)
 	private String commercialslink;
-	@Column(name="FireApp", length=56)
+	@Column(name = "FireApp", length = 56)
 	private String fireapp;
-	@Column(name="FireAppLink", length=46)
+	@Column(name = "FireAppLink", length = 46)
 	private String fireapplink;
-	@Column(name="FreeWithTwcId", length=57)
+	@Column(name = "FreeWithTwcId", length = 57)
 	private String freewithtwcid;
-	@Column(name="FreeWithTwcIdLink", length=50)
+	@Column(name = "FreeWithTwcIdLink", length = 50)
 	private String freewithtwcidlink;
-	@Column(name="HasDirectBuyOption", length=79)
+	@Column(name = "HasDirectBuyOption", length = 79)
 	private String hasdirectbuyoption;
-	@Column(name="HasDirectBuyOptionLink", length=55)
+	@Column(name = "HasDirectBuyOptionLink", length = 55)
 	private String hasdirectbuyoptionlink;
-	@Column(name="HasWatchList", length=46)
+	@Column(name = "HasWatchList", length = 46)
 	private String haswatchlist;
-	@Column(name="ICanOta", length=63)
+	@Column(name = "ICanOta", length = 63)
 	private String icanota;
-	@Column(name="ICanOtaLink", length=216)
+	@Column(name = "ICanOtaLink", length = 216)
 	private String icanotalink;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name = "id", nullable = false)
 	private Integer id;
-	@Column(name="IptvService", length=214)
+	@Column(name = "IptvService", length = 214)
 	private String iptvservice;
-	@Column(name="IptvServiceLink", length=36)
+	@Column(name = "IptvServiceLink", length = 36)
 	private String iptvservicelink;
-	@Column(name="OnHulu", length=14)
+	@Column(name = "OnHulu", length = 14)
 	private String onhulu;
-	@Column(name="OnHuluLink", length=118)
+	@Column(name = "OnHuluLink", length = 118)
 	private String onhululink;
-	@Column(name="Persistance", length=70)
+	@Column(name = "Persistance", length = 70)
 	private String persistance;
-	@Column(name="RemembersPlaceInEpisode", length=57)
+	@Column(name = "RemembersPlaceInEpisode", length = 57)
 	private String remembersplaceinepisode;
-	@Column(name="RemembersWatchedEpisodes", length=35)
+	@Column(name = "RemembersWatchedEpisodes", length = 35)
 	private String rememberswatchedepisodes;
-	@Column(name="RokuApp", length=97)
+	@Column(name = "RokuApp", length = 97)
 	private String rokuapp;
-	@Column(name="RokuAppLink", length=46)
+	@Column(name = "RokuAppLink", length = 46)
 	private String rokuapplink;
-	@Column(name="ShowsInTivoNpl")
+	@Column(name = "ShowsInTivoNpl")
 	private Integer showsintivonpl;
-	@Column(name="Site", length=28)
+	@Column(name = "Site", nullable = false, length = 28)
 	private String site;
-	@Column(name="SiteLink", length=52)
+	@Column(name = "SiteLink", length = 52)
 	private String sitelink;
-	@Column(name="StandardWait", length=17)
+	@Column(name = "StandardWait", length = 17)
 	private String standardwait;
-	@Column(name="TivoApp", length=61)
+	@Column(name = "TivoApp", length = 61)
 	private String tivoapp;
-	@Column(name="TivoAppLink", length=34)
+	@Column(name = "TivoAppLink", length = 34)
 	private String tivoapplink;
-	@Column(name="TivoShortName", length=10)
+	@Column(name = "TivoShortName", length = 10)
 	private String tivoshortname;
-	@Column(name="WebInterface", length=56)
+	@Column(name = "WebInterface", length = 56)
 	private String webinterface;
-	@Column(name="WebInterfaceLink", length=41)
+	@Column(name = "WebInterfaceLink", length = 41)
 	private String webinterfacelink;
 
 	/**
@@ -145,14 +157,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the AndroidApp column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 1, longer strings will be truncated
+	 * This field has a max length of 1
 	 */
 	public void setAndroidapp(String newVal) {
-		if (androidapp != null && androidapp.length() > 1){
-			androidapp = newVal.substring(0,0);
-		} else {
-	    	androidapp = newVal;
-		}
+		androidapp = newVal;
 	}
 
 	/**
@@ -167,14 +175,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the AndroidAppLink column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 74, longer strings will be truncated
+	 * This field has a max length of 74
 	 */
 	public void setAndroidapplink(String newVal) {
-		if (androidapplink != null && androidapplink.length() > 74){
-			androidapplink = newVal.substring(0,73);
-		} else {
-	    	androidapplink = newVal;
-		}
+		androidapplink = newVal;
 	}
 
 	/**
@@ -189,14 +193,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the Comment column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 458, longer strings will be truncated
+	 * This field has a max length of 458
 	 */
 	public void setComment(String newVal) {
-		if (comment != null && comment.length() > 458){
-			comment = newVal.substring(0,457);
-		} else {
-	    	comment = newVal;
-		}
+		comment = newVal;
 	}
 
 	/**
@@ -211,14 +211,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the CommentLink column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 80, longer strings will be truncated
+	 * This field has a max length of 80
 	 */
 	public void setCommentlink(String newVal) {
-		if (commentlink != null && commentlink.length() > 80){
-			commentlink = newVal.substring(0,79);
-		} else {
-	    	commentlink = newVal;
-		}
+		commentlink = newVal;
 	}
 
 	/**
@@ -233,14 +229,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the Commercials column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 68, longer strings will be truncated
+	 * This field has a max length of 68
 	 */
 	public void setCommercials(String newVal) {
-		if (commercials != null && commercials.length() > 68){
-			commercials = newVal.substring(0,67);
-		} else {
-	    	commercials = newVal;
-		}
+		commercials = newVal;
 	}
 
 	/**
@@ -255,14 +247,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the CommercialsLink column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 37, longer strings will be truncated
+	 * This field has a max length of 37
 	 */
 	public void setCommercialslink(String newVal) {
-		if (commercialslink != null && commercialslink.length() > 37){
-			commercialslink = newVal.substring(0,36);
-		} else {
-	    	commercialslink = newVal;
-		}
+		commercialslink = newVal;
 	}
 
 	/**
@@ -277,14 +265,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the FireApp column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 56, longer strings will be truncated
+	 * This field has a max length of 56
 	 */
 	public void setFireapp(String newVal) {
-		if (fireapp != null && fireapp.length() > 56){
-			fireapp = newVal.substring(0,55);
-		} else {
-	    	fireapp = newVal;
-		}
+		fireapp = newVal;
 	}
 
 	/**
@@ -299,14 +283,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the FireAppLink column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 46, longer strings will be truncated
+	 * This field has a max length of 46
 	 */
 	public void setFireapplink(String newVal) {
-		if (fireapplink != null && fireapplink.length() > 46){
-			fireapplink = newVal.substring(0,45);
-		} else {
-	    	fireapplink = newVal;
-		}
+		fireapplink = newVal;
 	}
 
 	/**
@@ -321,14 +301,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the FreeWithTwcId column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 57, longer strings will be truncated
+	 * This field has a max length of 57
 	 */
 	public void setFreewithtwcid(String newVal) {
-		if (freewithtwcid != null && freewithtwcid.length() > 57){
-			freewithtwcid = newVal.substring(0,56);
-		} else {
-	    	freewithtwcid = newVal;
-		}
+		freewithtwcid = newVal;
 	}
 
 	/**
@@ -343,14 +319,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the FreeWithTwcIdLink column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 50, longer strings will be truncated
+	 * This field has a max length of 50
 	 */
 	public void setFreewithtwcidlink(String newVal) {
-		if (freewithtwcidlink != null && freewithtwcidlink.length() > 50){
-			freewithtwcidlink = newVal.substring(0,49);
-		} else {
-	    	freewithtwcidlink = newVal;
-		}
+		freewithtwcidlink = newVal;
 	}
 
 	/**
@@ -365,14 +337,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the HasDirectBuyOption column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 79, longer strings will be truncated
+	 * This field has a max length of 79
 	 */
 	public void setHasdirectbuyoption(String newVal) {
-		if (hasdirectbuyoption != null && hasdirectbuyoption.length() > 79){
-			hasdirectbuyoption = newVal.substring(0,78);
-		} else {
-	    	hasdirectbuyoption = newVal;
-		}
+		hasdirectbuyoption = newVal;
 	}
 
 	/**
@@ -387,14 +355,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the HasDirectBuyOptionLink column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 55, longer strings will be truncated
+	 * This field has a max length of 55
 	 */
 	public void setHasdirectbuyoptionlink(String newVal) {
-		if (hasdirectbuyoptionlink != null && hasdirectbuyoptionlink.length() > 55){
-			hasdirectbuyoptionlink = newVal.substring(0,54);
-		} else {
-	    	hasdirectbuyoptionlink = newVal;
-		}
+		hasdirectbuyoptionlink = newVal;
 	}
 
 	/**
@@ -409,14 +373,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the HasWatchList column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 46, longer strings will be truncated
+	 * This field has a max length of 46
 	 */
 	public void setHaswatchlist(String newVal) {
-		if (haswatchlist != null && haswatchlist.length() > 46){
-			haswatchlist = newVal.substring(0,45);
-		} else {
-	    	haswatchlist = newVal;
-		}
+		haswatchlist = newVal;
 	}
 
 	/**
@@ -431,14 +391,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the ICanOta column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 63, longer strings will be truncated
+	 * This field has a max length of 63
 	 */
 	public void setIcanota(String newVal) {
-		if (icanota != null && icanota.length() > 63){
-			icanota = newVal.substring(0,62);
-		} else {
-	    	icanota = newVal;
-		}
+		icanota = newVal;
 	}
 
 	/**
@@ -453,14 +409,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the ICanOtaLink column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 216, longer strings will be truncated
+	 * This field has a max length of 216
 	 */
 	public void setIcanotalink(String newVal) {
-		if (icanotalink != null && icanotalink.length() > 216){
-			icanotalink = newVal.substring(0,215);
-		} else {
-	    	icanotalink = newVal;
-		}
+		icanotalink = newVal;
 	}
 
 	/**
@@ -469,7 +421,7 @@ private static final long serialVersionUID = 1L;
 	 * @return value of this column in this row
 	 */
 	public Integer getId() {
-		if (id== null)
+		if (id == null)
 	    	return 0;
 		return id.intValue();
 	}
@@ -495,14 +447,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the IptvService column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 214, longer strings will be truncated
+	 * This field has a max length of 214
 	 */
 	public void setIptvservice(String newVal) {
-		if (iptvservice != null && iptvservice.length() > 214){
-			iptvservice = newVal.substring(0,213);
-		} else {
-	    	iptvservice = newVal;
-		}
+		iptvservice = newVal;
 	}
 
 	/**
@@ -517,14 +465,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the IptvServiceLink column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 36, longer strings will be truncated
+	 * This field has a max length of 36
 	 */
 	public void setIptvservicelink(String newVal) {
-		if (iptvservicelink != null && iptvservicelink.length() > 36){
-			iptvservicelink = newVal.substring(0,35);
-		} else {
-	    	iptvservicelink = newVal;
-		}
+		iptvservicelink = newVal;
 	}
 
 	/**
@@ -539,14 +483,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the OnHulu column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 14, longer strings will be truncated
+	 * This field has a max length of 14
 	 */
 	public void setOnhulu(String newVal) {
-		if (onhulu != null && onhulu.length() > 14){
-			onhulu = newVal.substring(0,13);
-		} else {
-	    	onhulu = newVal;
-		}
+		onhulu = newVal;
 	}
 
 	/**
@@ -561,14 +501,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the OnHuluLink column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 118, longer strings will be truncated
+	 * This field has a max length of 118
 	 */
 	public void setOnhululink(String newVal) {
-		if (onhululink != null && onhululink.length() > 118){
-			onhululink = newVal.substring(0,117);
-		} else {
-	    	onhululink = newVal;
-		}
+		onhululink = newVal;
 	}
 
 	/**
@@ -583,14 +519,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the Persistance column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 70, longer strings will be truncated
+	 * This field has a max length of 70
 	 */
 	public void setPersistance(String newVal) {
-		if (persistance != null && persistance.length() > 70){
-			persistance = newVal.substring(0,69);
-		} else {
-	    	persistance = newVal;
-		}
+		persistance = newVal;
 	}
 
 	/**
@@ -605,14 +537,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the RemembersPlaceInEpisode column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 57, longer strings will be truncated
+	 * This field has a max length of 57
 	 */
 	public void setRemembersplaceinepisode(String newVal) {
-		if (remembersplaceinepisode != null && remembersplaceinepisode.length() > 57){
-			remembersplaceinepisode = newVal.substring(0,56);
-		} else {
-	    	remembersplaceinepisode = newVal;
-		}
+		remembersplaceinepisode = newVal;
 	}
 
 	/**
@@ -627,14 +555,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the RemembersWatchedEpisodes column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 35, longer strings will be truncated
+	 * This field has a max length of 35
 	 */
 	public void setRememberswatchedepisodes(String newVal) {
-		if (rememberswatchedepisodes != null && rememberswatchedepisodes.length() > 35){
-			rememberswatchedepisodes = newVal.substring(0,34);
-		} else {
-	    	rememberswatchedepisodes = newVal;
-		}
+		rememberswatchedepisodes = newVal;
 	}
 
 	/**
@@ -649,14 +573,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the RokuApp column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 97, longer strings will be truncated
+	 * This field has a max length of 97
 	 */
 	public void setRokuapp(String newVal) {
-		if (rokuapp != null && rokuapp.length() > 97){
-			rokuapp = newVal.substring(0,96);
-		} else {
-	    	rokuapp = newVal;
-		}
+		rokuapp = newVal;
 	}
 
 	/**
@@ -671,14 +591,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the RokuAppLink column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 46, longer strings will be truncated
+	 * This field has a max length of 46
 	 */
 	public void setRokuapplink(String newVal) {
-		if (rokuapplink != null && rokuapplink.length() > 46){
-			rokuapplink = newVal.substring(0,45);
-		} else {
-	    	rokuapplink = newVal;
-		}
+		rokuapplink = newVal;
 	}
 
 	/**
@@ -687,7 +603,7 @@ private static final long serialVersionUID = 1L;
 	 * @return value of this column in this row
 	 */
 	public Integer getShowsintivonpl() {
-		if (showsintivonpl== null)
+		if (showsintivonpl == null)
 	    	return 0;
 		return showsintivonpl.intValue();
 	}
@@ -712,14 +628,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the Site column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 28, longer strings will be truncated
+	 * This field has a max length of 28
 	 */
 	public void setSite(String newVal) {
-		if (site != null && site.length() > 28){
-			site = newVal.substring(0,27);
-		} else {
-	    	site = newVal;
-		}
+		site = newVal;
 	}
 
 	/**
@@ -734,14 +646,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the SiteLink column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 52, longer strings will be truncated
+	 * This field has a max length of 52
 	 */
 	public void setSitelink(String newVal) {
-		if (sitelink != null && sitelink.length() > 52){
-			sitelink = newVal.substring(0,51);
-		} else {
-	    	sitelink = newVal;
-		}
+		sitelink = newVal;
 	}
 
 	/**
@@ -756,14 +664,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the StandardWait column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 17, longer strings will be truncated
+	 * This field has a max length of 17
 	 */
 	public void setStandardwait(String newVal) {
-		if (standardwait != null && standardwait.length() > 17){
-			standardwait = newVal.substring(0,16);
-		} else {
-	    	standardwait = newVal;
-		}
+		standardwait = newVal;
 	}
 
 	/**
@@ -778,14 +682,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the TivoApp column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 61, longer strings will be truncated
+	 * This field has a max length of 61
 	 */
 	public void setTivoapp(String newVal) {
-		if (tivoapp != null && tivoapp.length() > 61){
-			tivoapp = newVal.substring(0,60);
-		} else {
-	    	tivoapp = newVal;
-		}
+		tivoapp = newVal;
 	}
 
 	/**
@@ -800,14 +700,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the TivoAppLink column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 34, longer strings will be truncated
+	 * This field has a max length of 34
 	 */
 	public void setTivoapplink(String newVal) {
-		if (tivoapplink != null && tivoapplink.length() > 34){
-			tivoapplink = newVal.substring(0,33);
-		} else {
-	    	tivoapplink = newVal;
-		}
+		tivoapplink = newVal;
 	}
 
 	/**
@@ -822,14 +718,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the TivoShortName column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 10, longer strings will be truncated
+	 * This field has a max length of 10
 	 */
 	public void setTivoshortname(String newVal) {
-		if (tivoshortname != null && tivoshortname.length() > 10){
-			tivoshortname = newVal.substring(0,9);
-		} else {
-	    	tivoshortname = newVal;
-		}
+		tivoshortname = newVal;
 	}
 
 	/**
@@ -844,14 +736,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the WebInterface column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 56, longer strings will be truncated
+	 * This field has a max length of 56
 	 */
 	public void setWebinterface(String newVal) {
-		if (webinterface != null && webinterface.length() > 56){
-			webinterface = newVal.substring(0,55);
-		} else {
-	    	webinterface = newVal;
-		}
+		webinterface = newVal;
 	}
 
 	/**
@@ -866,14 +754,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the WebInterfaceLink column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 41, longer strings will be truncated
+	 * This field has a max length of 41
 	 */
 	public void setWebinterfacelink(String newVal) {
-		if (webinterfacelink != null && webinterfacelink.length() > 41){
-			webinterfacelink = newVal.substring(0,40);
-		} else {
-	    	webinterfacelink = newVal;
-		}
+		webinterfacelink = newVal;
 	}
 
 	/**
@@ -882,43 +766,308 @@ private static final long serialVersionUID = 1L;
 	 * @return String
 	 */
 	public String toString(){
-		StringBuffer sb = new StringBuffer();
-		sb.append("androidapp= " + androidapp+'\n');
-		sb.append("androidapplink= " + androidapplink+'\n');
-		sb.append("comment= " + comment+'\n');
-		sb.append("commentlink= " + commentlink+'\n');
-		sb.append("commercials= " + commercials+'\n');
-		sb.append("commercialslink= " + commercialslink+'\n');
-		sb.append("fireapp= " + fireapp+'\n');
-		sb.append("fireapplink= " + fireapplink+'\n');
-		sb.append("freewithtwcid= " + freewithtwcid+'\n');
-		sb.append("freewithtwcidlink= " + freewithtwcidlink+'\n');
-		sb.append("hasdirectbuyoption= " + hasdirectbuyoption+'\n');
-		sb.append("hasdirectbuyoptionlink= " + hasdirectbuyoptionlink+'\n');
-		sb.append("haswatchlist= " + haswatchlist+'\n');
-		sb.append("icanota= " + icanota+'\n');
-		sb.append("icanotalink= " + icanotalink+'\n');
-		sb.append("id= " + id+'\n');
-		sb.append("iptvservice= " + iptvservice+'\n');
-		sb.append("iptvservicelink= " + iptvservicelink+'\n');
-		sb.append("onhulu= " + onhulu+'\n');
-		sb.append("onhululink= " + onhululink+'\n');
-		sb.append("persistance= " + persistance+'\n');
-		sb.append("remembersplaceinepisode= " + remembersplaceinepisode+'\n');
-		sb.append("rememberswatchedepisodes= " + rememberswatchedepisodes+'\n');
-		sb.append("rokuapp= " + rokuapp+'\n');
-		sb.append("rokuapplink= " + rokuapplink+'\n');
-		sb.append("showsintivonpl= " + showsintivonpl+'\n');
-		sb.append("site= " + site+'\n');
-		sb.append("sitelink= " + sitelink+'\n');
-		sb.append("standardwait= " + standardwait+'\n');
-		sb.append("tivoapp= " + tivoapp+'\n');
-		sb.append("tivoapplink= " + tivoapplink+'\n');
-		sb.append("tivoshortname= " + tivoshortname+'\n');
-		sb.append("webinterface= " + webinterface+'\n');
-		sb.append("webinterfacelink= " + webinterfacelink+'\n');
-		return sb.toString();
+		StringBuilder builder = new StringBuilder();
+		builder.append("Networks [");
+		builder.append("androidapp=").append(androidapp);
+		builder.append(", androidapplink=").append(androidapplink);
+		builder.append(", comment=").append(comment);
+		builder.append(", commentlink=").append(commentlink);
+		builder.append(", commercials=").append(commercials);
+		builder.append(", commercialslink=").append(commercialslink);
+		builder.append(", fireapp=").append(fireapp);
+		builder.append(", fireapplink=").append(fireapplink);
+		builder.append(", freewithtwcid=").append(freewithtwcid);
+		builder.append(", freewithtwcidlink=").append(freewithtwcidlink);
+		builder.append(", hasdirectbuyoption=").append(hasdirectbuyoption);
+		builder.append(", hasdirectbuyoptionlink=").append(hasdirectbuyoptionlink);
+		builder.append(", haswatchlist=").append(haswatchlist);
+		builder.append(", icanota=").append(icanota);
+		builder.append(", icanotalink=").append(icanotalink);
+		builder.append(", id=").append(id);
+		builder.append(", iptvservice=").append(iptvservice);
+		builder.append(", iptvservicelink=").append(iptvservicelink);
+		builder.append(", onhulu=").append(onhulu);
+		builder.append(", onhululink=").append(onhululink);
+		builder.append(", persistance=").append(persistance);
+		builder.append(", remembersplaceinepisode=").append(remembersplaceinepisode);
+		builder.append(", rememberswatchedepisodes=").append(rememberswatchedepisodes);
+		builder.append(", rokuapp=").append(rokuapp);
+		builder.append(", rokuapplink=").append(rokuapplink);
+		builder.append(", showsintivonpl=").append(showsintivonpl);
+		builder.append(", site=").append(site);
+		builder.append(", sitelink=").append(sitelink);
+		builder.append(", standardwait=").append(standardwait);
+		builder.append(", tivoapp=").append(tivoapp);
+		builder.append(", tivoapplink=").append(tivoapplink);
+		builder.append(", tivoshortname=").append(tivoshortname);
+		builder.append(", webinterface=").append(webinterface);
+		builder.append(", webinterfacelink=").append(webinterfacelink);
+		builder.append("]");
+		return builder.toString();
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+
+		result = prime * result + ((androidapp == null) ? 0 : androidapp.hashCode());
+		result = prime * result + ((androidapplink == null) ? 0 : androidapplink.hashCode());
+		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
+		result = prime * result + ((commentlink == null) ? 0 : commentlink.hashCode());
+		result = prime * result + ((commercials == null) ? 0 : commercials.hashCode());
+		result = prime * result + ((commercialslink == null) ? 0 : commercialslink.hashCode());
+		result = prime * result + ((fireapp == null) ? 0 : fireapp.hashCode());
+		result = prime * result + ((fireapplink == null) ? 0 : fireapplink.hashCode());
+		result = prime * result + ((freewithtwcid == null) ? 0 : freewithtwcid.hashCode());
+		result = prime * result + ((freewithtwcidlink == null) ? 0 : freewithtwcidlink.hashCode());
+		result = prime * result + ((hasdirectbuyoption == null) ? 0 : hasdirectbuyoption.hashCode());
+		result = prime * result + ((hasdirectbuyoptionlink == null) ? 0 : hasdirectbuyoptionlink.hashCode());
+		result = prime * result + ((haswatchlist == null) ? 0 : haswatchlist.hashCode());
+		result = prime * result + ((icanota == null) ? 0 : icanota.hashCode());
+		result = prime * result + ((icanotalink == null) ? 0 : icanotalink.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((iptvservice == null) ? 0 : iptvservice.hashCode());
+		result = prime * result + ((iptvservicelink == null) ? 0 : iptvservicelink.hashCode());
+		result = prime * result + ((onhulu == null) ? 0 : onhulu.hashCode());
+		result = prime * result + ((onhululink == null) ? 0 : onhululink.hashCode());
+		result = prime * result + ((persistance == null) ? 0 : persistance.hashCode());
+		result = prime * result + ((remembersplaceinepisode == null) ? 0 : remembersplaceinepisode.hashCode());
+		result = prime * result + ((rememberswatchedepisodes == null) ? 0 : rememberswatchedepisodes.hashCode());
+		result = prime * result + ((rokuapp == null) ? 0 : rokuapp.hashCode());
+		result = prime * result + ((rokuapplink == null) ? 0 : rokuapplink.hashCode());
+		result = prime * result + ((showsintivonpl == null) ? 0 : showsintivonpl.hashCode());
+		result = prime * result + ((site == null) ? 0 : site.hashCode());
+		result = prime * result + ((sitelink == null) ? 0 : sitelink.hashCode());
+		result = prime * result + ((standardwait == null) ? 0 : standardwait.hashCode());
+		result = prime * result + ((tivoapp == null) ? 0 : tivoapp.hashCode());
+		result = prime * result + ((tivoapplink == null) ? 0 : tivoapplink.hashCode());
+		result = prime * result + ((tivoshortname == null) ? 0 : tivoshortname.hashCode());
+		result = prime * result + ((webinterface == null) ? 0 : webinterface.hashCode());
+		result = prime * result + ((webinterfacelink == null) ? 0 : webinterfacelink.hashCode());
+		return result;
+	}
+
+	/**
+	 * Mainly for mock testing
+	 *
+	 * @return boolean
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Networks other = (Networks) obj;
+
+		if (getAndroidapp() == null) {
+			if (other.getAndroidapp() != null)
+				return false;
+		} else if (!getAndroidapp().equals(other.getAndroidapp()))
+			return false;
+
+		if (getAndroidapplink() == null) {
+			if (other.getAndroidapplink() != null)
+				return false;
+		} else if (!getAndroidapplink().equals(other.getAndroidapplink()))
+			return false;
+
+		if (getComment() == null) {
+			if (other.getComment() != null)
+				return false;
+		} else if (!getComment().equals(other.getComment()))
+			return false;
+
+		if (getCommentlink() == null) {
+			if (other.getCommentlink() != null)
+				return false;
+		} else if (!getCommentlink().equals(other.getCommentlink()))
+			return false;
+
+		if (getCommercials() == null) {
+			if (other.getCommercials() != null)
+				return false;
+		} else if (!getCommercials().equals(other.getCommercials()))
+			return false;
+
+		if (getCommercialslink() == null) {
+			if (other.getCommercialslink() != null)
+				return false;
+		} else if (!getCommercialslink().equals(other.getCommercialslink()))
+			return false;
+
+		if (getFireapp() == null) {
+			if (other.getFireapp() != null)
+				return false;
+		} else if (!getFireapp().equals(other.getFireapp()))
+			return false;
+
+		if (getFireapplink() == null) {
+			if (other.getFireapplink() != null)
+				return false;
+		} else if (!getFireapplink().equals(other.getFireapplink()))
+			return false;
+
+		if (getFreewithtwcid() == null) {
+			if (other.getFreewithtwcid() != null)
+				return false;
+		} else if (!getFreewithtwcid().equals(other.getFreewithtwcid()))
+			return false;
+
+		if (getFreewithtwcidlink() == null) {
+			if (other.getFreewithtwcidlink() != null)
+				return false;
+		} else if (!getFreewithtwcidlink().equals(other.getFreewithtwcidlink()))
+			return false;
+
+		if (getHasdirectbuyoption() == null) {
+			if (other.getHasdirectbuyoption() != null)
+				return false;
+		} else if (!getHasdirectbuyoption().equals(other.getHasdirectbuyoption()))
+			return false;
+
+		if (getHasdirectbuyoptionlink() == null) {
+			if (other.getHasdirectbuyoptionlink() != null)
+				return false;
+		} else if (!getHasdirectbuyoptionlink().equals(other.getHasdirectbuyoptionlink()))
+			return false;
+
+		if (getHaswatchlist() == null) {
+			if (other.getHaswatchlist() != null)
+				return false;
+		} else if (!getHaswatchlist().equals(other.getHaswatchlist()))
+			return false;
+
+		if (getIcanota() == null) {
+			if (other.getIcanota() != null)
+				return false;
+		} else if (!getIcanota().equals(other.getIcanota()))
+			return false;
+
+		if (getIcanotalink() == null) {
+			if (other.getIcanotalink() != null)
+				return false;
+		} else if (!getIcanotalink().equals(other.getIcanotalink()))
+			return false;
+
+		if (getId() == null) {
+			if (other.getId() != null)
+				return false;
+		} else if (!getId().equals(other.getId()))
+			return false;
+
+		if (getIptvservice() == null) {
+			if (other.getIptvservice() != null)
+				return false;
+		} else if (!getIptvservice().equals(other.getIptvservice()))
+			return false;
+
+		if (getIptvservicelink() == null) {
+			if (other.getIptvservicelink() != null)
+				return false;
+		} else if (!getIptvservicelink().equals(other.getIptvservicelink()))
+			return false;
+
+		if (getOnhulu() == null) {
+			if (other.getOnhulu() != null)
+				return false;
+		} else if (!getOnhulu().equals(other.getOnhulu()))
+			return false;
+
+		if (getOnhululink() == null) {
+			if (other.getOnhululink() != null)
+				return false;
+		} else if (!getOnhululink().equals(other.getOnhululink()))
+			return false;
+
+		if (getPersistance() == null) {
+			if (other.getPersistance() != null)
+				return false;
+		} else if (!getPersistance().equals(other.getPersistance()))
+			return false;
+
+		if (getRemembersplaceinepisode() == null) {
+			if (other.getRemembersplaceinepisode() != null)
+				return false;
+		} else if (!getRemembersplaceinepisode().equals(other.getRemembersplaceinepisode()))
+			return false;
+
+		if (getRememberswatchedepisodes() == null) {
+			if (other.getRememberswatchedepisodes() != null)
+				return false;
+		} else if (!getRememberswatchedepisodes().equals(other.getRememberswatchedepisodes()))
+			return false;
+
+		if (getRokuapp() == null) {
+			if (other.getRokuapp() != null)
+				return false;
+		} else if (!getRokuapp().equals(other.getRokuapp()))
+			return false;
+
+		if (getRokuapplink() == null) {
+			if (other.getRokuapplink() != null)
+				return false;
+		} else if (!getRokuapplink().equals(other.getRokuapplink()))
+			return false;
+
+		if (getShowsintivonpl() == null) {
+			if (other.getShowsintivonpl() != null)
+				return false;
+		} else if (!getShowsintivonpl().equals(other.getShowsintivonpl()))
+			return false;
+
+		if (getSite() == null) {
+			if (other.getSite() != null)
+				return false;
+		} else if (!getSite().equals(other.getSite()))
+			return false;
+
+		if (getSitelink() == null) {
+			if (other.getSitelink() != null)
+				return false;
+		} else if (!getSitelink().equals(other.getSitelink()))
+			return false;
+
+		if (getStandardwait() == null) {
+			if (other.getStandardwait() != null)
+				return false;
+		} else if (!getStandardwait().equals(other.getStandardwait()))
+			return false;
+
+		if (getTivoapp() == null) {
+			if (other.getTivoapp() != null)
+				return false;
+		} else if (!getTivoapp().equals(other.getTivoapp()))
+			return false;
+
+		if (getTivoapplink() == null) {
+			if (other.getTivoapplink() != null)
+				return false;
+		} else if (!getTivoapplink().equals(other.getTivoapplink()))
+			return false;
+
+		if (getTivoshortname() == null) {
+			if (other.getTivoshortname() != null)
+				return false;
+		} else if (!getTivoshortname().equals(other.getTivoshortname()))
+			return false;
+
+		if (getWebinterface() == null) {
+			if (other.getWebinterface() != null)
+				return false;
+		} else if (!getWebinterface().equals(other.getWebinterface()))
+			return false;
+
+		if (getWebinterfacelink() == null) {
+			if (other.getWebinterfacelink() != null)
+				return false;
+		} else if (!getWebinterfacelink().equals(other.getWebinterfacelink()))
+			return false;
+
+		return true;
+	}
 
 }

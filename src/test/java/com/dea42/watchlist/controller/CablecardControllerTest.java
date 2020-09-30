@@ -9,14 +9,15 @@ import com.google.common.collect.ImmutableMap;
 
 import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Cablecard;
+import com.dea42.watchlist.form.CablecardForm;
 
 /**
  * Title: CablecardControllerTest <br>
  * Description: CablecardController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
- * @version 1.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.4.1<br>
+ * @version 1.0.0<br>
  */
 @WebMvcTest(CablecardController.class)
 public class CablecardControllerTest extends MockBase {
@@ -52,7 +53,6 @@ public class CablecardControllerTest extends MockBase {
 		contentContainsMarkup(ra,getMsg("Cablecard.colh"));
 		contentContainsMarkup(ra,getMsg("Cablecard.dt"));
 		contentContainsMarkup(ra,getMsg("Cablecard.hd"));
-		contentContainsMarkup(ra,getMsg("Cablecard.id"));
 		contentContainsMarkup(ra,getMsg("Cablecard.innpl"));
 		contentContainsMarkup(ra,getTestString(2));
 		contentContainsMarkup(ra,getMsg("Cablecard.lang"));
@@ -64,6 +64,7 @@ public class CablecardControllerTest extends MockBase {
 		contentContainsMarkup(ra,getMsg("Cablecard.receiving"));
 		contentContainsMarkup(ra,getTestString(12));
 		contentContainsMarkup(ra,getMsg("Cablecard.shortfield"));
+		contentContainsMarkup(ra,getMsg("Cablecard.userid"));
 	}
 
 	/**
@@ -75,19 +76,20 @@ public class CablecardControllerTest extends MockBase {
 	@Test
 	public void testShowNewCablecardPage() throws Exception {
 		ResultActions ra = getAsAdmin("/cablecards/new");
-		contentContainsMarkup(ra,"<h1>" + getMsg("edit.new") + " " + getMsg("class.Cablecard") + "</h1>");
-		contentContainsMarkup(ra,"ChannelName");
-		contentContainsMarkup(ra,"ChannelNumber");
+		contentContainsMarkup(ra,"<legend>" + getMsg("edit.new") + " " + getMsg("class.Cablecard") + "</legend>");
+		contentContainsMarkup(ra,"Channelname");
+		contentContainsMarkup(ra,"Channelnumber");
 		contentContainsMarkup(ra,"Colh");
 		contentContainsMarkup(ra,"Dt");
 		contentContainsMarkup(ra,"Hd");
-		contentContainsMarkup(ra,"id");
-		contentContainsMarkup(ra,"InNpl");
+		// TODO: confirm ignoring Cablecard.id
+		contentContainsMarkup(ra,"Innpl");
 		contentContainsMarkup(ra,"Lang");
 		contentContainsMarkup(ra,"Net");
 		contentContainsMarkup(ra,"Od");
 		contentContainsMarkup(ra,"Receiving");
-		contentContainsMarkup(ra,"ShortField");
+		contentContainsMarkup(ra,"Shortfield");
+		contentContainsMarkup(ra,"Account");
 	}
 
 	/**
@@ -109,8 +111,10 @@ public class CablecardControllerTest extends MockBase {
 	@Test
 	public void testSaveCablecardSave() throws Exception {
 		Cablecard o = getCablecard(0);
+		CablecardForm form = CablecardForm.getInstance(o);
+		LOGGER.debug(form.toString());
 
-		send(SEND_POST, "/cablecards/save", "cablecard", o, ImmutableMap.of("action", "save"), ADMIN_USER,
+		send(SEND_POST, "/cablecards/save", "cablecardForm", form, ImmutableMap.of("action", "save"), ADMIN_USER,
 				"/cablecards");
 	}
 
@@ -128,13 +132,13 @@ public class CablecardControllerTest extends MockBase {
 
 		ResultActions ra = getAsAdmin("/cablecards/edit/1");
 		contentContainsMarkup(ra,o.getChannelname());
-		contentContainsMarkup(ra,"ChannelName");
-		contentContainsMarkup(ra,"ChannelNumber");
+		contentContainsMarkup(ra,"Channelname");
+		contentContainsMarkup(ra,"Channelnumber");
 		contentContainsMarkup(ra,"Colh");
 		contentContainsMarkup(ra,"Dt");
 		contentContainsMarkup(ra,"Hd");
-		contentContainsMarkup(ra,"id");
-		contentContainsMarkup(ra,"InNpl");
+		// TODO: confirm ignoring Cablecard.id
+		contentContainsMarkup(ra,"Innpl");
 		contentContainsMarkup(ra,o.getLang());
 		contentContainsMarkup(ra,"Lang");
 		contentContainsMarkup(ra,o.getNet());
@@ -144,7 +148,8 @@ public class CablecardControllerTest extends MockBase {
 		contentContainsMarkup(ra,o.getReceiving());
 		contentContainsMarkup(ra,"Receiving");
 		contentContainsMarkup(ra,o.getShortfield());
-		contentContainsMarkup(ra,"ShortField");
+		contentContainsMarkup(ra,"Shortfield");
+		contentContainsMarkup(ra,"Account");
 	}
 
 	/**

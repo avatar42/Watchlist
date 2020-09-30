@@ -1,7 +1,6 @@
 package com.dea42.watchlist.controller;
 
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,8 +10,9 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Account;
-import com.dea42.watchlist.form.SignupForm;
-import com.dea42.watchlist.utils.Message;
+import com.dea42.watchlist.form.AccountForm;
+import com.dea42.watchlist.form.LoginForm;
+import com.dea42.watchlist.utils.MessageHelper;
 import com.google.common.collect.ImmutableMap;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -28,12 +28,12 @@ public class AppControllerTest extends MockBase {
 	@Test
 	public void testIndex() throws Exception {
 		ResultActions result = getAsNoOne("/");
-		contentContainsKey(result, "view.index.title", false);
-		contentContainsKey(result, "app.name", false);
-		contentContainsKey(result, "signin.signup", false);
+		contentContainsKey(result, MessageHelper.view_index_title);
+		contentContainsKey(result, MessageHelper.app_name);
+		contentContainsKey(result, MessageHelper.signin_signup);
 		result = getAsAdmin("/");
-		contentContainsKey(result, "view.index.title", false);
-		contentContainsKey(result, "index.greeting", false);
+		contentContainsKey(result, MessageHelper.view_index_title);
+		contentContainsKey(result, MessageHelper.index_greeting);
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class AppControllerTest extends MockBase {
 	@Test
 	public void testHome() throws Exception {
 		ResultActions result = getAsNoOne("/home");
-		contentContainsKey(result, "view.index.title", false);
+		contentContainsKey(result, MessageHelper.view_index_title);
 	}
 
 	/**
@@ -55,11 +55,37 @@ public class AppControllerTest extends MockBase {
 	@Test
 	public void testSignupModelString() throws Exception {
 		ResultActions result = getAsNoOne("/signup");
-		contentContainsKey(result, "signin.email", false);
-		contentContainsKey(result, "signin.password", false);
-		contentContainsKey(result, "signin.haveAccount", false);
-		contentContainsKey(result, "signin.signin", false);
-		contentContainsKey(result, "signin.signup", false);
+		contentContainsKey(result, MessageHelper.signin_email);
+		contentContainsKey(result, MessageHelper.signin_password);
+		contentContainsKey(result, MessageHelper.signin_haveAccount);
+		contentContainsKey(result, MessageHelper.signin_signin);
+		contentContainsKey(result, MessageHelper.signin_signup);
+	}
+
+	/**
+	 * used only for AppController.login() testing
+	 * 
+	 * @param email
+	 * @param password
+	 */
+	public LoginForm getLoginInstance(String email, String password) {
+		LoginForm a = new LoginForm();
+		a.setEmail(email);
+		a.setPassword(password);
+		return a;
+	}
+
+	/**
+	 * Get good form to mod for specific errors
+	 * 
+	 * @param account
+	 * @return
+	 */
+	private AccountForm getInstance(Account account) {
+		AccountForm accountForm = AccountForm.getInstance(account);
+		accountForm.setPassword(account.getPassword());
+		accountForm.setPasswordConfirm(account.getPassword());
+		return accountForm;
 	}
 
 	/**
@@ -68,21 +94,66 @@ public class AppControllerTest extends MockBase {
 	 * @throws Exception
 	 */
 	@Test
-	public void testSignupSignupFormErrorsRedirectAttributes() throws Exception {
-		SignupForm signupForm = new SignupForm();
-		signupForm.setEmail(ADMIN_USER);
-		signupForm.setPassword(ADMIN_PASS);
-		signupForm.setSignup(true);
-		Account account = signupForm.createAccount();
+	public void testSignupAccountFormErrorsRedirectAttributes() throws Exception {
+		Account account = new Account(TEST_USER, TEST_PASS, TEST_ROLE);
 
-		given(accountService.save(account)).willReturn(account);
-		given(accountService.login(account.getEmail(), account.getPassword())).willReturn(true);
+		given(accountServices.save(account)).willReturn(account);
+		given(accountServices.login(account.getEmail(), account.getPassword())).willReturn(true);
+		given(accountServices.isEmailAlreadyInUse(ADMIN_USER)).willReturn(true);
+		given(accountServices.isEmailAlreadyInUse(TEST_USER)).willReturn(false);
 
-		ResultActions ra = send(SEND_POST, "/signup", "signupForm", signupForm, ImmutableMap.of("action", "save"), null,
-				"/home");
+		AccountForm accountForm = getInstance(account);
+		ResultActions result = send(SEND_POST, "/signup", "accountForm", accountForm, ImmutableMap.of("action", "save"),
+				null, "/home");
+		expectSuccessMsg(result, MessageHelper.signup_success);
 
-		Message msg = new Message("signup.success", Message.Type.SUCCESS, new Object[0]);
-		ra.andExpect(flash().attribute("message", msg));
+		accountForm = getInstance(account);
+		accountForm.setPassword(" ");
+		accountForm.setPasswordConfirm(" ");
+		result = send(SEND_POST, "/signup", "accountForm", accountForm, null, null, null);
+		contentContainsKey(result, MessageHelper.password_mismatch);
+
+		accountForm = getInstance(account);
+		accountForm.setEmail(ADMIN_USER);
+		result = send(SEND_POST, "/signup", "accountForm", accountForm, null, null, null);
+		contentContainsKey(result, MessageHelper.email_unique);
+
+		accountForm = getInstance(account);
+		accountForm.setEmail("admin");
+		accountForm.setPasswordConfirm("bad password");
+		result = send(SEND_POST, "/signup", "accountForm", accountForm, null, null, null);
+		contentContainsKey(result, MessageHelper.INSUFFICIENT_UPPERCASE, "1");
+		contentContainsKey(result, MessageHelper.INSUFFICIENT_DIGIT, "1");
+		contentContainsKey(result, MessageHelper.INSUFFICIENT_SPECIAL, "1");
+
+		accountForm.setPasswordConfirm("BAD_PASSWORD");
+		result = send(SEND_POST, "/signup", "accountForm", accountForm, null, null, null);
+		contentContainsKey(result, MessageHelper.INSUFFICIENT_LOWERCASE, "1");
+		contentContainsKey(result, MessageHelper.INSUFFICIENT_DIGIT, "1");
+
+		accountForm.setPasswordConfirm("P@$$w1rd");
+		result = send(SEND_POST, "/signup", "accountForm", accountForm, null, null, null);
+		contentContainsKey(result, MessageHelper.password_mismatch);
+
+		accountForm.setPassword("P@$$w1r");
+		accountForm.setPasswordConfirm("P@$$w1r");
+		result = send(SEND_POST, "/signup", "accountForm", accountForm, null, null, null);
+		contentContainsKey(result, MessageHelper.TOO_SHORT, "8", "30");
+
+		accountForm.setPassword(getTestPasswordString(31));
+		accountForm.setPasswordConfirm(getTestPasswordString(31));
+		result = send(SEND_POST, "/signup", "accountForm", accountForm, null, null, null);
+		contentContainsKey(result, MessageHelper.TOO_LONG, "8", "30");
+
+		accountForm = getInstance(account);
+		accountForm.setEmail("admin");
+		result = send(SEND_POST, "/signup", "accountForm", accountForm, null, null, null);
+		contentContainsKey(result, MessageHelper.email_message);
+
+		accountForm = getInstance(account);
+		accountForm.setEmail("");
+		result = send(SEND_POST, "/signup", "accountForm", accountForm, null, null, null);
+		contentContainsKey(result, MessageHelper.notBlank_message);
 	}
 
 	/**
@@ -91,14 +162,14 @@ public class AppControllerTest extends MockBase {
 	 * @throws Exception
 	 */
 	@Test
-	public void testLoginHttpServletRequestSignupFormStringString() throws Exception {
+	public void testLoginHttpServletRequestAccountFormStringString() throws Exception {
 		ResultActions result = getAsNoOne("/login");
-		contentContainsKey(result, "signin.email", false);
-		contentContainsKey(result, "signin.password", false);
-		contentContainsKey(result, "signin.rememberMe", false);
-		contentContainsKey(result, "signin.signin", false);
-		contentContainsKey(result, "signin.newHere", false);
-		contentContainsKey(result, "signin.signup", false);
+		contentContainsKey(result, MessageHelper.signin_email);
+		contentContainsKey(result, MessageHelper.signin_password);
+		contentContainsKey(result, MessageHelper.signin_rememberMe);
+		contentContainsKey(result, MessageHelper.signin_signin);
+		contentContainsKey(result, MessageHelper.signin_newHere);
+		contentContainsKey(result, MessageHelper.signin_signup);
 	}
 
 	/**
@@ -107,50 +178,43 @@ public class AppControllerTest extends MockBase {
 	 * @throws Exception
 	 */
 	@Test
-	public void testLoginModelSignupFormErrorsRedirectAttributes() throws Exception {
-		SignupForm signupForm = new SignupForm();
-		signupForm.setEmail(ADMIN_USER);
-		signupForm.setPassword(ADMIN_PASS);
-		Account account = signupForm.createAccount();
+	public void testLoginModelAccountFormErrorsRedirectAttributes() throws Exception {
+		// set up
+		Account account = new Account(ADMIN_USER, ADMIN_PASS, ADMIN_ROLE);
+		given(accountServices.save(account)).willReturn(account);
+		given(accountServices.login(account.getEmail(), account.getPassword())).willReturn(true);
 
-		given(accountService.save(account)).willReturn(account);
-		given(accountService.login(account.getEmail(), account.getPassword())).willReturn(true);
+		// happy path test
+		LoginForm loginForm = getLoginInstance(ADMIN_USER, ADMIN_PASS);
+		ResultActions result = send(SEND_POST, "/authenticate", "loginForm", loginForm, null, null, "/home");
+		expectSuccessMsg(result, MessageHelper.signin_success);
+		contentNotContainsKey(result, MessageHelper.form_errors);
 
-		ResultActions ra = send(SEND_POST, "/authenticate", "signupForm", signupForm, null, null, "/home");
-		expectSuccessMsg(ra, "signin.success");
+		// failure tests
+		loginForm = getLoginInstance(ADMIN_USER, "bad pass");
+		result = send(SEND_POST, "/authenticate", "loginForm", loginForm, null, null, null);
+		contentContainsKey(result, MessageHelper.signin_failed);
 
-		signupForm = new SignupForm();
-		signupForm.setEmail(ADMIN_USER);
-		signupForm.setPassword("bad pass");
-		account = signupForm.createAccount();
+		loginForm = getLoginInstance(ADMIN_USER, "");
+		result = send(SEND_POST, "/authenticate", "loginForm", loginForm, null, null, null);
+		contentContainsKey(result, MessageHelper.notBlank_message);
 
-		ra = send(SEND_POST, "/authenticate", "signupForm", signupForm, null, null, null);
-		contentContainsKey(ra, "signin.failed", false);
+		loginForm = getLoginInstance("", "bad pass");
+		result = send(SEND_POST, "/authenticate", "loginForm", loginForm, null, null, null);
+		contentContainsKey(result, MessageHelper.notBlank_message);
 
-		signupForm = new SignupForm();
-		signupForm.setEmail(ADMIN_USER);
-		signupForm.setPassword("");
-		account = signupForm.createAccount();
+		loginForm = getLoginInstance(ADMIN_USER, " ");
+		result = send(SEND_POST, "/authenticate", "loginForm", loginForm, null, null, null);
+		contentContainsKey(result, MessageHelper.notBlank_message);
 
-		ra = send(SEND_POST, "/authenticate", "signupForm", signupForm, null, null, null);
-		contentContainsKey(ra, "notBlank.message", false);
+		loginForm = getLoginInstance("	", "bad pass");
+		result = send(SEND_POST, "/authenticate", "loginForm", loginForm, null, null, null);
+		contentContainsKey(result, MessageHelper.notBlank_message);
 
-		signupForm = new SignupForm();
-		signupForm.setEmail("");
-		signupForm.setPassword("bad pass");
-		account = signupForm.createAccount();
-
-		ra = send(SEND_POST, "/authenticate", "signupForm", signupForm, null, null, null);
-		contentContainsKey(ra, "notBlank.message", false);
-
-		signupForm = new SignupForm();
-		signupForm.setEmail("admin");
-		signupForm.setPassword("bad pass");
-		account = signupForm.createAccount();
-
-		ra = send(SEND_POST, "/authenticate", "signupForm", signupForm, null, null, null);
-		contentContainsKey(ra, "email.message", false);
-		contentContainsKey(ra, "notBlank.message", true);
+		loginForm = getLoginInstance("admin", "bad pass");
+		result = send(SEND_POST, "/authenticate", "loginForm", loginForm, null, null, null);
+		contentContainsKey(result, MessageHelper.email_message);
+		contentNotContainsKey(result, MessageHelper.notBlank_message);
 	}
 
 	/**

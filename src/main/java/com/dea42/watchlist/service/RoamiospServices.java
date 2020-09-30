@@ -1,23 +1,33 @@
 package com.dea42.watchlist.service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
+import javax.annotation.PostConstruct;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 import com.dea42.watchlist.entity.Roamiosp;
 import com.dea42.watchlist.repo.RoamiospRepository;
+import com.dea42.watchlist.utils.Utils;
 
 /**
  * Title: RoamiospServices <br>
  * Description: RoamiospServices. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
- * @version 1.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.4.1<br>
+ * @version 1.0.0<br>
  */
 @Service
 public class RoamiospServices {
+	private static final Logger LOGGER = LoggerFactory.getLogger(RoamiospServices.class.getName());
     @Autowired
     private RoamiospRepository roamiospRepository;
 
@@ -25,8 +35,8 @@ public class RoamiospServices {
 		return (List<Roamiosp>) roamiospRepository.findAll();
 	}
 	
-	public void save(Roamiosp item) {
-		roamiospRepository.save(item);
+	public Roamiosp save(Roamiosp roamiosp) {
+		return roamiospRepository.save(roamiosp);
 	}
 	
 	public Roamiosp get(Integer id) {

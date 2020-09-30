@@ -20,31 +20,69 @@
 
 	    <table>
 	        <tr>
+            <th th:text="#{Roamiosp.cancelled}">Cancelled</th>
             <th th:text="#{Roamiosp.channel}">Channel</th>
+            <th th:text="#{Roamiosp.channelnum}">Channelnum</th>
+            <th th:text="#{Roamiosp.dup}">Dup</th>
             <th th:text="#{Roamiosp.end}">End</th>
-            <th th:text="#{Roamiosp.id}">id</th>
             <th th:text="#{Roamiosp.include}">Include</th>
+            <th th:text="#{Roamiosp.inshowsstatus}">InShowsStatus</th>
             <th th:text="#{Roamiosp.keep}">Keep</th>
+            <th th:text="#{Roamiosp.network}">Network</th>
             <th th:text="#{Roamiosp.num}">Num</th>
+            <th th:text="#{Roamiosp.ota}">Ota</th>
             <th th:text="#{Roamiosp.priority}">Priority</th>
             <th th:text="#{Roamiosp.record}">Record</th>
+            <th th:text="#{Roamiosp.row}">Row</th>
             <th th:text="#{Roamiosp.season}">Season</th>
             <th th:text="#{Roamiosp.show}">Show</th>
             <th th:text="#{Roamiosp.start}">Start</th>
+            <th th:text="#{Roamiosp.station}">Station</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.email}">Email</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.role}">Role</th>
             <th th:text="#{edit.actions}"></th>
 	        </tr>
 	        <tr th:each="roamiosp:${roamiosps}">
-	            <td th:text="${roamiosp.channel}"></td>
-	            <td th:text="${roamiosp.end}"></td>
-	            <td th:text="${roamiosp.id}"></td>
-	            <td th:text="${roamiosp.include}"></td>
-	            <td th:text="${roamiosp.keep}"></td>
-	            <td th:text="${roamiosp.num}"></td>
-	            <td th:text="${roamiosp.priority}"></td>
-	            <td th:text="${roamiosp.record}"></td>
-	            <td th:text="${roamiosp.season}"></td>
-	            <td th:text="${roamiosp.show}"></td>
-	            <td th:text="${roamiosp.start}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.cancelled}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.channel}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.channelnum}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.dup}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.end}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.include}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.inshowsstatus}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.keep}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.network}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.num}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.ota}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.priority}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.record}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.row}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.season}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.show}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.start}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp != null}" th:text="${roamiosp.station}"></td>
+				<td th:unless="${roamiosp != null}"></td>
+	            <td th:if="${roamiosp.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${roamiosp.account.email}"></td>
+				<td th:unless="${roamiosp.account != null}"></td>
+	            <td th:if="${roamiosp.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${roamiosp.account.role}"></td>
+				<td th:unless="${roamiosp.account != null}"></td>
 				<td><a th:href="@{'/roamiosps/edit/' + ${roamiosp.id}}" th:text="#{edit.edit}"></a>
 					&nbsp;&nbsp;&nbsp; <a th:href="@{'/roamiosps/delete/' + ${roamiosp.id}}" th:text="#{edit.delete}"></a>
 				</td>

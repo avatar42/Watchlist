@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="#{edit.edit} + ' ' + #{class.Networksuser}"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" media="screen"
+	th:href="@{/resources/css/bootstrap.min.css}" />
+<link rel="stylesheet" media="screen"
+	th:href="@{/resources/css/site.css}" />
+<script th:src="@{/resources/js/jquery.min.js}"></script>
+<script th:src="@{/resources/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<div class="container">
+		<form class="form-narrow form-horizontal" method="post"
+			th:action="@{/networksusers/save}" th:object="${networksuserForm}"
+			th:fragment="networksuserForm">
+			<!--/* Show general error messages when form contains errors */-->
+			<th:block th:if="${#fields.hasErrors('${networksuserForm.*}')}">
+				<div th:each="fieldErrors : ${#fields.errors('${networksuserForm.*}')}">
+					<div th:each="message : ${fieldErrors.split(';')}">
+						<div
+							th:replace="fragments/alert :: alert (type='danger', message=${message})">Alert</div>
+					</div>
+				</div>
+			</th:block>
+			<fieldset>
+				<legend th:if="${networksuserForm.id == 0}"
+					th:text="#{edit.new} + ' ' + #{class.Networksuser}"></legend>
+				<legend th:if="${networksuserForm.id > 0}"
+					th:text="#{edit.edit} + ' ' + #{class.Networksuser}"></legend>
+
+				<input type="hidden" class="form-control" id="id" th:field="*{id}" />
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('iusefreefreewithcablepayforhuluinstead')}? 'has-error'">
+					<label for="iusefreefreewithcablepayforhuluinstead" class="col-lg-2 control-label"
+						th:text="#{Networksuser.iusefreefreewithcablepayforhuluinstead} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="iusefreefreewithcablepayforhuluinstead"
+							th:field="*{iusefreefreewithcablepayforhuluinstead}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('iusefreefreewithcablepayforhuluinstead')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="networksuserForm.networks.commercials" class="col-lg-2 control-label"
+						th:text="#{Networks.commercials} + ':'"></label>
+					<div th:if="${networksuserForm.networks != null}" class="col-lg-10" id="networksuserForm.networks.commercials"
+	                        th:text="${networksuserForm.networks.commercials}">
+					</div>
+				<div th:unless="${networksuserForm.networks != null}" th:text="${networksuserForm.networks}"></div>
+				</div>
+				<input type="hidden" class="form-control" id="networks.id" th:field="*{networks.id}" />
+				<div class="form-group">
+					<label for="networksuserForm.networks.onhulu" class="col-lg-2 control-label"
+						th:text="#{Networks.onhulu} + ':'"></label>
+					<div th:if="${networksuserForm.networks != null}" class="col-lg-10" id="networksuserForm.networks.onhulu"
+	                        th:text="${networksuserForm.networks.onhulu}">
+					</div>
+				<div th:unless="${networksuserForm.networks != null}" th:text="${networksuserForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksuserForm.networks.persistance" class="col-lg-2 control-label"
+						th:text="#{Networks.persistance} + ':'"></label>
+					<div th:if="${networksuserForm.networks != null}" class="col-lg-10" id="networksuserForm.networks.persistance"
+	                        th:text="${networksuserForm.networks.persistance}">
+					</div>
+				<div th:unless="${networksuserForm.networks != null}" th:text="${networksuserForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksuserForm.networks.rokuapp" class="col-lg-2 control-label"
+						th:text="#{Networks.rokuapp} + ':'"></label>
+					<div th:if="${networksuserForm.networks != null}" class="col-lg-10" id="networksuserForm.networks.rokuapp"
+	                        th:text="${networksuserForm.networks.rokuapp}">
+					</div>
+				<div th:unless="${networksuserForm.networks != null}" th:text="${networksuserForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksuserForm.networks.site" class="col-lg-2 control-label"
+						th:text="#{Networks.site} + ':'"></label>
+					<div th:if="${networksuserForm.networks != null}" class="col-lg-10" id="networksuserForm.networks.site"
+	                        th:text="${networksuserForm.networks.site}">
+					</div>
+				<div th:unless="${networksuserForm.networks != null}" th:text="${networksuserForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksuserForm.networks.standardwait" class="col-lg-2 control-label"
+						th:text="#{Networks.standardwait} + ':'"></label>
+					<div th:if="${networksuserForm.networks != null}" class="col-lg-10" id="networksuserForm.networks.standardwait"
+	                        th:text="${networksuserForm.networks.standardwait}">
+					</div>
+				<div th:unless="${networksuserForm.networks != null}" th:text="${networksuserForm.networks}"></div>
+				</div>
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="networksuserForm.account.email" class="col-lg-2 control-label"
+						th:text="#{Account.email} + ':'"></label>
+					<div th:if="${networksuserForm.account != null}" class="col-lg-10" id="networksuserForm.account.email"
+	                        th:text="${networksuserForm.account.email}">
+					</div>
+				<div th:unless="${networksuserForm.account != null}" th:text="${networksuserForm.account}"></div>
+				</div>
+				<input type="hidden" class="form-control" id="account.id" th:field="*{account.id}" />
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="networksuserForm.account.role" class="col-lg-2 control-label"
+						th:text="#{Account.role} + ':'"></label>
+					<div th:if="${networksuserForm.account != null}" class="col-lg-10" id="networksuserForm.account.role"
+	                        th:text="${networksuserForm.account.role}">
+					</div>
+				<div th:unless="${networksuserForm.account != null}" th:text="${networksuserForm.account}"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+						<button type="submit" name="action" value="save"
+							class="btn btn-default" th:text="#{edit.save}"></button>
+						<button type="submit" name="action" value="cancel" class="btn"
+							th:text="#{edit.cancel}"></button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+
+	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+</body></html>

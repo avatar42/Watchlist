@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.dea42</groupId>
 	<artifactId>watchlist</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<parent>
@@ -101,6 +101,12 @@
 			<artifactId>guava</artifactId>
 			<version>28.0-jre</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.passay/passay -->
+		<dependency>
+			<groupId>org.passay</groupId>
+			<artifactId>passay</artifactId>
+			<version>1.6.0</version>
+		</dependency>
 		<!-- Test dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -128,6 +134,12 @@
 			<groupId>org.codehaus.cargo</groupId>
 			<artifactId>cargo-core-container-wildfly</artifactId>
 			<version>1.7.13</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.4</version>
 		</dependency>
 	</dependencies>
 
@@ -167,6 +179,7 @@
 							<zipUrlInstaller> <url>http://download.jboss.org/wildfly/11.0.0.Final/wildfly-11.0.0.Final.zip</url> 
 							<downloadDir>${project.build.directory}</downloadDir> <extractDir>${project.build.directory}</extractDir> 
 							</zipUrlInstaller> -->
+						<timeout>500000</timeout>
 					</container>
 					<!-- <deployables> <deployable> <groupId>org.codehaus.cargo</groupId> 
 						<artifactId>simple-war</artifactId> <type>war</type> <location>${project.build.directory}/genspring-0.0.1-SNAPSHOT.war</location> 
@@ -174,7 +187,7 @@
 					<configuration>
 						<properties>
 							<cargo.servlet.port>8089</cargo.servlet.port>
-							<cargo.logging>high</cargo.logging>
+							<cargo.logging>low</cargo.logging>
 							<!-- <cargo.hostname>127.0.0.1</cargo.hostname> <cargo.jboss.management-http.port> 
 								9990 </cargo.jboss.management-http.port> <cargo.servlet.users> adminUser:admin1234! 
 								</cargo.servlet.users> -->

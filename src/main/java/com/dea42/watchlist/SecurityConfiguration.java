@@ -22,14 +22,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-import com.dea42.watchlist.service.AccountService;
+import com.dea42.watchlist.service.AccountServices;
 
 /**
  * Title: SecurityConfiguration <br>
  * Description: Class for configuring app security. <br>
  * 
- * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
- * @version 1.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.2.3<br>
+ * @version 1.0.0<br>
  */
 @Configuration
 @EnableWebSecurity
@@ -38,11 +38,11 @@ import com.dea42.watchlist.service.AccountService;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
 	@Autowired
-	private AccountService accountService;
+	private AccountServices accountServices;
 
 	@Bean
 	public TokenBasedRememberMeServices rememberMeServices() {
-		return new TokenBasedRememberMeServices("remember-me-key", accountService);
+		return new TokenBasedRememberMeServices("remember-me-key", accountServices);
 	}
 
 	@Bean
@@ -53,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-		authProvider.setUserDetailsService(accountService);
+		authProvider.setUserDetailsService(accountServices);
 		authProvider.setPasswordEncoder(passwordEncoder());
 		return authProvider;
 	}
@@ -66,7 +66,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests() //.antMatchers("/**").permitAll();
-				.antMatchers("/", "/api/*", "/error", "/home/*", "/public/*", "/resources/**", "/signup", "/favicon.ico",
+				.antMatchers("/", "/api/*", "/error", "/home/*", "/public/**", "/resources/**", "/signup", "/favicon.ico",
 						"/authenticate", "/international")
 				.permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login")
 //				// TODO: added successForwardUrl("/home") to get around first click of login

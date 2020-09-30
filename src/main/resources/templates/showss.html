@@ -20,45 +20,159 @@
 
 	    <table>
 	        <tr>
-            <th th:text="#{Shows.bestexperience}">BestExperience</th>
+            <th th:text="#{Shows.abc}">Abc</th>
+            <th th:text="#{Shows.acorntv}">AcornTv</th>
+            <th th:text="#{Shows.amazon}">Amazon</th>
+            <th th:text="#{Shows.amc}">Amc</th>
+            <th th:text="#{Shows.bbca}">Bbca</th>
+            <th th:text="#{Shows.britbox}">Britbox</th>
+            <th th:text="#{Shows.bufferspace}">BufferSpace</th>
+            <th th:text="#{Shows.bufsp}">BufSp</th>
             <th th:text="#{Shows.cancelled}">Cancelled</th>
-            <th th:text="#{Shows.comment}">Comment</th>
+            <th th:text="#{Shows.cbs}">Cbs</th>
+            <th th:text="#{Shows.cc}">Cc</th>
+            <th th:text="#{Shows.colg}">Colg</th>
+            <th th:text="#{Shows.cw}">Cw</th>
+            <th th:text="#{Shows.diff}">Diff</th>
             <th th:text="#{Shows.epguidesshowname}">EpguidesShowName</th>
-            <th th:text="#{Shows.id}">id</th>
-            <th th:text="#{Shows.imdb}">Imdb</th>
+            <th th:text="#{Shows.freeformabcf}">FreeformAbcf</th>
+            <th th:text="#{Shows.fx}">Fx</th>
+            <th th:text="#{Shows.googleplay}">GooglePlay</th>
+            <th th:text="#{Shows.hbo}">Hbo</th>
+            <th th:text="#{Shows.huluplus}">HuluPlus</th>
+            <th th:text="#{Shows.ifc}">Ifc</th>
             <th th:text="#{Shows.incanceledas}">InCanceledAs</th>
-            <th th:text="#{Shows.inrokufeed}">InRokuFeed</th>
-            <th th:text="#{Shows.inshowrssas}">InShowRssAs</th>
-            <th th:text="#{Shows.justwatch}">JustWatch</th>
+            <th th:text="#{Shows.intodos}">InTodos</th>
+            <th th:text="#{Shows.itunes}">Itunes</th>
             <th th:text="#{Shows.lastshow}">LastShow</th>
-            <th th:text="#{Shows.lastwatched}">LastWatched</th>
+            <th th:text="#{Shows.latestinroamionpl}">LatestInRoamioNpl</th>
+            <th th:text="#{Shows.lep}">LEp</th>
+            <th th:text="#{Shows.ls}">LS</th>
+            <th th:text="#{Shows.natgeo}">Natgeo</th>
+            <th th:text="#{Shows.nbc}">Nbc</th>
+            <th th:text="#{Shows.netflix}">Netflix</th>
             <th th:text="#{Shows.network}">Network</th>
-            <th th:text="#{Shows.ota}">Ota</th>
+            <th th:text="#{Shows.onepasschan}">OnePassChan</th>
+            <th th:text="#{Shows.pbs}">Pbs</th>
             <th th:text="#{Shows.premiere}">Premiere</th>
             <th th:text="#{Shows.premieredate}">PremiereDate</th>
+            <th th:text="#{Shows.row}">Row</th>
+            <th th:text="#{Shows.science}">Science</th>
             <th th:text="#{Shows.status}">Status</th>
-            <th th:text="#{Shows.tivoname}">TivoName</th>
+            <th th:text="#{Shows.syfy}">Syfy</th>
+            <th th:text="#{Shows.tnt}">Tnt</th>
+            <th th:text="#{Shows.tododate}">TodoDate</th>
+            <th th:text="#{Shows.tvcom}">TvCom</th>
+            <th th:text="#{Shows.twcondemand}">TwcOnDemand</th>
+            <th th:text="#{Shows.usa}">Usa</th>
+            <th th:text="#{Shows.watchedto}">WatchedTo</th>
+            <th th:text="#{Shows.wep}">WEp</th>
+            <th th:text="#{Shows.ws}">WS</th>
+            <th th:text="#{Shows.xbox}">Xbox</th>
+            <th th:text="#{Shows.youtube}">Youtube</th>
             <th th:text="#{edit.actions}"></th>
 	        </tr>
 	        <tr th:each="shows:${showss}">
-	            <td><a th:href="@{${shows.bestexperiencelink}}" th:text="${shows.bestexperience}"></a></td>
-	            <td th:text="${shows.cancelled}"></td>
-	            <td><a th:href="@{${shows.commentlink}}" th:text="${shows.comment}"></a></td>
-	            <td><a th:href="@{${shows.epguidesshownamelink}}" th:text="${shows.epguidesshowname}"></a></td>
-	            <td th:text="${shows.id}"></td>
-	            <td><a th:href="@{${shows.imdblink}}" th:text="${shows.imdb}"></a></td>
-	            <td><a th:href="@{${shows.incanceledaslink}}" th:text="${shows.incanceledas}"></a></td>
-	            <td th:text="${shows.inrokufeed}"></td>
-	            <td><a th:href="@{${shows.inshowrssaslink}}" th:text="${shows.inshowrssas}"></a></td>
-	            <td><a th:href="@{${shows.justwatchlink}}" th:text="${shows.justwatch}"></a></td>
-	            <td th:text="${shows.lastshow}"></td>
-	            <td th:text="${shows.lastwatched}"></td>
-	            <td><a th:href="@{${shows.networklink}}" th:text="${shows.network}"></a></td>
-	            <td th:text="${shows.ota}"></td>
-	            <td th:text="${shows.premiere}"></td>
-	            <td th:text="${shows.premieredate}"></td>
-	            <td th:text="${shows.status}"></td>
-	            <td><a th:href="@{${shows.tivonamelink}}" th:text="${shows.tivoname}"></a></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.abclink}}" th:text="${shows.abc}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.acorntvlink}}" th:text="${shows.acorntv}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.amazonlink}}" th:text="${shows.amazon}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.amclink}}" th:text="${shows.amc}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.bbcalink}}" th:text="${shows.bbca}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.britboxlink}}" th:text="${shows.britbox}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.bufferspace}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.bufsp}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.cancelled}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.cbslink}}" th:text="${shows.cbs}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.cclink}}" th:text="${shows.cc}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.colg}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.cwlink}}" th:text="${shows.cw}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.diff}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.epguidesshownamelink}}" th:text="${shows.epguidesshowname}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.freeformabcflink}}" th:text="${shows.freeformabcf}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.fxlink}}" th:text="${shows.fx}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.googleplaylink}}" th:text="${shows.googleplay}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.hbolink}}" th:text="${shows.hbo}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.hulupluslink}}" th:text="${shows.huluplus}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.ifclink}}" th:text="${shows.ifc}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.incanceledaslink}}" th:text="${shows.incanceledas}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.intodos}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.ituneslink}}" th:text="${shows.itunes}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.lastshow}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.latestinroamionpl}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.lep}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.ls}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.natgeolink}}" th:text="${shows.natgeo}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.nbclink}}" th:text="${shows.nbc}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.netflixlink}}" th:text="${shows.netflix}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.networklink}}" th:text="${shows.network}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.onepasschan}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.pbslink}}" th:text="${shows.pbs}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.premiere}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.premieredate}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.row}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.sciencelink}}" th:text="${shows.science}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.status}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.syfylink}}" th:text="${shows.syfy}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.tntlink}}" th:text="${shows.tnt}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.tododate}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.tvcomlink}}" th:text="${shows.tvcom}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.twcondemandlink}}" th:text="${shows.twcondemand}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.usalink}}" th:text="${shows.usa}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.watchedto}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.wep}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}" th:text="${shows.ws}"></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.xboxlink}}" th:text="${shows.xbox}"></a></td>
+				<td th:unless="${shows != null}"></td>
+	            <td th:if="${shows != null}"><a th:href="@{${shows.youtubelink}}" th:text="${shows.youtube}"></a></td>
+				<td th:unless="${shows != null}"></td>
 				<td><a th:href="@{'/showss/edit/' + ${shows.id}}" th:text="#{edit.edit}"></a>
 					&nbsp;&nbsp;&nbsp; <a th:href="@{'/showss/delete/' + ${shows.id}}" th:text="#{edit.delete}"></a>
 				</td>

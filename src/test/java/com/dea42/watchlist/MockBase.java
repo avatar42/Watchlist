@@ -26,16 +26,22 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import com.dea42.watchlist.service.AccountService;
+import com.dea42.watchlist.service.UserServices;
+import com.dea42.watchlist.repo.UserRepository;
 import com.dea42.watchlist.repo.AccountRepository;
+import com.dea42.watchlist.service.AccountServices;
 import com.dea42.watchlist.repo.NetworksRepository;
 import com.dea42.watchlist.service.NetworksServices;
 import com.dea42.watchlist.repo.ShowsRepository;
 import com.dea42.watchlist.service.ShowsServices;
 import com.dea42.watchlist.repo.RoamiospRepository;
 import com.dea42.watchlist.service.RoamiospServices;
+import com.dea42.watchlist.repo.ShowsuserRepository;
+import com.dea42.watchlist.service.ShowsuserServices;
 import com.dea42.watchlist.repo.CablecardRepository;
 import com.dea42.watchlist.service.CablecardServices;
+import com.dea42.watchlist.repo.NetworksuserRepository;
+import com.dea42.watchlist.service.NetworksuserServices;
 import com.dea42.watchlist.repo.RoamionplRepository;
 import com.dea42.watchlist.service.RoamionplServices;
 import com.dea42.watchlist.repo.OtaRepository;
@@ -51,12 +57,17 @@ import com.dea42.watchlist.utils.Utils;
  * Description: The base class for mock testing. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
- * @version 1.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.4.1<br>
+ * @version 1.0.0<br>
  */
 public class MockBase extends UnitBase {
     @MockBean
-    protected AccountService accountService;
+    protected UserServices<?> userServices;
+    @MockBean
+    protected UserRepository userRepository;
+
+    @MockBean
+    protected AccountServices accountServices;
     @MockBean
     protected AccountRepository accountRepository;
     @MockBean
@@ -72,9 +83,17 @@ public class MockBase extends UnitBase {
     @MockBean
     protected RoamiospRepository roamiospRepository;
     @MockBean
+    protected ShowsuserServices showsuserServices;
+    @MockBean
+    protected ShowsuserRepository showsuserRepository;
+    @MockBean
     protected CablecardServices cablecardServices;
     @MockBean
     protected CablecardRepository cablecardRepository;
+    @MockBean
+    protected NetworksuserServices networksuserServices;
+    @MockBean
+    protected NetworksuserRepository networksuserRepository;
     @MockBean
     protected RoamionplServices roamionplServices;
     @MockBean
@@ -109,7 +128,7 @@ public class MockBase extends UnitBase {
 	 * @param model
 	 * @param params
 	 * @param login
-	 * @param redirectedUrl
+	 * @param redirectedUrl if null expects 200 return code.
 	 * @return ResultActions object for further checks.
 	 * @throws Exception
 	 */
@@ -146,7 +165,13 @@ public class MockBase extends UnitBase {
 		ResultActions result = this.mockMvc.perform(req);
 		if (redirectedUrl != null) {
 			// If redirect then just check right one
-			result.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl(redirectedUrl));
+			try {
+				result.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl(redirectedUrl));
+			} catch (Throwable e) {
+				LOGGER.error("Instead of redirect got:" + result.andReturn().getResponse().getContentAsString());
+				throw e;
+			}
+
 		} else if (headless.contains(relURL)) {
 			// For pops just check status
 			result.andExpect(status().isOk());
@@ -165,34 +190,46 @@ public class MockBase extends UnitBase {
 	 */
 	public void checkHeader(ResultActions result, String user) throws Exception {
 		result.andExpect(status().isOk());
-		contentContainsKey(result, "app.name", false);
+		contentContainsKey(result, "app.name");
 		// GUI menu
-		contentContainsKey(result, "header.gui", false);
-		contentContainsKey(result, "class.Networks", false);
-		contentContainsKey(result, "class.Shows", false);
+		contentContainsKey(result, "header.gui");
+		if ("admin@dea42.com".equals(user)) 
+			contentContainsKey(result, "class.Account", false);
+		if ("admin@dea42.com".equals(user)) 
+			contentContainsKey(result, "class.Networks", false);
+		if ("admin@dea42.com".equals(user)) 
+			contentContainsKey(result, "class.Shows", false);
 		contentContainsKey(result, "class.Roamiosp", false);
+		contentContainsKey(result, "class.Showsuser", false);
 		contentContainsKey(result, "class.Cablecard", false);
+		contentContainsKey(result, "class.Networksuser", false);
 		contentContainsKey(result, "class.Roamionpl", false);
 		contentContainsKey(result, "class.Ota", false);
 		contentContainsKey(result, "class.Roamiotodo", false);
 // REST menu
-		contentContainsKey(result, "header.restApi", false);
-		contentContainsMarkup(result, "/api/networkss", false);
-		contentContainsMarkup(result, "/api/showss", false);
+		contentContainsKey(result, "header.restApi");
+		if ("admin@dea42.com".equals(user)) 
+			contentContainsMarkup(result, "/api/accounts", false);
+		if ("admin@dea42.com".equals(user)) 
+			contentContainsMarkup(result, "/api/networkss", false);
+		if ("admin@dea42.com".equals(user)) 
+			contentContainsMarkup(result, "/api/showss", false);
 		contentContainsMarkup(result, "/api/roamiosps", false);
+		contentContainsMarkup(result, "/api/showsusers", false);
 		contentContainsMarkup(result, "/api/cablecards", false);
+		contentContainsMarkup(result, "/api/networksusers", false);
 		contentContainsMarkup(result, "/api/roamionpls", false);
 		contentContainsMarkup(result, "/api/otas", false);
 		contentContainsMarkup(result, "/api/roamiotodos", false);
 // Login / out
-		contentContainsKey(result, "lang.eng", false);
-		contentContainsKey(result, "lang.fr", false);
-		contentContainsKey(result, "lang.de", false);
+		contentContainsKey(result, "lang.en");
+		contentContainsKey(result, "lang.fr");
+		contentContainsKey(result, "lang.de");
 
 		if (user == null)
-			contentContainsKey(result, "signin.signin", false);
+			contentContainsKey(result, "signin.signin");
 		else
-			contentContainsKey(result, "signin.logout", false);
+			contentContainsKey(result, "signin.logout");
 
 	}
 
@@ -238,6 +275,14 @@ public class MockBase extends UnitBase {
 		return send(SEND_GET, relURL, null, null, null, null, null);
 	}
 
+	public void contentContainsKey(ResultActions result, String key, String... args) {
+		contentContainsKey(result, key, false, args);
+	}
+
+	public void contentNotContainsKey(ResultActions result, String key, String... args) {
+		contentContainsKey(result, key, true, args);
+	}
+
 	/**
 	 * Confirm text of key is in content
 	 * 
@@ -245,8 +290,8 @@ public class MockBase extends UnitBase {
 	 * @param key
 	 * @param failIfExists flip to fail if there
 	 */
-	public void contentContainsKey(ResultActions result, String key, boolean failIfExists) {
-		String expectedText = Utils.getProp(getMsgBundle(), key);
+	public void contentContainsKey(ResultActions result, String key, boolean failIfExists, String... args) {
+		String expectedText = Utils.getProp(getMsgBundle(), key, "??" + key + "??", args);
 		contentContainsMarkup(result, expectedText, failIfExists);
 	}
 

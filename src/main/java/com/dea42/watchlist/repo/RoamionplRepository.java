@@ -9,8 +9,8 @@ import com.dea42.watchlist.entity.Roamionpl;
  * Description: Class for the Roamionpl Repository. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
- * @version 1.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.4.1<br>
+ * @version 1.0.0<br>
  */
 @Repository
 public interface RoamionplRepository extends JpaRepository<Roamionpl, Integer>{

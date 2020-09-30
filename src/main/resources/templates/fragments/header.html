@@ -22,14 +22,20 @@
 							class="dropdown-toggle" data-toggle="dropdown"><span
 								th:text="#{header.gui}"></span> <b class="caret"></b> </a>
 							<ul class="dropdown-menu">
-								<li th:classappend="${module == 'networks' ? 'active' : ''}">
+								<li sec:authorize="hasRole('ROLE_ADMIN')"  th:classappend="${module == 'account' ? 'active' : ''}">
+    								<a id="guiItemAccount" th:href="@{/accounts}" th:text="#{class.Account}"></a></li>
+								<li sec:authorize="hasRole('ROLE_ADMIN')"  th:classappend="${module == 'networks' ? 'active' : ''}">
     								<a id="guiItemNetworks" th:href="@{/networkss}" th:text="#{class.Networks}"></a></li>
-								<li th:classappend="${module == 'shows' ? 'active' : ''}">
+								<li sec:authorize="hasRole('ROLE_ADMIN')"  th:classappend="${module == 'shows' ? 'active' : ''}">
     								<a id="guiItemShows" th:href="@{/showss}" th:text="#{class.Shows}"></a></li>
 								<li th:classappend="${module == 'roamiosp' ? 'active' : ''}">
     								<a id="guiItemRoamiosp" th:href="@{/roamiosps}" th:text="#{class.Roamiosp}"></a></li>
+								<li th:classappend="${module == 'showsuser' ? 'active' : ''}">
+    								<a id="guiItemShowsuser" th:href="@{/showsusers}" th:text="#{class.Showsuser}"></a></li>
 								<li th:classappend="${module == 'cablecard' ? 'active' : ''}">
     								<a id="guiItemCablecard" th:href="@{/cablecards}" th:text="#{class.Cablecard}"></a></li>
+								<li th:classappend="${module == 'networksuser' ? 'active' : ''}">
+    								<a id="guiItemNetworksuser" th:href="@{/networksusers}" th:text="#{class.Networksuser}"></a></li>
 								<li th:classappend="${module == 'roamionpl' ? 'active' : ''}">
     								<a id="guiItemRoamionpl" th:href="@{/roamionpls}" th:text="#{class.Roamionpl}"></a></li>
 								<li th:classappend="${module == 'ota' ? 'active' : ''}">
@@ -41,14 +47,20 @@
 							class="dropdown-toggle" data-toggle="dropdown"><span
 								th:text="#{header.restApi}"></span> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li th:classappend="${module == 'networks' ? 'active' : ''}">
+								<li sec:authorize="hasRole('ROLE_ADMIN')"  th:classappend="${module == 'account' ? 'active' : ''}">
+    								<a id="apiItemAccount" th:href="@{/api/accounts}" th:text="#{class.Account}"></a></li>
+								<li sec:authorize="hasRole('ROLE_ADMIN')"  th:classappend="${module == 'networks' ? 'active' : ''}">
     								<a id="apiItemNetworks" th:href="@{/api/networkss}" th:text="#{class.Networks}"></a></li>
-								<li th:classappend="${module == 'shows' ? 'active' : ''}">
+								<li sec:authorize="hasRole('ROLE_ADMIN')"  th:classappend="${module == 'shows' ? 'active' : ''}">
     								<a id="apiItemShows" th:href="@{/api/showss}" th:text="#{class.Shows}"></a></li>
 								<li th:classappend="${module == 'roamiosp' ? 'active' : ''}">
     								<a id="apiItemRoamiosp" th:href="@{/api/roamiosps}" th:text="#{class.Roamiosp}"></a></li>
+								<li th:classappend="${module == 'showsuser' ? 'active' : ''}">
+    								<a id="apiItemShowsuser" th:href="@{/api/showsusers}" th:text="#{class.Showsuser}"></a></li>
 								<li th:classappend="${module == 'cablecard' ? 'active' : ''}">
     								<a id="apiItemCablecard" th:href="@{/api/cablecards}" th:text="#{class.Cablecard}"></a></li>
+								<li th:classappend="${module == 'networksuser' ? 'active' : ''}">
+    								<a id="apiItemNetworksuser" th:href="@{/api/networksusers}" th:text="#{class.Networksuser}"></a></li>
 								<li th:classappend="${module == 'roamionpl' ? 'active' : ''}">
     								<a id="apiItemRoamionpl" th:href="@{/api/roamionpls}" th:text="#{class.Roamionpl}"></a></li>
 								<li th:classappend="${module == 'ota' ? 'active' : ''}">

@@ -25,28 +25,43 @@
             <th th:text="#{Cablecard.colh}">Colh</th>
             <th th:text="#{Cablecard.dt}">Dt</th>
             <th th:text="#{Cablecard.hd}">Hd</th>
-            <th th:text="#{Cablecard.id}">id</th>
             <th th:text="#{Cablecard.innpl}">InNpl</th>
             <th th:text="#{Cablecard.lang}">Lang</th>
             <th th:text="#{Cablecard.net}">Net</th>
             <th th:text="#{Cablecard.od}">Od</th>
             <th th:text="#{Cablecard.receiving}">Receiving</th>
             <th th:text="#{Cablecard.shortfield}">ShortField</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.email}">Email</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.role}">Role</th>
             <th th:text="#{edit.actions}"></th>
 	        </tr>
 	        <tr th:each="cablecard:${cablecards}">
-	            <td th:text="${cablecard.channelname}"></td>
-	            <td th:text="${cablecard.channelnumber}"></td>
-	            <td th:text="${cablecard.colh}"></td>
-	            <td th:text="${cablecard.dt}"></td>
-	            <td th:text="${cablecard.hd}"></td>
-	            <td th:text="${cablecard.id}"></td>
-	            <td th:text="${cablecard.innpl}"></td>
-	            <td th:text="${cablecard.lang}"></td>
-	            <td th:text="${cablecard.net}"></td>
-	            <td th:text="${cablecard.od}"></td>
-	            <td th:text="${cablecard.receiving}"></td>
-	            <td th:text="${cablecard.shortfield}"></td>
+	            <td th:if="${cablecard != null}" th:text="${cablecard.channelname}"></td>
+				<td th:unless="${cablecard != null}"></td>
+	            <td th:if="${cablecard != null}" th:text="${cablecard.channelnumber}"></td>
+				<td th:unless="${cablecard != null}"></td>
+	            <td th:if="${cablecard != null}" th:text="${cablecard.colh}"></td>
+				<td th:unless="${cablecard != null}"></td>
+	            <td th:if="${cablecard != null}" th:text="${cablecard.dt}"></td>
+				<td th:unless="${cablecard != null}"></td>
+	            <td th:if="${cablecard != null}" th:text="${cablecard.hd}"></td>
+				<td th:unless="${cablecard != null}"></td>
+	            <td th:if="${cablecard != null}" th:text="${cablecard.innpl}"></td>
+				<td th:unless="${cablecard != null}"></td>
+	            <td th:if="${cablecard != null}" th:text="${cablecard.lang}"></td>
+				<td th:unless="${cablecard != null}"></td>
+	            <td th:if="${cablecard != null}" th:text="${cablecard.net}"></td>
+				<td th:unless="${cablecard != null}"></td>
+	            <td th:if="${cablecard != null}" th:text="${cablecard.od}"></td>
+				<td th:unless="${cablecard != null}"></td>
+	            <td th:if="${cablecard != null}" th:text="${cablecard.receiving}"></td>
+				<td th:unless="${cablecard != null}"></td>
+	            <td th:if="${cablecard != null}" th:text="${cablecard.shortfield}"></td>
+				<td th:unless="${cablecard != null}"></td>
+	            <td th:if="${cablecard.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${cablecard.account.email}"></td>
+				<td th:unless="${cablecard.account != null}"></td>
+	            <td th:if="${cablecard.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${cablecard.account.role}"></td>
+				<td th:unless="${cablecard.account != null}"></td>
 				<td><a th:href="@{'/cablecards/edit/' + ${cablecard.id}}" th:text="#{edit.edit}"></a>
 					&nbsp;&nbsp;&nbsp; <a th:href="@{'/cablecards/delete/' + ${cablecard.id}}" th:text="#{edit.delete}"></a>
 				</td>

@@ -15,146 +15,421 @@
 	<div th:replace="fragments/header :: header">&nbsp;</div>
 
 	<div class="container">
-		<h1 th:if="${ota.id == 0}"
-			th:text="#{edit.new} + ' ' + #{class.Ota}"></h1>
-		<h1 th:if="${ota.id > 0}"
-			th:text="#{edit.edit} + ' ' + #{class.Ota}"></h1>
-		<br />
-		<form action="#" th:action="@{/otas/save}" th:object="${ota}"
-			method="post">
+		<form class="form-narrow form-horizontal" method="post"
+			th:action="@{/otas/save}" th:object="${otaForm}"
+			th:fragment="otaForm">
+			<!--/* Show general error messages when form contains errors */-->
+			<th:block th:if="${#fields.hasErrors('${otaForm.*}')}">
+				<div th:each="fieldErrors : ${#fields.errors('${otaForm.*}')}">
+					<div th:each="message : ${fieldErrors.split(';')}">
+						<div
+							th:replace="fragments/alert :: alert (type='danger', message=${message})">Alert</div>
+					</div>
+				</div>
+			</th:block>
+			<fieldset>
+				<legend th:if="${otaForm.id == 0}"
+					th:text="#{edit.new} + ' ' + #{class.Ota}"></legend>
+				<legend th:if="${otaForm.id > 0}"
+					th:text="#{edit.edit} + ' ' + #{class.Ota}"></legend>
 
-			<table >
-				<tr th:if="${ota.id > 0}">				
-					<td th:text="#{Ota.id} + ':'">id:</td>
-					<td>
-						<input type="text" th:field="*{id}" readonly="readonly" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Chan:</td>
-					<td>
-						<input type="text" th:field="*{chan}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>ChannelName:</td>
-					<td>
-						<input type="text" th:field="*{channelname}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>ChannelNumber:</td>
-					<td>
-						<input type="text" th:field="*{channelnumber}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Comments:</td>
-					<td>
-						<input type="text" th:field="*{comments}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Direction:</td>
-					<td>
-						<input type="text" th:field="*{direction}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Enabled:</td>
-					<td>
-						<input type="text" th:field="*{enabled}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>FccInfo:</td>
-					<td>
-						<input type="text" th:field="*{fccinfo}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>FccInfoLink:</td>
-					<td>
-						<input type="text" th:field="*{fccinfolink}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Freq:</td>
-					<td>
-						<input type="text" th:field="*{freq}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Lang:</td>
-					<td>
-						<input type="text" th:field="*{lang}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Listed:</td>
-					<td>
-						<input type="text" th:field="*{listed}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>MyTivoAvgStrength:</td>
-					<td>
-						<input type="text" th:field="*{mytivoavgstrength}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Network:</td>
-					<td>
-						<input type="text" th:field="*{network}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Off:</td>
-					<td>
-						<input type="text" th:field="*{off}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>RecommendedAntenna:</td>
-					<td>
-						<input type="text" th:field="*{recommendedantenna}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Rez:</td>
-					<td>
-						<input type="text" th:field="*{rez}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Station:</td>
-					<td>
-						<input type="text" th:field="*{station}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>SubChan:</td>
-					<td>
-						<input type="text" th:field="*{subchan}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>TvFoolEstSignal:</td>
-					<td>
-						<input type="text" th:field="*{tvfoolestsignal}" />
-					</td>
-				</tr>
-				<tr>
-            		<td>Watchable:</td>
-					<td>
-						<input type="text" th:field="*{watchable}" />
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2"><button type="submit" name="action" value="save" th:text="#{edit.save}"></button> <button type="submit" name="action" value="cancel" th:text="#{edit.cancel}"></button></td>
-				</tr>
-			</table>
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('atticant')}? 'has-error'">
+					<label for="atticant" class="col-lg-2 control-label"
+						th:text="#{Ota.atticant} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="atticant"
+							th:field="*{atticant}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('atticant')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('chan')}? 'has-error'">
+					<label for="chan" class="col-lg-2 control-label"
+						th:text="#{Ota.chan} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="chan"
+							th:field="*{chan}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('chan')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('channelname')}? 'has-error'">
+					<label for="channelname" class="col-lg-2 control-label"
+						th:text="#{Ota.channelname} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="channelname"
+							th:field="*{channelname}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('channelname')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('channelnumber')}? 'has-error'">
+					<label for="channelnumber" class="col-lg-2 control-label"
+						th:text="#{Ota.channelnumber} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="channelnumber"
+							th:field="*{channelnumber}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('channelnumber')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('channelnumberchannelnameincluded')}? 'has-error'">
+					<label for="channelnumberchannelnameincluded" class="col-lg-2 control-label"
+						th:text="#{Ota.channelnumberchannelnameincluded} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="channelnumberchannelnameincluded"
+							th:field="*{channelnumberchannelnameincluded}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('channelnumberchannelnameincluded')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('comments')}? 'has-error'">
+					<label for="comments" class="col-lg-2 control-label"
+						th:text="#{Ota.comments} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="comments"
+							th:field="*{comments}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('comments')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('direction')}? 'has-error'">
+					<label for="direction" class="col-lg-2 control-label"
+						th:text="#{Ota.direction} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="direction"
+							th:field="*{direction}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('direction')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('enabled')}? 'has-error'">
+					<label for="enabled" class="col-lg-2 control-label"
+						th:text="#{Ota.enabled} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="enabled"
+							th:field="*{enabled}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('enabled')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('fccinfo')}? 'has-error'">
+					<label for="fccinfo" class="col-lg-2 control-label"
+						th:text="#{Ota.fccinfo} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="fccinfo"
+							th:field="*{fccinfo}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('fccinfo')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('fccinfolink')}? 'has-error'">
+					<label for="fccinfolink" class="col-lg-2 control-label"
+						th:text="#{Ota.fccinfolink} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="fccinfolink"
+							th:field="*{fccinfolink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('fccinfolink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('freq')}? 'has-error'">
+					<label for="freq" class="col-lg-2 control-label"
+						th:text="#{Ota.freq} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="freq"
+							th:field="*{freq}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('freq')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<input type="hidden" class="form-control" id="id" th:field="*{id}" />
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('lang')}? 'has-error'">
+					<label for="lang" class="col-lg-2 control-label"
+						th:text="#{Ota.lang} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="lang"
+							th:field="*{lang}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('lang')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('listed')}? 'has-error'">
+					<label for="listed" class="col-lg-2 control-label"
+						th:text="#{Ota.listed} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="listed"
+							th:field="*{listed}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('listed')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('mytivoavgstrength')}? 'has-error'">
+					<label for="mytivoavgstrength" class="col-lg-2 control-label"
+						th:text="#{Ota.mytivoavgstrength} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="mytivoavgstrength"
+							th:field="*{mytivoavgstrength}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('mytivoavgstrength')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('network')}? 'has-error'">
+					<label for="network" class="col-lg-2 control-label"
+						th:text="#{Ota.network} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="network"
+							th:field="*{network}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('network')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('off')}? 'has-error'">
+					<label for="off" class="col-lg-2 control-label"
+						th:text="#{Ota.off} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="off"
+							th:field="*{off}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('off')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('recommendedantenna')}? 'has-error'">
+					<label for="recommendedantenna" class="col-lg-2 control-label"
+						th:text="#{Ota.recommendedantenna} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="recommendedantenna"
+							th:field="*{recommendedantenna}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('recommendedantenna')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('rez')}? 'has-error'">
+					<label for="rez" class="col-lg-2 control-label"
+						th:text="#{Ota.rez} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="rez"
+							th:field="*{rez}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('rez')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('shelfant')}? 'has-error'">
+					<label for="shelfant" class="col-lg-2 control-label"
+						th:text="#{Ota.shelfant} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="shelfant"
+							th:field="*{shelfant}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('shelfant')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('station')}? 'has-error'">
+					<label for="station" class="col-lg-2 control-label"
+						th:text="#{Ota.station} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="station"
+							th:field="*{station}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('station')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('subchan')}? 'has-error'">
+					<label for="subchan" class="col-lg-2 control-label"
+						th:text="#{Ota.subchan} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="subchan"
+							th:field="*{subchan}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('subchan')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('tvfoolestsignal')}? 'has-error'">
+					<label for="tvfoolestsignal" class="col-lg-2 control-label"
+						th:text="#{Ota.tvfoolestsignal} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="tvfoolestsignal"
+							th:field="*{tvfoolestsignal}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('tvfoolestsignal')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="otaForm.account.email" class="col-lg-2 control-label"
+						th:text="#{Account.email} + ':'"></label>
+					<div th:if="${otaForm.account != null}" class="col-lg-10" id="otaForm.account.email"
+	                        th:text="${otaForm.account.email}">
+					</div>
+				<div th:unless="${otaForm.account != null}" th:text="${otaForm.account}"></div>
+				</div>
+				<input type="hidden" class="form-control" id="account.id" th:field="*{account.id}" />
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="otaForm.account.role" class="col-lg-2 control-label"
+						th:text="#{Account.role} + ':'"></label>
+					<div th:if="${otaForm.account != null}" class="col-lg-10" id="otaForm.account.role"
+	                        th:text="${otaForm.account.role}">
+					</div>
+				<div th:unless="${otaForm.account != null}" th:text="${otaForm.account}"></div>
+				</div>
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('watchable')}? 'has-error'">
+					<label for="watchable" class="col-lg-2 control-label"
+						th:text="#{Ota.watchable} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="watchable"
+							th:field="*{watchable}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('watchable')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+						<button type="submit" name="action" value="save"
+							class="btn btn-default" th:text="#{edit.save}"></button>
+						<button type="submit" name="action" value="cancel" class="btn"
+							th:text="#{edit.cancel}"></button>
+					</div>
+				</div>
+			</fieldset>
 		</form>
 	</div>
+
 	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
 </body></html>

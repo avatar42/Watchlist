@@ -21,32 +21,74 @@
 	    <table>
 	        <tr>
             <th th:text="#{Roamionpl.bitratembps}">BitrateMbps</th>
+            <th th:text="#{Roamionpl.chan}">Chan</th>
             <th th:text="#{Roamionpl.channel}">Channel</th>
             <th th:text="#{Roamionpl.date}">Date</th>
             <th th:text="#{Roamionpl.duration}">Duration</th>
             <th th:text="#{Roamionpl.episode}">Episode</th>
-            <th th:text="#{Roamionpl.id}">id</th>
+            <th th:text="#{Roamionpl.f}">F</th>
+            <th th:text="#{Roamionpl.innetworkstab}">InNetworksTab</th>
             <th th:text="#{Roamionpl.isnew}">Isnew</th>
+            <th th:text="#{Roamionpl.isseries}">IsSeries</th>
+            <th th:text="#{Roamionpl.network}">Network</th>
+            <th th:text="#{Roamionpl.rowinshows}">RowInShows</th>
+            <th th:text="#{Roamionpl.seriesep}">Seriesep</th>
             <th th:text="#{Roamionpl.show}">Show</th>
             <th th:text="#{Roamionpl.sizegb}">SizeGb</th>
             <th th:text="#{Roamionpl.sortabledate}">SortableDate</th>
+            <th th:text="#{Roamionpl.spchannel0nosp}">SpChannel0NoSp</th>
             <th th:text="#{Roamionpl.title}">Title</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.email}">Email</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.role}">Role</th>
+            <th th:text="#{Roamionpl.watched}">Watched</th>
             <th th:text="#{Roamionpl.watchedtime}">Watchedtime</th>
             <th th:text="#{edit.actions}"></th>
 	        </tr>
 	        <tr th:each="roamionpl:${roamionpls}">
-	            <td th:text="${roamionpl.bitratembps}"></td>
-	            <td th:text="${roamionpl.channel}"></td>
-	            <td th:text="${roamionpl.date}"></td>
-	            <td th:text="${roamionpl.duration}"></td>
-	            <td th:text="${roamionpl.episode}"></td>
-	            <td th:text="${roamionpl.id}"></td>
-	            <td th:text="${roamionpl.isnew}"></td>
-	            <td th:text="${roamionpl.show}"></td>
-	            <td th:text="${roamionpl.sizegb}"></td>
-	            <td th:text="${roamionpl.sortabledate}"></td>
-	            <td th:text="${roamionpl.title}"></td>
-	            <td th:text="${roamionpl.watchedtime}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.bitratembps}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.chan}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.channel}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.date}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.duration}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.episode}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.f}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.innetworkstab}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.isnew}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.isseries}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.network}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.rowinshows}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.seriesep}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.show}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.sizegb}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.sortabledate}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.spchannel0nosp}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.title}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${roamionpl.account.email}"></td>
+				<td th:unless="${roamionpl.account != null}"></td>
+	            <td th:if="${roamionpl.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${roamionpl.account.role}"></td>
+				<td th:unless="${roamionpl.account != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.watched}"></td>
+				<td th:unless="${roamionpl != null}"></td>
+	            <td th:if="${roamionpl != null}" th:text="${roamionpl.watchedtime}"></td>
+				<td th:unless="${roamionpl != null}"></td>
 				<td><a th:href="@{'/roamionpls/edit/' + ${roamionpl.id}}" th:text="#{edit.edit}"></a>
 					&nbsp;&nbsp;&nbsp; <a th:href="@{'/roamionpls/delete/' + ${roamionpl.id}}" th:text="#{edit.delete}"></a>
 				</td>

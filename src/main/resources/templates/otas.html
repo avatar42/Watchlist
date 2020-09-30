@@ -20,15 +20,16 @@
 
 	    <table>
 	        <tr>
+            <th th:text="#{Ota.atticant}">AtticAnt</th>
             <th th:text="#{Ota.chan}">Chan</th>
             <th th:text="#{Ota.channelname}">ChannelName</th>
             <th th:text="#{Ota.channelnumber}">ChannelNumber</th>
+            <th th:text="#{Ota.channelnumberchannelnameincluded}">ChannelNumberChannelNameIncluded</th>
             <th th:text="#{Ota.comments}">Comments</th>
             <th th:text="#{Ota.direction}">Direction</th>
             <th th:text="#{Ota.enabled}">Enabled</th>
             <th th:text="#{Ota.fccinfo}">FccInfo</th>
             <th th:text="#{Ota.freq}">Freq</th>
-            <th th:text="#{Ota.id}">id</th>
             <th th:text="#{Ota.lang}">Lang</th>
             <th th:text="#{Ota.listed}">Listed</th>
             <th th:text="#{Ota.mytivoavgstrength}">MyTivoAvgStrength</th>
@@ -36,33 +37,64 @@
             <th th:text="#{Ota.off}">Off</th>
             <th th:text="#{Ota.recommendedantenna}">RecommendedAntenna</th>
             <th th:text="#{Ota.rez}">Rez</th>
+            <th th:text="#{Ota.shelfant}">ShelfAnt</th>
             <th th:text="#{Ota.station}">Station</th>
             <th th:text="#{Ota.subchan}">SubChan</th>
             <th th:text="#{Ota.tvfoolestsignal}">TvFoolEstSignal</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.email}">Email</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.role}">Role</th>
             <th th:text="#{Ota.watchable}">Watchable</th>
             <th th:text="#{edit.actions}"></th>
 	        </tr>
 	        <tr th:each="ota:${otas}">
-	            <td th:text="${ota.chan}"></td>
-	            <td th:text="${ota.channelname}"></td>
-	            <td th:text="${ota.channelnumber}"></td>
-	            <td th:text="${ota.comments}"></td>
-	            <td th:text="${ota.direction}"></td>
-	            <td th:text="${ota.enabled}"></td>
-	            <td><a th:href="@{${ota.fccinfolink}}" th:text="${ota.fccinfo}"></a></td>
-	            <td th:text="${ota.freq}"></td>
-	            <td th:text="${ota.id}"></td>
-	            <td th:text="${ota.lang}"></td>
-	            <td th:text="${ota.listed}"></td>
-	            <td th:text="${ota.mytivoavgstrength}"></td>
-	            <td th:text="${ota.network}"></td>
-	            <td th:text="${ota.off}"></td>
-	            <td th:text="${ota.recommendedantenna}"></td>
-	            <td th:text="${ota.rez}"></td>
-	            <td th:text="${ota.station}"></td>
-	            <td th:text="${ota.subchan}"></td>
-	            <td th:text="${ota.tvfoolestsignal}"></td>
-	            <td th:text="${ota.watchable}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.atticant}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.chan}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.channelname}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.channelnumber}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.channelnumberchannelnameincluded}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.comments}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.direction}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.enabled}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}"><a th:href="@{${ota.fccinfolink}}" th:text="${ota.fccinfo}"></a></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.freq}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.lang}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.listed}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.mytivoavgstrength}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.network}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.off}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.recommendedantenna}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.rez}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.shelfant}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.station}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.subchan}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.tvfoolestsignal}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${ota.account.email}"></td>
+				<td th:unless="${ota.account != null}"></td>
+	            <td th:if="${ota.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${ota.account.role}"></td>
+				<td th:unless="${ota.account != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.watchable}"></td>
+				<td th:unless="${ota != null}"></td>
 				<td><a th:href="@{'/otas/edit/' + ${ota.id}}" th:text="#{edit.edit}"></a>
 					&nbsp;&nbsp;&nbsp; <a th:href="@{'/otas/delete/' + ${ota.id}}" th:text="#{edit.delete}"></a>
 				</td>

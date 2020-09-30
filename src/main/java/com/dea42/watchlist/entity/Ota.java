@@ -1,64 +1,102 @@
 package com.dea42.watchlist.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import java.math.BigDecimal;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * Title: ota Bean <br>
  * Description: Class for holding data from the ota table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.2.2<br>
- * @version 1.0<br>
- */
+ * @author Gened by com.dea42.build.GenSpring version 0.4.1<br>
+ * @version 1.0.0<br>
+ * Table name: ota<br>
+ * Column name: id<br>
+ * Catalog name: null<br>
+ * Primary key sequence: 0<br>
+ * Primary key name: null<br>
+ *  <br> * Userid => foreign key column name<br>
+ * null => primary key table catalog being imported (may be null)<br>
+ * null => primary key table schema being imported (may be null) <br>
+ * Account => primary key table name being imported <br>
+ * id => primary key column name being imported<br>
+ * null => foreign key table catalog (may be null)<br>
+ * null => foreign key table schema (may be null)<br>
+ * ota => foreign key table name <br>
+ * 1 => sequence number within a foreign key( a valueof 1 represents the first column of the foreign key, a value of 2 would represent the second column within the foreign key).<br>
+ * 3 => What happens to a foreign key when the primary key is updated:<br>
+ * 3 => What happens to the foreign key when primary is deleted.<br>
+ *  => foreign key name (may be null) <br>
+ *  => primary key name (may be null) <br>
+ * 5 DEFERRABILITY<br>
+ *  <br> */
 @Entity
-@Table(name = "ota")
+@Table(name = "`ota`")
 public class Ota implements Serializable {
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-	@Column(name="Chan")
+	@Column(name = "AtticAnt")
+	private Integer atticant;
+	@Column(name = "Chan")
 	private Integer chan;
-	@Column(name="ChannelName", length=9)
+	@Column(name = "ChannelName", length = 9)
 	private String channelname;
-	@Column(name="ChannelNumber")
-	private Float channelnumber;
-	@Column(name="Comments", length=31)
+	@Column(name = "ChannelNumber")
+	private BigDecimal channelnumber;
+	@Column(name = "ChannelNumberChannelNameIncluded", length = 17)
+	private String channelnumberchannelnameincluded;
+	@Column(name = "Comments", length = 31)
 	private String comments;
-	@Column(name="Direction", length=4)
+	@Column(name = "Direction", length = 4)
 	private String direction;
-	@Column(name="Enabled", length=3)
+	@Column(name = "Enabled", length = 3)
 	private String enabled;
-	@Column(name="FccInfo", length=9)
+	@Column(name = "FccInfo", length = 9)
 	private String fccinfo;
-	@Column(name="FccInfoLink", length=6)
+	@Column(name = "FccInfoLink", length = 6)
 	private String fccinfolink;
-	@Column(name="Freq")
+	@Column(name = "Freq")
 	private Integer freq;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name = "id", nullable = false)
 	private Integer id;
-	@Column(name="Lang", length=2)
+	@Column(name = "Lang", length = 2)
 	private String lang;
-	@Column(name="Listed")
+	@Column(name = "Listed")
 	private Integer listed;
-	@Column(name="MyTivoAvgStrength")
+	@Column(name = "MyTivoAvgStrength")
 	private Integer mytivoavgstrength;
-	@Column(name="Network", length=8)
+	@Column(name = "Network", length = 8)
 	private String network;
-	@Column(name="Off", length=3)
+	@Column(name = "Off", length = 3)
 	private String off;
-	@Column(name="RecommendedAntenna", length=41)
+	@Column(name = "RecommendedAntenna", length = 41)
 	private String recommendedantenna;
-	@Column(name="Rez", length=5)
+	@Column(name = "Rez", length = 5)
 	private String rez;
-	@Column(name="Station", length=9)
+	@Column(name = "ShelfAnt", length = 20)
+	private String shelfant;
+	@Column(name = "Station", length = 9)
 	private String station;
-	@Column(name="SubChan")
+	@Column(name = "SubChan")
 	private Integer subchan;
-	@Column(name="TvFoolEstSignal", length=4)
+	@Column(name = "TvFoolEstSignal", length = 4)
 	private String tvfoolestsignal;
-	@Column(name="Watchable", length=4)
+	@ManyToOne
+	@JoinColumn(name = "Userid", referencedColumnName = "id")
+	private Account account;
+	@Column(name = "Watchable", length = 4)
 	private String watchable;
 
 	/**
@@ -71,10 +109,12 @@ private static final long serialVersionUID = 1L;
 	 * Full constructor
 	 *
 	 */
-	public Ota(Integer chan, String channelname, Float channelnumber, String comments, String direction, String enabled, String fccinfo, String fccinfolink, Integer freq, Integer id, String lang, Integer listed, Integer mytivoavgstrength, String network, String off, String recommendedantenna, String rez, String station, Integer subchan, String tvfoolestsignal, String watchable) {
+	public Ota(Integer atticant, Integer chan, String channelname, BigDecimal channelnumber, String channelnumberchannelnameincluded, String comments, String direction, String enabled, String fccinfo, String fccinfolink, Integer freq, Integer id, String lang, Integer listed, Integer mytivoavgstrength, String network, String off, String recommendedantenna, String rez, String shelfant, String station, Integer subchan, String tvfoolestsignal, String watchable) {
+		this.atticant = atticant;
 		this.chan = chan;
 		this.channelname = channelname;
 		this.channelnumber = channelnumber;
+		this.channelnumberchannelnameincluded = channelnumberchannelnameincluded;
 		this.comments = comments;
 		this.direction = direction;
 		this.enabled = enabled;
@@ -89,18 +129,38 @@ private static final long serialVersionUID = 1L;
 		this.off = off;
 		this.recommendedantenna = recommendedantenna;
 		this.rez = rez;
+		this.shelfant = shelfant;
 		this.station = station;
 		this.subchan = subchan;
 		this.tvfoolestsignal = tvfoolestsignal;
 		this.watchable = watchable;
 	}
 	/**
+	 * returns value of the AtticAnt column of this row of data
+	 *
+	 * @return value of this column in this row
+	 */
+	public Integer getAtticant() {
+		if (atticant == null)
+	    	return 0;
+		return atticant.intValue();
+	}
+
+	/**
+	 * sets value of the AtticAnt column of this row of data
+	 * default value for this field set by the DB is null
+	 */
+	public void setAtticant(Integer newVal) {
+		atticant = newVal;
+	}
+
+	/**
 	 * returns value of the Chan column of this row of data
 	 *
 	 * @return value of this column in this row
 	 */
 	public Integer getChan() {
-		if (chan== null)
+		if (chan == null)
 	    	return 0;
 		return chan.intValue();
 	}
@@ -125,14 +185,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the ChannelName column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 9, longer strings will be truncated
+	 * This field has a max length of 9
 	 */
 	public void setChannelname(String newVal) {
-		if (channelname != null && channelname.length() > 9){
-			channelname = newVal.substring(0,8);
-		} else {
-	    	channelname = newVal;
-		}
+		channelname = newVal;
 	}
 
 	/**
@@ -140,18 +196,36 @@ private static final long serialVersionUID = 1L;
 	 *
 	 * @return value of this column in this row
 	 */
-	public Float getChannelnumber() {
-		if (channelnumber== null)
-	    	return 0.0f;
-		return channelnumber.floatValue();
+	public BigDecimal getChannelnumber() {
+		if (channelnumber == null)
+	    	return BigDecimal.ZERO;
+		return channelnumber;
 	}
 
 	/**
 	 * sets value of the ChannelNumber column of this row of data
 	 * default value for this field set by the DB is null
 	 */
-	public void setChannelnumber(Float newVal) {
+	public void setChannelnumber(BigDecimal newVal) {
 		channelnumber = newVal;
+	}
+
+	/**
+	 * returns value of the ChannelNumberChannelNameIncluded column of this row of data
+	 *
+	 * @return value of this column in this row
+	 */
+	public String getChannelnumberchannelnameincluded() {
+		return channelnumberchannelnameincluded;
+	}
+
+	/**
+	 * sets value of the ChannelNumberChannelNameIncluded column of this row of data
+	 * default value for this field set by the DB is null
+	 * This field has a max length of 17
+	 */
+	public void setChannelnumberchannelnameincluded(String newVal) {
+		channelnumberchannelnameincluded = newVal;
 	}
 
 	/**
@@ -166,14 +240,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the Comments column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 31, longer strings will be truncated
+	 * This field has a max length of 31
 	 */
 	public void setComments(String newVal) {
-		if (comments != null && comments.length() > 31){
-			comments = newVal.substring(0,30);
-		} else {
-	    	comments = newVal;
-		}
+		comments = newVal;
 	}
 
 	/**
@@ -188,14 +258,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the Direction column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 4, longer strings will be truncated
+	 * This field has a max length of 4
 	 */
 	public void setDirection(String newVal) {
-		if (direction != null && direction.length() > 4){
-			direction = newVal.substring(0,3);
-		} else {
-	    	direction = newVal;
-		}
+		direction = newVal;
 	}
 
 	/**
@@ -210,14 +276,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the Enabled column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 3, longer strings will be truncated
+	 * This field has a max length of 3
 	 */
 	public void setEnabled(String newVal) {
-		if (enabled != null && enabled.length() > 3){
-			enabled = newVal.substring(0,2);
-		} else {
-	    	enabled = newVal;
-		}
+		enabled = newVal;
 	}
 
 	/**
@@ -232,14 +294,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the FccInfo column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 9, longer strings will be truncated
+	 * This field has a max length of 9
 	 */
 	public void setFccinfo(String newVal) {
-		if (fccinfo != null && fccinfo.length() > 9){
-			fccinfo = newVal.substring(0,8);
-		} else {
-	    	fccinfo = newVal;
-		}
+		fccinfo = newVal;
 	}
 
 	/**
@@ -254,14 +312,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the FccInfoLink column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 6, longer strings will be truncated
+	 * This field has a max length of 6
 	 */
 	public void setFccinfolink(String newVal) {
-		if (fccinfolink != null && fccinfolink.length() > 6){
-			fccinfolink = newVal.substring(0,5);
-		} else {
-	    	fccinfolink = newVal;
-		}
+		fccinfolink = newVal;
 	}
 
 	/**
@@ -270,7 +324,7 @@ private static final long serialVersionUID = 1L;
 	 * @return value of this column in this row
 	 */
 	public Integer getFreq() {
-		if (freq== null)
+		if (freq == null)
 	    	return 0;
 		return freq.intValue();
 	}
@@ -289,7 +343,7 @@ private static final long serialVersionUID = 1L;
 	 * @return value of this column in this row
 	 */
 	public Integer getId() {
-		if (id== null)
+		if (id == null)
 	    	return 0;
 		return id.intValue();
 	}
@@ -315,14 +369,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the Lang column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 2, longer strings will be truncated
+	 * This field has a max length of 2
 	 */
 	public void setLang(String newVal) {
-		if (lang != null && lang.length() > 2){
-			lang = newVal.substring(0,1);
-		} else {
-	    	lang = newVal;
-		}
+		lang = newVal;
 	}
 
 	/**
@@ -331,7 +381,7 @@ private static final long serialVersionUID = 1L;
 	 * @return value of this column in this row
 	 */
 	public Integer getListed() {
-		if (listed== null)
+		if (listed == null)
 	    	return 0;
 		return listed.intValue();
 	}
@@ -350,7 +400,7 @@ private static final long serialVersionUID = 1L;
 	 * @return value of this column in this row
 	 */
 	public Integer getMytivoavgstrength() {
-		if (mytivoavgstrength== null)
+		if (mytivoavgstrength == null)
 	    	return 0;
 		return mytivoavgstrength.intValue();
 	}
@@ -375,14 +425,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the Network column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 8, longer strings will be truncated
+	 * This field has a max length of 8
 	 */
 	public void setNetwork(String newVal) {
-		if (network != null && network.length() > 8){
-			network = newVal.substring(0,7);
-		} else {
-	    	network = newVal;
-		}
+		network = newVal;
 	}
 
 	/**
@@ -397,14 +443,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the Off column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 3, longer strings will be truncated
+	 * This field has a max length of 3
 	 */
 	public void setOff(String newVal) {
-		if (off != null && off.length() > 3){
-			off = newVal.substring(0,2);
-		} else {
-	    	off = newVal;
-		}
+		off = newVal;
 	}
 
 	/**
@@ -419,14 +461,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the RecommendedAntenna column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 41, longer strings will be truncated
+	 * This field has a max length of 41
 	 */
 	public void setRecommendedantenna(String newVal) {
-		if (recommendedantenna != null && recommendedantenna.length() > 41){
-			recommendedantenna = newVal.substring(0,40);
-		} else {
-	    	recommendedantenna = newVal;
-		}
+		recommendedantenna = newVal;
 	}
 
 	/**
@@ -441,14 +479,28 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the Rez column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 5, longer strings will be truncated
+	 * This field has a max length of 5
 	 */
 	public void setRez(String newVal) {
-		if (rez != null && rez.length() > 5){
-			rez = newVal.substring(0,4);
-		} else {
-	    	rez = newVal;
-		}
+		rez = newVal;
+	}
+
+	/**
+	 * returns value of the ShelfAnt column of this row of data
+	 *
+	 * @return value of this column in this row
+	 */
+	public String getShelfant() {
+		return shelfant;
+	}
+
+	/**
+	 * sets value of the ShelfAnt column of this row of data
+	 * default value for this field set by the DB is null
+	 * This field has a max length of 20
+	 */
+	public void setShelfant(String newVal) {
+		shelfant = newVal;
 	}
 
 	/**
@@ -463,14 +515,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the Station column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 9, longer strings will be truncated
+	 * This field has a max length of 9
 	 */
 	public void setStation(String newVal) {
-		if (station != null && station.length() > 9){
-			station = newVal.substring(0,8);
-		} else {
-	    	station = newVal;
-		}
+		station = newVal;
 	}
 
 	/**
@@ -479,7 +527,7 @@ private static final long serialVersionUID = 1L;
 	 * @return value of this column in this row
 	 */
 	public Integer getSubchan() {
-		if (subchan== null)
+		if (subchan == null)
 	    	return 0;
 		return subchan.intValue();
 	}
@@ -504,14 +552,27 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the TvFoolEstSignal column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 4, longer strings will be truncated
+	 * This field has a max length of 4
 	 */
 	public void setTvfoolestsignal(String newVal) {
-		if (tvfoolestsignal != null && tvfoolestsignal.length() > 4){
-			tvfoolestsignal = newVal.substring(0,3);
-		} else {
-	    	tvfoolestsignal = newVal;
-		}
+		tvfoolestsignal = newVal;
+	}
+
+	/**
+	 * returns value of the Userid column of this row of data
+	 *
+	 * @return value of this column in this row
+	 */
+	public Account getAccount() {
+		return account;
+	}
+
+	/**
+	 * sets value of the Userid column of this row of data
+	 * default value for this field set by the DB is null
+	 */
+	public void setAccount(Account newVal) {
+		account = newVal;
 	}
 
 	/**
@@ -526,14 +587,10 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * sets value of the Watchable column of this row of data
 	 * default value for this field set by the DB is null
-	 * This field has a max length of 4, longer strings will be truncated
+	 * This field has a max length of 4
 	 */
 	public void setWatchable(String newVal) {
-		if (watchable != null && watchable.length() > 4){
-			watchable = newVal.substring(0,3);
-		} else {
-	    	watchable = newVal;
-		}
+		watchable = newVal;
 	}
 
 	/**
@@ -542,30 +599,236 @@ private static final long serialVersionUID = 1L;
 	 * @return String
 	 */
 	public String toString(){
-		StringBuffer sb = new StringBuffer();
-		sb.append("chan= " + chan+'\n');
-		sb.append("channelname= " + channelname+'\n');
-		sb.append("channelnumber= " + channelnumber+'\n');
-		sb.append("comments= " + comments+'\n');
-		sb.append("direction= " + direction+'\n');
-		sb.append("enabled= " + enabled+'\n');
-		sb.append("fccinfo= " + fccinfo+'\n');
-		sb.append("fccinfolink= " + fccinfolink+'\n');
-		sb.append("freq= " + freq+'\n');
-		sb.append("id= " + id+'\n');
-		sb.append("lang= " + lang+'\n');
-		sb.append("listed= " + listed+'\n');
-		sb.append("mytivoavgstrength= " + mytivoavgstrength+'\n');
-		sb.append("network= " + network+'\n');
-		sb.append("off= " + off+'\n');
-		sb.append("recommendedantenna= " + recommendedantenna+'\n');
-		sb.append("rez= " + rez+'\n');
-		sb.append("station= " + station+'\n');
-		sb.append("subchan= " + subchan+'\n');
-		sb.append("tvfoolestsignal= " + tvfoolestsignal+'\n');
-		sb.append("watchable= " + watchable+'\n');
-		return sb.toString();
+		StringBuilder builder = new StringBuilder();
+		builder.append("Ota [");
+		builder.append("atticant=").append(atticant);
+		builder.append(", chan=").append(chan);
+		builder.append(", channelname=").append(channelname);
+		builder.append(", channelnumber=").append(channelnumber);
+		builder.append(", channelnumberchannelnameincluded=").append(channelnumberchannelnameincluded);
+		builder.append(", comments=").append(comments);
+		builder.append(", direction=").append(direction);
+		builder.append(", enabled=").append(enabled);
+		builder.append(", fccinfo=").append(fccinfo);
+		builder.append(", fccinfolink=").append(fccinfolink);
+		builder.append(", freq=").append(freq);
+		builder.append(", id=").append(id);
+		builder.append(", lang=").append(lang);
+		builder.append(", listed=").append(listed);
+		builder.append(", mytivoavgstrength=").append(mytivoavgstrength);
+		builder.append(", network=").append(network);
+		builder.append(", off=").append(off);
+		builder.append(", recommendedantenna=").append(recommendedantenna);
+		builder.append(", rez=").append(rez);
+		builder.append(", shelfant=").append(shelfant);
+		builder.append(", station=").append(station);
+		builder.append(", subchan=").append(subchan);
+		builder.append(", tvfoolestsignal=").append(tvfoolestsignal);
+		builder.append(", account=").append(account);
+		builder.append(", watchable=").append(watchable);
+		builder.append("]");
+		return builder.toString();
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+
+		result = prime * result + ((atticant == null) ? 0 : atticant.hashCode());
+		result = prime * result + ((chan == null) ? 0 : chan.hashCode());
+		result = prime * result + ((channelname == null) ? 0 : channelname.hashCode());
+		result = prime * result + ((channelnumber == null) ? 0 : channelnumber.hashCode());
+		result = prime * result + ((channelnumberchannelnameincluded == null) ? 0 : channelnumberchannelnameincluded.hashCode());
+		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
+		result = prime * result + ((direction == null) ? 0 : direction.hashCode());
+		result = prime * result + ((enabled == null) ? 0 : enabled.hashCode());
+		result = prime * result + ((fccinfo == null) ? 0 : fccinfo.hashCode());
+		result = prime * result + ((fccinfolink == null) ? 0 : fccinfolink.hashCode());
+		result = prime * result + ((freq == null) ? 0 : freq.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((lang == null) ? 0 : lang.hashCode());
+		result = prime * result + ((listed == null) ? 0 : listed.hashCode());
+		result = prime * result + ((mytivoavgstrength == null) ? 0 : mytivoavgstrength.hashCode());
+		result = prime * result + ((network == null) ? 0 : network.hashCode());
+		result = prime * result + ((off == null) ? 0 : off.hashCode());
+		result = prime * result + ((recommendedantenna == null) ? 0 : recommendedantenna.hashCode());
+		result = prime * result + ((rez == null) ? 0 : rez.hashCode());
+		result = prime * result + ((shelfant == null) ? 0 : shelfant.hashCode());
+		result = prime * result + ((station == null) ? 0 : station.hashCode());
+		result = prime * result + ((subchan == null) ? 0 : subchan.hashCode());
+		result = prime * result + ((tvfoolestsignal == null) ? 0 : tvfoolestsignal.hashCode());
+		result = prime * result + ((account == null) ? 0 : account.hashCode());
+		result = prime * result + ((watchable == null) ? 0 : watchable.hashCode());
+		return result;
+	}
+
+	/**
+	 * Mainly for mock testing
+	 *
+	 * @return boolean
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ota other = (Ota) obj;
+
+		if (getAtticant() == null) {
+			if (other.getAtticant() != null)
+				return false;
+		} else if (!getAtticant().equals(other.getAtticant()))
+			return false;
+
+		if (getChan() == null) {
+			if (other.getChan() != null)
+				return false;
+		} else if (!getChan().equals(other.getChan()))
+			return false;
+
+		if (getChannelname() == null) {
+			if (other.getChannelname() != null)
+				return false;
+		} else if (!getChannelname().equals(other.getChannelname()))
+			return false;
+
+		if (getChannelnumber() == null) {
+			if (other.getChannelnumber() != null)
+				return false;
+		} else if (!getChannelnumber().equals(other.getChannelnumber()))
+			return false;
+
+		if (getChannelnumberchannelnameincluded() == null) {
+			if (other.getChannelnumberchannelnameincluded() != null)
+				return false;
+		} else if (!getChannelnumberchannelnameincluded().equals(other.getChannelnumberchannelnameincluded()))
+			return false;
+
+		if (getComments() == null) {
+			if (other.getComments() != null)
+				return false;
+		} else if (!getComments().equals(other.getComments()))
+			return false;
+
+		if (getDirection() == null) {
+			if (other.getDirection() != null)
+				return false;
+		} else if (!getDirection().equals(other.getDirection()))
+			return false;
+
+		if (getEnabled() == null) {
+			if (other.getEnabled() != null)
+				return false;
+		} else if (!getEnabled().equals(other.getEnabled()))
+			return false;
+
+		if (getFccinfo() == null) {
+			if (other.getFccinfo() != null)
+				return false;
+		} else if (!getFccinfo().equals(other.getFccinfo()))
+			return false;
+
+		if (getFccinfolink() == null) {
+			if (other.getFccinfolink() != null)
+				return false;
+		} else if (!getFccinfolink().equals(other.getFccinfolink()))
+			return false;
+
+		if (getFreq() == null) {
+			if (other.getFreq() != null)
+				return false;
+		} else if (!getFreq().equals(other.getFreq()))
+			return false;
+
+		if (getId() == null) {
+			if (other.getId() != null)
+				return false;
+		} else if (!getId().equals(other.getId()))
+			return false;
+
+		if (getLang() == null) {
+			if (other.getLang() != null)
+				return false;
+		} else if (!getLang().equals(other.getLang()))
+			return false;
+
+		if (getListed() == null) {
+			if (other.getListed() != null)
+				return false;
+		} else if (!getListed().equals(other.getListed()))
+			return false;
+
+		if (getMytivoavgstrength() == null) {
+			if (other.getMytivoavgstrength() != null)
+				return false;
+		} else if (!getMytivoavgstrength().equals(other.getMytivoavgstrength()))
+			return false;
+
+		if (getNetwork() == null) {
+			if (other.getNetwork() != null)
+				return false;
+		} else if (!getNetwork().equals(other.getNetwork()))
+			return false;
+
+		if (getOff() == null) {
+			if (other.getOff() != null)
+				return false;
+		} else if (!getOff().equals(other.getOff()))
+			return false;
+
+		if (getRecommendedantenna() == null) {
+			if (other.getRecommendedantenna() != null)
+				return false;
+		} else if (!getRecommendedantenna().equals(other.getRecommendedantenna()))
+			return false;
+
+		if (getRez() == null) {
+			if (other.getRez() != null)
+				return false;
+		} else if (!getRez().equals(other.getRez()))
+			return false;
+
+		if (getShelfant() == null) {
+			if (other.getShelfant() != null)
+				return false;
+		} else if (!getShelfant().equals(other.getShelfant()))
+			return false;
+
+		if (getStation() == null) {
+			if (other.getStation() != null)
+				return false;
+		} else if (!getStation().equals(other.getStation()))
+			return false;
+
+		if (getSubchan() == null) {
+			if (other.getSubchan() != null)
+				return false;
+		} else if (!getSubchan().equals(other.getSubchan()))
+			return false;
+
+		if (getTvfoolestsignal() == null) {
+			if (other.getTvfoolestsignal() != null)
+				return false;
+		} else if (!getTvfoolestsignal().equals(other.getTvfoolestsignal()))
+			return false;
+
+		if (getAccount() == null) {
+			if (other.getAccount() != null)
+				return false;
+		} else if (!getAccount().equals(other.getAccount()))
+			return false;
+
+		if (getWatchable() == null) {
+			if (other.getWatchable() != null)
+				return false;
+		} else if (!getWatchable().equals(other.getWatchable()))
+			return false;
+
+		return true;
+	}
 
 }

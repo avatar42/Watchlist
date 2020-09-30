@@ -21,24 +21,59 @@
 	    <table>
 	        <tr>
             <th th:text="#{Roamiotodo.channel}">Channel</th>
+            <th th:text="#{Roamiotodo.coli}">Coli</th>
             <th th:text="#{Roamiotodo.date}">Date</th>
             <th th:text="#{Roamiotodo.duration}">Duration</th>
             <th th:text="#{Roamiotodo.ep}">Ep</th>
+            <th th:text="#{Roamiotodo.epdate}">EpDate</th>
+            <th th:text="#{Roamiotodo.episode}">Episode</th>
             <th th:text="#{Roamiotodo.episodename}">EpisodeName</th>
-            <th th:text="#{Roamiotodo.id}">id</th>
+            <th th:text="#{Roamiotodo.epname2}">Epname2</th>
+            <th th:text="#{Roamiotodo.epname3}">Epname3</th>
+            <th th:text="#{Roamiotodo.epnum}">EpNum</th>
+            <th th:text="#{Roamiotodo.show}">Show</th>
             <th th:text="#{Roamiotodo.showname}">ShowName</th>
             <th th:text="#{Roamiotodo.showtrimmed}">ShowTrimmed</th>
+            <th th:text="#{Roamiotodo.sortabledate}">SortableDate</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.email}">Email</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.role}">Role</th>
             <th th:text="#{edit.actions}"></th>
 	        </tr>
 	        <tr th:each="roamiotodo:${roamiotodos}">
-	            <td th:text="${roamiotodo.channel}"></td>
-	            <td th:text="${roamiotodo.date}"></td>
-	            <td th:text="${roamiotodo.duration}"></td>
-	            <td th:text="${roamiotodo.ep}"></td>
-	            <td th:text="${roamiotodo.episodename}"></td>
-	            <td th:text="${roamiotodo.id}"></td>
-	            <td th:text="${roamiotodo.showname}"></td>
-	            <td th:text="${roamiotodo.showtrimmed}"></td>
+	            <td th:if="${roamiotodo != null}" th:text="${roamiotodo.channel}"></td>
+				<td th:unless="${roamiotodo != null}"></td>
+	            <td th:if="${roamiotodo != null}" th:text="${roamiotodo.coli}"></td>
+				<td th:unless="${roamiotodo != null}"></td>
+	            <td th:if="${roamiotodo != null}" th:text="${roamiotodo.date}"></td>
+				<td th:unless="${roamiotodo != null}"></td>
+	            <td th:if="${roamiotodo != null}" th:text="${roamiotodo.duration}"></td>
+				<td th:unless="${roamiotodo != null}"></td>
+	            <td th:if="${roamiotodo != null}" th:text="${roamiotodo.ep}"></td>
+				<td th:unless="${roamiotodo != null}"></td>
+	            <td th:if="${roamiotodo != null}" th:text="${roamiotodo.epdate}"></td>
+				<td th:unless="${roamiotodo != null}"></td>
+	            <td th:if="${roamiotodo != null}" th:text="${roamiotodo.episode}"></td>
+				<td th:unless="${roamiotodo != null}"></td>
+	            <td th:if="${roamiotodo != null}" th:text="${roamiotodo.episodename}"></td>
+				<td th:unless="${roamiotodo != null}"></td>
+	            <td th:if="${roamiotodo != null}" th:text="${roamiotodo.epname2}"></td>
+				<td th:unless="${roamiotodo != null}"></td>
+	            <td th:if="${roamiotodo != null}" th:text="${roamiotodo.epname3}"></td>
+				<td th:unless="${roamiotodo != null}"></td>
+	            <td th:if="${roamiotodo != null}" th:text="${roamiotodo.epnum}"></td>
+				<td th:unless="${roamiotodo != null}"></td>
+	            <td th:if="${roamiotodo != null}" th:text="${roamiotodo.show}"></td>
+				<td th:unless="${roamiotodo != null}"></td>
+	            <td th:if="${roamiotodo != null}" th:text="${roamiotodo.showname}"></td>
+				<td th:unless="${roamiotodo != null}"></td>
+	            <td th:if="${roamiotodo != null}" th:text="${roamiotodo.showtrimmed}"></td>
+				<td th:unless="${roamiotodo != null}"></td>
+	            <td th:if="${roamiotodo != null}" th:text="${roamiotodo.sortabledate}"></td>
+				<td th:unless="${roamiotodo != null}"></td>
+	            <td th:if="${roamiotodo.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${roamiotodo.account.email}"></td>
+				<td th:unless="${roamiotodo.account != null}"></td>
+	            <td th:if="${roamiotodo.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${roamiotodo.account.role}"></td>
+				<td th:unless="${roamiotodo.account != null}"></td>
 				<td><a th:href="@{'/roamiotodos/edit/' + ${roamiotodo.id}}" th:text="#{edit.edit}"></a>
 					&nbsp;&nbsp;&nbsp; <a th:href="@{'/roamiotodos/delete/' + ${roamiotodo.id}}" th:text="#{edit.delete}"></a>
 				</td>

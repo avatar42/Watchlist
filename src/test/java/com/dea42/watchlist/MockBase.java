@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.Map;
 
 import javax.servlet.Filter;
-
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tools.ant.UnsupportedAttributeException;
 import org.junit.Before;
@@ -57,9 +57,10 @@ import com.dea42.watchlist.utils.Utils;
  * Description: The base class for mock testing. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.4.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.1<br>
  * @version 1.0.0<br>
  */
+@Slf4j
 public class MockBase extends UnitBase {
     @MockBean
     protected UserServices<?> userServices;
@@ -168,7 +169,7 @@ public class MockBase extends UnitBase {
 			try {
 				result.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl(redirectedUrl));
 			} catch (Throwable e) {
-				LOGGER.error("Instead of redirect got:" + result.andReturn().getResponse().getContentAsString());
+				log.error("Instead of redirect got:" + result.andReturn().getResponse().getContentAsString());
 				throw e;
 			}
 
@@ -320,12 +321,12 @@ public class MockBase extends UnitBase {
 		try {
 			result.andExpect(content().string(containsString(htmlString)));
 			if (failIfExists) {
-				LOGGER.error("Found '" + htmlString + "' in " + content());
+				log.error("Found '" + htmlString + "' in " + content());
 				fail("Found '" + htmlString + "' in content");
 			}
 		} catch (Throwable e) {
 			if (!failIfExists) {
-				LOGGER.error("Did not find '" + htmlString + "' in " + content(), e);
+				log.error("Did not find '" + htmlString + "' in " + content(), e);
 				fail("Did not find '" + htmlString + "' in content");
 			}
 		}
@@ -356,9 +357,9 @@ public class MockBase extends UnitBase {
 	 * @return
 	 */
 	protected RequestPostProcessor getMockTestUser() {
-		LOGGER.debug("Using the user:" + TEST_USER + " with role:ROLE_" + TEST_ROLE);
+		log.debug("Using the user:" + TEST_USER + " with role:ROLE_" + TEST_ROLE);
 		UserRequestPostProcessor rtn = user(TEST_USER).roles(TEST_ROLE);
-		LOGGER.debug("Returning:" + rtn);
+		log.debug("Returning:" + rtn);
 		return rtn;
 	}
 
@@ -367,9 +368,9 @@ public class MockBase extends UnitBase {
 	 * @return
 	 */
 	protected RequestPostProcessor getMockTestAdmin() {
-		LOGGER.debug("Using the user:" + ADMIN_USER + " with role:ROLE_" + ADMIN_ROLE);
+		log.debug("Using the user:" + ADMIN_USER + " with role:ROLE_" + ADMIN_ROLE);
 		UserRequestPostProcessor rtn = user(ADMIN_USER).roles(ADMIN_ROLE);
-		LOGGER.debug("Returning:" + rtn);
+		log.debug("Returning:" + rtn);
 		return rtn;
 	}
 }

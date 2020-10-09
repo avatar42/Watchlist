@@ -28,7 +28,7 @@
 				</div>
 			</th:block>
 			<fieldset>
-				<legend th:if="${roamionplForm.id == 0}"
+				<legend th:unless="${roamionplForm.id > 0}"
 					th:text="#{edit.new} + ' ' + #{class.Roamionpl}"></legend>
 				<legend th:if="${roamionplForm.id > 0}"
 					th:text="#{edit.edit} + ' ' + #{class.Roamionpl}"></legend>

@@ -9,7 +9,7 @@ import com.dea42.watchlist.entity.Roamiotodo;
  * Description: Class for the Roamiotodo Repository. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.4.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.1<br>
  * @version 1.0.0<br>
  */
 @Repository

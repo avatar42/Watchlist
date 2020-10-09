@@ -28,7 +28,7 @@
 				</div>
 			</th:block>
 			<fieldset>
-				<legend th:if="${otaForm.id == 0}"
+				<legend th:unless="${otaForm.id > 0}"
 					th:text="#{edit.new} + ' ' + #{class.Ota}"></legend>
 				<legend th:if="${otaForm.id > 0}"
 					th:text="#{edit.edit} + ' ' + #{class.Ota}"></legend>

@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.ResultActions;
 import com.google.common.collect.ImmutableMap;
+import lombok.extern.slf4j.Slf4j;
 
 import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Roamiotodo;
@@ -16,25 +17,26 @@ import com.dea42.watchlist.form.RoamiotodoForm;
  * Description: RoamiotodoController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.4.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.1<br>
  * @version 1.0.0<br>
  */
+@Slf4j
 @WebMvcTest(RoamiotodoController.class)
 public class RoamiotodoControllerTest extends MockBase {
 	private Roamiotodo getRoamiotodo(Integer id) {
 		Roamiotodo o = new Roamiotodo();
 		o.setId(id);
         o.setChannel(getTestString(16));
-        o.setColi(getTestString(1));
+        o.setColi(getTestString(30));
         o.setDuration(getTestString(4));
-        o.setEpisode(getTestString(24));
-        o.setEpisodename(getTestString(21));
+        o.setEpisode(getTestString(31));
+        o.setEpisodename(getTestString(2));
         o.setEpname2(getTestString(2));
         o.setEpname3(getTestString(4));
         o.setEpnum(getTestString(20));
-        o.setShow(getTestString(102));
-        o.setShowname(getTestString(78));
-        o.setShowtrimmed(getTestString(78));
+        o.setShow(getTestString(96));
+        o.setShowname(getTestString(67));
+        o.setShowtrimmed(getTestString(66));
 		return o;
 	}
 
@@ -54,16 +56,16 @@ public class RoamiotodoControllerTest extends MockBase {
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Roamiotodo") + " " + getMsg("edit.list") + "</h1>");
 		contentContainsMarkup(ra,getTestString(16));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.channel"));
-		contentContainsMarkup(ra,getTestString(1));
+		contentContainsMarkup(ra,getTestString(30));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.coli"));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.date"));
 		contentContainsMarkup(ra,getTestString(4));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.duration"));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.ep"));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.epdate"));
-		contentContainsMarkup(ra,getTestString(24));
+		contentContainsMarkup(ra,getTestString(31));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.episode"));
-		contentContainsMarkup(ra,getTestString(21));
+		contentContainsMarkup(ra,getTestString(2));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.episodename"));
 		contentContainsMarkup(ra,getTestString(2));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.epname2"));
@@ -71,11 +73,11 @@ public class RoamiotodoControllerTest extends MockBase {
 		contentContainsMarkup(ra,getMsg("Roamiotodo.epname3"));
 		contentContainsMarkup(ra,getTestString(20));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.epnum"));
-		contentContainsMarkup(ra,getTestString(102));
+		contentContainsMarkup(ra,getTestString(96));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.show"));
-		contentContainsMarkup(ra,getTestString(78));
+		contentContainsMarkup(ra,getTestString(67));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.showname"));
-		contentContainsMarkup(ra,getTestString(78));
+		contentContainsMarkup(ra,getTestString(66));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.showtrimmed"));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.sortabledate"));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.userid"));
@@ -130,7 +132,7 @@ public class RoamiotodoControllerTest extends MockBase {
 	public void testSaveRoamiotodoSave() throws Exception {
 		Roamiotodo o = getRoamiotodo(0);
 		RoamiotodoForm form = RoamiotodoForm.getInstance(o);
-		LOGGER.debug(form.toString());
+		log.debug(form.toString());
 
 		send(SEND_POST, "/roamiotodos/save", "roamiotodoForm", form, ImmutableMap.of("action", "save"), ADMIN_USER,
 				"/roamiotodos");

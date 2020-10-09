@@ -1,8 +1,7 @@
 package com.dea42.watchlist.controller;
 
 import javax.validation.Valid;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,13 +28,13 @@ import com.dea42.watchlist.utils.Utils;
  * Description: NetworksController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.4.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.1<br>
  * @version 1.0.0<br>
  */
+@Slf4j
 @Controller
 @RequestMapping("/networkss")
 public class NetworksController {
-	private static final Logger LOGGER = LoggerFactory.getLogger(NetworksController.class.getName());
 
 	@Autowired
 	private NetworksServices networksService;
@@ -103,7 +102,7 @@ public class NetworksController {
 			try {
 				networks = networksService.save(networks);
 			} catch (Exception e) {
-				LOGGER.error("Failed saving:" + form, e);
+				log.error("Failed saving:" + form, e);
 			}
 
 			if (networks == null) {

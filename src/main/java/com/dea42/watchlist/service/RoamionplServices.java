@@ -7,8 +7,7 @@ import java.util.ResourceBundle;
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +21,12 @@ import com.dea42.watchlist.utils.Utils;
  * Description: RoamionplServices. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.4.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.1<br>
  * @version 1.0.0<br>
  */
+@Slf4j
 @Service
 public class RoamionplServices {
-	private static final Logger LOGGER = LoggerFactory.getLogger(RoamionplServices.class.getName());
     @Autowired
     private RoamionplRepository roamionplRepository;
 

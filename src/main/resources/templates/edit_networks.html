@@ -28,7 +28,7 @@
 				</div>
 			</th:block>
 			<fieldset>
-				<legend th:if="${networksForm.id == 0}"
+				<legend th:unless="${networksForm.id > 0}"
 					th:text="#{edit.new} + ' ' + #{class.Networks}"></legend>
 				<legend th:if="${networksForm.id > 0}"
 					th:text="#{edit.edit} + ' ' + #{class.Networks}"></legend>

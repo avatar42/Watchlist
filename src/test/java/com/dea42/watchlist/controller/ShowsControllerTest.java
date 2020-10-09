@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.ResultActions;
 import com.google.common.collect.ImmutableMap;
+import lombok.extern.slf4j.Slf4j;
 
 import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Shows;
@@ -16,9 +17,10 @@ import com.dea42.watchlist.form.ShowsForm;
  * Description: ShowsController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.4.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.1<br>
  * @version 1.0.0<br>
  */
+@Slf4j
 @WebMvcTest(ShowsController.class)
 public class ShowsControllerTest extends MockBase {
 	private Shows getShows(Integer id) {
@@ -45,7 +47,7 @@ public class ShowsControllerTest extends MockBase {
         o.setColg(getTestString(65));
         o.setCw(getTestString(6));
         o.setCwlink(getTestString(43));
-        o.setDiff(getTestString(2));
+        o.setDiff(getTestString(1));
         o.setEpguidesshowname(getTestString(47));
         o.setEpguidesshownamelink(getTestString(60));
         o.setFreeformabcf(getTestString(3));
@@ -62,7 +64,7 @@ public class ShowsControllerTest extends MockBase {
         o.setIfclink(getTestString(35));
         o.setIncanceledas(getTestString(47));
         o.setIncanceledaslink(getTestString(70));
-        o.setIntodos(getTestString(28));
+        o.setIntodos(getTestString(19));
         o.setItunes(getTestString(29));
         o.setItuneslink(getTestString(73));
         o.setLastshow(getTestString(10));
@@ -151,7 +153,7 @@ public class ShowsControllerTest extends MockBase {
 		contentContainsMarkup(ra,getTestString(6));
 		contentContainsMarkup(ra,getMsg("Shows.cw"));
 		contentContainsMarkup(ra,getTestString(43));
-		contentContainsMarkup(ra,getTestString(2));
+		contentContainsMarkup(ra,getTestString(1));
 		contentContainsMarkup(ra,getMsg("Shows.diff"));
 		contentContainsMarkup(ra,getTestString(47));
 		contentContainsMarkup(ra,getMsg("Shows.epguidesshowname"));
@@ -177,7 +179,7 @@ public class ShowsControllerTest extends MockBase {
 		contentContainsMarkup(ra,getTestString(47));
 		contentContainsMarkup(ra,getMsg("Shows.incanceledas"));
 		contentContainsMarkup(ra,getTestString(70));
-		contentContainsMarkup(ra,getTestString(28));
+		contentContainsMarkup(ra,getTestString(19));
 		contentContainsMarkup(ra,getMsg("Shows.intodos"));
 		contentContainsMarkup(ra,getTestString(29));
 		contentContainsMarkup(ra,getMsg("Shows.itunes"));
@@ -359,7 +361,7 @@ public class ShowsControllerTest extends MockBase {
 	public void testSaveShowsSave() throws Exception {
 		Shows o = getShows(0);
 		ShowsForm form = ShowsForm.getInstance(o);
-		LOGGER.debug(form.toString());
+		log.debug(form.toString());
 
 		send(SEND_POST, "/showss/save", "showsForm", form, ImmutableMap.of("action", "save"), ADMIN_USER,
 				"/showss");

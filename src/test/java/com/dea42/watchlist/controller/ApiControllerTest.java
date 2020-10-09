@@ -32,7 +32,7 @@ import com.dea42.watchlist.entity.Roamiotodo;
  * Description: REST Api Controller Test. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.4.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.1<br>
  * @version 1.0.0<br>
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -174,7 +174,7 @@ public class ApiControllerTest extends MockBase {
         o.setColg(getTestString(65));
         o.setCw(getTestString(6));
         o.setCwlink(getTestString(43));
-        o.setDiff(getTestString(2));
+        o.setDiff(getTestString(1));
         o.setEpguidesshowname(getTestString(47));
         o.setEpguidesshownamelink(getTestString(60));
         o.setFreeformabcf(getTestString(3));
@@ -192,7 +192,7 @@ public class ApiControllerTest extends MockBase {
         o.setIfclink(getTestString(35));
         o.setIncanceledas(getTestString(47));
         o.setIncanceledaslink(getTestString(70));
-        o.setIntodos(getTestString(28));
+        o.setIntodos(getTestString(19));
         o.setItunes(getTestString(29));
         o.setItuneslink(getTestString(73));
         o.setLastshow(getTestString(10));
@@ -468,7 +468,7 @@ public class ApiControllerTest extends MockBase {
 		o.setId(1);
         o.setInnetworkstab(getTestString(7));
         o.setNetwork(getTestString(33));
-        o.setShow(getTestString(53));
+        o.setShow(getTestString(49));
         o.setSpchannel0nosp(getTestString(1));
         o.setTitle(getTestString(69));
         o.setWatched(getTestString(6));
@@ -550,17 +550,17 @@ public class ApiControllerTest extends MockBase {
 		List<Roamiotodo> list = new ArrayList<>();
 		Roamiotodo o = new Roamiotodo();
         o.setChannel(getTestString(16));
-        o.setColi(getTestString(1));
+        o.setColi(getTestString(30));
         o.setDuration(getTestString(4));
-        o.setEpisode(getTestString(24));
-        o.setEpisodename(getTestString(21));
+        o.setEpisode(getTestString(31));
+        o.setEpisodename(getTestString(2));
         o.setEpname2(getTestString(2));
         o.setEpname3(getTestString(4));
         o.setEpnum(getTestString(20));
 		o.setId(1);
-        o.setShow(getTestString(102));
-        o.setShowname(getTestString(78));
-        o.setShowtrimmed(getTestString(78));
+        o.setShow(getTestString(96));
+        o.setShowname(getTestString(67));
+        o.setShowtrimmed(getTestString(66));
 		list.add(o);
 
 		given(roamiotodoServices.listAll()).willReturn(list);

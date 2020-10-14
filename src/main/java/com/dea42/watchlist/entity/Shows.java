@@ -15,8 +15,8 @@ import lombok.Data;
  * Description: Class for holding data from the shows table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.1<br>
- * @version 1.0.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.2<br>
+ * @version 0.5.2<br>
  * Table name: shows<br>
  * Column name: id<br>
  * Catalog name: null<br>
@@ -111,7 +111,7 @@ public class Shows implements Serializable {
 	private String incanceledas;
 	@Column(name = "InCanceledAsLink", length = 70)
 	private String incanceledaslink;
-	@Column(name = "InTodos", length = 19)
+	@Column(name = "InTodos", length = 14)
 	private String intodos;
 	@Column(name = "Itunes", length = 29)
 	private String itunes;

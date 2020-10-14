@@ -17,8 +17,8 @@ import com.dea42.watchlist.form.ShowsForm;
  * Description: ShowsController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.1<br>
- * @version 1.0.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.2<br>
+ * @version 0.5.2<br>
  */
 @Slf4j
 @WebMvcTest(ShowsController.class)
@@ -64,7 +64,7 @@ public class ShowsControllerTest extends MockBase {
         o.setIfclink(getTestString(35));
         o.setIncanceledas(getTestString(47));
         o.setIncanceledaslink(getTestString(70));
-        o.setIntodos(getTestString(19));
+        o.setIntodos(getTestString(14));
         o.setItunes(getTestString(29));
         o.setItuneslink(getTestString(73));
         o.setLastshow(getTestString(10));
@@ -179,7 +179,7 @@ public class ShowsControllerTest extends MockBase {
 		contentContainsMarkup(ra,getTestString(47));
 		contentContainsMarkup(ra,getMsg("Shows.incanceledas"));
 		contentContainsMarkup(ra,getTestString(70));
-		contentContainsMarkup(ra,getTestString(19));
+		contentContainsMarkup(ra,getTestString(14));
 		contentContainsMarkup(ra,getMsg("Shows.intodos"));
 		contentContainsMarkup(ra,getTestString(29));
 		contentContainsMarkup(ra,getMsg("Shows.itunes"));

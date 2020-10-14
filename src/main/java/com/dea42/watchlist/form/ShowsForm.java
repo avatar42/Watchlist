@@ -14,8 +14,8 @@ import org.hibernate.validator.constraints.Length;
  * Description: Class for holding data from the shows table for editing. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.1<br>
- * @version 1.0.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.2<br>
+ * @version 0.5.2<br>
  */
 
 @Data
@@ -101,7 +101,7 @@ public class ShowsForm implements Serializable {
 	private String incanceledas;
     @Length(max=70)
 	private String incanceledaslink;
-    @Length(max=19)
+    @Length(max=14)
 	private String intodos;
     @Length(max=29)
 	private String itunes;

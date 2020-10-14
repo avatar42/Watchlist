@@ -17,8 +17,8 @@ import javax.persistence.ManyToOne;
  * Description: Class for holding data from the roamiotodo table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.1<br>
- * @version 1.0.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.2<br>
+ * @version 0.5.2<br>
  * Table name: roamiotodo<br>
  * Column name: id<br>
  * Catalog name: null<br>
@@ -47,7 +47,7 @@ public class Roamiotodo implements Serializable {
 
 	@Column(name = "Channel", length = 16)
 	private String channel;
-	@Column(name = "Coli", length = 30)
+	@Column(name = "Coli", length = 27)
 	private String coli;
 	@Column(name = "Date")
 	private Integer date;
@@ -61,7 +61,7 @@ public class Roamiotodo implements Serializable {
 	private String episode;
 	@Column(name = "EpisodeName", length = 2)
 	private String episodename;
-	@Column(name = "Epname2", length = 2)
+	@Column(name = "Epname2", length = 1)
 	private String epname2;
 	@Column(name = "Epname3", length = 4)
 	private String epname3;
@@ -71,11 +71,11 @@ public class Roamiotodo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Integer id;
-	@Column(name = "Show", length = 96)
+	@Column(name = "Show", length = 141)
 	private String show;
-	@Column(name = "ShowName", length = 67)
+	@Column(name = "ShowName", length = 79)
 	private String showname;
-	@Column(name = "ShowTrimmed", length = 66)
+	@Column(name = "ShowTrimmed", length = 79)
 	private String showtrimmed;
 	@Column(name = "SortableDate")
 	private Integer sortabledate;

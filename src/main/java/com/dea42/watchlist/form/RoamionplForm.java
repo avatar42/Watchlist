@@ -15,8 +15,8 @@ import org.hibernate.validator.constraints.Length;
  * Description: Class for holding data from the roamionpl table for editing. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.1<br>
- * @version 1.0.0<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.2<br>
+ * @version 0.5.2<br>
  */
 
 @Data
@@ -43,7 +43,7 @@ public class RoamionplForm implements Serializable {
 	private String network;
 	private Integer rowinshows;
 	private Integer seriesep;
-    @Length(max=49)
+    @Length(max=66)
 	private String show;
 	private Integer sizegb;
 	private Integer sortabledate;

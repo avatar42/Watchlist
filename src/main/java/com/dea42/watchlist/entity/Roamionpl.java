@@ -17,8 +17,8 @@ import javax.persistence.ManyToOne;
  * Description: Class for holding data from the roamionpl table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.2<br>
- * @version 0.5.2<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
+ * @version 0.5.4<br>
  * Table name: roamionpl<br>
  * Column name: id<br>
  * Catalog name: null<br>
@@ -75,7 +75,7 @@ public class Roamionpl implements Serializable {
 	private Integer rowinshows;
 	@Column(name = "Seriesep")
 	private Integer seriesep;
-	@Column(name = "Show", length = 66)
+	@Column(name = "Show", length = 52)
 	private String show;
 	@Column(name = "SizeGb")
 	private Integer sizegb;

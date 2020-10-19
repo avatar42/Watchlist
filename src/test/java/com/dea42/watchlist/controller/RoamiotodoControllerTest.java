@@ -17,8 +17,8 @@ import com.dea42.watchlist.form.RoamiotodoForm;
  * Description: RoamiotodoController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.2<br>
- * @version 0.5.2<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
+ * @version 0.5.4<br>
  */
 @Slf4j
 @WebMvcTest(RoamiotodoController.class)
@@ -27,16 +27,15 @@ public class RoamiotodoControllerTest extends MockBase {
 		Roamiotodo o = new Roamiotodo();
 		o.setId(id);
         o.setChannel(getTestString(16));
-        o.setColi(getTestString(27));
+        o.setColi(getTestString(28));
         o.setDuration(getTestString(4));
-        o.setEpisode(getTestString(31));
+        o.setEpisode(getTestString(50));
         o.setEpisodename(getTestString(2));
         o.setEpname2(getTestString(1));
-        o.setEpname3(getTestString(4));
         o.setEpnum(getTestString(20));
         o.setShow(getTestString(141));
-        o.setShowname(getTestString(79));
-        o.setShowtrimmed(getTestString(79));
+        o.setShowname(getTestString(78));
+        o.setShowtrimmed(getTestString(78));
 		return o;
 	}
 
@@ -56,28 +55,27 @@ public class RoamiotodoControllerTest extends MockBase {
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Roamiotodo") + " " + getMsg("edit.list") + "</h1>");
 		contentContainsMarkup(ra,getTestString(16));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.channel"));
-		contentContainsMarkup(ra,getTestString(27));
+		contentContainsMarkup(ra,getTestString(28));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.coli"));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.date"));
 		contentContainsMarkup(ra,getTestString(4));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.duration"));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.ep"));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.epdate"));
-		contentContainsMarkup(ra,getTestString(31));
+		contentContainsMarkup(ra,getTestString(50));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.episode"));
 		contentContainsMarkup(ra,getTestString(2));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.episodename"));
 		contentContainsMarkup(ra,getTestString(1));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.epname2"));
-		contentContainsMarkup(ra,getTestString(4));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.epname3"));
 		contentContainsMarkup(ra,getTestString(20));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.epnum"));
 		contentContainsMarkup(ra,getTestString(141));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.show"));
-		contentContainsMarkup(ra,getTestString(79));
+		contentContainsMarkup(ra,getTestString(78));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.showname"));
-		contentContainsMarkup(ra,getTestString(79));
+		contentContainsMarkup(ra,getTestString(78));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.showtrimmed"));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.sortabledate"));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.userid"));
@@ -166,7 +164,6 @@ public class RoamiotodoControllerTest extends MockBase {
 		contentContainsMarkup(ra,"Episodename");
 		contentContainsMarkup(ra,o.getEpname2());
 		contentContainsMarkup(ra,"Epname2");
-		contentContainsMarkup(ra,o.getEpname3());
 		contentContainsMarkup(ra,"Epname3");
 		contentContainsMarkup(ra,o.getEpnum());
 		contentContainsMarkup(ra,"Epnum");

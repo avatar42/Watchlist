@@ -28,8 +28,8 @@ import com.dea42.watchlist.utils.Utils;
  * Description: NetworksController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.2<br>
- * @version 0.5.2<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
+ * @version 0.5.4<br>
  */
 @Slf4j
 @Controller

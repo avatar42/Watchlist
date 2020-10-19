@@ -17,8 +17,8 @@ import javax.persistence.ManyToOne;
  * Description: Class for holding data from the roamiotodo table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.2<br>
- * @version 0.5.2<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
+ * @version 0.5.4<br>
  * Table name: roamiotodo<br>
  * Column name: id<br>
  * Catalog name: null<br>
@@ -47,7 +47,7 @@ public class Roamiotodo implements Serializable {
 
 	@Column(name = "Channel", length = 16)
 	private String channel;
-	@Column(name = "Coli", length = 27)
+	@Column(name = "Coli", length = 28)
 	private String coli;
 	@Column(name = "Date")
 	private Integer date;
@@ -57,14 +57,14 @@ public class Roamiotodo implements Serializable {
 	private Integer ep;
 	@Column(name = "EpDate")
 	private Integer epdate;
-	@Column(name = "Episode", length = 31)
+	@Column(name = "Episode", length = 50)
 	private String episode;
 	@Column(name = "EpisodeName", length = 2)
 	private String episodename;
 	@Column(name = "Epname2", length = 1)
 	private String epname2;
-	@Column(name = "Epname3", length = 4)
-	private String epname3;
+	@Column(name = "Epname3")
+	private Integer epname3;
 	@Column(name = "EpNum", length = 20)
 	private String epnum;
     @Id
@@ -73,9 +73,9 @@ public class Roamiotodo implements Serializable {
 	private Integer id;
 	@Column(name = "Show", length = 141)
 	private String show;
-	@Column(name = "ShowName", length = 79)
+	@Column(name = "ShowName", length = 78)
 	private String showname;
-	@Column(name = "ShowTrimmed", length = 79)
+	@Column(name = "ShowTrimmed", length = 78)
 	private String showtrimmed;
 	@Column(name = "SortableDate")
 	private Integer sortabledate;

@@ -15,8 +15,8 @@ import org.hibernate.validator.constraints.Length;
  * Description: Class for holding data from the roamiotodo table for editing. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.2<br>
- * @version 0.5.2<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
+ * @version 0.5.4<br>
  */
 
 @Data
@@ -25,29 +25,28 @@ public class RoamiotodoForm implements Serializable {
 
     @Length(max=16)
 	private String channel;
-    @Length(max=27)
+    @Length(max=28)
 	private String coli;
 	private Integer date;
     @Length(max=4)
 	private String duration;
 	private Integer ep;
 	private Integer epdate;
-    @Length(max=31)
+    @Length(max=50)
 	private String episode;
     @Length(max=2)
 	private String episodename;
     @Length(max=1)
 	private String epname2;
-    @Length(max=4)
-	private String epname3;
+	private Integer epname3;
     @Length(max=20)
 	private String epnum;
 	private Integer id;
     @Length(max=141)
 	private String show;
-    @Length(max=79)
+    @Length(max=78)
 	private String showname;
-    @Length(max=79)
+    @Length(max=78)
 	private String showtrimmed;
 	private Integer sortabledate;
 	private Account account;

@@ -32,8 +32,8 @@ import com.dea42.watchlist.entity.Roamiotodo;
  * Description: REST Api Controller Test. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.2<br>
- * @version 0.5.2<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
+ * @version 0.5.4<br>
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebMvcTest(ApiController.class)
@@ -468,7 +468,7 @@ public class ApiControllerTest extends MockBase {
 		o.setId(1);
         o.setInnetworkstab(getTestString(7));
         o.setNetwork(getTestString(33));
-        o.setShow(getTestString(66));
+        o.setShow(getTestString(52));
         o.setSpchannel0nosp(getTestString(1));
         o.setTitle(getTestString(69));
         o.setWatched(getTestString(6));
@@ -550,17 +550,16 @@ public class ApiControllerTest extends MockBase {
 		List<Roamiotodo> list = new ArrayList<>();
 		Roamiotodo o = new Roamiotodo();
         o.setChannel(getTestString(16));
-        o.setColi(getTestString(27));
+        o.setColi(getTestString(28));
         o.setDuration(getTestString(4));
-        o.setEpisode(getTestString(31));
+        o.setEpisode(getTestString(50));
         o.setEpisodename(getTestString(2));
         o.setEpname2(getTestString(1));
-        o.setEpname3(getTestString(4));
         o.setEpnum(getTestString(20));
 		o.setId(1);
         o.setShow(getTestString(141));
-        o.setShowname(getTestString(79));
-        o.setShowtrimmed(getTestString(79));
+        o.setShowname(getTestString(78));
+        o.setShowtrimmed(getTestString(78));
 		list.add(o);
 
 		given(roamiotodoServices.listAll()).willReturn(list);
@@ -572,8 +571,7 @@ public class ApiControllerTest extends MockBase {
 				.andExpect(content().string(containsString("duration")))				.andExpect(content().string(containsString("ep")))				.andExpect(content().string(containsString("epdate")))				.andExpect(content().string(containsString(o.getEpisode())))
 				.andExpect(content().string(containsString("episode")))				.andExpect(content().string(containsString(o.getEpisodename())))
 				.andExpect(content().string(containsString("episodename")))				.andExpect(content().string(containsString(o.getEpname2())))
-				.andExpect(content().string(containsString("epname2")))				.andExpect(content().string(containsString(o.getEpname3())))
-				.andExpect(content().string(containsString("epname3")))				.andExpect(content().string(containsString(o.getEpnum())))
+				.andExpect(content().string(containsString("epname2")))				.andExpect(content().string(containsString("epname3")))				.andExpect(content().string(containsString(o.getEpnum())))
 				.andExpect(content().string(containsString("epnum")))				.andExpect(content().string(containsString("id")))				.andExpect(content().string(containsString(o.getShow())))
 				.andExpect(content().string(containsString("show")))				.andExpect(content().string(containsString(o.getShowname())))
 				.andExpect(content().string(containsString("showname")))				.andExpect(content().string(containsString(o.getShowtrimmed())))

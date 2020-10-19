@@ -17,8 +17,8 @@ import com.dea42.watchlist.form.RoamionplForm;
  * Description: RoamionplController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.2<br>
- * @version 0.5.2<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
+ * @version 0.5.4<br>
  */
 @Slf4j
 @WebMvcTest(RoamionplController.class)
@@ -32,7 +32,7 @@ public class RoamionplControllerTest extends MockBase {
         o.setF(getTestString(62));
         o.setInnetworkstab(getTestString(7));
         o.setNetwork(getTestString(33));
-        o.setShow(getTestString(66));
+        o.setShow(getTestString(52));
         o.setSpchannel0nosp(getTestString(1));
         o.setTitle(getTestString(69));
         o.setWatched(getTestString(6));
@@ -72,7 +72,7 @@ public class RoamionplControllerTest extends MockBase {
 		contentContainsMarkup(ra,getMsg("Roamionpl.network"));
 		contentContainsMarkup(ra,getMsg("Roamionpl.rowinshows"));
 		contentContainsMarkup(ra,getMsg("Roamionpl.seriesep"));
-		contentContainsMarkup(ra,getTestString(66));
+		contentContainsMarkup(ra,getTestString(52));
 		contentContainsMarkup(ra,getMsg("Roamionpl.show"));
 		contentContainsMarkup(ra,getMsg("Roamionpl.sizegb"));
 		contentContainsMarkup(ra,getMsg("Roamionpl.sortabledate"));

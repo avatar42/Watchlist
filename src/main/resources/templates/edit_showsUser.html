@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
+<title th:text="#{edit.edit} + ' ' + #{class.ShowsUser}"></title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
+
+		<form class="form-narrow form-horizontal" method="post"
+			th:action="@{/showsUsers/save}" th:object="${showsUserForm}"
+			th:fragment="showsUserForm">
+			<!--/* Show general error messages when form contains errors */-->
+			<th:block th:if="${#fields.hasErrors('${showsUserForm.*}')}">
+				<div th:each="fieldErrors : ${#fields.errors('${showsUserForm.*}')}">
+					<div th:each="message : ${fieldErrors.split(';')}">
+						<div
+							th:replace="fragments/alert :: alert (type='danger', message=${message})">Alert</div>
+					</div>
+				</div>
+			</th:block>
+			<fieldset>
+				<legend th:unless="${showsUserForm.id > 0}"
+					th:text="#{edit.new} + ' ' + #{class.ShowsUser}"></legend>
+				<legend th:if="${showsUserForm.id > 0}"
+					th:text="#{edit.edit} + ' ' + #{class.ShowsUser}"></legend>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('bestexperience')}? 'has-error'">
+					<label for="bestexperience" class="col-lg-2 control-label"
+						th:text="#{ShowsUser.bestexperience} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="bestexperience"
+							th:field="*{bestexperience}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('bestexperience')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('bestexperiencelink')}? 'has-error'">
+					<label for="bestexperiencelink" class="col-lg-2 control-label"
+						th:text="#{ShowsUser.bestexperiencelink} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="bestexperiencelink"
+							th:field="*{bestexperiencelink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('bestexperiencelink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('comment')}? 'has-error'">
+					<label for="comment" class="col-lg-2 control-label"
+						th:text="#{ShowsUser.comment} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="comment"
+							th:field="*{comment}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('comment')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('commentlink')}? 'has-error'">
+					<label for="commentlink" class="col-lg-2 control-label"
+						th:text="#{ShowsUser.commentlink} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="commentlink"
+							th:field="*{commentlink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('commentlink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('diff')}? 'has-error'">
+					<label for="diff" class="col-lg-2 control-label"
+						th:text="#{ShowsUser.diff} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="diff"
+							th:field="*{diff}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('diff')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<input type="hidden" class="form-control" id="id" th:field="*{id}" />
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('imdb')}? 'has-error'">
+					<label for="imdb" class="col-lg-2 control-label"
+						th:text="#{ShowsUser.imdb} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="imdb"
+							th:field="*{imdb}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('imdb')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('imdblink')}? 'has-error'">
+					<label for="imdblink" class="col-lg-2 control-label"
+						th:text="#{ShowsUser.imdblink} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="imdblink"
+							th:field="*{imdblink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('imdblink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('inrokufeed')}? 'has-error'">
+					<label for="inrokufeed" class="col-lg-2 control-label"
+						th:text="#{ShowsUser.inrokufeed} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="inrokufeed"
+							th:field="*{inrokufeed}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('inrokufeed')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('inshowrssas')}? 'has-error'">
+					<label for="inshowrssas" class="col-lg-2 control-label"
+						th:text="#{ShowsUser.inshowrssas} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="inshowrssas"
+							th:field="*{inshowrssas}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('inshowrssas')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('inshowrssaslink')}? 'has-error'">
+					<label for="inshowrssaslink" class="col-lg-2 control-label"
+						th:text="#{ShowsUser.inshowrssaslink} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="inshowrssaslink"
+							th:field="*{inshowrssaslink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('inshowrssaslink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('intablo')}? 'has-error'">
+					<label for="intablo" class="col-lg-2 control-label"
+						th:text="#{ShowsUser.intablo} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="intablo"
+							th:field="*{intablo}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('intablo')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('justwatch')}? 'has-error'">
+					<label for="justwatch" class="col-lg-2 control-label"
+						th:text="#{ShowsUser.justwatch} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="justwatch"
+							th:field="*{justwatch}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('justwatch')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('justwatchlink')}? 'has-error'">
+					<label for="justwatchlink" class="col-lg-2 control-label"
+						th:text="#{ShowsUser.justwatchlink} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="justwatchlink"
+							th:field="*{justwatchlink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('justwatchlink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('lastwatched')}? 'has-error'">
+					<label for="lastwatched" class="col-lg-2 control-label"
+						th:text="#{ShowsUser.lastwatched} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="lastwatched"
+							th:field="*{lastwatched}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('lastwatched')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('ota')}? 'has-error'">
+					<label for="ota" class="col-lg-2 control-label"
+						th:text="#{ShowsUser.ota} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="ota"
+							th:field="*{ota}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('ota')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="showsUserForm.shows.cancelled" class="col-lg-2 control-label"
+						th:text="#{Shows.cancelled} + ':'"></label>
+					<div th:if="${showsUserForm.shows != null}" class="col-lg-10" id="showsUserForm.shows.cancelled"
+	                        th:text="${showsUserForm.shows.cancelled}">
+					</div>
+				<div th:unless="${showsUserForm.shows != null}" th:text="${showsUserForm.shows}"></div>
+				</div>
+				<div class="form-group">
+					<label for="showsUserForm.shows.epguidesshowname" class="col-lg-2 control-label"
+						th:text="#{Shows.epguidesshowname} + ':'"></label>
+					<div th:if="${showsUserForm.shows != null}" class="col-lg-10" id="showsUserForm.shows.epguidesshowname"
+	                        th:text="${showsUserForm.shows.epguidesshowname}">
+					</div>
+				<div th:unless="${showsUserForm.shows != null}" th:text="${showsUserForm.shows}"></div>
+				</div>
+				<div class="form-group">
+					<label for="showsUserForm.shows.epguidesshownamelink" class="col-lg-2 control-label"
+						th:text="#{Shows.epguidesshownamelink} + ':'"></label>
+					<div th:if="${showsUserForm.shows != null}" class="col-lg-10" id="showsUserForm.shows.epguidesshownamelink"
+	                        th:text="${showsUserForm.shows.epguidesshownamelink}">
+					</div>
+				<div th:unless="${showsUserForm.shows != null}" th:text="${showsUserForm.shows}"></div>
+				</div>
+				<input type="hidden" class="form-control" id="shows.id" th:field="*{shows.id}" />
+				<div class="form-group">
+					<label for="showsUserForm.shows.incanceledas" class="col-lg-2 control-label"
+						th:text="#{Shows.incanceledas} + ':'"></label>
+					<div th:if="${showsUserForm.shows != null}" class="col-lg-10" id="showsUserForm.shows.incanceledas"
+	                        th:text="${showsUserForm.shows.incanceledas}">
+					</div>
+				<div th:unless="${showsUserForm.shows != null}" th:text="${showsUserForm.shows}"></div>
+				</div>
+				<div class="form-group">
+					<label for="showsUserForm.shows.incanceledaslink" class="col-lg-2 control-label"
+						th:text="#{Shows.incanceledaslink} + ':'"></label>
+					<div th:if="${showsUserForm.shows != null}" class="col-lg-10" id="showsUserForm.shows.incanceledaslink"
+	                        th:text="${showsUserForm.shows.incanceledaslink}">
+					</div>
+				<div th:unless="${showsUserForm.shows != null}" th:text="${showsUserForm.shows}"></div>
+				</div>
+				<div class="form-group">
+					<label for="showsUserForm.shows.lastshow" class="col-lg-2 control-label"
+						th:text="#{Shows.lastshow} + ':'"></label>
+					<div th:if="${showsUserForm.shows != null}" class="col-lg-10" id="showsUserForm.shows.lastshow"
+	                        th:text="${showsUserForm.shows.lastshow}">
+					</div>
+				<div th:unless="${showsUserForm.shows != null}" th:text="${showsUserForm.shows}"></div>
+				</div>
+				<div class="form-group">
+					<label for="showsUserForm.shows.network" class="col-lg-2 control-label"
+						th:text="#{Shows.network} + ':'"></label>
+					<div th:if="${showsUserForm.shows != null}" class="col-lg-10" id="showsUserForm.shows.network"
+	                        th:text="${showsUserForm.shows.network}">
+					</div>
+				<div th:unless="${showsUserForm.shows != null}" th:text="${showsUserForm.shows}"></div>
+				</div>
+				<div class="form-group">
+					<label for="showsUserForm.shows.networklink" class="col-lg-2 control-label"
+						th:text="#{Shows.networklink} + ':'"></label>
+					<div th:if="${showsUserForm.shows != null}" class="col-lg-10" id="showsUserForm.shows.networklink"
+	                        th:text="${showsUserForm.shows.networklink}">
+					</div>
+				<div th:unless="${showsUserForm.shows != null}" th:text="${showsUserForm.shows}"></div>
+				</div>
+				<div class="form-group">
+					<label for="showsUserForm.shows.premiere" class="col-lg-2 control-label"
+						th:text="#{Shows.premiere} + ':'"></label>
+					<div th:if="${showsUserForm.shows != null}" class="col-lg-10" id="showsUserForm.shows.premiere"
+	                        th:text="${showsUserForm.shows.premiere}">
+					</div>
+				<div th:unless="${showsUserForm.shows != null}" th:text="${showsUserForm.shows}"></div>
+				</div>
+				<div class="form-group">
+					<label for="showsUserForm.shows.premieredate" class="col-lg-2 control-label"
+						th:text="#{Shows.premieredate} + ':'"></label>
+					<div th:if="${showsUserForm.shows != null}" class="col-lg-10" id="showsUserForm.shows.premieredate"
+	                        th:text="${showsUserForm.shows.premieredate}">
+					</div>
+				<div th:unless="${showsUserForm.shows != null}" th:text="${showsUserForm.shows}"></div>
+				</div>
+				<div class="form-group">
+					<label for="showsUserForm.shows.status" class="col-lg-2 control-label"
+						th:text="#{Shows.status} + ':'"></label>
+					<div th:if="${showsUserForm.shows != null}" class="col-lg-10" id="showsUserForm.shows.status"
+	                        th:text="${showsUserForm.shows.status}">
+					</div>
+				<div th:unless="${showsUserForm.shows != null}" th:text="${showsUserForm.shows}"></div>
+				</div>
+				<div class="form-group">
+					<label for="showsUserForm.shows.tivoname" class="col-lg-2 control-label"
+						th:text="#{Shows.tivoname} + ':'"></label>
+					<div th:if="${showsUserForm.shows != null}" class="col-lg-10" id="showsUserForm.shows.tivoname"
+	                        th:text="${showsUserForm.shows.tivoname}">
+					</div>
+				<div th:unless="${showsUserForm.shows != null}" th:text="${showsUserForm.shows}"></div>
+				</div>
+				<div class="form-group">
+					<label for="showsUserForm.shows.tivonamelink" class="col-lg-2 control-label"
+						th:text="#{Shows.tivonamelink} + ':'"></label>
+					<div th:if="${showsUserForm.shows != null}" class="col-lg-10" id="showsUserForm.shows.tivonamelink"
+	                        th:text="${showsUserForm.shows.tivonamelink}">
+					</div>
+				<div th:unless="${showsUserForm.shows != null}" th:text="${showsUserForm.shows}"></div>
+				</div>
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="showsUserForm.account.email" class="col-lg-2 control-label"
+						th:text="#{Account.email} + ':'"></label>
+					<div th:if="${showsUserForm.account != null}" class="col-lg-10" id="showsUserForm.account.email"
+	                        th:text="${showsUserForm.account.email}">
+					</div>
+				<div th:unless="${showsUserForm.account != null}" th:text="${showsUserForm.account}"></div>
+				</div>
+				<input type="hidden" class="form-control" id="account.id" th:field="*{account.id}" />
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="showsUserForm.account.role" class="col-lg-2 control-label"
+						th:text="#{Account.role} + ':'"></label>
+					<div th:if="${showsUserForm.account != null}" class="col-lg-10" id="showsUserForm.account.role"
+	                        th:text="${showsUserForm.account.role}">
+					</div>
+				<div th:unless="${showsUserForm.account != null}" th:text="${showsUserForm.account}"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+						<button type="submit" name="action" value="save"
+							class="btn btn-default" th:text="#{edit.save}"></button>
+						<button type="submit" name="action" value="cancel" class="btn"
+							th:text="#{edit.cancel}"></button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+</body></html>

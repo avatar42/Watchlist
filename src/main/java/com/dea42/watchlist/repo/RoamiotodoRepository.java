@@ -1,6 +1,7 @@
 package com.dea42.watchlist.repo;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import com.dea42.watchlist.entity.Roamiotodo;
 
@@ -9,9 +10,10 @@ import com.dea42.watchlist.entity.Roamiotodo;
  * Description: Class for the Roamiotodo Repository. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
- * @version 0.5.4<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
+ * @version 0.6.3<br>
  */
 @Repository
-public interface RoamiotodoRepository extends JpaRepository<Roamiotodo, Integer>{
+public interface RoamiotodoRepository extends CrudRepository<Roamiotodo, Integer>,
+JpaSpecificationExecutor<Roamiotodo> {
 }

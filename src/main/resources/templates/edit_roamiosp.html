@@ -1,20 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8" />
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
 <title th:text="#{edit.edit} + ' ' + #{class.Roamiosp}"></title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" media="screen"
-	th:href="@{/resources/css/bootstrap.min.css}" />
-<link rel="stylesheet" media="screen"
-	th:href="@{/resources/css/site.css}" />
-<script th:src="@{/resources/js/jquery.min.js}"></script>
-<script th:src="@{/resources/js/bootstrap.min.js}"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
 
-	<div class="container">
 		<form class="form-narrow form-horizontal" method="post"
 			th:action="@{/roamiosps/save}" th:object="${roamiospForm}"
 			th:fragment="roamiospForm">
@@ -34,22 +26,6 @@
 					th:text="#{edit.edit} + ' ' + #{class.Roamiosp}"></legend>
 
 				<div class="form-group"
-					th:classappend="${#fields.hasErrors('cancelled')}? 'has-error'">
-					<label for="cancelled" class="col-lg-2 control-label"
-						th:text="#{Roamiosp.cancelled} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="cancelled"
-							th:field="*{cancelled}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('cancelled')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
 					th:classappend="${#fields.hasErrors('channel')}? 'has-error'">
 					<label for="channel" class="col-lg-2 control-label"
 						th:text="#{Roamiosp.channel} + ':'"></label>
@@ -58,38 +34,6 @@
 							th:field="*{channel}" />
 						<ul class="help-block"
 							th:each="error: ${#fields.errors('channel')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('channelnum')}? 'has-error'">
-					<label for="channelnum" class="col-lg-2 control-label"
-						th:text="#{Roamiosp.channelnum} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="channelnum"
-							th:field="*{channelnum}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('channelnum')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('dup')}? 'has-error'">
-					<label for="dup" class="col-lg-2 control-label"
-						th:text="#{Roamiosp.dup} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="dup"
-							th:field="*{dup}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('dup')}">
 							<li th:each="message : ${error.split(';')}">
 								<p class="error-message" th:text="${message}"></p>
 							</li>
@@ -131,22 +75,6 @@
 				</div>
 
 				<div class="form-group"
-					th:classappend="${#fields.hasErrors('inshowsstatus')}? 'has-error'">
-					<label for="inshowsstatus" class="col-lg-2 control-label"
-						th:text="#{Roamiosp.inshowsstatus} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="inshowsstatus"
-							th:field="*{inshowsstatus}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('inshowsstatus')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
 					th:classappend="${#fields.hasErrors('keep')}? 'has-error'">
 					<label for="keep" class="col-lg-2 control-label"
 						th:text="#{Roamiosp.keep} + ':'"></label>
@@ -163,22 +91,6 @@
 				</div>
 
 				<div class="form-group"
-					th:classappend="${#fields.hasErrors('network')}? 'has-error'">
-					<label for="network" class="col-lg-2 control-label"
-						th:text="#{Roamiosp.network} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="network"
-							th:field="*{network}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('network')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
 					th:classappend="${#fields.hasErrors('num')}? 'has-error'">
 					<label for="num" class="col-lg-2 control-label"
 						th:text="#{Roamiosp.num} + ':'"></label>
@@ -187,22 +99,6 @@
 							th:field="*{num}" />
 						<ul class="help-block"
 							th:each="error: ${#fields.errors('num')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('ota')}? 'has-error'">
-					<label for="ota" class="col-lg-2 control-label"
-						th:text="#{Roamiosp.ota} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="ota"
-							th:field="*{ota}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('ota')}">
 							<li th:each="message : ${error.split(';')}">
 								<p class="error-message" th:text="${message}"></p>
 							</li>
@@ -235,22 +131,6 @@
 							th:field="*{record}" />
 						<ul class="help-block"
 							th:each="error: ${#fields.errors('record')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('row')}? 'has-error'">
-					<label for="row" class="col-lg-2 control-label"
-						th:text="#{Roamiosp.row} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="row"
-							th:field="*{row}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('row')}">
 							<li th:each="message : ${error.split(';')}">
 								<p class="error-message" th:text="${message}"></p>
 							</li>
@@ -306,22 +186,6 @@
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('station')}? 'has-error'">
-					<label for="station" class="col-lg-2 control-label"
-						th:text="#{Roamiosp.station} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="station"
-							th:field="*{station}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('station')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
 				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
 					<label for="roamiospForm.account.email" class="col-lg-2 control-label"
 						th:text="#{Account.email} + ':'"></label>
@@ -349,7 +213,6 @@
 				</div>
 			</fieldset>
 		</form>
-	</div>
 
-	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
 </body></html>

@@ -1,49 +1,219 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8" />
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
 <title th:text="#{edit.listView} + ' ' + #{class.Ota}"></title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" media="screen"
-	th:href="@{/resources/css/bootstrap.min.css}" />
-<link rel="stylesheet" media="screen"
-	th:href="@{/resources/css/site.css}" />
-<script th:src="@{/resources/js/jquery.min.js}"></script>
-<script th:src="@{/resources/js/bootstrap.min.js}"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
 
-	<div class="container">
+	<div class="container" th:with="SearchForm=${session.otaSearchForm}">
 		<h1 th:text="#{class.Ota} + ' ' + #{edit.list}"></h1>
+		<a th:href="@{/otas/search}" th:text="#{search.search} + ' ' + #{class.Ota}"></a> <br />
 		<a th:href="@{/otas/new}" th:text="#{edit.new} + ' ' + #{class.Ota}"></a> <br /><br />
 
 	    <table>
 	        <tr>
-            <th th:text="#{Ota.atticant}">AtticAnt</th>
-            <th th:text="#{Ota.chan}">Chan</th>
-            <th th:text="#{Ota.channelname}">ChannelName</th>
-            <th th:text="#{Ota.channelnumber}">ChannelNumber</th>
-            <th th:text="#{Ota.channelnumberchannelnameincluded}">ChannelNumberChannelNameIncluded</th>
-            <th th:text="#{Ota.comments}">Comments</th>
-            <th th:text="#{Ota.direction}">Direction</th>
-            <th th:text="#{Ota.enabled}">Enabled</th>
-            <th th:text="#{Ota.fccinfo}">FccInfo</th>
-            <th th:text="#{Ota.freq}">Freq</th>
-            <th th:text="#{Ota.lang}">Lang</th>
-            <th th:text="#{Ota.listed}">Listed</th>
-            <th th:text="#{Ota.mytivoavgstrength}">MyTivoAvgStrength</th>
-            <th th:text="#{Ota.network}">Network</th>
-            <th th:text="#{Ota.off}">Off</th>
-            <th th:text="#{Ota.recommendedantenna}">RecommendedAntenna</th>
-            <th th:text="#{Ota.rez}">Rez</th>
-            <th th:text="#{Ota.shelfant}">ShelfAnt</th>
-            <th th:text="#{Ota.station}">Station</th>
-            <th th:text="#{Ota.subchan}">SubChan</th>
-            <th th:text="#{Ota.tvfoolestsignal}">TvFoolEstSignal</th>
-            <th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.email}">Email</th>
-            <th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.role}">Role</th>
-            <th th:text="#{Ota.watchable}">Watchable</th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'atticant'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=atticant&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.atticant}">AtticAnt</a>
+					<a th:if="${SearchForm.sortField != 'atticant'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=atticant&sortDir=asc'}"
+					th:text="#{Ota.atticant}">AtticAnt</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'chan'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=chan&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.chan}">Chan</a>
+					<a th:if="${SearchForm.sortField != 'chan'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=chan&sortDir=asc'}"
+					th:text="#{Ota.chan}">Chan</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'channelname'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=channelname&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.channelname}">ChannelName</a>
+					<a th:if="${SearchForm.sortField != 'channelname'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=channelname&sortDir=asc'}"
+					th:text="#{Ota.channelname}">ChannelName</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'channelnumber'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=channelnumber&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.channelnumber}">ChannelNumber</a>
+					<a th:if="${SearchForm.sortField != 'channelnumber'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=channelnumber&sortDir=asc'}"
+					th:text="#{Ota.channelnumber}">ChannelNumber</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'channelnumberchannelnameincluded'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=channelnumberchannelnameincluded&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.channelnumberchannelnameincluded}">ChannelNumberChannelNameIncluded</a>
+					<a th:if="${SearchForm.sortField != 'channelnumberchannelnameincluded'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=channelnumberchannelnameincluded&sortDir=asc'}"
+					th:text="#{Ota.channelnumberchannelnameincluded}">ChannelNumberChannelNameIncluded</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'comments'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=comments&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.comments}">Comments</a>
+					<a th:if="${SearchForm.sortField != 'comments'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=comments&sortDir=asc'}"
+					th:text="#{Ota.comments}">Comments</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'direction'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=direction&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.direction}">Direction</a>
+					<a th:if="${SearchForm.sortField != 'direction'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=direction&sortDir=asc'}"
+					th:text="#{Ota.direction}">Direction</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'enabled'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=enabled&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.enabled}">Enabled</a>
+					<a th:if="${SearchForm.sortField != 'enabled'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=enabled&sortDir=asc'}"
+					th:text="#{Ota.enabled}">Enabled</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'fccinfo'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=fccinfo&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.fccinfo}">FccInfo</a>
+					<a th:if="${SearchForm.sortField != 'fccinfo'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=fccinfo&sortDir=asc'}"
+					th:text="#{Ota.fccinfo}">FccInfo</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'freq'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=freq&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.freq}">Freq</a>
+					<a th:if="${SearchForm.sortField != 'freq'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=freq&sortDir=asc'}"
+					th:text="#{Ota.freq}">Freq</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'lang'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=lang&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.lang}">Lang</a>
+					<a th:if="${SearchForm.sortField != 'lang'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=lang&sortDir=asc'}"
+					th:text="#{Ota.lang}">Lang</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'listed'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=listed&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.listed}">Listed</a>
+					<a th:if="${SearchForm.sortField != 'listed'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=listed&sortDir=asc'}"
+					th:text="#{Ota.listed}">Listed</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'mytivoavgstrength'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=mytivoavgstrength&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.mytivoavgstrength}">MyTivoAvgStrength</a>
+					<a th:if="${SearchForm.sortField != 'mytivoavgstrength'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=mytivoavgstrength&sortDir=asc'}"
+					th:text="#{Ota.mytivoavgstrength}">MyTivoAvgStrength</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'network'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=network&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.network}">Network</a>
+					<a th:if="${SearchForm.sortField != 'network'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=network&sortDir=asc'}"
+					th:text="#{Ota.network}">Network</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'off'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=off&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.off}">Off</a>
+					<a th:if="${SearchForm.sortField != 'off'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=off&sortDir=asc'}"
+					th:text="#{Ota.off}">Off</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'recommendedantenna'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=recommendedantenna&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.recommendedantenna}">RecommendedAntenna</a>
+					<a th:if="${SearchForm.sortField != 'recommendedantenna'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=recommendedantenna&sortDir=asc'}"
+					th:text="#{Ota.recommendedantenna}">RecommendedAntenna</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'rez'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=rez&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.rez}">Rez</a>
+					<a th:if="${SearchForm.sortField != 'rez'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=rez&sortDir=asc'}"
+					th:text="#{Ota.rez}">Rez</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'station'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=station&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.station}">Station</a>
+					<a th:if="${SearchForm.sortField != 'station'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=station&sortDir=asc'}"
+					th:text="#{Ota.station}">Station</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'subchan'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=subchan&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.subchan}">SubChan</a>
+					<a th:if="${SearchForm.sortField != 'subchan'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=subchan&sortDir=asc'}"
+					th:text="#{Ota.subchan}">SubChan</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'tvfoolchan'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=tvfoolchan&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.tvfoolchan}">TvFoolChan</a>
+					<a th:if="${SearchForm.sortField != 'tvfoolchan'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=tvfoolchan&sortDir=asc'}"
+					th:text="#{Ota.tvfoolchan}">TvFoolChan</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'tvfoolestsignal'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=tvfoolestsignal&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.tvfoolestsignal}">TvFoolEstSignal</a>
+					<a th:if="${SearchForm.sortField != 'tvfoolestsignal'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=tvfoolestsignal&sortDir=asc'}"
+					th:text="#{Ota.tvfoolestsignal}">TvFoolEstSignal</a>
+            </th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')" >
+				<a th:if="${SearchForm.sortField == 'email'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=email&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Account.email}">Email</a>
+					<a th:if="${SearchForm.sortField != 'email'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=email&sortDir=asc'}"
+					th:text="#{Account.email}">Email</a>
+            </th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')" >
+				<a th:if="${SearchForm.sortField == 'role'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=role&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Account.role}">Role</a>
+					<a th:if="${SearchForm.sortField != 'role'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=role&sortDir=asc'}"
+					th:text="#{Account.role}">Role</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'watchabletablo'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=watchabletablo&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.watchabletablo}">WatchableTablo</a>
+					<a th:if="${SearchForm.sortField != 'watchabletablo'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=watchabletablo&sortDir=asc'}"
+					th:text="#{Ota.watchabletablo}">WatchableTablo</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'watchabletivo'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=watchabletivo&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Ota.watchabletivo}">WatchableTivo</a>
+					<a th:if="${SearchForm.sortField != 'watchabletivo'}"
+					th:href="@{'/otas/search/' + ${SearchForm.page} + '?sortField=watchabletivo&sortDir=asc'}"
+					th:text="#{Ota.watchabletivo}">WatchableTivo</a>
+            </th>
             <th th:text="#{edit.actions}"></th>
 	        </tr>
 	        <tr th:each="ota:${otas}">
@@ -81,11 +251,11 @@
 				<td th:unless="${ota != null}"></td>
 	            <td th:if="${ota != null}" th:text="${ota.rez}"></td>
 				<td th:unless="${ota != null}"></td>
-	            <td th:if="${ota != null}" th:text="${ota.shelfant}"></td>
-				<td th:unless="${ota != null}"></td>
 	            <td th:if="${ota != null}" th:text="${ota.station}"></td>
 				<td th:unless="${ota != null}"></td>
 	            <td th:if="${ota != null}" th:text="${ota.subchan}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.tvfoolchan}"></td>
 				<td th:unless="${ota != null}"></td>
 	            <td th:if="${ota != null}" th:text="${ota.tvfoolestsignal}"></td>
 				<td th:unless="${ota != null}"></td>
@@ -93,7 +263,9 @@
 				<td th:unless="${ota.account != null}"></td>
 	            <td th:if="${ota.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${ota.account.role}"></td>
 				<td th:unless="${ota.account != null}"></td>
-	            <td th:if="${ota != null}" th:text="${ota.watchable}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.watchabletablo}"></td>
+				<td th:unless="${ota != null}"></td>
+	            <td th:if="${ota != null}" th:text="${ota.watchabletivo}"></td>
 				<td th:unless="${ota != null}"></td>
 				<td><a th:href="@{'/otas/edit/' + ${ota.id}}" th:text="#{edit.edit}"></a>
 					&nbsp;&nbsp;&nbsp; <a th:href="@{'/otas/delete/' + ${ota.id}}" th:text="#{edit.delete}"></a>
@@ -101,7 +273,38 @@
 
 	        </tr>
 	    </table>
+		<div th:if="${SearchForm.page > 1}">
+			<div class="row col-sm-10">
+				<div class="col-sm-2">Total Rows:
+					[[${SearchForm.totalItems}]]</div>
+				<div class="col-sm-1">
+					<span
+						th:each="i: ${#numbers.sequence(1, SearchForm.totalPages)}">
+						<a th:if="${SearchForm.page != i}"
+						th:href="@{'/otas/search/' + ${i}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">[[${i}]]</a>
+						<span th:unless="${SearchForm.page != i}">[[${i}]]</span>
+						&nbsp; &nbsp;
+					</span>
+				</div>
+				<div class="col-sm-1">
+					<a
+						th:if="${SearchForm.page < SearchForm.totalPages}"
+						th:href="@{'/otas/search/' + ${SearchForm.page + 1}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">Next</a>
+					<span
+						th:unless="${SearchForm.page < SearchForm.totalPages}">Next</span>
+				</div>
+
+				<div class="col-sm-1">
+					<a
+						th:if="${SearchForm.page < SearchForm.totalPages}"
+						th:href="@{'/otas/search/' + ${SearchForm.totalPages}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">Last</a>
+					<span
+						th:unless="${SearchForm.page < SearchForm.totalPages}">Last</span>
+				</div>
+			</div>
+		</div>
+
     </div>
 
-	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
 </body></html>

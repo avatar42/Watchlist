@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.data.domain.Page;
 import org.springframework.test.web.servlet.ResultActions;
 import com.google.common.collect.ImmutableMap;
 import lombok.extern.slf4j.Slf4j;
@@ -11,14 +12,15 @@ import lombok.extern.slf4j.Slf4j;
 import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Cablecard;
 import com.dea42.watchlist.form.CablecardForm;
+import com.dea42.watchlist.search.CablecardSearchForm;
 
 /**
  * Title: CablecardControllerTest <br>
  * Description: CablecardController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
- * @version 0.5.4<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
+ * @version 0.6.3<br>
  */
 @Slf4j
 @WebMvcTest(CablecardController.class)
@@ -29,7 +31,6 @@ public class CablecardControllerTest extends MockBase {
         o.setChannelname(getTestString(12));
         o.setLang(getTestString(2));
         o.setNet(getTestString(12));
-        o.setOd(getTestString(20));
         o.setReceiving(getTestString(3));
         o.setShortfield(getTestString(12));
 		return o;
@@ -45,14 +46,14 @@ public class CablecardControllerTest extends MockBase {
 		Cablecard o = getCablecard(1);
 		list.add(o);
 
-		given(cablecardServices.listAll()).willReturn(list);
+		Page<Cablecard> p = getPage(list);
+		given(cablecardServices.listAll(new CablecardSearchForm())).willReturn(p);
 
 		ResultActions ra = getAsAdmin("/cablecards");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Cablecard") + " " + getMsg("edit.list") + "</h1>");
 		contentContainsMarkup(ra,getTestString(12));
 		contentContainsMarkup(ra,getMsg("Cablecard.channelname"));
 		contentContainsMarkup(ra,getMsg("Cablecard.channelnumber"));
-		contentContainsMarkup(ra,getMsg("Cablecard.colh"));
 		contentContainsMarkup(ra,getMsg("Cablecard.dt"));
 		contentContainsMarkup(ra,getMsg("Cablecard.hd"));
 		contentContainsMarkup(ra,getMsg("Cablecard.innpl"));
@@ -60,8 +61,6 @@ public class CablecardControllerTest extends MockBase {
 		contentContainsMarkup(ra,getMsg("Cablecard.lang"));
 		contentContainsMarkup(ra,getTestString(12));
 		contentContainsMarkup(ra,getMsg("Cablecard.net"));
-		contentContainsMarkup(ra,getTestString(20));
-		contentContainsMarkup(ra,getMsg("Cablecard.od"));
 		contentContainsMarkup(ra,getTestString(3));
 		contentContainsMarkup(ra,getMsg("Cablecard.receiving"));
 		contentContainsMarkup(ra,getTestString(12));
@@ -81,14 +80,12 @@ public class CablecardControllerTest extends MockBase {
 		contentContainsMarkup(ra,"<legend>" + getMsg("edit.new") + " " + getMsg("class.Cablecard") + "</legend>");
 		contentContainsMarkup(ra,"Channelname");
 		contentContainsMarkup(ra,"Channelnumber");
-		contentContainsMarkup(ra,"Colh");
 		contentContainsMarkup(ra,"Dt");
 		contentContainsMarkup(ra,"Hd");
 		// TODO: confirm ignoring Cablecard.id
 		contentContainsMarkup(ra,"Innpl");
 		contentContainsMarkup(ra,"Lang");
 		contentContainsMarkup(ra,"Net");
-		contentContainsMarkup(ra,"Od");
 		contentContainsMarkup(ra,"Receiving");
 		contentContainsMarkup(ra,"Shortfield");
 		contentContainsMarkup(ra,"Account");
@@ -136,7 +133,6 @@ public class CablecardControllerTest extends MockBase {
 		contentContainsMarkup(ra,o.getChannelname());
 		contentContainsMarkup(ra,"Channelname");
 		contentContainsMarkup(ra,"Channelnumber");
-		contentContainsMarkup(ra,"Colh");
 		contentContainsMarkup(ra,"Dt");
 		contentContainsMarkup(ra,"Hd");
 		// TODO: confirm ignoring Cablecard.id
@@ -145,8 +141,6 @@ public class CablecardControllerTest extends MockBase {
 		contentContainsMarkup(ra,"Lang");
 		contentContainsMarkup(ra,o.getNet());
 		contentContainsMarkup(ra,"Net");
-		contentContainsMarkup(ra,o.getOd());
-		contentContainsMarkup(ra,"Od");
 		contentContainsMarkup(ra,o.getReceiving());
 		contentContainsMarkup(ra,"Receiving");
 		contentContainsMarkup(ra,o.getShortfield());

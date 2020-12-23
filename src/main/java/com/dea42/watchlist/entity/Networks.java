@@ -1,7 +1,6 @@
 package com.dea42.watchlist.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,8 +14,8 @@ import lombok.Data;
  * Description: Class for holding data from the networks table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
- * @version 0.5.4<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
+ * @version 0.6.3<br>
  * Table name: networks<br>
  * Column name: id<br>
  * Catalog name: null<br>
@@ -49,7 +48,7 @@ public class Networks implements Serializable {
 	private String freewithtwcid;
 	@Column(name = "FreeWithTwcIdLink", length = 50)
 	private String freewithtwcidlink;
-	@Column(name = "HasDirectBuyOption", length = 79)
+	@Column(name = "HasDirectBuyOption", length = 82)
 	private String hasdirectbuyoption;
 	@Column(name = "HasDirectBuyOptionLink", length = 55)
 	private String hasdirectbuyoptionlink;

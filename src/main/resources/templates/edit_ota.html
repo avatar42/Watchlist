@@ -1,20 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8" />
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
 <title th:text="#{edit.edit} + ' ' + #{class.Ota}"></title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" media="screen"
-	th:href="@{/resources/css/bootstrap.min.css}" />
-<link rel="stylesheet" media="screen"
-	th:href="@{/resources/css/site.css}" />
-<script th:src="@{/resources/js/jquery.min.js}"></script>
-<script th:src="@{/resources/js/bootstrap.min.js}"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
 
-	<div class="container">
 		<form class="form-narrow form-horizontal" method="post"
 			th:action="@{/otas/save}" th:object="${otaForm}"
 			th:fragment="otaForm">
@@ -323,22 +315,6 @@
 				</div>
 
 				<div class="form-group"
-					th:classappend="${#fields.hasErrors('shelfant')}? 'has-error'">
-					<label for="shelfant" class="col-lg-2 control-label"
-						th:text="#{Ota.shelfant} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="shelfant"
-							th:field="*{shelfant}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('shelfant')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
 					th:classappend="${#fields.hasErrors('station')}? 'has-error'">
 					<label for="station" class="col-lg-2 control-label"
 						th:text="#{Ota.station} + ':'"></label>
@@ -363,6 +339,22 @@
 							th:field="*{subchan}" />
 						<ul class="help-block"
 							th:each="error: ${#fields.errors('subchan')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('tvfoolchan')}? 'has-error'">
+					<label for="tvfoolchan" class="col-lg-2 control-label"
+						th:text="#{Ota.tvfoolchan} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="tvfoolchan"
+							th:field="*{tvfoolchan}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('tvfoolchan')}">
 							<li th:each="message : ${error.split(';')}">
 								<p class="error-message" th:text="${message}"></p>
 							</li>
@@ -404,14 +396,30 @@
 				<div th:unless="${otaForm.account != null}" th:text="${otaForm.account}"></div>
 				</div>
 				<div class="form-group"
-					th:classappend="${#fields.hasErrors('watchable')}? 'has-error'">
-					<label for="watchable" class="col-lg-2 control-label"
-						th:text="#{Ota.watchable} + ':'"></label>
+					th:classappend="${#fields.hasErrors('watchabletablo')}? 'has-error'">
+					<label for="watchabletablo" class="col-lg-2 control-label"
+						th:text="#{Ota.watchabletablo} + ':'"></label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="watchable"
-							th:field="*{watchable}" />
+						<input type="text" class="form-control" id="watchabletablo"
+							th:field="*{watchabletablo}" />
 						<ul class="help-block"
-							th:each="error: ${#fields.errors('watchable')}">
+							th:each="error: ${#fields.errors('watchabletablo')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('watchabletivo')}? 'has-error'">
+					<label for="watchabletivo" class="col-lg-2 control-label"
+						th:text="#{Ota.watchabletivo} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="watchabletivo"
+							th:field="*{watchabletivo}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('watchabletivo')}">
 							<li th:each="message : ${error.split(';')}">
 								<p class="error-message" th:text="${message}"></p>
 							</li>
@@ -429,7 +437,6 @@
 				</div>
 			</fieldset>
 		</form>
-	</div>
 
-	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
 </body></html>

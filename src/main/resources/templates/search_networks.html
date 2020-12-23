@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
+<title th:text="#{edit.edit} + ' ' + #{class.Networks}"></title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
+
+		<form class="form-narrow form-horizontal" method="post"
+			th:action="@{/networkss/search}" th:object="${networksSearchForm}"
+			th:fragment="networksSearchForm">
+			<!--/* Show general error messages when form contains errors */-->
+			<th:block th:if="${#fields.hasErrors('${networksSearchForm.*}')}">
+				<div th:each="fieldErrors : ${#fields.errors('${networksSearchForm.*}')}">
+					<div th:each="message : ${fieldErrors.split(';')}">
+						<div
+							th:replace="fragments/alert :: alert (type='danger', message=${message})">Alert</div>
+					</div>
+				</div>
+			</th:block>
+			<fieldset>
+				<legend th:text="#{search.search} + ' ' + #{class.Networks}"></legend>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('androidapp')}? 'has-error'">
+					<label for="androidapp" class="col-lg-2 control-label"
+						th:text="#{Networks.androidapp} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="androidapp"
+							th:field="*{androidapp}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('androidapp')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('androidapplink')}? 'has-error'">
+					<label for="androidapplink" class="col-lg-2 control-label"
+						th:text="#{Networks.androidapplink} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="androidapplink"
+							th:field="*{androidapplink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('androidapplink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('comment')}? 'has-error'">
+					<label for="comment" class="col-lg-2 control-label"
+						th:text="#{Networks.comment} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="comment"
+							th:field="*{comment}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('comment')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('commentlink')}? 'has-error'">
+					<label for="commentlink" class="col-lg-2 control-label"
+						th:text="#{Networks.commentlink} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="commentlink"
+							th:field="*{commentlink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('commentlink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('commercials')}? 'has-error'">
+					<label for="commercials" class="col-lg-2 control-label"
+						th:text="#{Networks.commercials} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="commercials"
+							th:field="*{commercials}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('commercials')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('commercialslink')}? 'has-error'">
+					<label for="commercialslink" class="col-lg-2 control-label"
+						th:text="#{Networks.commercialslink} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="commercialslink"
+							th:field="*{commercialslink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('commercialslink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('fireapp')}? 'has-error'">
+					<label for="fireapp" class="col-lg-2 control-label"
+						th:text="#{Networks.fireapp} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="fireapp"
+							th:field="*{fireapp}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('fireapp')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('fireapplink')}? 'has-error'">
+					<label for="fireapplink" class="col-lg-2 control-label"
+						th:text="#{Networks.fireapplink} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="fireapplink"
+							th:field="*{fireapplink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('fireapplink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('freewithtwcid')}? 'has-error'">
+					<label for="freewithtwcid" class="col-lg-2 control-label"
+						th:text="#{Networks.freewithtwcid} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="freewithtwcid"
+							th:field="*{freewithtwcid}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('freewithtwcid')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('freewithtwcidlink')}? 'has-error'">
+					<label for="freewithtwcidlink" class="col-lg-2 control-label"
+						th:text="#{Networks.freewithtwcidlink} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="freewithtwcidlink"
+							th:field="*{freewithtwcidlink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('freewithtwcidlink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('hasdirectbuyoption')}? 'has-error'">
+					<label for="hasdirectbuyoption" class="col-lg-2 control-label"
+						th:text="#{Networks.hasdirectbuyoption} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="hasdirectbuyoption"
+							th:field="*{hasdirectbuyoption}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('hasdirectbuyoption')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('hasdirectbuyoptionlink')}? 'has-error'">
+					<label for="hasdirectbuyoptionlink" class="col-lg-2 control-label"
+						th:text="#{Networks.hasdirectbuyoptionlink} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="hasdirectbuyoptionlink"
+							th:field="*{hasdirectbuyoptionlink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('hasdirectbuyoptionlink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('haswatchlist')}? 'has-error'">
+					<label for="haswatchlist" class="col-lg-2 control-label"
+						th:text="#{Networks.haswatchlist} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="haswatchlist"
+							th:field="*{haswatchlist}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('haswatchlist')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('icanota')}? 'has-error'">
+					<label for="icanota" class="col-lg-2 control-label"
+						th:text="#{Networks.icanota} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="icanota"
+							th:field="*{icanota}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('icanota')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('icanotalink')}? 'has-error'">
+					<label for="icanotalink" class="col-lg-2 control-label"
+						th:text="#{Networks.icanotalink} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="icanotalink"
+							th:field="*{icanotalink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('icanotalink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('iptvservice')}? 'has-error'">
+					<label for="iptvservice" class="col-lg-2 control-label"
+						th:text="#{Networks.iptvservice} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="iptvservice"
+							th:field="*{iptvservice}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('iptvservice')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('iptvservicelink')}? 'has-error'">
+					<label for="iptvservicelink" class="col-lg-2 control-label"
+						th:text="#{Networks.iptvservicelink} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="iptvservicelink"
+							th:field="*{iptvservicelink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('iptvservicelink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('onhulu')}? 'has-error'">
+					<label for="onhulu" class="col-lg-2 control-label"
+						th:text="#{Networks.onhulu} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="onhulu"
+							th:field="*{onhulu}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('onhulu')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('onhululink')}? 'has-error'">
+					<label for="onhululink" class="col-lg-2 control-label"
+						th:text="#{Networks.onhululink} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="onhululink"
+							th:field="*{onhululink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('onhululink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('persistance')}? 'has-error'">
+					<label for="persistance" class="col-lg-2 control-label"
+						th:text="#{Networks.persistance} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="persistance"
+							th:field="*{persistance}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('persistance')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('remembersplaceinepisode')}? 'has-error'">
+					<label for="remembersplaceinepisode" class="col-lg-2 control-label"
+						th:text="#{Networks.remembersplaceinepisode} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="remembersplaceinepisode"
+							th:field="*{remembersplaceinepisode}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('remembersplaceinepisode')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('rememberswatchedepisodes')}? 'has-error'">
+					<label for="rememberswatchedepisodes" class="col-lg-2 control-label"
+						th:text="#{Networks.rememberswatchedepisodes} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="rememberswatchedepisodes"
+							th:field="*{rememberswatchedepisodes}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('rememberswatchedepisodes')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('rokuapp')}? 'has-error'">
+					<label for="rokuapp" class="col-lg-2 control-label"
+						th:text="#{Networks.rokuapp} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="rokuapp"
+							th:field="*{rokuapp}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('rokuapp')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('rokuapplink')}? 'has-error'">
+					<label for="rokuapplink" class="col-lg-2 control-label"
+						th:text="#{Networks.rokuapplink} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="rokuapplink"
+							th:field="*{rokuapplink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('rokuapplink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('showsintivonplMin')}? 'has-error'">
+					<label for="showsintivonplMin" class="col-lg-2 control-label"
+						th:text="#{Networks.showsintivonpl} + ' ' + #{search.gte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="showsintivonplMin"
+							th:field="*{showsintivonplMin}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('showsintivonplMin')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('showsintivonplMax')}? 'has-error'">
+					<label for="showsintivonplMax" class="col-lg-2 control-label"
+						th:text="#{Networks.showsintivonpl} + ' ' + #{search.lte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="showsintivonplMax"
+							th:field="*{showsintivonplMax}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('showsintivonplMax')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('site')}? 'has-error'">
+					<label for="site" class="col-lg-2 control-label"
+						th:text="#{Networks.site} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="site"
+							th:field="*{site}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('site')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('sitelink')}? 'has-error'">
+					<label for="sitelink" class="col-lg-2 control-label"
+						th:text="#{Networks.sitelink} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="sitelink"
+							th:field="*{sitelink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('sitelink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('standardwait')}? 'has-error'">
+					<label for="standardwait" class="col-lg-2 control-label"
+						th:text="#{Networks.standardwait} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="standardwait"
+							th:field="*{standardwait}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('standardwait')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('tivoapp')}? 'has-error'">
+					<label for="tivoapp" class="col-lg-2 control-label"
+						th:text="#{Networks.tivoapp} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="tivoapp"
+							th:field="*{tivoapp}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('tivoapp')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('tivoapplink')}? 'has-error'">
+					<label for="tivoapplink" class="col-lg-2 control-label"
+						th:text="#{Networks.tivoapplink} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="tivoapplink"
+							th:field="*{tivoapplink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('tivoapplink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('tivoshortname')}? 'has-error'">
+					<label for="tivoshortname" class="col-lg-2 control-label"
+						th:text="#{Networks.tivoshortname} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="tivoshortname"
+							th:field="*{tivoshortname}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('tivoshortname')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('webinterface')}? 'has-error'">
+					<label for="webinterface" class="col-lg-2 control-label"
+						th:text="#{Networks.webinterface} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="webinterface"
+							th:field="*{webinterface}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('webinterface')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('webinterfacelink')}? 'has-error'">
+					<label for="webinterfacelink" class="col-lg-2 control-label"
+						th:text="#{Networks.webinterfacelink} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="webinterfacelink"
+							th:field="*{webinterfacelink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('webinterfacelink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+						<button type="submit" name="action" value="search"
+							class="btn btn-default" th:text="#{search.search}"></button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+</body></html>

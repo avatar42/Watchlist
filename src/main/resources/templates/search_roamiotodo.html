@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
+<title th:text="#{edit.edit} + ' ' + #{class.Roamiotodo}"></title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
+
+		<form class="form-narrow form-horizontal" method="post"
+			th:action="@{/roamiotodos/search}" th:object="${roamiotodoSearchForm}"
+			th:fragment="roamiotodoSearchForm">
+			<!--/* Show general error messages when form contains errors */-->
+			<th:block th:if="${#fields.hasErrors('${roamiotodoSearchForm.*}')}">
+				<div th:each="fieldErrors : ${#fields.errors('${roamiotodoSearchForm.*}')}">
+					<div th:each="message : ${fieldErrors.split(';')}">
+						<div
+							th:replace="fragments/alert :: alert (type='danger', message=${message})">Alert</div>
+					</div>
+				</div>
+			</th:block>
+			<fieldset>
+				<legend th:text="#{search.search} + ' ' + #{class.Roamiotodo}"></legend>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('channel')}? 'has-error'">
+					<label for="channel" class="col-lg-2 control-label"
+						th:text="#{Roamiotodo.channel} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="channel"
+							th:field="*{channel}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('channel')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('dateMin')}? 'has-error'">
+					<label for="dateMin" class="col-lg-2 control-label"
+						th:text="#{Roamiotodo.date} + ' ' + #{search.after}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="dateMin"
+							th:field="*{dateMin}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('dateMin')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('dateMax')}? 'has-error'">
+					<label for="dateMax" class="col-lg-2 control-label"
+						th:text="#{Roamiotodo.date} + ' ' + #{search.before}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="dateMax"
+							th:field="*{dateMax}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('dateMax')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('duration')}? 'has-error'">
+					<label for="duration" class="col-lg-2 control-label"
+						th:text="#{Roamiotodo.duration} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="duration"
+							th:field="*{duration}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('duration')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('ep')}? 'has-error'">
+					<label for="ep" class="col-lg-2 control-label"
+						th:text="#{Roamiotodo.ep} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="ep"
+							th:field="*{ep}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('ep')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('episodename')}? 'has-error'">
+					<label for="episodename" class="col-lg-2 control-label"
+						th:text="#{Roamiotodo.episodename} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="episodename"
+							th:field="*{episodename}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('episodename')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('showname')}? 'has-error'">
+					<label for="showname" class="col-lg-2 control-label"
+						th:text="#{Roamiotodo.showname} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="showname"
+							th:field="*{showname}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('showname')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('showtrimmed')}? 'has-error'">
+					<label for="showtrimmed" class="col-lg-2 control-label"
+						th:text="#{Roamiotodo.showtrimmed} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="showtrimmed"
+							th:field="*{showtrimmed}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('showtrimmed')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+						<button type="submit" name="action" value="search"
+							class="btn btn-default" th:text="#{search.search}"></button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+</body></html>

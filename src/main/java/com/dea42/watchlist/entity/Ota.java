@@ -1,25 +1,24 @@
 package com.dea42.watchlist.entity;
 
 import java.io.Serializable;
-
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import lombok.Data;
-import java.math.BigDecimal;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import lombok.Data;
 
 /**
  * Title: ota Bean <br>
  * Description: Class for holding data from the ota table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
- * @version 0.5.4<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
+ * @version 0.6.3<br>
  * Table name: ota<br>
  * Column name: id<br>
  * Catalog name: null<br>
@@ -50,11 +49,11 @@ public class Ota implements Serializable {
 	private Integer atticant;
 	@Column(name = "Chan")
 	private Integer chan;
-	@Column(name = "ChannelName", length = 9)
+	@Column(name = "ChannelName", length = 10)
 	private String channelname;
-	@Column(name = "ChannelNumber")
-	private BigDecimal channelnumber;
-	@Column(name = "ChannelNumberChannelNameIncluded", length = 17)
+	@Column(name = "ChannelNumber", length = 4)
+	private String channelnumber;
+	@Column(name = "ChannelNumberChannelNameIncluded", length = 18)
 	private String channelnumberchannelnameincluded;
 	@Column(name = "Comments", length = 31)
 	private String comments;
@@ -62,7 +61,7 @@ public class Ota implements Serializable {
 	private String direction;
 	@Column(name = "Enabled", length = 3)
 	private String enabled;
-	@Column(name = "FccInfo", length = 9)
+	@Column(name = "FccInfo", length = 10)
 	private String fccinfo;
 	@Column(name = "FccInfoLink", length = 6)
 	private String fccinfolink;
@@ -78,25 +77,27 @@ public class Ota implements Serializable {
 	private Integer listed;
 	@Column(name = "MyTivoAvgStrength")
 	private Integer mytivoavgstrength;
-	@Column(name = "Network", length = 8)
+	@Column(name = "Network", length = 15)
 	private String network;
-	@Column(name = "Off", length = 3)
+	@Column(name = "Off", length = 5)
 	private String off;
 	@Column(name = "RecommendedAntenna", length = 41)
 	private String recommendedantenna;
 	@Column(name = "Rez", length = 5)
 	private String rez;
-	@Column(name = "ShelfAnt", length = 20)
-	private String shelfant;
-	@Column(name = "Station", length = 9)
+	@Column(name = "Station", length = 5)
 	private String station;
 	@Column(name = "SubChan")
 	private Integer subchan;
-	@Column(name = "TvFoolEstSignal", length = 4)
+	@Column(name = "TvFoolChan")
+	private BigDecimal tvfoolchan;
+	@Column(name = "TvFoolEstSignal", length = 5)
 	private String tvfoolestsignal;
 	@ManyToOne
 	@JoinColumn(name = "Userid", referencedColumnName = "id")
 	private Account account;
-	@Column(name = "Watchable", length = 4)
-	private String watchable;
+	@Column(name = "WatchableTablo", length = 7)
+	private String watchabletablo;
+	@Column(name = "WatchableTivo", length = 4)
+	private String watchabletivo;
 }

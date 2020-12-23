@@ -16,11 +16,14 @@ import java.util.ResourceBundle;
 import org.apache.commons.lang3.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;
+
 /**
- * General utils used by app from GenSpring static resources
- * 
- * @author avata
- *
+ * Title: Utils <br>
+ * Description: General utils used by app from GenSpring static resources. <br>
+ * Copyright: Copyright (c) 2001-2020<br>
+ * Company: RMRR<br>
+ * @author Gened by GenSpring version 0.6.3<br>
+ * @version 0.6.3<br>
  */
 @Slf4j
 public class Utils {

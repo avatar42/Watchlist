@@ -1,24 +1,23 @@
 package com.dea42.watchlist.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import lombok.Data;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import lombok.Data;
 
 /**
  * Title: roamiosp Bean <br>
  * Description: Class for holding data from the roamiosp table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
- * @version 0.5.4<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
+ * @version 0.6.3<br>
  * Table name: roamiosp<br>
  * Column name: id<br>
  * Catalog name: null<br>
@@ -45,46 +44,30 @@ import javax.persistence.ManyToOne;
 public class Roamiosp implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "Cancelled", length = 1)
-	private String cancelled;
 	@Column(name = "Channel", length = 14)
 	private String channel;
-	@Column(name = "Channelnum", length = 4)
-	private String channelnum;
-	@Column(name = "Dup")
-	private Integer dup;
 	@Column(name = "End")
 	private Integer end;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Integer id;
-	@Column(name = "Include", length = 6)
+	@Column(name = "Include", length = 8)
 	private String include;
-	@Column(name = "InShowsStatus", length = 44)
-	private String inshowsstatus;
 	@Column(name = "Keep", length = 7)
 	private String keep;
-	@Column(name = "Network", length = 13)
-	private String network;
 	@Column(name = "Num")
 	private Integer num;
-	@Column(name = "Ota", length = 2)
-	private String ota;
-	@Column(name = "Priority")
+	@Column(name = "Priority", nullable = false)
 	private Integer priority;
 	@Column(name = "Record", length = 13)
 	private String record;
-	@Column(name = "Row")
-	private Integer row;
 	@Column(name = "Season")
 	private Integer season;
-	@Column(name = "Show", length = 53)
+	@Column(name = "Show", length = 60)
 	private String show;
 	@Column(name = "Start")
 	private Integer start;
-	@Column(name = "Station", length = 10)
-	private String station;
 	@ManyToOne
 	@JoinColumn(name = "Userid", referencedColumnName = "id")
 	private Account account;

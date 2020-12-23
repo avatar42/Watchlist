@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<ul class="navbar-nav mr-auto">
+		<li th:fragment="guiMenu" id="guiMenu" class="nav-item dropdown"><a
+			href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+			aria-haspopup="true" aria-expanded="false"><span
+				th:text="#{header.gui}"></span> <b class="caret"></b> </a>
+			<ul class="dropdown-menu bg-dark">
+								<li sec:authorize="hasRole('ROLE_ADMIN')"  th:classappend="${module == 'account' ? 'active' : ''}">
+    								<a id="guiItemAccount" th:href="@{/accounts}" th:text="#{class.Account}"></a></li>
+								<li th:classappend="${module == 'networks' ? 'active' : ''}">
+    								<a id="guiItemNetworks" th:href="@{/networkss}" th:text="#{class.Networks}"></a></li>
+								<li th:classappend="${module == 'shows' ? 'active' : ''}">
+    								<a id="guiItemShows" th:href="@{/showss}" th:text="#{class.Shows}"></a></li>
+								<li th:classappend="${module == 'roamiosp' ? 'active' : ''}">
+    								<a id="guiItemRoamiosp" th:href="@{/roamiosps}" th:text="#{class.Roamiosp}"></a></li>
+								<li th:classappend="${module == 'showsUser' ? 'active' : ''}">
+    								<a id="guiItemShowsUser" th:href="@{/showsUsers}" th:text="#{class.ShowsUser}"></a></li>
+								<li th:classappend="${module == 'cablecard' ? 'active' : ''}">
+    								<a id="guiItemCablecard" th:href="@{/cablecards}" th:text="#{class.Cablecard}"></a></li>
+								<li th:classappend="${module == 'ota' ? 'active' : ''}">
+    								<a id="guiItemOta" th:href="@{/otas}" th:text="#{class.Ota}"></a></li>
+								<li th:classappend="${module == 'roamionpl' ? 'active' : ''}">
+    								<a id="guiItemRoamionpl" th:href="@{/roamionpls}" th:text="#{class.Roamionpl}"></a></li>
+								<li th:classappend="${module == 'networksUser' ? 'active' : ''}">
+    								<a id="guiItemNetworksUser" th:href="@{/networksUsers}" th:text="#{class.NetworksUser}"></a></li>
+								<li th:classappend="${module == 'roamiotodo' ? 'active' : ''}">
+    								<a id="guiItemRoamiotodo" th:href="@{/roamiotodos}" th:text="#{class.Roamiotodo}"></a></li>
+			</ul></li>
+		<li th:fragment="restMenu" id="restMenu" class="nav-item dropdown"><a
+			href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+			aria-haspopup="true" aria-expanded="false"><span
+				th:text="#{header.restApi}"></span> <b class="caret"></b> </a>
+			<ul class="dropdown-menu bg-dark">
+								<li sec:authorize="hasRole('ROLE_ADMIN')"  th:classappend="${module == 'account' ? 'active' : ''}">
+    								<a id="apiItemAccount" th:href="@{/api/accounts}" th:text="#{class.Account}"></a></li>
+								<li th:classappend="${module == 'networks' ? 'active' : ''}">
+    								<a id="apiItemNetworks" th:href="@{/api/networkss}" th:text="#{class.Networks}"></a></li>
+								<li th:classappend="${module == 'shows' ? 'active' : ''}">
+    								<a id="apiItemShows" th:href="@{/api/showss}" th:text="#{class.Shows}"></a></li>
+								<li th:classappend="${module == 'roamiosp' ? 'active' : ''}">
+    								<a id="apiItemRoamiosp" th:href="@{/api/roamiosps}" th:text="#{class.Roamiosp}"></a></li>
+								<li th:classappend="${module == 'showsUser' ? 'active' : ''}">
+    								<a id="apiItemShowsUser" th:href="@{/api/showsUsers}" th:text="#{class.ShowsUser}"></a></li>
+								<li th:classappend="${module == 'cablecard' ? 'active' : ''}">
+    								<a id="apiItemCablecard" th:href="@{/api/cablecards}" th:text="#{class.Cablecard}"></a></li>
+								<li th:classappend="${module == 'ota' ? 'active' : ''}">
+    								<a id="apiItemOta" th:href="@{/api/otas}" th:text="#{class.Ota}"></a></li>
+								<li th:classappend="${module == 'roamionpl' ? 'active' : ''}">
+    								<a id="apiItemRoamionpl" th:href="@{/api/roamionpls}" th:text="#{class.Roamionpl}"></a></li>
+								<li th:classappend="${module == 'networksUser' ? 'active' : ''}">
+    								<a id="apiItemNetworksUser" th:href="@{/api/networksUsers}" th:text="#{class.NetworksUser}"></a></li>
+								<li th:classappend="${module == 'roamiotodo' ? 'active' : ''}">
+    								<a id="apiItemRoamiotodo" th:href="@{/api/roamiotodos}" th:text="#{class.Roamiotodo}"></a></li>
+			</ul></li>
+		<li th:fragment="staticMenu" id="staticMenu" class="nav-item dropdown">
+							</li>
+					</ul>
+</body>
+</html>

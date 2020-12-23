@@ -1,24 +1,23 @@
 package com.dea42.watchlist.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import lombok.Data;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import lombok.Data;
 
 /**
  * Title: cablecard Bean <br>
  * Description: Class for holding data from the cablecard table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
- * @version 0.5.4<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
+ * @version 0.6.3<br>
  * Table name: cablecard<br>
  * Column name: id<br>
  * Catalog name: null<br>
@@ -45,12 +44,10 @@ import javax.persistence.ManyToOne;
 public class Cablecard implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "ChannelName", length = 12)
+	@Column(name = "ChannelName", nullable = false, length = 12)
 	private String channelname;
-	@Column(name = "ChannelNumber")
+	@Column(name = "ChannelNumber", nullable = false)
 	private Integer channelnumber;
-	@Column(name = "Colh")
-	private Integer colh;
 	@Column(name = "Dt")
 	private Integer dt;
 	@Column(name = "Hd")
@@ -65,8 +62,6 @@ public class Cablecard implements Serializable {
 	private String lang;
 	@Column(name = "Net", length = 12)
 	private String net;
-	@Column(name = "Od", length = 20)
-	private String od;
 	@Column(name = "Receiving", length = 3)
 	private String receiving;
 	@Column(name = "ShortField", length = 12)

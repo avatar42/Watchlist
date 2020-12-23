@@ -1,83 +1,137 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8" />
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
 <title th:text="#{edit.listView} + ' ' + #{class.Roamiosp}"></title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" media="screen"
-	th:href="@{/resources/css/bootstrap.min.css}" />
-<link rel="stylesheet" media="screen"
-	th:href="@{/resources/css/site.css}" />
-<script th:src="@{/resources/js/jquery.min.js}"></script>
-<script th:src="@{/resources/js/bootstrap.min.js}"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
 
-	<div class="container">
+	<div class="container" th:with="SearchForm=${session.roamiospSearchForm}">
 		<h1 th:text="#{class.Roamiosp} + ' ' + #{edit.list}"></h1>
+		<a th:href="@{/roamiosps/search}" th:text="#{search.search} + ' ' + #{class.Roamiosp}"></a> <br />
 		<a th:href="@{/roamiosps/new}" th:text="#{edit.new} + ' ' + #{class.Roamiosp}"></a> <br /><br />
 
 	    <table>
 	        <tr>
-            <th th:text="#{Roamiosp.cancelled}">Cancelled</th>
-            <th th:text="#{Roamiosp.channel}">Channel</th>
-            <th th:text="#{Roamiosp.channelnum}">Channelnum</th>
-            <th th:text="#{Roamiosp.dup}">Dup</th>
-            <th th:text="#{Roamiosp.end}">End</th>
-            <th th:text="#{Roamiosp.include}">Include</th>
-            <th th:text="#{Roamiosp.inshowsstatus}">InShowsStatus</th>
-            <th th:text="#{Roamiosp.keep}">Keep</th>
-            <th th:text="#{Roamiosp.network}">Network</th>
-            <th th:text="#{Roamiosp.num}">Num</th>
-            <th th:text="#{Roamiosp.ota}">Ota</th>
-            <th th:text="#{Roamiosp.priority}">Priority</th>
-            <th th:text="#{Roamiosp.record}">Record</th>
-            <th th:text="#{Roamiosp.row}">Row</th>
-            <th th:text="#{Roamiosp.season}">Season</th>
-            <th th:text="#{Roamiosp.show}">Show</th>
-            <th th:text="#{Roamiosp.start}">Start</th>
-            <th th:text="#{Roamiosp.station}">Station</th>
-            <th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.email}">Email</th>
-            <th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.role}">Role</th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'channel'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=channel&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamiosp.channel}">Channel</a>
+					<a th:if="${SearchForm.sortField != 'channel'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=channel&sortDir=asc'}"
+					th:text="#{Roamiosp.channel}">Channel</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'end'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=end&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamiosp.end}">End</a>
+					<a th:if="${SearchForm.sortField != 'end'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=end&sortDir=asc'}"
+					th:text="#{Roamiosp.end}">End</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'include'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=include&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamiosp.include}">Include</a>
+					<a th:if="${SearchForm.sortField != 'include'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=include&sortDir=asc'}"
+					th:text="#{Roamiosp.include}">Include</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'keep'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=keep&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamiosp.keep}">Keep</a>
+					<a th:if="${SearchForm.sortField != 'keep'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=keep&sortDir=asc'}"
+					th:text="#{Roamiosp.keep}">Keep</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'num'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=num&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamiosp.num}">Num</a>
+					<a th:if="${SearchForm.sortField != 'num'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=num&sortDir=asc'}"
+					th:text="#{Roamiosp.num}">Num</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'priority'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=priority&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamiosp.priority}">Priority</a>
+					<a th:if="${SearchForm.sortField != 'priority'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=priority&sortDir=asc'}"
+					th:text="#{Roamiosp.priority}">Priority</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'record'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=record&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamiosp.record}">Record</a>
+					<a th:if="${SearchForm.sortField != 'record'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=record&sortDir=asc'}"
+					th:text="#{Roamiosp.record}">Record</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'season'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=season&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamiosp.season}">Season</a>
+					<a th:if="${SearchForm.sortField != 'season'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=season&sortDir=asc'}"
+					th:text="#{Roamiosp.season}">Season</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'show'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=show&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamiosp.show}">Show</a>
+					<a th:if="${SearchForm.sortField != 'show'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=show&sortDir=asc'}"
+					th:text="#{Roamiosp.show}">Show</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'start'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=start&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamiosp.start}">Start</a>
+					<a th:if="${SearchForm.sortField != 'start'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=start&sortDir=asc'}"
+					th:text="#{Roamiosp.start}">Start</a>
+            </th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')" >
+				<a th:if="${SearchForm.sortField == 'email'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=email&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Account.email}">Email</a>
+					<a th:if="${SearchForm.sortField != 'email'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=email&sortDir=asc'}"
+					th:text="#{Account.email}">Email</a>
+            </th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')" >
+				<a th:if="${SearchForm.sortField == 'role'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=role&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Account.role}">Role</a>
+					<a th:if="${SearchForm.sortField != 'role'}"
+					th:href="@{'/roamiosps/search/' + ${SearchForm.page} + '?sortField=role&sortDir=asc'}"
+					th:text="#{Account.role}">Role</a>
+            </th>
             <th th:text="#{edit.actions}"></th>
 	        </tr>
 	        <tr th:each="roamiosp:${roamiosps}">
-	            <td th:if="${roamiosp != null}" th:text="${roamiosp.cancelled}"></td>
-				<td th:unless="${roamiosp != null}"></td>
 	            <td th:if="${roamiosp != null}" th:text="${roamiosp.channel}"></td>
-				<td th:unless="${roamiosp != null}"></td>
-	            <td th:if="${roamiosp != null}" th:text="${roamiosp.channelnum}"></td>
-				<td th:unless="${roamiosp != null}"></td>
-	            <td th:if="${roamiosp != null}" th:text="${roamiosp.dup}"></td>
 				<td th:unless="${roamiosp != null}"></td>
 	            <td th:if="${roamiosp != null}" th:text="${roamiosp.end}"></td>
 				<td th:unless="${roamiosp != null}"></td>
 	            <td th:if="${roamiosp != null}" th:text="${roamiosp.include}"></td>
 				<td th:unless="${roamiosp != null}"></td>
-	            <td th:if="${roamiosp != null}" th:text="${roamiosp.inshowsstatus}"></td>
-				<td th:unless="${roamiosp != null}"></td>
 	            <td th:if="${roamiosp != null}" th:text="${roamiosp.keep}"></td>
 				<td th:unless="${roamiosp != null}"></td>
-	            <td th:if="${roamiosp != null}" th:text="${roamiosp.network}"></td>
-				<td th:unless="${roamiosp != null}"></td>
 	            <td th:if="${roamiosp != null}" th:text="${roamiosp.num}"></td>
-				<td th:unless="${roamiosp != null}"></td>
-	            <td th:if="${roamiosp != null}" th:text="${roamiosp.ota}"></td>
 				<td th:unless="${roamiosp != null}"></td>
 	            <td th:if="${roamiosp != null}" th:text="${roamiosp.priority}"></td>
 				<td th:unless="${roamiosp != null}"></td>
 	            <td th:if="${roamiosp != null}" th:text="${roamiosp.record}"></td>
-				<td th:unless="${roamiosp != null}"></td>
-	            <td th:if="${roamiosp != null}" th:text="${roamiosp.row}"></td>
 				<td th:unless="${roamiosp != null}"></td>
 	            <td th:if="${roamiosp != null}" th:text="${roamiosp.season}"></td>
 				<td th:unless="${roamiosp != null}"></td>
 	            <td th:if="${roamiosp != null}" th:text="${roamiosp.show}"></td>
 				<td th:unless="${roamiosp != null}"></td>
 	            <td th:if="${roamiosp != null}" th:text="${roamiosp.start}"></td>
-				<td th:unless="${roamiosp != null}"></td>
-	            <td th:if="${roamiosp != null}" th:text="${roamiosp.station}"></td>
 				<td th:unless="${roamiosp != null}"></td>
 	            <td th:if="${roamiosp.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${roamiosp.account.email}"></td>
 				<td th:unless="${roamiosp.account != null}"></td>
@@ -89,7 +143,38 @@
 
 	        </tr>
 	    </table>
+		<div th:if="${SearchForm.page > 1}">
+			<div class="row col-sm-10">
+				<div class="col-sm-2">Total Rows:
+					[[${SearchForm.totalItems}]]</div>
+				<div class="col-sm-1">
+					<span
+						th:each="i: ${#numbers.sequence(1, SearchForm.totalPages)}">
+						<a th:if="${SearchForm.page != i}"
+						th:href="@{'/roamiosps/search/' + ${i}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">[[${i}]]</a>
+						<span th:unless="${SearchForm.page != i}">[[${i}]]</span>
+						&nbsp; &nbsp;
+					</span>
+				</div>
+				<div class="col-sm-1">
+					<a
+						th:if="${SearchForm.page < SearchForm.totalPages}"
+						th:href="@{'/roamiosps/search/' + ${SearchForm.page + 1}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">Next</a>
+					<span
+						th:unless="${SearchForm.page < SearchForm.totalPages}">Next</span>
+				</div>
+
+				<div class="col-sm-1">
+					<a
+						th:if="${SearchForm.page < SearchForm.totalPages}"
+						th:href="@{'/roamiosps/search/' + ${SearchForm.totalPages}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">Last</a>
+					<span
+						th:unless="${SearchForm.page < SearchForm.totalPages}">Last</span>
+				</div>
+			</div>
+		</div>
+
     </div>
 
-	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
 </body></html>

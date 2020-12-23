@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.data.domain.Page;
 import org.springframework.test.web.servlet.ResultActions;
 import com.google.common.collect.ImmutableMap;
 import lombok.extern.slf4j.Slf4j;
@@ -11,14 +12,15 @@ import lombok.extern.slf4j.Slf4j;
 import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Networks;
 import com.dea42.watchlist.form.NetworksForm;
+import com.dea42.watchlist.search.NetworksSearchForm;
 
 /**
  * Title: NetworksControllerTest <br>
  * Description: NetworksController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
- * @version 0.5.4<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
+ * @version 0.6.3<br>
  */
 @Slf4j
 @WebMvcTest(NetworksController.class)
@@ -73,7 +75,8 @@ public class NetworksControllerTest extends MockBase {
 		Networks o = getNetworks(1);
 		list.add(o);
 
-		given(networksServices.listAll()).willReturn(list);
+		Page<Networks> p = getPage(list);
+		given(networksServices.listAll(new NetworksSearchForm())).willReturn(p);
 
 		ResultActions ra = getAsAdmin("/networkss");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Networks") + " " + getMsg("edit.list") + "</h1>");

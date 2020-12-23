@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.data.domain.Page;
 import org.springframework.test.web.servlet.ResultActions;
 import com.google.common.collect.ImmutableMap;
 import lombok.extern.slf4j.Slf4j;
@@ -11,14 +12,15 @@ import lombok.extern.slf4j.Slf4j;
 import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Roamiotodo;
 import com.dea42.watchlist.form.RoamiotodoForm;
+import com.dea42.watchlist.search.RoamiotodoSearchForm;
 
 /**
  * Title: RoamiotodoControllerTest <br>
  * Description: RoamiotodoController. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
- * @version 0.5.4<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
+ * @version 0.6.3<br>
  */
 @Slf4j
 @WebMvcTest(RoamiotodoController.class)
@@ -26,16 +28,12 @@ public class RoamiotodoControllerTest extends MockBase {
 	private Roamiotodo getRoamiotodo(Integer id) {
 		Roamiotodo o = new Roamiotodo();
 		o.setId(id);
-        o.setChannel(getTestString(16));
-        o.setColi(getTestString(28));
+        o.setChannel(getTestString(15));
         o.setDuration(getTestString(4));
-        o.setEpisode(getTestString(50));
-        o.setEpisodename(getTestString(2));
-        o.setEpname2(getTestString(1));
-        o.setEpnum(getTestString(20));
-        o.setShow(getTestString(141));
-        o.setShowname(getTestString(78));
-        o.setShowtrimmed(getTestString(78));
+        o.setEp(getTestString(50));
+        o.setEpisodename(getTestString(59));
+        o.setShowname(getTestString(48));
+        o.setShowtrimmed(getTestString(47));
 		return o;
 	}
 
@@ -49,35 +47,24 @@ public class RoamiotodoControllerTest extends MockBase {
 		Roamiotodo o = getRoamiotodo(1);
 		list.add(o);
 
-		given(roamiotodoServices.listAll()).willReturn(list);
+		Page<Roamiotodo> p = getPage(list);
+		given(roamiotodoServices.listAll(new RoamiotodoSearchForm())).willReturn(p);
 
 		ResultActions ra = getAsAdmin("/roamiotodos");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Roamiotodo") + " " + getMsg("edit.list") + "</h1>");
-		contentContainsMarkup(ra,getTestString(16));
+		contentContainsMarkup(ra,getTestString(15));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.channel"));
-		contentContainsMarkup(ra,getTestString(28));
-		contentContainsMarkup(ra,getMsg("Roamiotodo.coli"));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.date"));
 		contentContainsMarkup(ra,getTestString(4));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.duration"));
-		contentContainsMarkup(ra,getMsg("Roamiotodo.ep"));
-		contentContainsMarkup(ra,getMsg("Roamiotodo.epdate"));
 		contentContainsMarkup(ra,getTestString(50));
-		contentContainsMarkup(ra,getMsg("Roamiotodo.episode"));
-		contentContainsMarkup(ra,getTestString(2));
+		contentContainsMarkup(ra,getMsg("Roamiotodo.ep"));
+		contentContainsMarkup(ra,getTestString(59));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.episodename"));
-		contentContainsMarkup(ra,getTestString(1));
-		contentContainsMarkup(ra,getMsg("Roamiotodo.epname2"));
-		contentContainsMarkup(ra,getMsg("Roamiotodo.epname3"));
-		contentContainsMarkup(ra,getTestString(20));
-		contentContainsMarkup(ra,getMsg("Roamiotodo.epnum"));
-		contentContainsMarkup(ra,getTestString(141));
-		contentContainsMarkup(ra,getMsg("Roamiotodo.show"));
-		contentContainsMarkup(ra,getTestString(78));
+		contentContainsMarkup(ra,getTestString(48));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.showname"));
-		contentContainsMarkup(ra,getTestString(78));
+		contentContainsMarkup(ra,getTestString(47));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.showtrimmed"));
-		contentContainsMarkup(ra,getMsg("Roamiotodo.sortabledate"));
 		contentContainsMarkup(ra,getMsg("Roamiotodo.userid"));
 	}
 
@@ -92,21 +79,13 @@ public class RoamiotodoControllerTest extends MockBase {
 		ResultActions ra = getAsAdmin("/roamiotodos/new");
 		contentContainsMarkup(ra,"<legend>" + getMsg("edit.new") + " " + getMsg("class.Roamiotodo") + "</legend>");
 		contentContainsMarkup(ra,"Channel");
-		contentContainsMarkup(ra,"Coli");
 		contentContainsMarkup(ra,"Date");
 		contentContainsMarkup(ra,"Duration");
 		contentContainsMarkup(ra,"Ep");
-		contentContainsMarkup(ra,"Epdate");
-		contentContainsMarkup(ra,"Episode");
 		contentContainsMarkup(ra,"Episodename");
-		contentContainsMarkup(ra,"Epname2");
-		contentContainsMarkup(ra,"Epname3");
-		contentContainsMarkup(ra,"Epnum");
 		// TODO: confirm ignoring Roamiotodo.id
-		contentContainsMarkup(ra,"Show");
 		contentContainsMarkup(ra,"Showname");
 		contentContainsMarkup(ra,"Showtrimmed");
-		contentContainsMarkup(ra,"Sortabledate");
 		contentContainsMarkup(ra,"Account");
 	}
 
@@ -151,30 +130,18 @@ public class RoamiotodoControllerTest extends MockBase {
 		ResultActions ra = getAsAdmin("/roamiotodos/edit/1");
 		contentContainsMarkup(ra,o.getChannel());
 		contentContainsMarkup(ra,"Channel");
-		contentContainsMarkup(ra,o.getColi());
-		contentContainsMarkup(ra,"Coli");
 		contentContainsMarkup(ra,"Date");
 		contentContainsMarkup(ra,o.getDuration());
 		contentContainsMarkup(ra,"Duration");
+		contentContainsMarkup(ra,o.getEp());
 		contentContainsMarkup(ra,"Ep");
-		contentContainsMarkup(ra,"Epdate");
-		contentContainsMarkup(ra,o.getEpisode());
-		contentContainsMarkup(ra,"Episode");
 		contentContainsMarkup(ra,o.getEpisodename());
 		contentContainsMarkup(ra,"Episodename");
-		contentContainsMarkup(ra,o.getEpname2());
-		contentContainsMarkup(ra,"Epname2");
-		contentContainsMarkup(ra,"Epname3");
-		contentContainsMarkup(ra,o.getEpnum());
-		contentContainsMarkup(ra,"Epnum");
 		// TODO: confirm ignoring Roamiotodo.id
-		contentContainsMarkup(ra,o.getShow());
-		contentContainsMarkup(ra,"Show");
 		contentContainsMarkup(ra,o.getShowname());
 		contentContainsMarkup(ra,"Showname");
 		contentContainsMarkup(ra,o.getShowtrimmed());
 		contentContainsMarkup(ra,"Showtrimmed");
-		contentContainsMarkup(ra,"Sortabledate");
 		contentContainsMarkup(ra,"Account");
 	}
 

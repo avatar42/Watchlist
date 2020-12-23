@@ -1,24 +1,25 @@
 package com.dea42.watchlist.entity;
 
 import java.io.Serializable;
-
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import lombok.Data;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * Title: roamiotodo Bean <br>
  * Description: Class for holding data from the roamiotodo table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
- * @version 0.5.4<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
+ * @version 0.6.3<br>
  * Table name: roamiotodo<br>
  * Column name: id<br>
  * Catalog name: null<br>
@@ -45,40 +46,25 @@ import javax.persistence.ManyToOne;
 public class Roamiotodo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "Channel", length = 16)
+	@Column(name = "Channel", length = 15)
 	private String channel;
-	@Column(name = "Coli", length = 28)
-	private String coli;
-	@Column(name = "Date")
-	private Integer date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+	@Column(name = "Date", nullable = false)
+	private Date date;
 	@Column(name = "Duration", length = 4)
 	private String duration;
-	@Column(name = "Ep")
-	private Integer ep;
-	@Column(name = "EpDate")
-	private Integer epdate;
-	@Column(name = "Episode", length = 50)
-	private String episode;
-	@Column(name = "EpisodeName", length = 2)
+	@Column(name = "Ep", length = 50)
+	private String ep;
+	@Column(name = "EpisodeName", length = 59)
 	private String episodename;
-	@Column(name = "Epname2", length = 1)
-	private String epname2;
-	@Column(name = "Epname3")
-	private Integer epname3;
-	@Column(name = "EpNum", length = 20)
-	private String epnum;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Integer id;
-	@Column(name = "Show", length = 141)
-	private String show;
-	@Column(name = "ShowName", length = 78)
+	@Column(name = "ShowName", length = 48)
 	private String showname;
-	@Column(name = "ShowTrimmed", length = 78)
+	@Column(name = "ShowTrimmed", length = 47)
 	private String showtrimmed;
-	@Column(name = "SortableDate")
-	private Integer sortabledate;
 	@ManyToOne
 	@JoinColumn(name = "Userid", referencedColumnName = "id")
 	private Account account;

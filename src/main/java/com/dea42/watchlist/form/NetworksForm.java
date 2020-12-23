@@ -1,12 +1,10 @@
 package com.dea42.watchlist.form;
 
-import java.io.Serializable;
-import lombok.Data;
-
-import com.dea42.watchlist.utils.MessageHelper;
 import com.dea42.watchlist.entity.Networks;
-
+import com.dea42.watchlist.utils.MessageHelper;
+import java.io.Serializable;
 import javax.validation.constraints.NotBlank;
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 /**
@@ -14,8 +12,8 @@ import org.hibernate.validator.constraints.Length;
  * Description: Class for holding data from the networks table for editing. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
- * @version 0.5.4<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
+ * @version 0.6.3<br>
  */
 
 @Data
@@ -42,7 +40,7 @@ public class NetworksForm implements Serializable {
 	private String freewithtwcid;
     @Length(max=50)
 	private String freewithtwcidlink;
-    @Length(max=79)
+    @Length(max=82)
 	private String hasdirectbuyoption;
     @Length(max=55)
 	private String hasdirectbuyoptionlink;
@@ -97,40 +95,42 @@ public class NetworksForm implements Serializable {
 	 */
 	public static NetworksForm getInstance(Networks obj) {
 		NetworksForm form = new NetworksForm();
-		form.setAndroidapp(obj.getAndroidapp());
-		form.setAndroidapplink(obj.getAndroidapplink());
-		form.setComment(obj.getComment());
-		form.setCommentlink(obj.getCommentlink());
-		form.setCommercials(obj.getCommercials());
-		form.setCommercialslink(obj.getCommercialslink());
-		form.setFireapp(obj.getFireapp());
-		form.setFireapplink(obj.getFireapplink());
-		form.setFreewithtwcid(obj.getFreewithtwcid());
-		form.setFreewithtwcidlink(obj.getFreewithtwcidlink());
-		form.setHasdirectbuyoption(obj.getHasdirectbuyoption());
-		form.setHasdirectbuyoptionlink(obj.getHasdirectbuyoptionlink());
-		form.setHaswatchlist(obj.getHaswatchlist());
-		form.setIcanota(obj.getIcanota());
-		form.setIcanotalink(obj.getIcanotalink());
-		form.setId(obj.getId());
-		form.setIptvservice(obj.getIptvservice());
-		form.setIptvservicelink(obj.getIptvservicelink());
-		form.setOnhulu(obj.getOnhulu());
-		form.setOnhululink(obj.getOnhululink());
-		form.setPersistance(obj.getPersistance());
-		form.setRemembersplaceinepisode(obj.getRemembersplaceinepisode());
-		form.setRememberswatchedepisodes(obj.getRememberswatchedepisodes());
-		form.setRokuapp(obj.getRokuapp());
-		form.setRokuapplink(obj.getRokuapplink());
-		form.setShowsintivonpl(obj.getShowsintivonpl());
-		form.setSite(obj.getSite());
-		form.setSitelink(obj.getSitelink());
-		form.setStandardwait(obj.getStandardwait());
-		form.setTivoapp(obj.getTivoapp());
-		form.setTivoapplink(obj.getTivoapplink());
-		form.setTivoshortname(obj.getTivoshortname());
-		form.setWebinterface(obj.getWebinterface());
-		form.setWebinterfacelink(obj.getWebinterfacelink());
+		if (obj != null) {
+			form.setAndroidapp(obj.getAndroidapp());
+			form.setAndroidapplink(obj.getAndroidapplink());
+			form.setComment(obj.getComment());
+			form.setCommentlink(obj.getCommentlink());
+			form.setCommercials(obj.getCommercials());
+			form.setCommercialslink(obj.getCommercialslink());
+			form.setFireapp(obj.getFireapp());
+			form.setFireapplink(obj.getFireapplink());
+			form.setFreewithtwcid(obj.getFreewithtwcid());
+			form.setFreewithtwcidlink(obj.getFreewithtwcidlink());
+			form.setHasdirectbuyoption(obj.getHasdirectbuyoption());
+			form.setHasdirectbuyoptionlink(obj.getHasdirectbuyoptionlink());
+			form.setHaswatchlist(obj.getHaswatchlist());
+			form.setIcanota(obj.getIcanota());
+			form.setIcanotalink(obj.getIcanotalink());
+			form.setId(obj.getId());
+			form.setIptvservice(obj.getIptvservice());
+			form.setIptvservicelink(obj.getIptvservicelink());
+			form.setOnhulu(obj.getOnhulu());
+			form.setOnhululink(obj.getOnhululink());
+			form.setPersistance(obj.getPersistance());
+			form.setRemembersplaceinepisode(obj.getRemembersplaceinepisode());
+			form.setRememberswatchedepisodes(obj.getRememberswatchedepisodes());
+			form.setRokuapp(obj.getRokuapp());
+			form.setRokuapplink(obj.getRokuapplink());
+			form.setShowsintivonpl(obj.getShowsintivonpl());
+			form.setSite(obj.getSite());
+			form.setSitelink(obj.getSitelink());
+			form.setStandardwait(obj.getStandardwait());
+			form.setTivoapp(obj.getTivoapp());
+			form.setTivoapplink(obj.getTivoapplink());
+			form.setTivoshortname(obj.getTivoshortname());
+			form.setWebinterface(obj.getWebinterface());
+			form.setWebinterfacelink(obj.getWebinterfacelink());
+		}
 		return form;
 	}
 }

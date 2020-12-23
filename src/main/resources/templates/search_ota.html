@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
+<title th:text="#{edit.edit} + ' ' + #{class.Ota}"></title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
+
+		<form class="form-narrow form-horizontal" method="post"
+			th:action="@{/otas/search}" th:object="${otaSearchForm}"
+			th:fragment="otaSearchForm">
+			<!--/* Show general error messages when form contains errors */-->
+			<th:block th:if="${#fields.hasErrors('${otaSearchForm.*}')}">
+				<div th:each="fieldErrors : ${#fields.errors('${otaSearchForm.*}')}">
+					<div th:each="message : ${fieldErrors.split(';')}">
+						<div
+							th:replace="fragments/alert :: alert (type='danger', message=${message})">Alert</div>
+					</div>
+				</div>
+			</th:block>
+			<fieldset>
+				<legend th:text="#{search.search} + ' ' + #{class.Ota}"></legend>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('atticantMin')}? 'has-error'">
+					<label for="atticantMin" class="col-lg-2 control-label"
+						th:text="#{Ota.atticant} + ' ' + #{search.gte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="atticantMin"
+							th:field="*{atticantMin}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('atticantMin')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('atticantMax')}? 'has-error'">
+					<label for="atticantMax" class="col-lg-2 control-label"
+						th:text="#{Ota.atticant} + ' ' + #{search.lte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="atticantMax"
+							th:field="*{atticantMax}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('atticantMax')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('chanMin')}? 'has-error'">
+					<label for="chanMin" class="col-lg-2 control-label"
+						th:text="#{Ota.chan} + ' ' + #{search.gte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="chanMin"
+							th:field="*{chanMin}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('chanMin')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('chanMax')}? 'has-error'">
+					<label for="chanMax" class="col-lg-2 control-label"
+						th:text="#{Ota.chan} + ' ' + #{search.lte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="chanMax"
+							th:field="*{chanMax}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('chanMax')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('channelname')}? 'has-error'">
+					<label for="channelname" class="col-lg-2 control-label"
+						th:text="#{Ota.channelname} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="channelname"
+							th:field="*{channelname}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('channelname')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('channelnumber')}? 'has-error'">
+					<label for="channelnumber" class="col-lg-2 control-label"
+						th:text="#{Ota.channelnumber} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="channelnumber"
+							th:field="*{channelnumber}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('channelnumber')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('channelnumberchannelnameincluded')}? 'has-error'">
+					<label for="channelnumberchannelnameincluded" class="col-lg-2 control-label"
+						th:text="#{Ota.channelnumberchannelnameincluded} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="channelnumberchannelnameincluded"
+							th:field="*{channelnumberchannelnameincluded}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('channelnumberchannelnameincluded')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('comments')}? 'has-error'">
+					<label for="comments" class="col-lg-2 control-label"
+						th:text="#{Ota.comments} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="comments"
+							th:field="*{comments}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('comments')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('direction')}? 'has-error'">
+					<label for="direction" class="col-lg-2 control-label"
+						th:text="#{Ota.direction} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="direction"
+							th:field="*{direction}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('direction')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('enabled')}? 'has-error'">
+					<label for="enabled" class="col-lg-2 control-label"
+						th:text="#{Ota.enabled} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="enabled"
+							th:field="*{enabled}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('enabled')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('fccinfo')}? 'has-error'">
+					<label for="fccinfo" class="col-lg-2 control-label"
+						th:text="#{Ota.fccinfo} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="fccinfo"
+							th:field="*{fccinfo}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('fccinfo')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('fccinfolink')}? 'has-error'">
+					<label for="fccinfolink" class="col-lg-2 control-label"
+						th:text="#{Ota.fccinfolink} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="fccinfolink"
+							th:field="*{fccinfolink}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('fccinfolink')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('freqMin')}? 'has-error'">
+					<label for="freqMin" class="col-lg-2 control-label"
+						th:text="#{Ota.freq} + ' ' + #{search.gte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="freqMin"
+							th:field="*{freqMin}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('freqMin')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('freqMax')}? 'has-error'">
+					<label for="freqMax" class="col-lg-2 control-label"
+						th:text="#{Ota.freq} + ' ' + #{search.lte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="freqMax"
+							th:field="*{freqMax}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('freqMax')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('lang')}? 'has-error'">
+					<label for="lang" class="col-lg-2 control-label"
+						th:text="#{Ota.lang} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="lang"
+							th:field="*{lang}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('lang')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('listedMin')}? 'has-error'">
+					<label for="listedMin" class="col-lg-2 control-label"
+						th:text="#{Ota.listed} + ' ' + #{search.gte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="listedMin"
+							th:field="*{listedMin}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('listedMin')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('listedMax')}? 'has-error'">
+					<label for="listedMax" class="col-lg-2 control-label"
+						th:text="#{Ota.listed} + ' ' + #{search.lte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="listedMax"
+							th:field="*{listedMax}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('listedMax')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('mytivoavgstrengthMin')}? 'has-error'">
+					<label for="mytivoavgstrengthMin" class="col-lg-2 control-label"
+						th:text="#{Ota.mytivoavgstrength} + ' ' + #{search.gte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="mytivoavgstrengthMin"
+							th:field="*{mytivoavgstrengthMin}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('mytivoavgstrengthMin')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('mytivoavgstrengthMax')}? 'has-error'">
+					<label for="mytivoavgstrengthMax" class="col-lg-2 control-label"
+						th:text="#{Ota.mytivoavgstrength} + ' ' + #{search.lte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="mytivoavgstrengthMax"
+							th:field="*{mytivoavgstrengthMax}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('mytivoavgstrengthMax')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('network')}? 'has-error'">
+					<label for="network" class="col-lg-2 control-label"
+						th:text="#{Ota.network} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="network"
+							th:field="*{network}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('network')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('off')}? 'has-error'">
+					<label for="off" class="col-lg-2 control-label"
+						th:text="#{Ota.off} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="off"
+							th:field="*{off}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('off')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('recommendedantenna')}? 'has-error'">
+					<label for="recommendedantenna" class="col-lg-2 control-label"
+						th:text="#{Ota.recommendedantenna} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="recommendedantenna"
+							th:field="*{recommendedantenna}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('recommendedantenna')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('rez')}? 'has-error'">
+					<label for="rez" class="col-lg-2 control-label"
+						th:text="#{Ota.rez} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="rez"
+							th:field="*{rez}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('rez')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('station')}? 'has-error'">
+					<label for="station" class="col-lg-2 control-label"
+						th:text="#{Ota.station} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="station"
+							th:field="*{station}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('station')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('subchanMin')}? 'has-error'">
+					<label for="subchanMin" class="col-lg-2 control-label"
+						th:text="#{Ota.subchan} + ' ' + #{search.gte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="subchanMin"
+							th:field="*{subchanMin}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('subchanMin')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('subchanMax')}? 'has-error'">
+					<label for="subchanMax" class="col-lg-2 control-label"
+						th:text="#{Ota.subchan} + ' ' + #{search.lte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="subchanMax"
+							th:field="*{subchanMax}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('subchanMax')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('tvfoolchanMin')}? 'has-error'">
+					<label for="tvfoolchanMin" class="col-lg-2 control-label"
+						th:text="#{Ota.tvfoolchan} + ' ' + #{search.gte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="tvfoolchanMin"
+							th:field="*{tvfoolchanMin}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('tvfoolchanMin')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('tvfoolchanMax')}? 'has-error'">
+					<label for="tvfoolchanMax" class="col-lg-2 control-label"
+						th:text="#{Ota.tvfoolchan} + ' ' + #{search.lte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="tvfoolchanMax"
+							th:field="*{tvfoolchanMax}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('tvfoolchanMax')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('tvfoolestsignal')}? 'has-error'">
+					<label for="tvfoolestsignal" class="col-lg-2 control-label"
+						th:text="#{Ota.tvfoolestsignal} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="tvfoolestsignal"
+							th:field="*{tvfoolestsignal}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('tvfoolestsignal')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('watchabletablo')}? 'has-error'">
+					<label for="watchabletablo" class="col-lg-2 control-label"
+						th:text="#{Ota.watchabletablo} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="watchabletablo"
+							th:field="*{watchabletablo}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('watchabletablo')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('watchabletivo')}? 'has-error'">
+					<label for="watchabletivo" class="col-lg-2 control-label"
+						th:text="#{Ota.watchabletivo} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="watchabletivo"
+							th:field="*{watchabletivo}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('watchabletivo')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+						<button type="submit" name="action" value="search"
+							class="btn btn-default" th:text="#{search.search}"></button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+</body></html>

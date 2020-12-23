@@ -1,53 +1,143 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8" />
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
 <title th:text="#{edit.listView} + ' ' + #{class.Roamionpl}"></title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" media="screen"
-	th:href="@{/resources/css/bootstrap.min.css}" />
-<link rel="stylesheet" media="screen"
-	th:href="@{/resources/css/site.css}" />
-<script th:src="@{/resources/js/jquery.min.js}"></script>
-<script th:src="@{/resources/js/bootstrap.min.js}"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
 
-	<div class="container">
+	<div class="container" th:with="SearchForm=${session.roamionplSearchForm}">
 		<h1 th:text="#{class.Roamionpl} + ' ' + #{edit.list}"></h1>
+		<a th:href="@{/roamionpls/search}" th:text="#{search.search} + ' ' + #{class.Roamionpl}"></a> <br />
 		<a th:href="@{/roamionpls/new}" th:text="#{edit.new} + ' ' + #{class.Roamionpl}"></a> <br /><br />
 
 	    <table>
 	        <tr>
-            <th th:text="#{Roamionpl.bitratembps}">BitrateMbps</th>
-            <th th:text="#{Roamionpl.chan}">Chan</th>
-            <th th:text="#{Roamionpl.channel}">Channel</th>
-            <th th:text="#{Roamionpl.date}">Date</th>
-            <th th:text="#{Roamionpl.duration}">Duration</th>
-            <th th:text="#{Roamionpl.episode}">Episode</th>
-            <th th:text="#{Roamionpl.f}">F</th>
-            <th th:text="#{Roamionpl.innetworkstab}">InNetworksTab</th>
-            <th th:text="#{Roamionpl.isnew}">Isnew</th>
-            <th th:text="#{Roamionpl.isseries}">IsSeries</th>
-            <th th:text="#{Roamionpl.network}">Network</th>
-            <th th:text="#{Roamionpl.rowinshows}">RowInShows</th>
-            <th th:text="#{Roamionpl.seriesep}">Seriesep</th>
-            <th th:text="#{Roamionpl.show}">Show</th>
-            <th th:text="#{Roamionpl.sizegb}">SizeGb</th>
-            <th th:text="#{Roamionpl.sortabledate}">SortableDate</th>
-            <th th:text="#{Roamionpl.spchannel0nosp}">SpChannel0NoSp</th>
-            <th th:text="#{Roamionpl.title}">Title</th>
-            <th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.email}">Email</th>
-            <th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.role}">Role</th>
-            <th th:text="#{Roamionpl.watched}">Watched</th>
-            <th th:text="#{Roamionpl.watchedtime}">Watchedtime</th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'bitratembps'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=bitratembps&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamionpl.bitratembps}">BitrateMbps</a>
+					<a th:if="${SearchForm.sortField != 'bitratembps'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=bitratembps&sortDir=asc'}"
+					th:text="#{Roamionpl.bitratembps}">BitrateMbps</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'channel'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=channel&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamionpl.channel}">Channel</a>
+					<a th:if="${SearchForm.sortField != 'channel'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=channel&sortDir=asc'}"
+					th:text="#{Roamionpl.channel}">Channel</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'date'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=date&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamionpl.date}">Date</a>
+					<a th:if="${SearchForm.sortField != 'date'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=date&sortDir=asc'}"
+					th:text="#{Roamionpl.date}">Date</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'duration'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=duration&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamionpl.duration}">Duration</a>
+					<a th:if="${SearchForm.sortField != 'duration'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=duration&sortDir=asc'}"
+					th:text="#{Roamionpl.duration}">Duration</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'episode'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=episode&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamionpl.episode}">Episode</a>
+					<a th:if="${SearchForm.sortField != 'episode'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=episode&sortDir=asc'}"
+					th:text="#{Roamionpl.episode}">Episode</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'isnew'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=isnew&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamionpl.isnew}">Isnew</a>
+					<a th:if="${SearchForm.sortField != 'isnew'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=isnew&sortDir=asc'}"
+					th:text="#{Roamionpl.isnew}">Isnew</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'rowinshows'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=rowinshows&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamionpl.rowinshows}">RowInShows</a>
+					<a th:if="${SearchForm.sortField != 'rowinshows'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=rowinshows&sortDir=asc'}"
+					th:text="#{Roamionpl.rowinshows}">RowInShows</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'seriesep'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=seriesep&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamionpl.seriesep}">Seriesep</a>
+					<a th:if="${SearchForm.sortField != 'seriesep'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=seriesep&sortDir=asc'}"
+					th:text="#{Roamionpl.seriesep}">Seriesep</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'show'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=show&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamionpl.show}">Show</a>
+					<a th:if="${SearchForm.sortField != 'show'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=show&sortDir=asc'}"
+					th:text="#{Roamionpl.show}">Show</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'sizegb'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=sizegb&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamionpl.sizegb}">SizeGb</a>
+					<a th:if="${SearchForm.sortField != 'sizegb'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=sizegb&sortDir=asc'}"
+					th:text="#{Roamionpl.sizegb}">SizeGb</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'sortabledate'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=sortabledate&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamionpl.sortabledate}">SortableDate</a>
+					<a th:if="${SearchForm.sortField != 'sortabledate'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=sortabledate&sortDir=asc'}"
+					th:text="#{Roamionpl.sortabledate}">SortableDate</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'title'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=title&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamionpl.title}">Title</a>
+					<a th:if="${SearchForm.sortField != 'title'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=title&sortDir=asc'}"
+					th:text="#{Roamionpl.title}">Title</a>
+            </th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')" >
+				<a th:if="${SearchForm.sortField == 'email'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=email&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Account.email}">Email</a>
+					<a th:if="${SearchForm.sortField != 'email'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=email&sortDir=asc'}"
+					th:text="#{Account.email}">Email</a>
+            </th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')" >
+				<a th:if="${SearchForm.sortField == 'role'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=role&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Account.role}">Role</a>
+					<a th:if="${SearchForm.sortField != 'role'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=role&sortDir=asc'}"
+					th:text="#{Account.role}">Role</a>
+            </th>
+            <th>
+				<a th:if="${SearchForm.sortField == 'watchedtime'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=watchedtime&sortDir=' + ${SearchForm.reverseSortDir}}"
+					th:text="#{Roamionpl.watchedtime}">Watchedtime</a>
+					<a th:if="${SearchForm.sortField != 'watchedtime'}"
+					th:href="@{'/roamionpls/search/' + ${SearchForm.page} + '?sortField=watchedtime&sortDir=asc'}"
+					th:text="#{Roamionpl.watchedtime}">Watchedtime</a>
+            </th>
             <th th:text="#{edit.actions}"></th>
 	        </tr>
 	        <tr th:each="roamionpl:${roamionpls}">
 	            <td th:if="${roamionpl != null}" th:text="${roamionpl.bitratembps}"></td>
-				<td th:unless="${roamionpl != null}"></td>
-	            <td th:if="${roamionpl != null}" th:text="${roamionpl.chan}"></td>
 				<td th:unless="${roamionpl != null}"></td>
 	            <td th:if="${roamionpl != null}" th:text="${roamionpl.channel}"></td>
 				<td th:unless="${roamionpl != null}"></td>
@@ -57,15 +147,7 @@
 				<td th:unless="${roamionpl != null}"></td>
 	            <td th:if="${roamionpl != null}" th:text="${roamionpl.episode}"></td>
 				<td th:unless="${roamionpl != null}"></td>
-	            <td th:if="${roamionpl != null}" th:text="${roamionpl.f}"></td>
-				<td th:unless="${roamionpl != null}"></td>
-	            <td th:if="${roamionpl != null}" th:text="${roamionpl.innetworkstab}"></td>
-				<td th:unless="${roamionpl != null}"></td>
 	            <td th:if="${roamionpl != null}" th:text="${roamionpl.isnew}"></td>
-				<td th:unless="${roamionpl != null}"></td>
-	            <td th:if="${roamionpl != null}" th:text="${roamionpl.isseries}"></td>
-				<td th:unless="${roamionpl != null}"></td>
-	            <td th:if="${roamionpl != null}" th:text="${roamionpl.network}"></td>
 				<td th:unless="${roamionpl != null}"></td>
 	            <td th:if="${roamionpl != null}" th:text="${roamionpl.rowinshows}"></td>
 				<td th:unless="${roamionpl != null}"></td>
@@ -77,16 +159,12 @@
 				<td th:unless="${roamionpl != null}"></td>
 	            <td th:if="${roamionpl != null}" th:text="${roamionpl.sortabledate}"></td>
 				<td th:unless="${roamionpl != null}"></td>
-	            <td th:if="${roamionpl != null}" th:text="${roamionpl.spchannel0nosp}"></td>
-				<td th:unless="${roamionpl != null}"></td>
 	            <td th:if="${roamionpl != null}" th:text="${roamionpl.title}"></td>
 				<td th:unless="${roamionpl != null}"></td>
 	            <td th:if="${roamionpl.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${roamionpl.account.email}"></td>
 				<td th:unless="${roamionpl.account != null}"></td>
 	            <td th:if="${roamionpl.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${roamionpl.account.role}"></td>
 				<td th:unless="${roamionpl.account != null}"></td>
-	            <td th:if="${roamionpl != null}" th:text="${roamionpl.watched}"></td>
-				<td th:unless="${roamionpl != null}"></td>
 	            <td th:if="${roamionpl != null}" th:text="${roamionpl.watchedtime}"></td>
 				<td th:unless="${roamionpl != null}"></td>
 				<td><a th:href="@{'/roamionpls/edit/' + ${roamionpl.id}}" th:text="#{edit.edit}"></a>
@@ -95,7 +173,38 @@
 
 	        </tr>
 	    </table>
+		<div th:if="${SearchForm.page > 1}">
+			<div class="row col-sm-10">
+				<div class="col-sm-2">Total Rows:
+					[[${SearchForm.totalItems}]]</div>
+				<div class="col-sm-1">
+					<span
+						th:each="i: ${#numbers.sequence(1, SearchForm.totalPages)}">
+						<a th:if="${SearchForm.page != i}"
+						th:href="@{'/roamionpls/search/' + ${i}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">[[${i}]]</a>
+						<span th:unless="${SearchForm.page != i}">[[${i}]]</span>
+						&nbsp; &nbsp;
+					</span>
+				</div>
+				<div class="col-sm-1">
+					<a
+						th:if="${SearchForm.page < SearchForm.totalPages}"
+						th:href="@{'/roamionpls/search/' + ${SearchForm.page + 1}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">Next</a>
+					<span
+						th:unless="${SearchForm.page < SearchForm.totalPages}">Next</span>
+				</div>
+
+				<div class="col-sm-1">
+					<a
+						th:if="${SearchForm.page < SearchForm.totalPages}"
+						th:href="@{'/roamionpls/search/' + ${SearchForm.totalPages}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">Last</a>
+					<span
+						th:unless="${SearchForm.page < SearchForm.totalPages}">Last</span>
+				</div>
+			</div>
+		</div>
+
     </div>
 
-	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
 </body></html>

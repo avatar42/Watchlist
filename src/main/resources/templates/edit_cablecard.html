@@ -1,20 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8" />
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
 <title th:text="#{edit.edit} + ' ' + #{class.Cablecard}"></title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" media="screen"
-	th:href="@{/resources/css/bootstrap.min.css}" />
-<link rel="stylesheet" media="screen"
-	th:href="@{/resources/css/site.css}" />
-<script th:src="@{/resources/js/jquery.min.js}"></script>
-<script th:src="@{/resources/js/bootstrap.min.js}"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
 
-	<div class="container">
 		<form class="form-narrow form-horizontal" method="post"
 			th:action="@{/cablecards/save}" th:object="${cablecardForm}"
 			th:fragment="cablecardForm">
@@ -58,22 +50,6 @@
 							th:field="*{channelnumber}" />
 						<ul class="help-block"
 							th:each="error: ${#fields.errors('channelnumber')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('colh')}? 'has-error'">
-					<label for="colh" class="col-lg-2 control-label"
-						th:text="#{Cablecard.colh} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="colh"
-							th:field="*{colh}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('colh')}">
 							<li th:each="message : ${error.split(';')}">
 								<p class="error-message" th:text="${message}"></p>
 							</li>
@@ -163,22 +139,6 @@
 				</div>
 
 				<div class="form-group"
-					th:classappend="${#fields.hasErrors('od')}? 'has-error'">
-					<label for="od" class="col-lg-2 control-label"
-						th:text="#{Cablecard.od} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="od"
-							th:field="*{od}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('od')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
 					th:classappend="${#fields.hasErrors('receiving')}? 'has-error'">
 					<label for="receiving" class="col-lg-2 control-label"
 						th:text="#{Cablecard.receiving} + ':'"></label>
@@ -237,7 +197,6 @@
 				</div>
 			</fieldset>
 		</form>
-	</div>
 
-	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
 </body></html>

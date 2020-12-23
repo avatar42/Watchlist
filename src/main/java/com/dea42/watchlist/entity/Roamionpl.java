@@ -1,24 +1,24 @@
 package com.dea42.watchlist.entity;
 
 import java.io.Serializable;
-
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import lombok.Data;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import lombok.Data;
 
 /**
  * Title: roamionpl Bean <br>
  * Description: Class for holding data from the roamionpl table. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
- * @version 0.5.4<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
+ * @version 0.6.3<br>
  * Table name: roamionpl<br>
  * Column name: id<br>
  * Catalog name: null<br>
@@ -47,49 +47,35 @@ public class Roamionpl implements Serializable {
 
 	@Column(name = "BitrateMbps")
 	private Integer bitratembps;
-	@Column(name = "Chan", length = 62)
-	private String chan;
 	@Column(name = "Channel", length = 16)
 	private String channel;
 	@Column(name = "Date")
-	private Integer date;
+	private BigDecimal date;
 	@Column(name = "Duration")
-	private Integer duration;
-	@Column(name = "Episode", length = 4)
+	private BigDecimal duration;
+	@Column(name = "Episode", length = 10)
 	private String episode;
-	@Column(name = "F", length = 62)
-	private String f;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Integer id;
-	@Column(name = "InNetworksTab", length = 7)
-	private String innetworkstab;
 	@Column(name = "Isnew")
-	private Integer isnew;
-	@Column(name = "IsSeries")
-	private Integer isseries;
-	@Column(name = "Network", length = 33)
-	private String network;
+	private BigDecimal isnew;
 	@Column(name = "RowInShows")
 	private Integer rowinshows;
-	@Column(name = "Seriesep")
-	private Integer seriesep;
-	@Column(name = "Show", length = 52)
+	@Column(name = "Seriesep", length = 10)
+	private String seriesep;
+	@Column(name = "Show", nullable = false, length = 73)
 	private String show;
 	@Column(name = "SizeGb")
 	private Integer sizegb;
 	@Column(name = "SortableDate")
-	private Integer sortabledate;
-	@Column(name = "SpChannel0NoSp", length = 1)
-	private String spchannel0nosp;
-	@Column(name = "Title", length = 69)
+	private Long sortabledate;
+	@Column(name = "Title", length = 76)
 	private String title;
 	@ManyToOne
 	@JoinColumn(name = "Userid", referencedColumnName = "id")
 	private Account account;
-	@Column(name = "Watched", length = 6)
-	private String watched;
 	@Column(name = "Watchedtime")
 	private Integer watchedtime;
 }

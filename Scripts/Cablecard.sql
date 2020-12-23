@@ -1,0 +1,11 @@
+CREATE TABLE Cablecard(id INTEGER NOT NULL primary key autoincrement,
+Dt	INTEGER,
+InNpl	INTEGER,
+Receiving	VARCHAR(3),
+ChannelName	VARCHAR(12) NOT NULL,
+Lang	VARCHAR(2),
+ChannelNumber	INTEGER NOT NULL,
+Hd	INTEGER,
+Net	VARCHAR(12),
+Userid	INTEGER,
+ShortField	VARCHAR(12),    CONSTRAINT FK_Cablecard_Userid FOREIGN KEY (Userid)    REFERENCES Account(id));

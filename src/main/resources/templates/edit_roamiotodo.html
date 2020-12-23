@@ -1,20 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8" />
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
 <title th:text="#{edit.edit} + ' ' + #{class.Roamiotodo}"></title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" media="screen"
-	th:href="@{/resources/css/bootstrap.min.css}" />
-<link rel="stylesheet" media="screen"
-	th:href="@{/resources/css/site.css}" />
-<script th:src="@{/resources/js/jquery.min.js}"></script>
-<script th:src="@{/resources/js/bootstrap.min.js}"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
 
-	<div class="container">
 		<form class="form-narrow form-horizontal" method="post"
 			th:action="@{/roamiotodos/save}" th:object="${roamiotodoForm}"
 			th:fragment="roamiotodoForm">
@@ -42,22 +34,6 @@
 							th:field="*{channel}" />
 						<ul class="help-block"
 							th:each="error: ${#fields.errors('channel')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('coli')}? 'has-error'">
-					<label for="coli" class="col-lg-2 control-label"
-						th:text="#{Roamiotodo.coli} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="coli"
-							th:field="*{coli}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('coli')}">
 							<li th:each="message : ${error.split(';')}">
 								<p class="error-message" th:text="${message}"></p>
 							</li>
@@ -114,38 +90,6 @@
 				</div>
 
 				<div class="form-group"
-					th:classappend="${#fields.hasErrors('epdate')}? 'has-error'">
-					<label for="epdate" class="col-lg-2 control-label"
-						th:text="#{Roamiotodo.epdate} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="epdate"
-							th:field="*{epdate}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('epdate')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('episode')}? 'has-error'">
-					<label for="episode" class="col-lg-2 control-label"
-						th:text="#{Roamiotodo.episode} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="episode"
-							th:field="*{episode}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('episode')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
 					th:classappend="${#fields.hasErrors('episodename')}? 'has-error'">
 					<label for="episodename" class="col-lg-2 control-label"
 						th:text="#{Roamiotodo.episodename} + ':'"></label>
@@ -161,71 +105,7 @@
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('epname2')}? 'has-error'">
-					<label for="epname2" class="col-lg-2 control-label"
-						th:text="#{Roamiotodo.epname2} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="epname2"
-							th:field="*{epname2}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('epname2')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('epname3')}? 'has-error'">
-					<label for="epname3" class="col-lg-2 control-label"
-						th:text="#{Roamiotodo.epname3} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="epname3"
-							th:field="*{epname3}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('epname3')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('epnum')}? 'has-error'">
-					<label for="epnum" class="col-lg-2 control-label"
-						th:text="#{Roamiotodo.epnum} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="epnum"
-							th:field="*{epnum}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('epnum')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
 				<input type="hidden" class="form-control" id="id" th:field="*{id}" />
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('show')}? 'has-error'">
-					<label for="show" class="col-lg-2 control-label"
-						th:text="#{Roamiotodo.show} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="show"
-							th:field="*{show}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('show')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('showname')}? 'has-error'">
 					<label for="showname" class="col-lg-2 control-label"
@@ -251,22 +131,6 @@
 							th:field="*{showtrimmed}" />
 						<ul class="help-block"
 							th:each="error: ${#fields.errors('showtrimmed')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('sortabledate')}? 'has-error'">
-					<label for="sortabledate" class="col-lg-2 control-label"
-						th:text="#{Roamiotodo.sortabledate} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="sortabledate"
-							th:field="*{sortabledate}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('sortabledate')}">
 							<li th:each="message : ${error.split(';')}">
 								<p class="error-message" th:text="${message}"></p>
 							</li>
@@ -301,7 +165,6 @@
 				</div>
 			</fieldset>
 		</form>
-	</div>
 
-	<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
 </body></html>

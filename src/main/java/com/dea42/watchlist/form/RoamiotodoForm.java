@@ -1,54 +1,43 @@
 package com.dea42.watchlist.form;
 
-import java.io.Serializable;
-import lombok.Data;
-
-import com.dea42.watchlist.utils.MessageHelper;
-import com.dea42.watchlist.entity.Roamiotodo;
-
 import com.dea42.watchlist.entity.Account;
+import com.dea42.watchlist.entity.Roamiotodo;
+import com.dea42.watchlist.utils.MessageHelper;
+import java.io.Serializable;
+import java.util.Date;
 import javax.validation.constraints.NotBlank;
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * Title: roamiotodo Form <br>
  * Description: Class for holding data from the roamiotodo table for editing. <br>
  * Copyright: Copyright (c) 2001-2020<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.5.4<br>
- * @version 0.5.4<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
+ * @version 0.6.3<br>
  */
 
 @Data
 public class RoamiotodoForm implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-    @Length(max=16)
+    @Length(max=15)
 	private String channel;
-    @Length(max=28)
-	private String coli;
-	private Integer date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+	private Date date;
     @Length(max=4)
 	private String duration;
-	private Integer ep;
-	private Integer epdate;
     @Length(max=50)
-	private String episode;
-    @Length(max=2)
+	private String ep;
+    @Length(max=59)
 	private String episodename;
-    @Length(max=1)
-	private String epname2;
-	private Integer epname3;
-    @Length(max=20)
-	private String epnum;
 	private Integer id;
-    @Length(max=141)
-	private String show;
-    @Length(max=78)
+    @Length(max=48)
 	private String showname;
-    @Length(max=78)
+    @Length(max=47)
 	private String showtrimmed;
-	private Integer sortabledate;
 	private Account account;
 
 	/**
@@ -58,23 +47,17 @@ public class RoamiotodoForm implements Serializable {
 	 */
 	public static RoamiotodoForm getInstance(Roamiotodo obj) {
 		RoamiotodoForm form = new RoamiotodoForm();
-		form.setChannel(obj.getChannel());
-		form.setColi(obj.getColi());
-		form.setDate(obj.getDate());
-		form.setDuration(obj.getDuration());
-		form.setEp(obj.getEp());
-		form.setEpdate(obj.getEpdate());
-		form.setEpisode(obj.getEpisode());
-		form.setEpisodename(obj.getEpisodename());
-		form.setEpname2(obj.getEpname2());
-		form.setEpname3(obj.getEpname3());
-		form.setEpnum(obj.getEpnum());
-		form.setId(obj.getId());
-		form.setShow(obj.getShow());
-		form.setShowname(obj.getShowname());
-		form.setShowtrimmed(obj.getShowtrimmed());
-		form.setSortabledate(obj.getSortabledate());
-		form.setAccount(obj.getAccount());
+		if (obj != null) {
+			form.setChannel(obj.getChannel());
+			form.setDate(obj.getDate());
+			form.setDuration(obj.getDuration());
+			form.setEp(obj.getEp());
+			form.setEpisodename(obj.getEpisodename());
+			form.setId(obj.getId());
+			form.setShowname(obj.getShowname());
+			form.setShowtrimmed(obj.getShowtrimmed());
+			form.setAccount(obj.getAccount());
+		}
 		return form;
 	}
 }

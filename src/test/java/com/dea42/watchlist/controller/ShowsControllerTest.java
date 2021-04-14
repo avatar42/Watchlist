@@ -17,10 +17,11 @@ import com.dea42.watchlist.search.ShowsSearchForm;
 /**
  * Title: ShowsControllerTest <br>
  * Description: ShowsController. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @WebMvcTest(ShowsController.class)
@@ -28,18 +29,14 @@ public class ShowsControllerTest extends MockBase {
 	private Shows getShows(Integer id) {
 		Shows o = new Shows();
 		o.setId(id);
-        o.setCancelled(getTestString(65));
+        o.setCancelled(getTestString(56));
         o.setEpguidesshowname(getTestString(47));
-        o.setEpguidesshownamelink(getTestString(60));
         o.setIncanceledas(getTestString(47));
-        o.setIncanceledaslink(getTestString(70));
         o.setLastshow(getTestString(10));
         o.setNetwork(getTestString(14));
-        o.setNetworklink(getTestString(306));
-        o.setPremiere(getTestString(65));
-        o.setStatus(getTestString(65));
+        o.setPremiere(getTestString(43));
+        o.setStatus(getTestString(56));
         o.setTivoname(getTestString(47));
-        o.setTivonamelink(getTestString(31));
 		return o;
 	}
 
@@ -58,27 +55,23 @@ public class ShowsControllerTest extends MockBase {
 
 		ResultActions ra = getAsAdmin("/showss");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Shows") + " " + getMsg("edit.list") + "</h1>");
-		contentContainsMarkup(ra,getTestString(65));
-		contentContainsMarkup(ra,getMsg("Shows.cancelled"));
-		contentContainsMarkup(ra,getTestString(47));
-		contentContainsMarkup(ra,getMsg("Shows.epguidesshowname"));
-		contentContainsMarkup(ra,getTestString(60));
-		contentContainsMarkup(ra,getTestString(47));
-		contentContainsMarkup(ra,getMsg("Shows.incanceledas"));
-		contentContainsMarkup(ra,getTestString(70));
-		contentContainsMarkup(ra,getTestString(10));
-		contentContainsMarkup(ra,getMsg("Shows.lastshow"));
-		contentContainsMarkup(ra,getTestString(14));
-		contentContainsMarkup(ra,getMsg("Shows.network"));
-		contentContainsMarkup(ra,getTestString(306));
-		contentContainsMarkup(ra,getTestString(65));
-		contentContainsMarkup(ra,getMsg("Shows.premiere"));
-		contentContainsMarkup(ra,getMsg("Shows.premieredate"));
-		contentContainsMarkup(ra,getTestString(65));
-		contentContainsMarkup(ra,getMsg("Shows.status"));
-		contentContainsMarkup(ra,getTestString(47));
-		contentContainsMarkup(ra,getMsg("Shows.tivoname"));
-		contentContainsMarkup(ra,getTestString(31));
+//		contentContainsMarkup(ra,getTestString(56));
+//		contentContainsMarkup(ra,getMsg("Shows.cancelled"));
+//		contentContainsMarkup(ra,getTestString(47));
+//		contentContainsMarkup(ra,getMsg("Shows.epguidesshowname"));
+//		contentContainsMarkup(ra,getTestString(47));
+//		contentContainsMarkup(ra,getMsg("Shows.incanceledas"));
+//		contentContainsMarkup(ra,getTestString(10));
+//		contentContainsMarkup(ra,getMsg("Shows.lastshow"));
+//		contentContainsMarkup(ra,getTestString(14));
+//		contentContainsMarkup(ra,getMsg("Shows.network"));
+//		contentContainsMarkup(ra,getTestString(43));
+//		contentContainsMarkup(ra,getMsg("Shows.premiere"));
+//		contentContainsMarkup(ra,getMsg("Shows.premieredate"));
+//		contentContainsMarkup(ra,getTestString(56));
+//		contentContainsMarkup(ra,getMsg("Shows.status"));
+//		contentContainsMarkup(ra,getTestString(47));
+//		contentContainsMarkup(ra,getMsg("Shows.tivoname"));
 	}
 
 	/**
@@ -91,20 +84,16 @@ public class ShowsControllerTest extends MockBase {
 	public void testShowNewShowsPage() throws Exception {
 		ResultActions ra = getAsAdmin("/showss/new");
 		contentContainsMarkup(ra,"<legend>" + getMsg("edit.new") + " " + getMsg("class.Shows") + "</legend>");
-		contentContainsMarkup(ra,"Cancelled");
-		contentContainsMarkup(ra,"Epguidesshowname");
-		contentContainsMarkup(ra,"Epguidesshownamelink");
+		contentContainsMarkup(ra,getMsg("Shows.cancelled"));
+		contentContainsMarkup(ra,getMsg("Shows.epguidesshowname"));
 		// TODO: confirm ignoring Shows.id
-		contentContainsMarkup(ra,"Incanceledas");
-		contentContainsMarkup(ra,"Incanceledaslink");
-		contentContainsMarkup(ra,"Lastshow");
-		contentContainsMarkup(ra,"Network");
-		contentContainsMarkup(ra,"Networklink");
-		contentContainsMarkup(ra,"Premiere");
-		contentContainsMarkup(ra,"Premieredate");
-		contentContainsMarkup(ra,"Status");
-		contentContainsMarkup(ra,"Tivoname");
-		contentContainsMarkup(ra,"Tivonamelink");
+		contentContainsMarkup(ra,getMsg("Shows.incanceledas"));
+		contentContainsMarkup(ra,getMsg("Shows.lastshow"));
+		contentContainsMarkup(ra,getMsg("Shows.network"));
+		contentContainsMarkup(ra,getMsg("Shows.premiere"));
+		contentContainsMarkup(ra,getMsg("Shows.premieredate"));
+		contentContainsMarkup(ra,getMsg("Shows.status"));
+		contentContainsMarkup(ra,getMsg("Shows.tivoname"));
 	}
 
 	/**
@@ -115,7 +104,7 @@ public class ShowsControllerTest extends MockBase {
 	public void testSaveShowsCancel() throws Exception {
 		Shows o = getShows(1);
 
-		send(SEND_POST, "/showss/save", "shows", o, ImmutableMap.of("action", "cancel"), ADMIN_USER,
+		send(SEND_POST, "/showss/save", "shows", o, ImmutableMap.of("action", "cancel"), ADMIN_EMAIL,
 				"/showss");
 	}
 
@@ -129,7 +118,7 @@ public class ShowsControllerTest extends MockBase {
 		ShowsForm form = ShowsForm.getInstance(o);
 		log.debug(form.toString());
 
-		send(SEND_POST, "/showss/save", "showsForm", form, ImmutableMap.of("action", "save"), ADMIN_USER,
+		send(SEND_POST, "/showss/save", "showsForm", form, ImmutableMap.of("action", "save"), ADMIN_EMAIL,
 				"/showss");
 	}
 
@@ -150,19 +139,13 @@ public class ShowsControllerTest extends MockBase {
 		contentContainsMarkup(ra,"Cancelled");
 		contentContainsMarkup(ra,o.getEpguidesshowname());
 		contentContainsMarkup(ra,"Epguidesshowname");
-		contentContainsMarkup(ra,o.getEpguidesshownamelink());
-		contentContainsMarkup(ra,"Epguidesshownamelink");
 		// TODO: confirm ignoring Shows.id
 		contentContainsMarkup(ra,o.getIncanceledas());
 		contentContainsMarkup(ra,"Incanceledas");
-		contentContainsMarkup(ra,o.getIncanceledaslink());
-		contentContainsMarkup(ra,"Incanceledaslink");
 		contentContainsMarkup(ra,o.getLastshow());
 		contentContainsMarkup(ra,"Lastshow");
 		contentContainsMarkup(ra,o.getNetwork());
 		contentContainsMarkup(ra,"Network");
-		contentContainsMarkup(ra,o.getNetworklink());
-		contentContainsMarkup(ra,"Networklink");
 		contentContainsMarkup(ra,o.getPremiere());
 		contentContainsMarkup(ra,"Premiere");
 		contentContainsMarkup(ra,"Premieredate");
@@ -170,8 +153,6 @@ public class ShowsControllerTest extends MockBase {
 		contentContainsMarkup(ra,"Status");
 		contentContainsMarkup(ra,o.getTivoname());
 		contentContainsMarkup(ra,"Tivoname");
-		contentContainsMarkup(ra,o.getTivonamelink());
-		contentContainsMarkup(ra,"Tivonamelink");
 	}
 
 	/**

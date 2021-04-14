@@ -50,6 +50,7 @@ files.md<br>
 ./src/main/java/com/dea42/watchlist/search/SearchCriteria.java<br>
 ./src/main/java/com/dea42/watchlist/search/SearchOperation.java<br>
 ./src/main/java/com/dea42/watchlist/search/SearchSpecification.java<br>
+./src/main/java/com/dea42/watchlist/search/SearchType.java<br>
 ./src/main/java/com/dea42/watchlist/search/AccountSearchForm.java<br>
 ./src/main/java/com/dea42/watchlist/search/OtaSearchForm.java<br>
 ./src/main/java/com/dea42/watchlist/search/NetworksSearchForm.java<br>
@@ -78,6 +79,12 @@ files.md<br>
 ./src/main/java/com/dea42/watchlist/utils/MessageHelper.java<br>
 ./src/main/java/com/dea42/watchlist/utils/Utils.java<br>
 ./src/main/java/com/dea42/watchlist/WebAppApplication.java<br>
+./src/main/java/com/dea42/watchlist/paging/Column.java<br>
+./src/main/java/com/dea42/watchlist/paging/Direction.java<br>
+./src/main/java/com/dea42/watchlist/paging/Order.java<br>
+./src/main/java/com/dea42/watchlist/paging/PageInfo.java<br>
+./src/main/java/com/dea42/watchlist/paging/PagingRequest.java<br>
+./src/main/java/com/dea42/watchlist/paging/Search.java<br>
 ./src/main/java/com/dea42/watchlist/entity/Account.java<br>
 ./src/main/java/com/dea42/watchlist/entity/Ota.java<br>
 ./src/main/java/com/dea42/watchlist/entity/Networks.java<br>
@@ -134,6 +141,7 @@ files.md<br>
 ./src/main/resources/templates/search_cablecard.html<br>
 ./src/main/resources/templates/index.html<br>
 ./src/main/resources/templates/api_index.html<br>
+./src/main/resources/messages_es.properties<br>
 ./src/main/resources/application.properties<br>
 ./src/main/webapp/favicon.ico<br>
 ./src/main/webapp/public/optView.html<br>

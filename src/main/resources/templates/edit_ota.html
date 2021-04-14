@@ -170,22 +170,6 @@
 				</div>
 
 				<div class="form-group"
-					th:classappend="${#fields.hasErrors('fccinfolink')}? 'has-error'">
-					<label for="fccinfolink" class="col-lg-2 control-label"
-						th:text="#{Ota.fccinfolink} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="fccinfolink"
-							th:field="*{fccinfolink}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('fccinfolink')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
 					th:classappend="${#fields.hasErrors('freq')}? 'has-error'">
 					<label for="freq" class="col-lg-2 control-label"
 						th:text="#{Ota.freq} + ':'"></label>
@@ -203,14 +187,14 @@
 
 				<input type="hidden" class="form-control" id="id" th:field="*{id}" />
 				<div class="form-group"
-					th:classappend="${#fields.hasErrors('lang')}? 'has-error'">
-					<label for="lang" class="col-lg-2 control-label"
-						th:text="#{Ota.lang} + ':'"></label>
+					th:classappend="${#fields.hasErrors('langfield')}? 'has-error'">
+					<label for="langfield" class="col-lg-2 control-label"
+						th:text="#{Ota.langfield} + ':'"></label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="lang"
-							th:field="*{lang}" />
+						<input type="text" class="form-control" id="langfield"
+							th:field="*{langfield}" />
 						<ul class="help-block"
-							th:each="error: ${#fields.errors('lang')}">
+							th:each="error: ${#fields.errors('langfield')}">
 							<li th:each="message : ${error.split(';')}">
 								<p class="error-message" th:text="${message}"></p>
 							</li>
@@ -388,10 +372,10 @@
 				</div>
 				<input type="hidden" class="form-control" id="account.id" th:field="*{account.id}" />
 				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
-					<label for="otaForm.account.role" class="col-lg-2 control-label"
-						th:text="#{Account.role} + ':'"></label>
-					<div th:if="${otaForm.account != null}" class="col-lg-10" id="otaForm.account.role"
-	                        th:text="${otaForm.account.role}">
+					<label for="otaForm.account.userrole" class="col-lg-2 control-label"
+						th:text="#{Account.userrole} + ':'"></label>
+					<div th:if="${otaForm.account != null}" class="col-lg-10" id="otaForm.account.userrole"
+	                        th:text="${otaForm.account.userrole}">
 					</div>
 				<div th:unless="${otaForm.account != null}" th:text="${otaForm.account}"></div>
 				</div>
@@ -438,5 +422,8 @@
 			</fieldset>
 		</form>
 
-	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
-</body></html>
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

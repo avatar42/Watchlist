@@ -17,10 +17,11 @@ import com.dea42.watchlist.search.CablecardSearchForm;
 /**
  * Title: CablecardControllerTest <br>
  * Description: CablecardController. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @WebMvcTest(CablecardController.class)
@@ -29,7 +30,7 @@ public class CablecardControllerTest extends MockBase {
 		Cablecard o = new Cablecard();
 		o.setId(id);
         o.setChannelname(getTestString(12));
-        o.setLang(getTestString(2));
+        o.setLangfield(getTestString(2));
         o.setNet(getTestString(12));
         o.setReceiving(getTestString(3));
         o.setShortfield(getTestString(12));
@@ -51,21 +52,21 @@ public class CablecardControllerTest extends MockBase {
 
 		ResultActions ra = getAsAdmin("/cablecards");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Cablecard") + " " + getMsg("edit.list") + "</h1>");
-		contentContainsMarkup(ra,getTestString(12));
-		contentContainsMarkup(ra,getMsg("Cablecard.channelname"));
-		contentContainsMarkup(ra,getMsg("Cablecard.channelnumber"));
-		contentContainsMarkup(ra,getMsg("Cablecard.dt"));
-		contentContainsMarkup(ra,getMsg("Cablecard.hd"));
-		contentContainsMarkup(ra,getMsg("Cablecard.innpl"));
-		contentContainsMarkup(ra,getTestString(2));
-		contentContainsMarkup(ra,getMsg("Cablecard.lang"));
-		contentContainsMarkup(ra,getTestString(12));
-		contentContainsMarkup(ra,getMsg("Cablecard.net"));
-		contentContainsMarkup(ra,getTestString(3));
-		contentContainsMarkup(ra,getMsg("Cablecard.receiving"));
-		contentContainsMarkup(ra,getTestString(12));
-		contentContainsMarkup(ra,getMsg("Cablecard.shortfield"));
-		contentContainsMarkup(ra,getMsg("Cablecard.userid"));
+//		contentContainsMarkup(ra,getTestString(12));
+//		contentContainsMarkup(ra,getMsg("Cablecard.channelname"));
+//		contentContainsMarkup(ra,getMsg("Cablecard.channelnumber"));
+//		contentContainsMarkup(ra,getMsg("Cablecard.dt"));
+//		contentContainsMarkup(ra,getMsg("Cablecard.hd"));
+//		contentContainsMarkup(ra,getMsg("Cablecard.innpl"));
+//		contentContainsMarkup(ra,getTestString(2));
+//		contentContainsMarkup(ra,getMsg("Cablecard.langfield"));
+//		contentContainsMarkup(ra,getTestString(12));
+//		contentContainsMarkup(ra,getMsg("Cablecard.net"));
+//		contentContainsMarkup(ra,getTestString(3));
+//		contentContainsMarkup(ra,getMsg("Cablecard.receiving"));
+//		contentContainsMarkup(ra,getTestString(12));
+//		contentContainsMarkup(ra,getMsg("Cablecard.shortfield"));
+//		contentContainsMarkup(ra,getMsg("Cablecard.userid"));
 	}
 
 	/**
@@ -78,17 +79,17 @@ public class CablecardControllerTest extends MockBase {
 	public void testShowNewCablecardPage() throws Exception {
 		ResultActions ra = getAsAdmin("/cablecards/new");
 		contentContainsMarkup(ra,"<legend>" + getMsg("edit.new") + " " + getMsg("class.Cablecard") + "</legend>");
-		contentContainsMarkup(ra,"Channelname");
-		contentContainsMarkup(ra,"Channelnumber");
-		contentContainsMarkup(ra,"Dt");
-		contentContainsMarkup(ra,"Hd");
+		contentContainsMarkup(ra,getMsg("Cablecard.channelname"));
+		contentContainsMarkup(ra,getMsg("Cablecard.channelnumber"));
+		contentContainsMarkup(ra,getMsg("Cablecard.dt"));
+		contentContainsMarkup(ra,getMsg("Cablecard.hd"));
 		// TODO: confirm ignoring Cablecard.id
-		contentContainsMarkup(ra,"Innpl");
-		contentContainsMarkup(ra,"Lang");
-		contentContainsMarkup(ra,"Net");
-		contentContainsMarkup(ra,"Receiving");
-		contentContainsMarkup(ra,"Shortfield");
-		contentContainsMarkup(ra,"Account");
+		contentContainsMarkup(ra,getMsg("Cablecard.innpl"));
+		contentContainsMarkup(ra,getMsg("Cablecard.langfield"));
+		contentContainsMarkup(ra,getMsg("Cablecard.net"));
+		contentContainsMarkup(ra,getMsg("Cablecard.receiving"));
+		contentContainsMarkup(ra,getMsg("Cablecard.shortfield"));
+		contentContainsMarkup(ra,getMsg("Cablecard.userid"));
 	}
 
 	/**
@@ -99,7 +100,7 @@ public class CablecardControllerTest extends MockBase {
 	public void testSaveCablecardCancel() throws Exception {
 		Cablecard o = getCablecard(1);
 
-		send(SEND_POST, "/cablecards/save", "cablecard", o, ImmutableMap.of("action", "cancel"), ADMIN_USER,
+		send(SEND_POST, "/cablecards/save", "cablecard", o, ImmutableMap.of("action", "cancel"), ADMIN_EMAIL,
 				"/cablecards");
 	}
 
@@ -113,7 +114,7 @@ public class CablecardControllerTest extends MockBase {
 		CablecardForm form = CablecardForm.getInstance(o);
 		log.debug(form.toString());
 
-		send(SEND_POST, "/cablecards/save", "cablecardForm", form, ImmutableMap.of("action", "save"), ADMIN_USER,
+		send(SEND_POST, "/cablecards/save", "cablecardForm", form, ImmutableMap.of("action", "save"), ADMIN_EMAIL,
 				"/cablecards");
 	}
 
@@ -137,8 +138,8 @@ public class CablecardControllerTest extends MockBase {
 		contentContainsMarkup(ra,"Hd");
 		// TODO: confirm ignoring Cablecard.id
 		contentContainsMarkup(ra,"Innpl");
-		contentContainsMarkup(ra,o.getLang());
-		contentContainsMarkup(ra,"Lang");
+		contentContainsMarkup(ra,o.getLangfield());
+		contentContainsMarkup(ra,"Langfield");
 		contentContainsMarkup(ra,o.getNet());
 		contentContainsMarkup(ra,"Net");
 		contentContainsMarkup(ra,o.getReceiving());

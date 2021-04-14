@@ -196,10 +196,10 @@
 				</div>
 				<input type="hidden" class="form-control" id="account.id" th:field="*{account.id}" />
 				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
-					<label for="roamiospForm.account.role" class="col-lg-2 control-label"
-						th:text="#{Account.role} + ':'"></label>
-					<div th:if="${roamiospForm.account != null}" class="col-lg-10" id="roamiospForm.account.role"
-	                        th:text="${roamiospForm.account.role}">
+					<label for="roamiospForm.account.userrole" class="col-lg-2 control-label"
+						th:text="#{Account.userrole} + ':'"></label>
+					<div th:if="${roamiospForm.account != null}" class="col-lg-10" id="roamiospForm.account.userrole"
+	                        th:text="${roamiospForm.account.userrole}">
 					</div>
 				<div th:unless="${roamiospForm.account != null}" th:text="${roamiospForm.account}"></div>
 				</div>
@@ -214,5 +214,8 @@
 			</fieldset>
 		</form>
 
-	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
-</body></html>
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

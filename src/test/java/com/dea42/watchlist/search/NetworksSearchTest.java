@@ -19,10 +19,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 /**
  * Title: networksSearch Test <br>
  * Description: Does regression tests of networks search from service to DB <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -96,38 +97,6 @@ public class NetworksSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testAndroidapplink() {
-		// androidapplink String 12
-		Networks rec = null;
-		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setAndroidapplink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with androidapplink of " + rec.getAndroidapplink());
-
-		form = new NetworksSearchForm();
-		String text = rec.getAndroidapplink();
-		if (text.length() < 2) {
-			form.setAndroidapplink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setAndroidapplink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setAndroidapplink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setAndroidapplink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setAndroidapplink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setAndroidapplink("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
 	public void testComment() {
 		// comment String 12
 		Networks rec = null;
@@ -155,38 +124,6 @@ public class NetworksSearchTest extends UnitBase {
 			form.setComment("%" + text.substring(mid - 1, mid) + "%");
 			confirmGotResult(form, rec.getId());
 			form.setComment("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
-	public void testCommentlink() {
-		// commentlink String 12
-		Networks rec = null;
-		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setCommentlink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with commentlink of " + rec.getCommentlink());
-
-		form = new NetworksSearchForm();
-		String text = rec.getCommentlink();
-		if (text.length() < 2) {
-			form.setCommentlink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setCommentlink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setCommentlink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setCommentlink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setCommentlink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setCommentlink("%" + text.substring(mid, text.length()));
 			confirmGotResult(form, rec.getId());
 		}
 	}
@@ -224,38 +161,6 @@ public class NetworksSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testCommercialslink() {
-		// commercialslink String 12
-		Networks rec = null;
-		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setCommercialslink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with commercialslink of " + rec.getCommercialslink());
-
-		form = new NetworksSearchForm();
-		String text = rec.getCommercialslink();
-		if (text.length() < 2) {
-			form.setCommercialslink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setCommercialslink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setCommercialslink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setCommercialslink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setCommercialslink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setCommercialslink("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
 	public void testFireapp() {
 		// fireapp String 12
 		Networks rec = null;
@@ -283,38 +188,6 @@ public class NetworksSearchTest extends UnitBase {
 			form.setFireapp("%" + text.substring(mid - 1, mid) + "%");
 			confirmGotResult(form, rec.getId());
 			form.setFireapp("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
-	public void testFireapplink() {
-		// fireapplink String 12
-		Networks rec = null;
-		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setFireapplink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with fireapplink of " + rec.getFireapplink());
-
-		form = new NetworksSearchForm();
-		String text = rec.getFireapplink();
-		if (text.length() < 2) {
-			form.setFireapplink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setFireapplink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setFireapplink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setFireapplink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setFireapplink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setFireapplink("%" + text.substring(mid, text.length()));
 			confirmGotResult(form, rec.getId());
 		}
 	}
@@ -352,38 +225,6 @@ public class NetworksSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testFreewithtwcidlink() {
-		// freewithtwcidlink String 12
-		Networks rec = null;
-		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setFreewithtwcidlink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with freewithtwcidlink of " + rec.getFreewithtwcidlink());
-
-		form = new NetworksSearchForm();
-		String text = rec.getFreewithtwcidlink();
-		if (text.length() < 2) {
-			form.setFreewithtwcidlink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setFreewithtwcidlink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setFreewithtwcidlink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setFreewithtwcidlink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setFreewithtwcidlink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setFreewithtwcidlink("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
 	public void testHasdirectbuyoption() {
 		// hasdirectbuyoption String 12
 		Networks rec = null;
@@ -411,38 +252,6 @@ public class NetworksSearchTest extends UnitBase {
 			form.setHasdirectbuyoption("%" + text.substring(mid - 1, mid) + "%");
 			confirmGotResult(form, rec.getId());
 			form.setHasdirectbuyoption("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
-	public void testHasdirectbuyoptionlink() {
-		// hasdirectbuyoptionlink String 12
-		Networks rec = null;
-		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setHasdirectbuyoptionlink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with hasdirectbuyoptionlink of " + rec.getHasdirectbuyoptionlink());
-
-		form = new NetworksSearchForm();
-		String text = rec.getHasdirectbuyoptionlink();
-		if (text.length() < 2) {
-			form.setHasdirectbuyoptionlink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setHasdirectbuyoptionlink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setHasdirectbuyoptionlink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setHasdirectbuyoptionlink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setHasdirectbuyoptionlink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setHasdirectbuyoptionlink("%" + text.substring(mid, text.length()));
 			confirmGotResult(form, rec.getId());
 		}
 	}
@@ -512,38 +321,6 @@ public class NetworksSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testIcanotalink() {
-		// icanotalink String 12
-		Networks rec = null;
-		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setIcanotalink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with icanotalink of " + rec.getIcanotalink());
-
-		form = new NetworksSearchForm();
-		String text = rec.getIcanotalink();
-		if (text.length() < 2) {
-			form.setIcanotalink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setIcanotalink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setIcanotalink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setIcanotalink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setIcanotalink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setIcanotalink("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
 	public void testIptvservice() {
 		// iptvservice String 12
 		Networks rec = null;
@@ -576,38 +353,6 @@ public class NetworksSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testIptvservicelink() {
-		// iptvservicelink String 12
-		Networks rec = null;
-		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setIptvservicelink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with iptvservicelink of " + rec.getIptvservicelink());
-
-		form = new NetworksSearchForm();
-		String text = rec.getIptvservicelink();
-		if (text.length() < 2) {
-			form.setIptvservicelink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setIptvservicelink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setIptvservicelink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setIptvservicelink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setIptvservicelink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setIptvservicelink("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
 	public void testOnhulu() {
 		// onhulu String 12
 		Networks rec = null;
@@ -635,38 +380,6 @@ public class NetworksSearchTest extends UnitBase {
 			form.setOnhulu("%" + text.substring(mid - 1, mid) + "%");
 			confirmGotResult(form, rec.getId());
 			form.setOnhulu("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
-	public void testOnhululink() {
-		// onhululink String 12
-		Networks rec = null;
-		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setOnhululink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with onhululink of " + rec.getOnhululink());
-
-		form = new NetworksSearchForm();
-		String text = rec.getOnhululink();
-		if (text.length() < 2) {
-			form.setOnhululink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setOnhululink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setOnhululink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setOnhululink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setOnhululink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setOnhululink("%" + text.substring(mid, text.length()));
 			confirmGotResult(form, rec.getId());
 		}
 	}
@@ -800,38 +513,6 @@ public class NetworksSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testRokuapplink() {
-		// rokuapplink String 12
-		Networks rec = null;
-		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setRokuapplink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with rokuapplink of " + rec.getRokuapplink());
-
-		form = new NetworksSearchForm();
-		String text = rec.getRokuapplink();
-		if (text.length() < 2) {
-			form.setRokuapplink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setRokuapplink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setRokuapplink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setRokuapplink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setRokuapplink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setRokuapplink("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
 	public void testShowsintivonpl() {
 		// showsintivonpl Integer 4
 		Networks rec = null;
@@ -893,38 +574,6 @@ public class NetworksSearchTest extends UnitBase {
 			form.setSite("%" + text.substring(mid - 1, mid) + "%");
 			confirmGotResult(form, rec.getId());
 			form.setSite("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
-	public void testSitelink() {
-		// sitelink String 12
-		Networks rec = null;
-		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setSitelink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with sitelink of " + rec.getSitelink());
-
-		form = new NetworksSearchForm();
-		String text = rec.getSitelink();
-		if (text.length() < 2) {
-			form.setSitelink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setSitelink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setSitelink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setSitelink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setSitelink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setSitelink("%" + text.substring(mid, text.length()));
 			confirmGotResult(form, rec.getId());
 		}
 	}
@@ -994,38 +643,6 @@ public class NetworksSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testTivoapplink() {
-		// tivoapplink String 12
-		Networks rec = null;
-		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setTivoapplink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with tivoapplink of " + rec.getTivoapplink());
-
-		form = new NetworksSearchForm();
-		String text = rec.getTivoapplink();
-		if (text.length() < 2) {
-			form.setTivoapplink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setTivoapplink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setTivoapplink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setTivoapplink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setTivoapplink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setTivoapplink("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
 	public void testTivoshortname() {
 		// tivoshortname String 12
 		Networks rec = null;
@@ -1085,38 +702,6 @@ public class NetworksSearchTest extends UnitBase {
 			form.setWebinterface("%" + text.substring(mid - 1, mid) + "%");
 			confirmGotResult(form, rec.getId());
 			form.setWebinterface("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
-	public void testWebinterfacelink() {
-		// webinterfacelink String 12
-		Networks rec = null;
-		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setWebinterfacelink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with webinterfacelink of " + rec.getWebinterfacelink());
-
-		form = new NetworksSearchForm();
-		String text = rec.getWebinterfacelink();
-		if (text.length() < 2) {
-			form.setWebinterfacelink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setWebinterfacelink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setWebinterfacelink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setWebinterfacelink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setWebinterfacelink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setWebinterfacelink("%" + text.substring(mid, text.length()));
 			confirmGotResult(form, rec.getId());
 		}
 	}

@@ -1,6 +1,7 @@
 package com.dea42.watchlist.controller;
 
 import java.util.Date;
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +24,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dea42.watchlist.entity.Networks;
 import com.dea42.watchlist.form.NetworksForm;
+import com.dea42.watchlist.paging.PageInfo;
+import com.dea42.watchlist.paging.PagingRequest;
 import com.dea42.watchlist.search.NetworksSearchForm;
 import com.dea42.watchlist.service.NetworksServices;
 import com.dea42.watchlist.utils.Message;
@@ -32,10 +36,11 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Title: NetworksController <br>
  * Description: NetworksController. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @Controller
@@ -73,16 +78,28 @@ public class NetworksController {
 	}
 
 	@PostMapping(value = "/search")
-	public ModelAndView search(HttpServletRequest request, @ModelAttribute NetworksSearchForm form, RedirectAttributes ra,
-			@RequestParam(value = "action", required = true) String action) {
-		setForm(request, form);
-		ModelAndView mav = findPaginated(request, 1, "id", "asc");
-		@SuppressWarnings("unchecked")
-		List<Networks> list = (List<Networks>) mav.getModelMap().getAttribute("networkss");
-		if (list == null || list.isEmpty()) {
-			mav.setViewName("search_networks");
+	public ModelAndView search(HttpServletRequest request, @ModelAttribute NetworksSearchForm form, 
+			RedirectAttributes ra, @RequestParam(value = "action", required = true) String action) {
+		ModelAndView mav;
+		if (action.equals("search")) {
+			setForm(request, form);
+			form.setAdvanced(true);
+			mav = new ModelAndView("networkss");
+//			mav = findPaginated(request, 1, "id", "asc");
+//			@SuppressWarnings("unchecked")
+//			List<Networks> list = (List<Networks>) mav.getModelMap().getAttribute("networkss");
+//			if (list == null || list.isEmpty()) {
+//				mav.setViewName("search_networks");
+//				mav.getModelMap().addAttribute(Message.MESSAGE_ATTRIBUTE,
+//						new Message("search.noResult", Message.Type.WARNING));
+//			}
+		} else {
+			form = new NetworksSearchForm();
+			setForm(request, form);
+			mav = new ModelAndView("search_networks");
+			mav.addObject("networksSearchForm", form);
 			mav.getModelMap().addAttribute(Message.MESSAGE_ATTRIBUTE,
-					new Message("search.noResult", Message.Type.WARNING));
+					new Message("search.formReset", Message.Type.WARNING));
 		}
 
 		return mav;
@@ -134,39 +151,26 @@ public class NetworksController {
 
 			Networks networks = new Networks();
 			networks.setAndroidapp(form.getAndroidapp());
-			networks.setAndroidapplink(form.getAndroidapplink());
 			networks.setComment(form.getComment());
-			networks.setCommentlink(form.getCommentlink());
 			networks.setCommercials(form.getCommercials());
-			networks.setCommercialslink(form.getCommercialslink());
 			networks.setFireapp(form.getFireapp());
-			networks.setFireapplink(form.getFireapplink());
 			networks.setFreewithtwcid(form.getFreewithtwcid());
-			networks.setFreewithtwcidlink(form.getFreewithtwcidlink());
 			networks.setHasdirectbuyoption(form.getHasdirectbuyoption());
-			networks.setHasdirectbuyoptionlink(form.getHasdirectbuyoptionlink());
 			networks.setHaswatchlist(form.getHaswatchlist());
 			networks.setIcanota(form.getIcanota());
-			networks.setIcanotalink(form.getIcanotalink());
 			networks.setId(form.getId());
 			networks.setIptvservice(form.getIptvservice());
-			networks.setIptvservicelink(form.getIptvservicelink());
 			networks.setOnhulu(form.getOnhulu());
-			networks.setOnhululink(form.getOnhululink());
 			networks.setPersistance(form.getPersistance());
 			networks.setRemembersplaceinepisode(form.getRemembersplaceinepisode());
 			networks.setRememberswatchedepisodes(form.getRememberswatchedepisodes());
 			networks.setRokuapp(form.getRokuapp());
-			networks.setRokuapplink(form.getRokuapplink());
 			networks.setShowsintivonpl(form.getShowsintivonpl());
 			networks.setSite(form.getSite());
-			networks.setSitelink(form.getSitelink());
 			networks.setStandardwait(form.getStandardwait());
 			networks.setTivoapp(form.getTivoapp());
-			networks.setTivoapplink(form.getTivoapplink());
 			networks.setTivoshortname(form.getTivoshortname());
 			networks.setWebinterface(form.getWebinterface());
-			networks.setWebinterfacelink(form.getWebinterfacelink());
 			try {
 				networks = networksService.save(networks);
 			} catch (Exception e) {
@@ -201,5 +205,9 @@ public class NetworksController {
 		networksService.delete(id);
 		return "redirect:/networkss";
 	}
-}
 
+	@GetMapping("/list")
+	String home(Principal principal) {
+		return "networkss";
+	}
+}

@@ -11,10 +11,11 @@ import org.hibernate.validator.constraints.Length;
 /**
  * Title: cablecard Form <br>
  * Description: Class for holding data from the cablecard table for editing. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 
 @Data
@@ -30,7 +31,7 @@ public class CablecardForm implements Serializable {
 	private Integer id;
 	private Integer innpl;
     @Length(max=2)
-	private String lang;
+	private String langfield;
     @Length(max=12)
 	private String net;
     @Length(max=3)
@@ -53,7 +54,7 @@ public class CablecardForm implements Serializable {
 			form.setHd(obj.getHd());
 			form.setId(obj.getId());
 			form.setInnpl(obj.getInnpl());
-			form.setLang(obj.getLang());
+			form.setLangfield(obj.getLangfield());
 			form.setNet(obj.getNet());
 			form.setReceiving(obj.getReceiving());
 			form.setShortfield(obj.getShortfield());

@@ -1,6 +1,7 @@
 package com.dea42.watchlist.controller;
 
 import java.util.Date;
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +24,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dea42.watchlist.entity.ShowsUser;
 import com.dea42.watchlist.form.ShowsUserForm;
+import com.dea42.watchlist.paging.PageInfo;
+import com.dea42.watchlist.paging.PagingRequest;
 import com.dea42.watchlist.search.ShowsUserSearchForm;
 import com.dea42.watchlist.service.ShowsUserServices;
 import com.dea42.watchlist.utils.Message;
@@ -32,10 +36,11 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Title: ShowsUserController <br>
  * Description: ShowsUserController. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @Controller
@@ -73,16 +78,28 @@ public class ShowsUserController {
 	}
 
 	@PostMapping(value = "/search")
-	public ModelAndView search(HttpServletRequest request, @ModelAttribute ShowsUserSearchForm form, RedirectAttributes ra,
-			@RequestParam(value = "action", required = true) String action) {
-		setForm(request, form);
-		ModelAndView mav = findPaginated(request, 1, "id", "asc");
-		@SuppressWarnings("unchecked")
-		List<ShowsUser> list = (List<ShowsUser>) mav.getModelMap().getAttribute("showsUsers");
-		if (list == null || list.isEmpty()) {
-			mav.setViewName("search_showsUser");
+	public ModelAndView search(HttpServletRequest request, @ModelAttribute ShowsUserSearchForm form, 
+			RedirectAttributes ra, @RequestParam(value = "action", required = true) String action) {
+		ModelAndView mav;
+		if (action.equals("search")) {
+			setForm(request, form);
+			form.setAdvanced(true);
+			mav = new ModelAndView("showsUsers");
+//			mav = findPaginated(request, 1, "id", "asc");
+//			@SuppressWarnings("unchecked")
+//			List<ShowsUser> list = (List<ShowsUser>) mav.getModelMap().getAttribute("showsUsers");
+//			if (list == null || list.isEmpty()) {
+//				mav.setViewName("search_showsUser");
+//				mav.getModelMap().addAttribute(Message.MESSAGE_ATTRIBUTE,
+//						new Message("search.noResult", Message.Type.WARNING));
+//			}
+		} else {
+			form = new ShowsUserSearchForm();
+			setForm(request, form);
+			mav = new ModelAndView("search_showsUser");
+			mav.addObject("showsUserSearchForm", form);
 			mav.getModelMap().addAttribute(Message.MESSAGE_ATTRIBUTE,
-					new Message("search.noResult", Message.Type.WARNING));
+					new Message("search.formReset", Message.Type.WARNING));
 		}
 
 		return mav;
@@ -134,22 +151,17 @@ public class ShowsUserController {
 
 			ShowsUser showsUser = new ShowsUser();
 			showsUser.setBestexperience(form.getBestexperience());
-			showsUser.setBestexperiencelink(form.getBestexperiencelink());
 			showsUser.setComment(form.getComment());
-			showsUser.setCommentlink(form.getCommentlink());
 			showsUser.setDiff(form.getDiff());
 			showsUser.setId(form.getId());
 			showsUser.setImdb(form.getImdb());
-			showsUser.setImdblink(form.getImdblink());
 			showsUser.setInrokufeed(form.getInrokufeed());
 			showsUser.setInshowrssas(form.getInshowrssas());
-			showsUser.setInshowrssaslink(form.getInshowrssaslink());
-			showsUser.setIntablo(form.getIntablo());
 			showsUser.setJustwatch(form.getJustwatch());
-			showsUser.setJustwatchlink(form.getJustwatchlink());
 			showsUser.setLastwatched(form.getLastwatched());
 			showsUser.setOta(form.getOta());
 			showsUser.setShows(form.getShows());
+			showsUser.setTablolink(form.getTablolink());
 			showsUser.setAccount(form.getAccount());
 			try {
 				showsUser = showsUserService.save(showsUser);
@@ -185,5 +197,9 @@ public class ShowsUserController {
 		showsUserService.delete(id);
 		return "redirect:/showsUsers";
 	}
-}
 
+	@GetMapping("/list")
+	String home(Principal principal) {
+		return "showsUsers";
+	}
+}

@@ -17,10 +17,11 @@ import com.dea42.watchlist.search.RoamiospSearchForm;
 /**
  * Title: RoamiospControllerTest <br>
  * Description: RoamiospController. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @WebMvcTest(RoamiospController.class)
@@ -51,22 +52,22 @@ public class RoamiospControllerTest extends MockBase {
 
 		ResultActions ra = getAsAdmin("/roamiosps");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Roamiosp") + " " + getMsg("edit.list") + "</h1>");
-		contentContainsMarkup(ra,getTestString(14));
-		contentContainsMarkup(ra,getMsg("Roamiosp.channel"));
-		contentContainsMarkup(ra,getMsg("Roamiosp.end"));
-		contentContainsMarkup(ra,getTestString(8));
-		contentContainsMarkup(ra,getMsg("Roamiosp.include"));
-		contentContainsMarkup(ra,getTestString(7));
-		contentContainsMarkup(ra,getMsg("Roamiosp.keep"));
-		contentContainsMarkup(ra,getMsg("Roamiosp.num"));
-		contentContainsMarkup(ra,getMsg("Roamiosp.priority"));
-		contentContainsMarkup(ra,getTestString(13));
-		contentContainsMarkup(ra,getMsg("Roamiosp.record"));
-		contentContainsMarkup(ra,getMsg("Roamiosp.season"));
-		contentContainsMarkup(ra,getTestString(60));
-		contentContainsMarkup(ra,getMsg("Roamiosp.show"));
-		contentContainsMarkup(ra,getMsg("Roamiosp.start"));
-		contentContainsMarkup(ra,getMsg("Roamiosp.userid"));
+//		contentContainsMarkup(ra,getTestString(14));
+//		contentContainsMarkup(ra,getMsg("Roamiosp.channel"));
+//		contentContainsMarkup(ra,getMsg("Roamiosp.end"));
+//		contentContainsMarkup(ra,getTestString(8));
+//		contentContainsMarkup(ra,getMsg("Roamiosp.include"));
+//		contentContainsMarkup(ra,getTestString(7));
+//		contentContainsMarkup(ra,getMsg("Roamiosp.keep"));
+//		contentContainsMarkup(ra,getMsg("Roamiosp.num"));
+//		contentContainsMarkup(ra,getMsg("Roamiosp.priority"));
+//		contentContainsMarkup(ra,getTestString(13));
+//		contentContainsMarkup(ra,getMsg("Roamiosp.record"));
+//		contentContainsMarkup(ra,getMsg("Roamiosp.season"));
+//		contentContainsMarkup(ra,getTestString(60));
+//		contentContainsMarkup(ra,getMsg("Roamiosp.show"));
+//		contentContainsMarkup(ra,getMsg("Roamiosp.start"));
+//		contentContainsMarkup(ra,getMsg("Roamiosp.userid"));
 	}
 
 	/**
@@ -79,18 +80,18 @@ public class RoamiospControllerTest extends MockBase {
 	public void testShowNewRoamiospPage() throws Exception {
 		ResultActions ra = getAsAdmin("/roamiosps/new");
 		contentContainsMarkup(ra,"<legend>" + getMsg("edit.new") + " " + getMsg("class.Roamiosp") + "</legend>");
-		contentContainsMarkup(ra,"Channel");
-		contentContainsMarkup(ra,"End");
+		contentContainsMarkup(ra,getMsg("Roamiosp.channel"));
+		contentContainsMarkup(ra,getMsg("Roamiosp.end"));
 		// TODO: confirm ignoring Roamiosp.id
-		contentContainsMarkup(ra,"Include");
-		contentContainsMarkup(ra,"Keep");
-		contentContainsMarkup(ra,"Num");
-		contentContainsMarkup(ra,"Priority");
-		contentContainsMarkup(ra,"Record");
-		contentContainsMarkup(ra,"Season");
-		contentContainsMarkup(ra,"Show");
-		contentContainsMarkup(ra,"Start");
-		contentContainsMarkup(ra,"Account");
+		contentContainsMarkup(ra,getMsg("Roamiosp.include"));
+		contentContainsMarkup(ra,getMsg("Roamiosp.keep"));
+		contentContainsMarkup(ra,getMsg("Roamiosp.num"));
+		contentContainsMarkup(ra,getMsg("Roamiosp.priority"));
+		contentContainsMarkup(ra,getMsg("Roamiosp.record"));
+		contentContainsMarkup(ra,getMsg("Roamiosp.season"));
+		contentContainsMarkup(ra,getMsg("Roamiosp.show"));
+		contentContainsMarkup(ra,getMsg("Roamiosp.start"));
+		contentContainsMarkup(ra,getMsg("Roamiosp.userid"));
 	}
 
 	/**
@@ -101,7 +102,7 @@ public class RoamiospControllerTest extends MockBase {
 	public void testSaveRoamiospCancel() throws Exception {
 		Roamiosp o = getRoamiosp(1);
 
-		send(SEND_POST, "/roamiosps/save", "roamiosp", o, ImmutableMap.of("action", "cancel"), ADMIN_USER,
+		send(SEND_POST, "/roamiosps/save", "roamiosp", o, ImmutableMap.of("action", "cancel"), ADMIN_EMAIL,
 				"/roamiosps");
 	}
 
@@ -115,7 +116,7 @@ public class RoamiospControllerTest extends MockBase {
 		RoamiospForm form = RoamiospForm.getInstance(o);
 		log.debug(form.toString());
 
-		send(SEND_POST, "/roamiosps/save", "roamiospForm", form, ImmutableMap.of("action", "save"), ADMIN_USER,
+		send(SEND_POST, "/roamiosps/save", "roamiospForm", form, ImmutableMap.of("action", "save"), ADMIN_EMAIL,
 				"/roamiosps");
 	}
 

@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
-<title th:text="#{edit.edit} + ' ' + #{class.NetworksUser}"></title>
+<title th:text="#{search.advanced} + ' ' + #{class.NetworksUser}"></title>
 </head>
 <body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header">&nbsp;</div>
 	<div class="wrapper flex-grow-1">
 
 		<form class="form-narrow form-horizontal" method="post"
-			th:action="@{/networksUsers/search}" th:object="${networksUserSearchForm}"
+			th:action="@{/networksUsers/search}" 
+			th:object="${networksUserSearchForm}"
 			th:fragment="networksUserSearchForm">
 			<!--/* Show general error messages when form contains errors */-->
 			<th:block th:if="${#fields.hasErrors('${networksUserSearchForm.*}')}">
-				<div th:each="fieldErrors : ${#fields.errors('${networksUserSearchForm.*}')}">
+				<div 
+					th:each="fieldErrors : ${#fields.errors('${networksUserSearchForm.*}')}">
 					<div th:each="message : ${fieldErrors.split(';')}">
 						<div
 							th:replace="fragments/alert :: alert (type='danger', message=${message})">Alert</div>
@@ -20,32 +22,245 @@
 				</div>
 			</th:block>
 			<fieldset>
-				<legend th:text="#{search.search} + ' ' + #{class.NetworksUser}"></legend>
+				<legend th:text="#{search.advanced} + ' ' + #{class.NetworksUser}"></legend>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('iusefreefreewithcablepayforhuluinstead')}? 'has-error'">
+				<div class="form-group">
+					<label for="networksUserSearchForm.doOr"
+						th:text="#{search.doOr} + ' ' + #{search.like}">Select
+						type</label> <select class="form-control selectpicker" th:field="*{doOr}"
+						id="networksUserSearchForm.doOr">
+						<option
+							th:each="doOr : ${T(com.dea42.watchlist.search.SearchType).values()}"
+							th:value="${doOr}" th:text="${doOr}"></option>
+					</select>
+				</div>
+
+				<div class="form-group">
 					<label for="iusefreefreewithcablepayforhuluinstead" class="col-lg-2 control-label"
 						th:text="#{NetworksUser.iusefreefreewithcablepayforhuluinstead} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="iusefreefreewithcablepayforhuluinstead"
 							th:field="*{iusefreefreewithcablepayforhuluinstead}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('iusefreefreewithcablepayforhuluinstead')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
 				<div class="form-group">
+					<label for="networksUserSearchForm.networks.androidapp" class="col-lg-2 control-label"
+						th:text="#{Networks.androidapp} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.androidapp"
+	                        th:text="${networksUserSearchForm.networks.androidapp}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.comment" class="col-lg-2 control-label"
+						th:text="#{Networks.comment} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.comment"
+	                        th:text="${networksUserSearchForm.networks.comment}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.commercials" class="col-lg-2 control-label"
+						th:text="#{Networks.commercials} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.commercials"
+	                        th:text="${networksUserSearchForm.networks.commercials}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.fireapp" class="col-lg-2 control-label"
+						th:text="#{Networks.fireapp} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.fireapp"
+	                        th:text="${networksUserSearchForm.networks.fireapp}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.freewithtwcid" class="col-lg-2 control-label"
+						th:text="#{Networks.freewithtwcid} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.freewithtwcid"
+	                        th:text="${networksUserSearchForm.networks.freewithtwcid}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.hasdirectbuyoption" class="col-lg-2 control-label"
+						th:text="#{Networks.hasdirectbuyoption} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.hasdirectbuyoption"
+	                        th:text="${networksUserSearchForm.networks.hasdirectbuyoption}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.haswatchlist" class="col-lg-2 control-label"
+						th:text="#{Networks.haswatchlist} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.haswatchlist"
+	                        th:text="${networksUserSearchForm.networks.haswatchlist}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.icanota" class="col-lg-2 control-label"
+						th:text="#{Networks.icanota} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.icanota"
+	                        th:text="${networksUserSearchForm.networks.icanota}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<input type="hidden" class="form-control" id="networks.id" />
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.iptvservice" class="col-lg-2 control-label"
+						th:text="#{Networks.iptvservice} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.iptvservice"
+	                        th:text="${networksUserSearchForm.networks.iptvservice}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.onhulu" class="col-lg-2 control-label"
+						th:text="#{Networks.onhulu} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.onhulu"
+	                        th:text="${networksUserSearchForm.networks.onhulu}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.persistance" class="col-lg-2 control-label"
+						th:text="#{Networks.persistance} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.persistance"
+	                        th:text="${networksUserSearchForm.networks.persistance}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.remembersplaceinepisode" class="col-lg-2 control-label"
+						th:text="#{Networks.remembersplaceinepisode} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.remembersplaceinepisode"
+	                        th:text="${networksUserSearchForm.networks.remembersplaceinepisode}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.rememberswatchedepisodes" class="col-lg-2 control-label"
+						th:text="#{Networks.rememberswatchedepisodes} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.rememberswatchedepisodes"
+	                        th:text="${networksUserSearchForm.networks.rememberswatchedepisodes}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.rokuapp" class="col-lg-2 control-label"
+						th:text="#{Networks.rokuapp} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.rokuapp"
+	                        th:text="${networksUserSearchForm.networks.rokuapp}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.showsintivonplMin" class="col-lg-2 control-label"
+						th:text="#{Networks.showsintivonpl} + ' ' + #{search.gte}"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10">
+						<input type="text" class="form-control" id="networksUserSearchForm.networks.showsintivonplMin"
+							th:field="*{networks.showsintivonplMin}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.showsintivonplMax" class="col-lg-2 control-label"
+						th:text="#{Networks.showsintivonpl} + ' ' + #{search.lte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="networksUserSearchForm.networks.showsintivonplMax"
+							th:field="*{networks.showsintivonplMax}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.site" class="col-lg-2 control-label"
+						th:text="#{Networks.site} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.site"
+	                        th:text="${networksUserSearchForm.networks.site}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.standardwait" class="col-lg-2 control-label"
+						th:text="#{Networks.standardwait} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.standardwait"
+	                        th:text="${networksUserSearchForm.networks.standardwait}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.tivoapp" class="col-lg-2 control-label"
+						th:text="#{Networks.tivoapp} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.tivoapp"
+	                        th:text="${networksUserSearchForm.networks.tivoapp}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.tivoshortname" class="col-lg-2 control-label"
+						th:text="#{Networks.tivoshortname} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.tivoshortname"
+	                        th:text="${networksUserSearchForm.networks.tivoshortname}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div class="form-group">
+					<label for="networksUserSearchForm.networks.webinterface" class="col-lg-2 control-label"
+						th:text="#{Networks.webinterface} + ':'"></label>
+					<div th:if="${networksUserSearchForm.networks != null}" class="col-lg-10" id="networksUserSearchForm.networks.webinterface"
+	                        th:text="${networksUserSearchForm.networks.webinterface}">
+					</div>
+				<div th:unless="${networksUserSearchForm.networks != null}" th:text="${networksUserSearchForm.networks}"></div>
+				</div>
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="networksUserSearchForm.account.email" class="col-lg-2 control-label"
+						th:text="#{Account.email} + ':'"></label>
+					<div th:if="${networksUserSearchForm.account != null}" class="col-lg-10" id="networksUserSearchForm.account.email"
+	                        th:text="${networksUserSearchForm.account.email}">
+					</div>
+				<div th:unless="${networksUserSearchForm.account != null}" th:text="${networksUserSearchForm.account}"></div>
+				</div>
+				<input type="hidden" class="form-control" id="account.id" />
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="networksUserSearchForm.account.name" class="col-lg-2 control-label"
+						th:text="#{Account.name} + ':'"></label>
+					<div th:if="${networksUserSearchForm.account != null}" class="col-lg-10" id="networksUserSearchForm.account.name"
+	                        th:text="${networksUserSearchForm.account.name}">
+					</div>
+				<div th:unless="${networksUserSearchForm.account != null}" th:text="${networksUserSearchForm.account}"></div>
+				</div>
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="networksUserSearchForm.account.password" class="col-lg-2 control-label"
+						th:text="#{Account.password} + ':'"></label>
+					<div th:if="${networksUserSearchForm.account != null}" class="col-lg-10" id="networksUserSearchForm.account.password"
+	                        th:text="${networksUserSearchForm.account.password}">
+					</div>
+				<div th:unless="${networksUserSearchForm.account != null}" th:text="${networksUserSearchForm.account}"></div>
+				</div>
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="networksUserSearchForm.account.userrole" class="col-lg-2 control-label"
+						th:text="#{Account.userrole} + ':'"></label>
+					<div th:if="${networksUserSearchForm.account != null}" class="col-lg-10" id="networksUserSearchForm.account.userrole"
+	                        th:text="${networksUserSearchForm.account.userrole}">
+					</div>
+				<div th:unless="${networksUserSearchForm.account != null}" th:text="${networksUserSearchForm.account}"></div>
+				</div>
+				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
 						<button type="submit" name="action" value="search"
 							class="btn btn-default" th:text="#{search.search}"></button>
+						<button type="submit" name="action" value="reset"
+							class="btn btn-default" th:text="#{search.reset}"></button>
 					</div>
 				</div>
 			</fieldset>
 		</form>
 
-	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
-</body></html>
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

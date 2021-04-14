@@ -17,10 +17,11 @@ import com.dea42.watchlist.search.ShowsUserSearchForm;
 /**
  * Title: ShowsUserControllerTest <br>
  * Description: ShowsUserController. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @WebMvcTest(ShowsUserController.class)
@@ -29,20 +30,15 @@ public class ShowsUserControllerTest extends MockBase {
 		ShowsUser o = new ShowsUser();
 		o.setId(id);
         o.setBestexperience(getTestString(17));
-        o.setBestexperiencelink(getTestString(306));
-        o.setComment(getTestString(181));
-        o.setCommentlink(getTestString(228));
+        o.setComment(getTestString(187));
         o.setDiff(getTestString(3));
         o.setImdb(getTestString(2));
-        o.setImdblink(getTestString(63));
         o.setInrokufeed(getTestString(1));
         o.setInshowrssas(getTestString(47));
-        o.setInshowrssaslink(getTestString(32));
-        o.setIntablo(getTestString(1));
         o.setJustwatch(getTestString(2));
-        o.setJustwatchlink(getTestString(75));
         o.setLastwatched(getTestString(10));
         o.setOta(getTestString(1));
+        o.setTablolink(getTestString(6));
 		return o;
 	}
 
@@ -61,33 +57,27 @@ public class ShowsUserControllerTest extends MockBase {
 
 		ResultActions ra = getAsAdmin("/showsUsers");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.ShowsUser") + " " + getMsg("edit.list") + "</h1>");
-		contentContainsMarkup(ra,getTestString(17));
-		contentContainsMarkup(ra,getMsg("ShowsUser.bestexperience"));
-		contentContainsMarkup(ra,getTestString(306));
-		contentContainsMarkup(ra,getTestString(181));
-		contentContainsMarkup(ra,getMsg("ShowsUser.comment"));
-		contentContainsMarkup(ra,getTestString(228));
-		contentContainsMarkup(ra,getTestString(3));
-		contentContainsMarkup(ra,getMsg("ShowsUser.diff"));
-		contentContainsMarkup(ra,getTestString(2));
-		contentContainsMarkup(ra,getMsg("ShowsUser.imdb"));
-		contentContainsMarkup(ra,getTestString(63));
-		contentContainsMarkup(ra,getTestString(1));
-		contentContainsMarkup(ra,getMsg("ShowsUser.inrokufeed"));
-		contentContainsMarkup(ra,getTestString(47));
-		contentContainsMarkup(ra,getMsg("ShowsUser.inshowrssas"));
-		contentContainsMarkup(ra,getTestString(32));
-		contentContainsMarkup(ra,getTestString(1));
-		contentContainsMarkup(ra,getMsg("ShowsUser.intablo"));
-		contentContainsMarkup(ra,getTestString(2));
-		contentContainsMarkup(ra,getMsg("ShowsUser.justwatch"));
-		contentContainsMarkup(ra,getTestString(75));
-		contentContainsMarkup(ra,getTestString(10));
-		contentContainsMarkup(ra,getMsg("ShowsUser.lastwatched"));
-		contentContainsMarkup(ra,getTestString(1));
-		contentContainsMarkup(ra,getMsg("ShowsUser.ota"));
-		contentContainsMarkup(ra,getMsg("ShowsUser.showsid"));
-		contentContainsMarkup(ra,getMsg("ShowsUser.userid"));
+//		contentContainsMarkup(ra,getTestString(17));
+//		contentContainsMarkup(ra,getMsg("ShowsUser.bestexperience"));
+//		contentContainsMarkup(ra,getTestString(187));
+//		contentContainsMarkup(ra,getMsg("ShowsUser.comment"));
+//		contentContainsMarkup(ra,getTestString(3));
+//		contentContainsMarkup(ra,getMsg("ShowsUser.diff"));
+//		contentContainsMarkup(ra,getTestString(2));
+//		contentContainsMarkup(ra,getMsg("ShowsUser.imdb"));
+//		contentContainsMarkup(ra,getTestString(1));
+//		contentContainsMarkup(ra,getMsg("ShowsUser.inrokufeed"));
+//		contentContainsMarkup(ra,getTestString(47));
+//		contentContainsMarkup(ra,getMsg("ShowsUser.inshowrssas"));
+//		contentContainsMarkup(ra,getTestString(2));
+//		contentContainsMarkup(ra,getMsg("ShowsUser.justwatch"));
+//		contentContainsMarkup(ra,getTestString(10));
+//		contentContainsMarkup(ra,getMsg("ShowsUser.lastwatched"));
+//		contentContainsMarkup(ra,getTestString(1));
+//		contentContainsMarkup(ra,getMsg("ShowsUser.ota"));
+//		contentContainsMarkup(ra,getMsg("ShowsUser.showsid"));
+//		contentContainsMarkup(ra,getTestString(6));
+//		contentContainsMarkup(ra,getMsg("ShowsUser.userid"));
 	}
 
 	/**
@@ -100,24 +90,19 @@ public class ShowsUserControllerTest extends MockBase {
 	public void testShowNewShowsUserPage() throws Exception {
 		ResultActions ra = getAsAdmin("/showsUsers/new");
 		contentContainsMarkup(ra,"<legend>" + getMsg("edit.new") + " " + getMsg("class.ShowsUser") + "</legend>");
-		contentContainsMarkup(ra,"Bestexperience");
-		contentContainsMarkup(ra,"Bestexperiencelink");
-		contentContainsMarkup(ra,"Comment");
-		contentContainsMarkup(ra,"Commentlink");
-		contentContainsMarkup(ra,"Diff");
+		contentContainsMarkup(ra,getMsg("ShowsUser.bestexperience"));
+		contentContainsMarkup(ra,getMsg("ShowsUser.comment"));
+		contentContainsMarkup(ra,getMsg("ShowsUser.diff"));
 		// TODO: confirm ignoring ShowsUser.id
-		contentContainsMarkup(ra,"Imdb");
-		contentContainsMarkup(ra,"Imdblink");
-		contentContainsMarkup(ra,"Inrokufeed");
-		contentContainsMarkup(ra,"Inshowrssas");
-		contentContainsMarkup(ra,"Inshowrssaslink");
-		contentContainsMarkup(ra,"Intablo");
-		contentContainsMarkup(ra,"Justwatch");
-		contentContainsMarkup(ra,"Justwatchlink");
-		contentContainsMarkup(ra,"Lastwatched");
-		contentContainsMarkup(ra,"Ota");
-		contentContainsMarkup(ra,"Shows");
-		contentContainsMarkup(ra,"Account");
+		contentContainsMarkup(ra,getMsg("ShowsUser.imdb"));
+		contentContainsMarkup(ra,getMsg("ShowsUser.inrokufeed"));
+		contentContainsMarkup(ra,getMsg("ShowsUser.inshowrssas"));
+		contentContainsMarkup(ra,getMsg("ShowsUser.justwatch"));
+		contentContainsMarkup(ra,getMsg("ShowsUser.lastwatched"));
+		contentContainsMarkup(ra,getMsg("ShowsUser.ota"));
+		contentContainsMarkup(ra,getMsg("ShowsUser.showsid"));
+		contentContainsMarkup(ra,getMsg("ShowsUser.tablolink"));
+		contentContainsMarkup(ra,getMsg("ShowsUser.userid"));
 	}
 
 	/**
@@ -128,7 +113,7 @@ public class ShowsUserControllerTest extends MockBase {
 	public void testSaveShowsUserCancel() throws Exception {
 		ShowsUser o = getShowsUser(1);
 
-		send(SEND_POST, "/showsUsers/save", "showsUser", o, ImmutableMap.of("action", "cancel"), ADMIN_USER,
+		send(SEND_POST, "/showsUsers/save", "showsUser", o, ImmutableMap.of("action", "cancel"), ADMIN_EMAIL,
 				"/showsUsers");
 	}
 
@@ -142,7 +127,7 @@ public class ShowsUserControllerTest extends MockBase {
 		ShowsUserForm form = ShowsUserForm.getInstance(o);
 		log.debug(form.toString());
 
-		send(SEND_POST, "/showsUsers/save", "showsUserForm", form, ImmutableMap.of("action", "save"), ADMIN_USER,
+		send(SEND_POST, "/showsUsers/save", "showsUserForm", form, ImmutableMap.of("action", "save"), ADMIN_EMAIL,
 				"/showsUsers");
 	}
 
@@ -161,36 +146,26 @@ public class ShowsUserControllerTest extends MockBase {
 		ResultActions ra = getAsAdmin("/showsUsers/edit/1");
 		contentContainsMarkup(ra,o.getBestexperience());
 		contentContainsMarkup(ra,"Bestexperience");
-		contentContainsMarkup(ra,o.getBestexperiencelink());
-		contentContainsMarkup(ra,"Bestexperiencelink");
 		contentContainsMarkup(ra,o.getComment());
 		contentContainsMarkup(ra,"Comment");
-		contentContainsMarkup(ra,o.getCommentlink());
-		contentContainsMarkup(ra,"Commentlink");
 		contentContainsMarkup(ra,o.getDiff());
 		contentContainsMarkup(ra,"Diff");
 		// TODO: confirm ignoring ShowsUser.id
 		contentContainsMarkup(ra,o.getImdb());
 		contentContainsMarkup(ra,"Imdb");
-		contentContainsMarkup(ra,o.getImdblink());
-		contentContainsMarkup(ra,"Imdblink");
 		contentContainsMarkup(ra,o.getInrokufeed());
 		contentContainsMarkup(ra,"Inrokufeed");
 		contentContainsMarkup(ra,o.getInshowrssas());
 		contentContainsMarkup(ra,"Inshowrssas");
-		contentContainsMarkup(ra,o.getInshowrssaslink());
-		contentContainsMarkup(ra,"Inshowrssaslink");
-		contentContainsMarkup(ra,o.getIntablo());
-		contentContainsMarkup(ra,"Intablo");
 		contentContainsMarkup(ra,o.getJustwatch());
 		contentContainsMarkup(ra,"Justwatch");
-		contentContainsMarkup(ra,o.getJustwatchlink());
-		contentContainsMarkup(ra,"Justwatchlink");
 		contentContainsMarkup(ra,o.getLastwatched());
 		contentContainsMarkup(ra,"Lastwatched");
 		contentContainsMarkup(ra,o.getOta());
 		contentContainsMarkup(ra,"Ota");
 		contentContainsMarkup(ra,"Shows");
+		contentContainsMarkup(ra,o.getTablolink());
+		contentContainsMarkup(ra,"Tablolink");
 		contentContainsMarkup(ra,"Account");
 	}
 

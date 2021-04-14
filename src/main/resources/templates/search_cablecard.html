@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
-<title th:text="#{edit.edit} + ' ' + #{class.Cablecard}"></title>
+<title th:text="#{search.advanced} + ' ' + #{class.Cablecard}"></title>
 </head>
 <body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header">&nbsp;</div>
 	<div class="wrapper flex-grow-1">
 
 		<form class="form-narrow form-horizontal" method="post"
-			th:action="@{/cablecards/search}" th:object="${cablecardSearchForm}"
+			th:action="@{/cablecards/search}" 
+			th:object="${cablecardSearchForm}"
 			th:fragment="cablecardSearchForm">
 			<!--/* Show general error messages when form contains errors */-->
 			<th:block th:if="${#fields.hasErrors('${cablecardSearchForm.*}')}">
-				<div th:each="fieldErrors : ${#fields.errors('${cablecardSearchForm.*}')}">
+				<div 
+					th:each="fieldErrors : ${#fields.errors('${cablecardSearchForm.*}')}">
 					<div th:each="message : ${fieldErrors.split(';')}">
 						<div
 							th:replace="fragments/alert :: alert (type='danger', message=${message})">Alert</div>
@@ -20,224 +22,182 @@
 				</div>
 			</th:block>
 			<fieldset>
-				<legend th:text="#{search.search} + ' ' + #{class.Cablecard}"></legend>
+				<legend th:text="#{search.advanced} + ' ' + #{class.Cablecard}"></legend>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('channelname')}? 'has-error'">
+				<div class="form-group">
+					<label for="cablecardSearchForm.doOr"
+						th:text="#{search.doOr} + ' ' + #{search.like}">Select
+						type</label> <select class="form-control selectpicker" th:field="*{doOr}"
+						id="cablecardSearchForm.doOr">
+						<option
+							th:each="doOr : ${T(com.dea42.watchlist.search.SearchType).values()}"
+							th:value="${doOr}" th:text="${doOr}"></option>
+					</select>
+				</div>
+
+				<div class="form-group">
 					<label for="channelname" class="col-lg-2 control-label"
 						th:text="#{Cablecard.channelname} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="channelname"
 							th:field="*{channelname}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('channelname')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('channelnumberMin')}? 'has-error'">
+				<div class="form-group">
 					<label for="channelnumberMin" class="col-lg-2 control-label"
 						th:text="#{Cablecard.channelnumber} + ' ' + #{search.gte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="channelnumberMin"
 							th:field="*{channelnumberMin}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('channelnumberMin')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('channelnumberMax')}? 'has-error'">
+				<div class="form-group">
 					<label for="channelnumberMax" class="col-lg-2 control-label"
 						th:text="#{Cablecard.channelnumber} + ' ' + #{search.lte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="channelnumberMax"
 							th:field="*{channelnumberMax}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('channelnumberMax')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('dtMin')}? 'has-error'">
+				<div class="form-group">
 					<label for="dtMin" class="col-lg-2 control-label"
 						th:text="#{Cablecard.dt} + ' ' + #{search.gte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="dtMin"
 							th:field="*{dtMin}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('dtMin')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('dtMax')}? 'has-error'">
+				<div class="form-group">
 					<label for="dtMax" class="col-lg-2 control-label"
 						th:text="#{Cablecard.dt} + ' ' + #{search.lte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="dtMax"
 							th:field="*{dtMax}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('dtMax')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('hdMin')}? 'has-error'">
+				<div class="form-group">
 					<label for="hdMin" class="col-lg-2 control-label"
 						th:text="#{Cablecard.hd} + ' ' + #{search.gte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="hdMin"
 							th:field="*{hdMin}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('hdMin')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('hdMax')}? 'has-error'">
+				<div class="form-group">
 					<label for="hdMax" class="col-lg-2 control-label"
 						th:text="#{Cablecard.hd} + ' ' + #{search.lte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="hdMax"
 							th:field="*{hdMax}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('hdMax')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('innplMin')}? 'has-error'">
+				<div class="form-group">
 					<label for="innplMin" class="col-lg-2 control-label"
 						th:text="#{Cablecard.innpl} + ' ' + #{search.gte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="innplMin"
 							th:field="*{innplMin}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('innplMin')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('innplMax')}? 'has-error'">
+				<div class="form-group">
 					<label for="innplMax" class="col-lg-2 control-label"
 						th:text="#{Cablecard.innpl} + ' ' + #{search.lte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="innplMax"
 							th:field="*{innplMax}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('innplMax')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('lang')}? 'has-error'">
-					<label for="lang" class="col-lg-2 control-label"
-						th:text="#{Cablecard.lang} + ' ' + #{search.like}"></label>
+				<div class="form-group">
+					<label for="langfield" class="col-lg-2 control-label"
+						th:text="#{Cablecard.langfield} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="lang"
-							th:field="*{lang}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('lang')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
+						<input type="text" class="form-control" id="langfield"
+							th:field="*{langfield}" />
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('net')}? 'has-error'">
+				<div class="form-group">
 					<label for="net" class="col-lg-2 control-label"
 						th:text="#{Cablecard.net} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="net"
 							th:field="*{net}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('net')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('receiving')}? 'has-error'">
+				<div class="form-group">
 					<label for="receiving" class="col-lg-2 control-label"
 						th:text="#{Cablecard.receiving} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="receiving"
 							th:field="*{receiving}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('receiving')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('shortfield')}? 'has-error'">
+				<div class="form-group">
 					<label for="shortfield" class="col-lg-2 control-label"
 						th:text="#{Cablecard.shortfield} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="shortfield"
 							th:field="*{shortfield}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('shortfield')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="cablecardSearchForm.account.email" class="col-lg-2 control-label"
+						th:text="#{Account.email} + ':'"></label>
+					<div th:if="${cablecardSearchForm.account != null}" class="col-lg-10" id="cablecardSearchForm.account.email"
+	                        th:text="${cablecardSearchForm.account.email}">
+					</div>
+				<div th:unless="${cablecardSearchForm.account != null}" th:text="${cablecardSearchForm.account}"></div>
+				</div>
+				<input type="hidden" class="form-control" id="account.id" />
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="cablecardSearchForm.account.name" class="col-lg-2 control-label"
+						th:text="#{Account.name} + ':'"></label>
+					<div th:if="${cablecardSearchForm.account != null}" class="col-lg-10" id="cablecardSearchForm.account.name"
+	                        th:text="${cablecardSearchForm.account.name}">
+					</div>
+				<div th:unless="${cablecardSearchForm.account != null}" th:text="${cablecardSearchForm.account}"></div>
+				</div>
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="cablecardSearchForm.account.password" class="col-lg-2 control-label"
+						th:text="#{Account.password} + ':'"></label>
+					<div th:if="${cablecardSearchForm.account != null}" class="col-lg-10" id="cablecardSearchForm.account.password"
+	                        th:text="${cablecardSearchForm.account.password}">
+					</div>
+				<div th:unless="${cablecardSearchForm.account != null}" th:text="${cablecardSearchForm.account}"></div>
+				</div>
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="cablecardSearchForm.account.userrole" class="col-lg-2 control-label"
+						th:text="#{Account.userrole} + ':'"></label>
+					<div th:if="${cablecardSearchForm.account != null}" class="col-lg-10" id="cablecardSearchForm.account.userrole"
+	                        th:text="${cablecardSearchForm.account.userrole}">
+					</div>
+				<div th:unless="${cablecardSearchForm.account != null}" th:text="${cablecardSearchForm.account}"></div>
+				</div>
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
 						<button type="submit" name="action" value="search"
 							class="btn btn-default" th:text="#{search.search}"></button>
+						<button type="submit" name="action" value="reset"
+							class="btn btn-default" th:text="#{search.reset}"></button>
 					</div>
 				</div>
 			</fieldset>
 		</form>
 
-	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
-</body></html>
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

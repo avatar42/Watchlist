@@ -8,10 +8,11 @@ import com.dea42.watchlist.entity.Roamiotodo;
 /**
  * Title: RoamiotodoRepository <br>
  * Description: Class for the Roamiotodo Repository. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Repository
 public interface RoamiotodoRepository extends CrudRepository<Roamiotodo, Integer>,

@@ -12,10 +12,11 @@ import org.hibernate.validator.constraints.Length;
 /**
  * Title: ota Form <br>
  * Description: Class for holding data from the ota table for editing. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 
 @Data
@@ -38,12 +39,10 @@ public class OtaForm implements Serializable {
 	private String enabled;
     @Length(max=10)
 	private String fccinfo;
-    @Length(max=6)
-	private String fccinfolink;
 	private Integer freq;
 	private Integer id;
     @Length(max=2)
-	private String lang;
+	private String langfield;
 	private Integer listed;
 	private Integer mytivoavgstrength;
     @Length(max=15)
@@ -83,10 +82,9 @@ public class OtaForm implements Serializable {
 			form.setDirection(obj.getDirection());
 			form.setEnabled(obj.getEnabled());
 			form.setFccinfo(obj.getFccinfo());
-			form.setFccinfolink(obj.getFccinfolink());
 			form.setFreq(obj.getFreq());
 			form.setId(obj.getId());
-			form.setLang(obj.getLang());
+			form.setLangfield(obj.getLangfield());
 			form.setListed(obj.getListed());
 			form.setMytivoavgstrength(obj.getMytivoavgstrength());
 			form.setNetwork(obj.getNetwork());

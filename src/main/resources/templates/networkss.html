@@ -1,120 +1,105 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
+<head th:replace="fragments/header :: common_header(~{::title},~{::links},~{::scripts})">
 <title th:text="#{edit.listView} + ' ' + #{class.Networks}"></title>
+<links>
+<link th:rel="stylesheet"
+	th:href="@{/webjars/datatables/css/jquery.dataTables.min.css} " />
+</links>
+<scripts> <script
+	th:src="@{/webjars/datatables/js/jquery.dataTables.min.js}"></script> </scripts>
 </head>
 <body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header">&nbsp;</div>
 	<div class="wrapper flex-grow-1">
 
-	<div class="container" th:with="SearchForm=${session.networksSearchForm}">
-		<h1 th:text="#{class.Networks} + ' ' + #{edit.list}"></h1>
-		<a th:href="@{/networkss/search}" th:text="#{search.search} + ' ' + #{class.Networks}"></a> <br />
-		<a th:href="@{/networkss/new}" th:text="#{edit.new} + ' ' + #{class.Networks}"></a> <br /><br />
+		<div class="container-fluid" th:with="SearchForm=${session.networksSearchForm}">
+			<h1 th:text="#{class.Networks} + ' ' + #{edit.list}"></h1>
+			<a th:href="@{/networkss/search}"
+				th:text="#{search.advanced} + ' ' + #{class.Networks}"></a> <br /> <a
+				th:href="@{/networkss/new}"
+				th:text="#{edit.new} + ' ' + #{class.Networks}"></a> <br /> <br />
+			<div style="float: right;" th:text="#{search.like}"></div>
 
-	    <table>
-	        <tr>
-            <th>
-				<a th:if="${SearchForm.sortField == 'commercials'}"
-					th:href="@{'/networkss/search/' + ${SearchForm.page} + '?sortField=commercials&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Networks.commercials}">Commercials</a>
-					<a th:if="${SearchForm.sortField != 'commercials'}"
-					th:href="@{'/networkss/search/' + ${SearchForm.page} + '?sortField=commercials&sortDir=asc'}"
-					th:text="#{Networks.commercials}">Commercials</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'onhulu'}"
-					th:href="@{'/networkss/search/' + ${SearchForm.page} + '?sortField=onhulu&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Networks.onhulu}">OnHulu</a>
-					<a th:if="${SearchForm.sortField != 'onhulu'}"
-					th:href="@{'/networkss/search/' + ${SearchForm.page} + '?sortField=onhulu&sortDir=asc'}"
-					th:text="#{Networks.onhulu}">OnHulu</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'persistance'}"
-					th:href="@{'/networkss/search/' + ${SearchForm.page} + '?sortField=persistance&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Networks.persistance}">Persistance</a>
-					<a th:if="${SearchForm.sortField != 'persistance'}"
-					th:href="@{'/networkss/search/' + ${SearchForm.page} + '?sortField=persistance&sortDir=asc'}"
-					th:text="#{Networks.persistance}">Persistance</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'rokuapp'}"
-					th:href="@{'/networkss/search/' + ${SearchForm.page} + '?sortField=rokuapp&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Networks.rokuapp}">RokuApp</a>
-					<a th:if="${SearchForm.sortField != 'rokuapp'}"
-					th:href="@{'/networkss/search/' + ${SearchForm.page} + '?sortField=rokuapp&sortDir=asc'}"
-					th:text="#{Networks.rokuapp}">RokuApp</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'site'}"
-					th:href="@{'/networkss/search/' + ${SearchForm.page} + '?sortField=site&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Networks.site}">Site</a>
-					<a th:if="${SearchForm.sortField != 'site'}"
-					th:href="@{'/networkss/search/' + ${SearchForm.page} + '?sortField=site&sortDir=asc'}"
-					th:text="#{Networks.site}">Site</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'standardwait'}"
-					th:href="@{'/networkss/search/' + ${SearchForm.page} + '?sortField=standardwait&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Networks.standardwait}">StandardWait</a>
-					<a th:if="${SearchForm.sortField != 'standardwait'}"
-					th:href="@{'/networkss/search/' + ${SearchForm.page} + '?sortField=standardwait&sortDir=asc'}"
-					th:text="#{Networks.standardwait}">StandardWait</a>
-            </th>
-            <th th:text="#{edit.actions}"></th>
-	        </tr>
-	        <tr th:each="networks:${networkss}">
-	            <td th:if="${networks != null}"><a th:href="@{${networks.commercialslink}}" th:text="${networks.commercials}"></a></td>
-				<td th:unless="${networks != null}"></td>
-	            <td th:if="${networks != null}"><a th:href="@{${networks.onhululink}}" th:text="${networks.onhulu}"></a></td>
-				<td th:unless="${networks != null}"></td>
-	            <td th:if="${networks != null}" th:text="${networks.persistance}"></td>
-				<td th:unless="${networks != null}"></td>
-	            <td th:if="${networks != null}"><a th:href="@{${networks.rokuapplink}}" th:text="${networks.rokuapp}"></a></td>
-				<td th:unless="${networks != null}"></td>
-	            <td th:if="${networks != null}"><a th:href="@{${networks.sitelink}}" th:text="${networks.site}"></a></td>
-				<td th:unless="${networks != null}"></td>
-	            <td th:if="${networks != null}" th:text="${networks.standardwait}"></td>
-				<td th:unless="${networks != null}"></td>
-				<td><a th:href="@{'/networkss/edit/' + ${networks.id}}" th:text="#{edit.edit}"></a>
-					&nbsp;&nbsp;&nbsp; <a th:href="@{'/networkss/delete/' + ${networks.id}}" th:text="#{edit.delete}"></a>
-				</td>
+			<table id="resultsTable" class="table table-bordered table-striped table-condensed"
+				style="width: 100%">
+				<thead>
+					<tr>
+						<th th:text="#{Networks.commercials}"></th>
+						<th th:text="#{Networks.onhulu}"></th>
+						<th th:text="#{Networks.persistance}"></th>
+						<th th:text="#{Networks.rokuapp}"></th>
+						<th th:text="#{Networks.site}"></th>
+						<th th:text="#{Networks.standardwait}"></th>
+						<th th:text="#{edit.actions}"></th>
+					</tr>
+				</thead>
+			</table>
+			<script th:inline="javascript">
+				var editLab = /*[[#{edit.edit}]]*/'[msg not found]';
+				var deleteLab = /*[[#{edit.delete}]]*/'[msg not found]';
+				var datatablesUrl = /*[[#{datatables.url}]]*/'[msg not found]';
+				var link = /*[[@{/api/networkss/list}]]*/ '/api/networkss/list';
+				var ctx = /*[[@{/}]]*/ '/';
+			</script>
+			<script>
+				$('#resultsTable').DataTable({
+					"processing" : true,
+					"serverSide" : true,
+				    "language" : {
+				        "url" : datatablesUrl
+					    },
+					"ajax" : {
+						"url" : link,
+						"type" : "POST",
+						"dataType" : "json",
+						"contentType" : "application/json",
+						"data" : function(d) {
+							return JSON.stringify(d);
+						}
+					},
+    				"columnDefs": [{
+        				"targets": '_all',
+        				"defaultContent": ""
+    				}],
+					"columns" : [ {
+						"name" : "commercials",
+						"data" : "commercials",
+					}, {
+						"name" : "onhulu",
+						"data" : "onhulu",
+					}, {
+						"name" : "persistance",
+						"data" : "persistance",
+					}, {
+						"name" : "rokuapp",
+						"data" : "rokuapp",
+					}, {
+						"name" : "site",
+						"data" : "site",
+					}, {
+						"name" : "standardwait",
+						"data" : "standardwait",
+					}, {
+						"data" : "id",
+						"render" : make_edit_links,
+						"width" : "10%"
+					} ]
+				});
 
-	        </tr>
-	    </table>
-		<div th:if="${SearchForm.page > 1}">
-			<div class="row col-sm-10">
-				<div class="col-sm-2">Total Rows:
-					[[${SearchForm.totalItems}]]</div>
-				<div class="col-sm-1">
-					<span
-						th:each="i: ${#numbers.sequence(1, SearchForm.totalPages)}">
-						<a th:if="${SearchForm.page != i}"
-						th:href="@{'/networkss/search/' + ${i}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">[[${i}]]</a>
-						<span th:unless="${SearchForm.page != i}">[[${i}]]</span>
-						&nbsp; &nbsp;
-					</span>
-				</div>
-				<div class="col-sm-1">
-					<a
-						th:if="${SearchForm.page < SearchForm.totalPages}"
-						th:href="@{'/networkss/search/' + ${SearchForm.page + 1}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">Next</a>
-					<span
-						th:unless="${SearchForm.page < SearchForm.totalPages}">Next</span>
-				</div>
 
-				<div class="col-sm-1">
-					<a
-						th:if="${SearchForm.page < SearchForm.totalPages}"
-						th:href="@{'/networkss/search/' + ${SearchForm.totalPages}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">Last</a>
-					<span
-						th:unless="${SearchForm.page < SearchForm.totalPages}">Last</span>
-				</div>
-			</div>
+				function make_edit_links(id) {
+					return "<a href=\""+ctx+"networkss/edit/" + id +"\" id=\"edit_"+id + "\">"
+							+ editLab
+							+ "</a> &nbsp;&nbsp;&nbsp;"
+							+ "<a href=\""+ctx+"networkss/delete/" + id +"\" id=\"delete_"+id + "\">"
+							+ deleteLab + "</a>";
+				}
+			</script>
 		</div>
 
-    </div>
-
-	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
-</body></html>
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

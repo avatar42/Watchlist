@@ -14,10 +14,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 /**
  * Title: cablecardSearchForm <br>
  * Description: Class for holding data from the cablecard table for searching. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Data
 public class CablecardSearchForm implements Serializable {
@@ -34,18 +35,19 @@ public class CablecardSearchForm implements Serializable {
 	private Integer idMax;
 	private Integer innplMin;
 	private Integer innplMax;
-	private String lang = null;
+	private String langfield = null;
 	private String net = null;
 	private String receiving = null;
 	private String shortfield = null;
-	private Account accountMin;
-	private Account accountMax;
+	private AccountSearchForm account;
 	private String sortField = "id";
 	private int page = 1;
 	private int pageSize = 10;
 	private boolean sortAsc = true;
 	private int totalPages = 0;
 	private long totalItems = 0;
+	private SearchType doOr = SearchType.ADD;
+	private boolean advanced = true;
 	/**
 	 * Clones Cablecard obj into form
 	 *
@@ -64,10 +66,11 @@ public class CablecardSearchForm implements Serializable {
 		form.setIdMax(obj.getId());
 		form.setInnplMin(obj.getInnpl());
 		form.setInnplMax(obj.getInnpl());
-		form.setLang(obj.getLang());
+		form.setLangfield(obj.getLangfield());
 		form.setNet(obj.getNet());
 		form.setReceiving(obj.getReceiving());
 		form.setShortfield(obj.getShortfield());
+		form.setAccount(AccountSearchForm.getInstance(obj.getAccount()));
 		return form;
 	}
 

@@ -21,10 +21,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 /**
  * Title: showsuserSearch Test <br>
  * Description: Does regression tests of showsuser search from service to DB <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -98,38 +99,6 @@ public class ShowsUserSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testBestexperiencelink() {
-		// bestexperiencelink String 12
-		ShowsUser rec = null;
-		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setBestexperiencelink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with bestexperiencelink of " + rec.getBestexperiencelink());
-
-		form = new ShowsUserSearchForm();
-		String text = rec.getBestexperiencelink();
-		if (text.length() < 2) {
-			form.setBestexperiencelink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setBestexperiencelink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setBestexperiencelink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setBestexperiencelink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setBestexperiencelink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setBestexperiencelink("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
 	public void testComment() {
 		// comment String 12
 		ShowsUser rec = null;
@@ -157,38 +126,6 @@ public class ShowsUserSearchTest extends UnitBase {
 			form.setComment("%" + text.substring(mid - 1, mid) + "%");
 			confirmGotResult(form, rec.getId());
 			form.setComment("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
-	public void testCommentlink() {
-		// commentlink String 12
-		ShowsUser rec = null;
-		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setCommentlink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with commentlink of " + rec.getCommentlink());
-
-		form = new ShowsUserSearchForm();
-		String text = rec.getCommentlink();
-		if (text.length() < 2) {
-			form.setCommentlink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setCommentlink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setCommentlink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setCommentlink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setCommentlink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setCommentlink("%" + text.substring(mid, text.length()));
 			confirmGotResult(form, rec.getId());
 		}
 	}
@@ -258,38 +195,6 @@ public class ShowsUserSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testImdblink() {
-		// imdblink String 12
-		ShowsUser rec = null;
-		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setImdblink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with imdblink of " + rec.getImdblink());
-
-		form = new ShowsUserSearchForm();
-		String text = rec.getImdblink();
-		if (text.length() < 2) {
-			form.setImdblink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setImdblink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setImdblink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setImdblink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setImdblink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setImdblink("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
 	public void testInrokufeed() {
 		// inrokufeed String 12
 		ShowsUser rec = null;
@@ -354,70 +259,6 @@ public class ShowsUserSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testInshowrssaslink() {
-		// inshowrssaslink String 12
-		ShowsUser rec = null;
-		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setInshowrssaslink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with inshowrssaslink of " + rec.getInshowrssaslink());
-
-		form = new ShowsUserSearchForm();
-		String text = rec.getInshowrssaslink();
-		if (text.length() < 2) {
-			form.setInshowrssaslink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setInshowrssaslink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setInshowrssaslink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setInshowrssaslink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setInshowrssaslink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setInshowrssaslink("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
-	public void testIntablo() {
-		// intablo String 12
-		ShowsUser rec = null;
-		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setIntablo("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with intablo of " + rec.getIntablo());
-
-		form = new ShowsUserSearchForm();
-		String text = rec.getIntablo();
-		if (text.length() < 2) {
-			form.setIntablo(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setIntablo("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setIntablo("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setIntablo(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setIntablo("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setIntablo("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
 	public void testJustwatch() {
 		// justwatch String 12
 		ShowsUser rec = null;
@@ -445,38 +286,6 @@ public class ShowsUserSearchTest extends UnitBase {
 			form.setJustwatch("%" + text.substring(mid - 1, mid) + "%");
 			confirmGotResult(form, rec.getId());
 			form.setJustwatch("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
-	public void testJustwatchlink() {
-		// justwatchlink String 12
-		ShowsUser rec = null;
-		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setJustwatchlink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with justwatchlink of " + rec.getJustwatchlink());
-
-		form = new ShowsUserSearchForm();
-		String text = rec.getJustwatchlink();
-		if (text.length() < 2) {
-			form.setJustwatchlink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setJustwatchlink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setJustwatchlink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setJustwatchlink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setJustwatchlink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setJustwatchlink("%" + text.substring(mid, text.length()));
 			confirmGotResult(form, rec.getId());
 		}
 	}
@@ -552,6 +361,38 @@ public class ShowsUserSearchTest extends UnitBase {
 		ShowsUserSearchForm form = new ShowsUserSearchForm();
 		rec = getMidRecord(form, 0);
 // TODO: skip further tests now
+	}
+
+	@Test
+	public void testTablolink() {
+		// tablolink String 12
+		ShowsUser rec = null;
+		ShowsUserSearchForm form = new ShowsUserSearchForm();
+		rec = getMidRecord(form, 0);
+		form.setTablolink("%");
+		rec = getMidRecord(form, 0);
+		log.info("Searching for records with tablolink of " + rec.getTablolink());
+
+		form = new ShowsUserSearchForm();
+		String text = rec.getTablolink();
+		if (text.length() < 2) {
+			form.setTablolink(text + "%");
+			confirmGotResult(form, rec.getId());
+
+			form.setTablolink("%" + text);
+			confirmGotResult(form, rec.getId());
+			form.setTablolink("%" + text + "%");
+			confirmGotResult(form, rec.getId());
+		} else {
+			int mid = text.length() / 2;
+			form.setTablolink(text.substring(0, mid) + "%");
+			confirmGotResult(form, rec.getId());
+
+			form.setTablolink("%" + text.substring(mid - 1, mid) + "%");
+			confirmGotResult(form, rec.getId());
+			form.setTablolink("%" + text.substring(mid, text.length()));
+			confirmGotResult(form, rec.getId());
+		}
 	}
 
 	@Test

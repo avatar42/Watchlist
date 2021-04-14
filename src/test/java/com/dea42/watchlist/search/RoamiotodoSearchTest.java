@@ -22,10 +22,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 /**
  * Title: roamiotodoSearch Test <br>
  * Description: Does regression tests of roamiotodo search from service to DB <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -99,36 +100,36 @@ public class RoamiotodoSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testDate() {
-		// date Date 93
+	public void testDatefield() {
+		// datefield Date 93
 		Roamiotodo rec = null;
 		RoamiotodoSearchForm form = new RoamiotodoSearchForm();
 		rec = getMidRecord(form, 0);
-		form.setDateMin(new Date(0));
+		form.setDatefieldMin(new Date(0));
 		rec = getMidRecord(form, 0);
-		log.info("Searching for records with date of " + rec.getDate());
+		log.info("Searching for records with datefield of " + rec.getDatefield());
 
 		form = new RoamiotodoSearchForm();
-		form.setDateMin(rec.getDate());
-		form.setDateMax(new Date(rec.getDate().getTime() + DAY));
+		form.setDatefieldMin(rec.getDatefield());
+		form.setDatefieldMax(new Date(rec.getDatefield().getTime() + DAY));
 		confirmGotResult(form, rec.getId());
 
 		form = new RoamiotodoSearchForm();
-		form.setDateMin(new Date(rec.getDate().getTime() - DAY));
-		form.setDateMax(rec.getDate());
+		form.setDatefieldMin(new Date(rec.getDatefield().getTime() - DAY));
+		form.setDatefieldMax(rec.getDatefield());
 		confirmGotResult(form, rec.getId());
 
 		form = new RoamiotodoSearchForm();
-		form.setDateMin(rec.getDate());
+		form.setDatefieldMin(rec.getDatefield());
 		confirmGotResult(form, rec.getId());
 
 		form = new RoamiotodoSearchForm();
-		form.setDateMax(rec.getDate());
+		form.setDatefieldMax(rec.getDatefield());
 		confirmGotResult(form, rec.getId());
 
 		form = new RoamiotodoSearchForm();
-		form.setDateMin(rec.getDate());
-		form.setDateMax(rec.getDate());
+		form.setDatefieldMin(rec.getDatefield());
+		form.setDatefieldMax(rec.getDatefield());
 		confirmGotResult(form, rec.getId());
 
 	}

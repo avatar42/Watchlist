@@ -17,10 +17,11 @@ import com.dea42.watchlist.search.RoamiotodoSearchForm;
 /**
  * Title: RoamiotodoControllerTest <br>
  * Description: RoamiotodoController. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @WebMvcTest(RoamiotodoController.class)
@@ -52,20 +53,20 @@ public class RoamiotodoControllerTest extends MockBase {
 
 		ResultActions ra = getAsAdmin("/roamiotodos");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Roamiotodo") + " " + getMsg("edit.list") + "</h1>");
-		contentContainsMarkup(ra,getTestString(15));
-		contentContainsMarkup(ra,getMsg("Roamiotodo.channel"));
-		contentContainsMarkup(ra,getMsg("Roamiotodo.date"));
-		contentContainsMarkup(ra,getTestString(4));
-		contentContainsMarkup(ra,getMsg("Roamiotodo.duration"));
-		contentContainsMarkup(ra,getTestString(50));
-		contentContainsMarkup(ra,getMsg("Roamiotodo.ep"));
-		contentContainsMarkup(ra,getTestString(59));
-		contentContainsMarkup(ra,getMsg("Roamiotodo.episodename"));
-		contentContainsMarkup(ra,getTestString(48));
-		contentContainsMarkup(ra,getMsg("Roamiotodo.showname"));
-		contentContainsMarkup(ra,getTestString(47));
-		contentContainsMarkup(ra,getMsg("Roamiotodo.showtrimmed"));
-		contentContainsMarkup(ra,getMsg("Roamiotodo.userid"));
+//		contentContainsMarkup(ra,getTestString(15));
+//		contentContainsMarkup(ra,getMsg("Roamiotodo.channel"));
+//		contentContainsMarkup(ra,getMsg("Roamiotodo.datefield"));
+//		contentContainsMarkup(ra,getTestString(4));
+//		contentContainsMarkup(ra,getMsg("Roamiotodo.duration"));
+//		contentContainsMarkup(ra,getTestString(50));
+//		contentContainsMarkup(ra,getMsg("Roamiotodo.ep"));
+//		contentContainsMarkup(ra,getTestString(59));
+//		contentContainsMarkup(ra,getMsg("Roamiotodo.episodename"));
+//		contentContainsMarkup(ra,getTestString(48));
+//		contentContainsMarkup(ra,getMsg("Roamiotodo.showname"));
+//		contentContainsMarkup(ra,getTestString(47));
+//		contentContainsMarkup(ra,getMsg("Roamiotodo.showtrimmed"));
+//		contentContainsMarkup(ra,getMsg("Roamiotodo.userid"));
 	}
 
 	/**
@@ -78,15 +79,15 @@ public class RoamiotodoControllerTest extends MockBase {
 	public void testShowNewRoamiotodoPage() throws Exception {
 		ResultActions ra = getAsAdmin("/roamiotodos/new");
 		contentContainsMarkup(ra,"<legend>" + getMsg("edit.new") + " " + getMsg("class.Roamiotodo") + "</legend>");
-		contentContainsMarkup(ra,"Channel");
-		contentContainsMarkup(ra,"Date");
-		contentContainsMarkup(ra,"Duration");
-		contentContainsMarkup(ra,"Ep");
-		contentContainsMarkup(ra,"Episodename");
+		contentContainsMarkup(ra,getMsg("Roamiotodo.channel"));
+		contentContainsMarkup(ra,getMsg("Roamiotodo.datefield"));
+		contentContainsMarkup(ra,getMsg("Roamiotodo.duration"));
+		contentContainsMarkup(ra,getMsg("Roamiotodo.ep"));
+		contentContainsMarkup(ra,getMsg("Roamiotodo.episodename"));
 		// TODO: confirm ignoring Roamiotodo.id
-		contentContainsMarkup(ra,"Showname");
-		contentContainsMarkup(ra,"Showtrimmed");
-		contentContainsMarkup(ra,"Account");
+		contentContainsMarkup(ra,getMsg("Roamiotodo.showname"));
+		contentContainsMarkup(ra,getMsg("Roamiotodo.showtrimmed"));
+		contentContainsMarkup(ra,getMsg("Roamiotodo.userid"));
 	}
 
 	/**
@@ -97,7 +98,7 @@ public class RoamiotodoControllerTest extends MockBase {
 	public void testSaveRoamiotodoCancel() throws Exception {
 		Roamiotodo o = getRoamiotodo(1);
 
-		send(SEND_POST, "/roamiotodos/save", "roamiotodo", o, ImmutableMap.of("action", "cancel"), ADMIN_USER,
+		send(SEND_POST, "/roamiotodos/save", "roamiotodo", o, ImmutableMap.of("action", "cancel"), ADMIN_EMAIL,
 				"/roamiotodos");
 	}
 
@@ -111,7 +112,7 @@ public class RoamiotodoControllerTest extends MockBase {
 		RoamiotodoForm form = RoamiotodoForm.getInstance(o);
 		log.debug(form.toString());
 
-		send(SEND_POST, "/roamiotodos/save", "roamiotodoForm", form, ImmutableMap.of("action", "save"), ADMIN_USER,
+		send(SEND_POST, "/roamiotodos/save", "roamiotodoForm", form, ImmutableMap.of("action", "save"), ADMIN_EMAIL,
 				"/roamiotodos");
 	}
 
@@ -130,7 +131,7 @@ public class RoamiotodoControllerTest extends MockBase {
 		ResultActions ra = getAsAdmin("/roamiotodos/edit/1");
 		contentContainsMarkup(ra,o.getChannel());
 		contentContainsMarkup(ra,"Channel");
-		contentContainsMarkup(ra,"Date");
+		contentContainsMarkup(ra,"Datefield");
 		contentContainsMarkup(ra,o.getDuration());
 		contentContainsMarkup(ra,"Duration");
 		contentContainsMarkup(ra,o.getEp());

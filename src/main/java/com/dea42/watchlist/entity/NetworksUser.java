@@ -14,10 +14,11 @@ import lombok.Data;
 /**
  * Title: networksuser Bean <br>
  * Description: Class for holding data from the networksuser table. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  * Table name: networksuser<br>
  * Column name: id<br>
  * Catalog name: null<br>
@@ -27,7 +28,7 @@ import lombok.Data;
  * null => primary key table catalog being imported (may be null)<br>
  * null => primary key table schema being imported (may be null) <br>
  * Networks => primary key table name being imported <br>
- * id => primary key column name being imported<br>
+ * Id => primary key column name being imported<br>
  * null => foreign key table catalog (may be null)<br>
  * null => foreign key table schema (may be null)<br>
  * networksuser => foreign key table name <br>
@@ -41,7 +42,7 @@ import lombok.Data;
  * null => primary key table catalog being imported (may be null)<br>
  * null => primary key table schema being imported (may be null) <br>
  * Account => primary key table name being imported <br>
- * id => primary key column name being imported<br>
+ * Id => primary key column name being imported<br>
  * null => foreign key table catalog (may be null)<br>
  * null => foreign key table schema (may be null)<br>
  * networksuser => foreign key table name <br>
@@ -65,9 +66,9 @@ public class NetworksUser implements Serializable {
 	@Column(name = "IUseFReeFreeWithCAblePAyForHUluInstead", length = 1)
 	private String iusefreefreewithcablepayforhuluinstead;
 	@ManyToOne
-	@JoinColumn(name = "NetworksId", referencedColumnName = "id")
+	@JoinColumn(name = "NetworksId", referencedColumnName = "Id")
 	private Networks networks;
 	@ManyToOne
-	@JoinColumn(name = "Userid", referencedColumnName = "id")
+	@JoinColumn(name = "Userid", referencedColumnName = "Id")
 	private Account account;
 }

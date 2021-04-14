@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
-<title th:text="#{edit.edit} + ' ' + #{class.Shows}"></title>
+<title th:text="#{search.advanced} + ' ' + #{class.Shows}"></title>
 </head>
 <body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header">&nbsp;</div>
 	<div class="wrapper flex-grow-1">
 
 		<form class="form-narrow form-horizontal" method="post"
-			th:action="@{/showss/search}" th:object="${showsSearchForm}"
+			th:action="@{/showss/search}" 
+			th:object="${showsSearchForm}"
 			th:fragment="showsSearchForm">
 			<!--/* Show general error messages when form contains errors */-->
 			<th:block th:if="${#fields.hasErrors('${showsSearchForm.*}')}">
-				<div th:each="fieldErrors : ${#fields.errors('${showsSearchForm.*}')}">
+				<div 
+					th:each="fieldErrors : ${#fields.errors('${showsSearchForm.*}')}">
 					<div th:each="message : ${fieldErrors.split(';')}">
 						<div
 							th:replace="fragments/alert :: alert (type='danger', message=${message})">Alert</div>
@@ -20,229 +22,106 @@
 				</div>
 			</th:block>
 			<fieldset>
-				<legend th:text="#{search.search} + ' ' + #{class.Shows}"></legend>
+				<legend th:text="#{search.advanced} + ' ' + #{class.Shows}"></legend>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('cancelled')}? 'has-error'">
+				<div class="form-group">
+					<label for="showsSearchForm.doOr"
+						th:text="#{search.doOr} + ' ' + #{search.like}">Select
+						type</label> <select class="form-control selectpicker" th:field="*{doOr}"
+						id="showsSearchForm.doOr">
+						<option
+							th:each="doOr : ${T(com.dea42.watchlist.search.SearchType).values()}"
+							th:value="${doOr}" th:text="${doOr}"></option>
+					</select>
+				</div>
+
+				<div class="form-group">
 					<label for="cancelled" class="col-lg-2 control-label"
 						th:text="#{Shows.cancelled} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="cancelled"
 							th:field="*{cancelled}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('cancelled')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('epguidesshowname')}? 'has-error'">
+				<div class="form-group">
 					<label for="epguidesshowname" class="col-lg-2 control-label"
 						th:text="#{Shows.epguidesshowname} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="epguidesshowname"
 							th:field="*{epguidesshowname}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('epguidesshowname')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('epguidesshownamelink')}? 'has-error'">
-					<label for="epguidesshownamelink" class="col-lg-2 control-label"
-						th:text="#{Shows.epguidesshownamelink} + ' ' + #{search.like}"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="epguidesshownamelink"
-							th:field="*{epguidesshownamelink}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('epguidesshownamelink')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('incanceledas')}? 'has-error'">
+				<div class="form-group">
 					<label for="incanceledas" class="col-lg-2 control-label"
 						th:text="#{Shows.incanceledas} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="incanceledas"
 							th:field="*{incanceledas}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('incanceledas')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('incanceledaslink')}? 'has-error'">
-					<label for="incanceledaslink" class="col-lg-2 control-label"
-						th:text="#{Shows.incanceledaslink} + ' ' + #{search.like}"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="incanceledaslink"
-							th:field="*{incanceledaslink}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('incanceledaslink')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('lastshow')}? 'has-error'">
+				<div class="form-group">
 					<label for="lastshow" class="col-lg-2 control-label"
 						th:text="#{Shows.lastshow} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="lastshow"
 							th:field="*{lastshow}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('lastshow')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('network')}? 'has-error'">
+				<div class="form-group">
 					<label for="network" class="col-lg-2 control-label"
 						th:text="#{Shows.network} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="network"
 							th:field="*{network}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('network')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('networklink')}? 'has-error'">
-					<label for="networklink" class="col-lg-2 control-label"
-						th:text="#{Shows.networklink} + ' ' + #{search.like}"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="networklink"
-							th:field="*{networklink}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('networklink')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('premiere')}? 'has-error'">
+				<div class="form-group">
 					<label for="premiere" class="col-lg-2 control-label"
 						th:text="#{Shows.premiere} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="premiere"
 							th:field="*{premiere}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('premiere')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('premieredateMin')}? 'has-error'">
+				<div class="form-group">
 					<label for="premieredateMin" class="col-lg-2 control-label"
 						th:text="#{Shows.premieredate} + ' ' + #{search.after}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="premieredateMin"
 							th:field="*{premieredateMin}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('premieredateMin')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('premieredateMax')}? 'has-error'">
+				<div class="form-group">
 					<label for="premieredateMax" class="col-lg-2 control-label"
 						th:text="#{Shows.premieredate} + ' ' + #{search.before}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="premieredateMax"
 							th:field="*{premieredateMax}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('premieredateMax')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('status')}? 'has-error'">
+				<div class="form-group">
 					<label for="status" class="col-lg-2 control-label"
 						th:text="#{Shows.status} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="status"
 							th:field="*{status}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('status')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('tivoname')}? 'has-error'">
+				<div class="form-group">
 					<label for="tivoname" class="col-lg-2 control-label"
 						th:text="#{Shows.tivoname} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="tivoname"
 							th:field="*{tivoname}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('tivoname')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('tivonamelink')}? 'has-error'">
-					<label for="tivonamelink" class="col-lg-2 control-label"
-						th:text="#{Shows.tivonamelink} + ' ' + #{search.like}"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="tivonamelink"
-							th:field="*{tivonamelink}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('tivonamelink')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
@@ -250,10 +129,15 @@
 					<div class="col-lg-offset-2 col-lg-10">
 						<button type="submit" name="action" value="search"
 							class="btn btn-default" th:text="#{search.search}"></button>
+						<button type="submit" name="action" value="reset"
+							class="btn btn-default" th:text="#{search.reset}"></button>
 					</div>
 				</div>
 			</fieldset>
 		</form>
 
-	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
-</body></html>
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

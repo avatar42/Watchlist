@@ -21,10 +21,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 /**
  * Title: roamionplSearch Test <br>
  * Description: Does regression tests of roamionpl search from service to DB <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -132,36 +133,36 @@ public class RoamionplSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testDate() {
-		// date BigDecimal 6
+	public void testDatefield() {
+		// datefield BigDecimal 6
 		Roamionpl rec = null;
 		RoamionplSearchForm form = new RoamionplSearchForm();
 		rec = getMidRecord(form, 0);
-		form.setDateMin(new BigDecimal(Integer.MIN_VALUE));
+		form.setDatefieldMin(new BigDecimal(Integer.MIN_VALUE));
 		rec = getMidRecord(form, 0);
-		log.info("Searching for records with date of " + rec.getDate());
+		log.info("Searching for records with datefield of " + rec.getDatefield());
 
 		form = new RoamionplSearchForm();
-		form.setDateMin(rec.getDate());
-		form.setDateMax(rec.getDate().add(new BigDecimal(100)));
+		form.setDatefieldMin(rec.getDatefield());
+		form.setDatefieldMax(rec.getDatefield().add(new BigDecimal(100)));
 		confirmGotResult(form, rec.getId());
 
 		form = new RoamionplSearchForm();
-		form.setDateMin(rec.getDate().subtract(new BigDecimal(100)));
-		form.setDateMax(rec.getDate());
+		form.setDatefieldMin(rec.getDatefield().subtract(new BigDecimal(100)));
+		form.setDatefieldMax(rec.getDatefield());
 		confirmGotResult(form, rec.getId());
 
 		form = new RoamionplSearchForm();
-		form.setDateMin(rec.getDate());
+		form.setDatefieldMin(rec.getDatefield());
 		confirmGotResult(form, rec.getId());
 
 		form = new RoamionplSearchForm();
-		form.setDateMax(rec.getDate());
+		form.setDatefieldMax(rec.getDatefield());
 		confirmGotResult(form, rec.getId());
 
 		form = new RoamionplSearchForm();
-		form.setDateMin(rec.getDate());
-		form.setDateMax(rec.getDate());
+		form.setDatefieldMin(rec.getDatefield());
+		form.setDatefieldMax(rec.getDatefield());
 		confirmGotResult(form, rec.getId());
 	}
 

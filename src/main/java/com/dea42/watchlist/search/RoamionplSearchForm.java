@@ -15,10 +15,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 /**
  * Title: roamionplSearchForm <br>
  * Description: Class for holding data from the roamionpl table for searching. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Data
 public class RoamionplSearchForm implements Serializable {
@@ -27,8 +28,8 @@ public class RoamionplSearchForm implements Serializable {
 	private Integer bitratembpsMin;
 	private Integer bitratembpsMax;
 	private String channel = null;
-	private BigDecimal dateMin;
-	private BigDecimal dateMax;
+	private BigDecimal datefieldMin;
+	private BigDecimal datefieldMax;
 	private BigDecimal durationMin;
 	private BigDecimal durationMax;
 	private String episode = null;
@@ -45,8 +46,7 @@ public class RoamionplSearchForm implements Serializable {
 	private Long sortabledateMin;
 	private Long sortabledateMax;
 	private String title = null;
-	private Account accountMin;
-	private Account accountMax;
+	private AccountSearchForm account;
 	private Integer watchedtimeMin;
 	private Integer watchedtimeMax;
 	private String sortField = "id";
@@ -55,6 +55,8 @@ public class RoamionplSearchForm implements Serializable {
 	private boolean sortAsc = true;
 	private int totalPages = 0;
 	private long totalItems = 0;
+	private SearchType doOr = SearchType.ADD;
+	private boolean advanced = true;
 	/**
 	 * Clones Roamionpl obj into form
 	 *
@@ -65,8 +67,8 @@ public class RoamionplSearchForm implements Serializable {
 		form.setBitratembpsMin(obj.getBitratembps());
 		form.setBitratembpsMax(obj.getBitratembps());
 		form.setChannel(obj.getChannel());
-		form.setDateMin(obj.getDate());
-		form.setDateMax(obj.getDate());
+		form.setDatefieldMin(obj.getDatefield());
+		form.setDatefieldMax(obj.getDatefield());
 		form.setDurationMin(obj.getDuration());
 		form.setDurationMax(obj.getDuration());
 		form.setEpisode(obj.getEpisode());
@@ -83,6 +85,7 @@ public class RoamionplSearchForm implements Serializable {
 		form.setSortabledateMin(obj.getSortabledate());
 		form.setSortabledateMax(obj.getSortabledate());
 		form.setTitle(obj.getTitle());
+		form.setAccount(AccountSearchForm.getInstance(obj.getAccount()));
 		form.setWatchedtimeMin(obj.getWatchedtime());
 		form.setWatchedtimeMax(obj.getWatchedtime());
 		return form;

@@ -12,10 +12,11 @@ import org.hibernate.validator.constraints.Length;
 /**
  * Title: roamionpl Form <br>
  * Description: Class for holding data from the roamionpl table for editing. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 
 @Data
@@ -25,7 +26,7 @@ public class RoamionplForm implements Serializable {
 	private Integer bitratembps;
     @Length(max=16)
 	private String channel;
-	private BigDecimal date;
+	private BigDecimal datefield;
 	private BigDecimal duration;
     @Length(max=10)
 	private String episode;
@@ -54,7 +55,7 @@ public class RoamionplForm implements Serializable {
 		if (obj != null) {
 			form.setBitratembps(obj.getBitratembps());
 			form.setChannel(obj.getChannel());
-			form.setDate(obj.getDate());
+			form.setDatefield(obj.getDatefield());
 			form.setDuration(obj.getDuration());
 			form.setEpisode(obj.getEpisode());
 			form.setId(obj.getId());

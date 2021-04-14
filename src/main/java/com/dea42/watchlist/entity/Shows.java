@@ -14,10 +14,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 /**
  * Title: shows Bean <br>
  * Description: Class for holding data from the shows table. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  * Table name: shows<br>
  * Column name: id<br>
  * Catalog name: null<br>
@@ -30,35 +31,27 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Shows implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "Cancelled", length = 65)
+	@Column(name = "Cancelled", length = 56)
 	private String cancelled;
 	@Column(name = "EpguidesShowName", nullable = false, length = 47)
 	private String epguidesshowname;
-	@Column(name = "EpguidesShowNameLink", length = 60)
-	private String epguidesshownamelink;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Integer id;
 	@Column(name = "InCanceledAs", length = 47)
 	private String incanceledas;
-	@Column(name = "InCanceledAsLink", length = 70)
-	private String incanceledaslink;
 	@Column(name = "LastShow", length = 10)
 	private String lastshow;
 	@Column(name = "Network", length = 14)
 	private String network;
-	@Column(name = "NetworkLink", length = 306)
-	private String networklink;
-	@Column(name = "Premiere", length = 65)
+	@Column(name = "Premiere", length = 43)
 	private String premiere;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	@Column(name = "PremiereDate")
 	private Date premieredate;
-	@Column(name = "Status", length = 65)
+	@Column(name = "Status", length = 56)
 	private String status;
 	@Column(name = "TivoName", length = 47)
 	private String tivoname;
-	@Column(name = "TivoNameLink", length = 31)
-	private String tivonamelink;
 }

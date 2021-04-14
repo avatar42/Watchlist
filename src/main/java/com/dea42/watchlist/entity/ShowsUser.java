@@ -14,10 +14,11 @@ import lombok.Data;
 /**
  * Title: showsuser Bean <br>
  * Description: Class for holding data from the showsuser table. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  * Table name: showsuser<br>
  * Column name: id<br>
  * Catalog name: null<br>
@@ -27,7 +28,7 @@ import lombok.Data;
  * null => primary key table catalog being imported (may be null)<br>
  * null => primary key table schema being imported (may be null) <br>
  * Shows => primary key table name being imported <br>
- * id => primary key column name being imported<br>
+ * Id => primary key column name being imported<br>
  * null => foreign key table catalog (may be null)<br>
  * null => foreign key table schema (may be null)<br>
  * showsuser => foreign key table name <br>
@@ -41,7 +42,7 @@ import lombok.Data;
  * null => primary key table catalog being imported (may be null)<br>
  * null => primary key table schema being imported (may be null) <br>
  * Account => primary key table name being imported <br>
- * id => primary key column name being imported<br>
+ * Id => primary key column name being imported<br>
  * null => foreign key table catalog (may be null)<br>
  * null => foreign key table schema (may be null)<br>
  * showsuser => foreign key table name <br>
@@ -60,12 +61,8 @@ public class ShowsUser implements Serializable {
 
 	@Column(name = "BestExperience", length = 17)
 	private String bestexperience;
-	@Column(name = "BestExperienceLink", length = 306)
-	private String bestexperiencelink;
-	@Column(name = "Comment", length = 181)
+	@Column(name = "Comment", length = 187)
 	private String comment;
-	@Column(name = "CommentLink", length = 228)
-	private String commentlink;
 	@Column(name = "Diff", length = 3)
 	private String diff;
     @Id
@@ -74,28 +71,22 @@ public class ShowsUser implements Serializable {
 	private Integer id;
 	@Column(name = "Imdb", length = 2)
 	private String imdb;
-	@Column(name = "ImdbLink", length = 63)
-	private String imdblink;
 	@Column(name = "InRokuFeed", length = 1)
 	private String inrokufeed;
 	@Column(name = "InShowRssAs", length = 47)
 	private String inshowrssas;
-	@Column(name = "InShowRssAsLink", length = 32)
-	private String inshowrssaslink;
-	@Column(name = "InTablo", length = 1)
-	private String intablo;
 	@Column(name = "JustWatch", length = 2)
 	private String justwatch;
-	@Column(name = "JustWatchLink", length = 75)
-	private String justwatchlink;
 	@Column(name = "LastWatched", nullable = false, length = 10)
 	private String lastwatched;
 	@Column(name = "Ota", length = 1)
 	private String ota;
 	@ManyToOne
-	@JoinColumn(name = "ShowsId", referencedColumnName = "id")
+	@JoinColumn(name = "ShowsId", referencedColumnName = "Id")
 	private Shows shows;
+	@Column(name = "TabloLink", length = 6)
+	private String tablolink;
 	@ManyToOne
-	@JoinColumn(name = "Userid", referencedColumnName = "id")
+	@JoinColumn(name = "Userid", referencedColumnName = "Id")
 	private Account account;
 }

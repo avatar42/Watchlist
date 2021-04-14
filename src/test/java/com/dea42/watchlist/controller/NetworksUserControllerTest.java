@@ -17,10 +17,11 @@ import com.dea42.watchlist.search.NetworksUserSearchForm;
 /**
  * Title: NetworksUserControllerTest <br>
  * Description: NetworksUserController. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @WebMvcTest(NetworksUserController.class)
@@ -47,10 +48,10 @@ public class NetworksUserControllerTest extends MockBase {
 
 		ResultActions ra = getAsAdmin("/networksUsers");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.NetworksUser") + " " + getMsg("edit.list") + "</h1>");
-		contentContainsMarkup(ra,getTestString(1));
-		contentContainsMarkup(ra,getMsg("NetworksUser.iusefreefreewithcablepayforhuluinstead"));
-		contentContainsMarkup(ra,getMsg("NetworksUser.networksid"));
-		contentContainsMarkup(ra,getMsg("NetworksUser.userid"));
+//		contentContainsMarkup(ra,getTestString(1));
+//		contentContainsMarkup(ra,getMsg("NetworksUser.iusefreefreewithcablepayforhuluinstead"));
+//		contentContainsMarkup(ra,getMsg("NetworksUser.networksid"));
+//		contentContainsMarkup(ra,getMsg("NetworksUser.userid"));
 	}
 
 	/**
@@ -64,9 +65,9 @@ public class NetworksUserControllerTest extends MockBase {
 		ResultActions ra = getAsAdmin("/networksUsers/new");
 		contentContainsMarkup(ra,"<legend>" + getMsg("edit.new") + " " + getMsg("class.NetworksUser") + "</legend>");
 		// TODO: confirm ignoring NetworksUser.id
-		contentContainsMarkup(ra,"Iusefreefreewithcablepayforhuluinstead");
-		contentContainsMarkup(ra,"Networks");
-		contentContainsMarkup(ra,"Account");
+		contentContainsMarkup(ra,getMsg("NetworksUser.iusefreefreewithcablepayforhuluinstead"));
+		contentContainsMarkup(ra,getMsg("NetworksUser.networksid"));
+		contentContainsMarkup(ra,getMsg("NetworksUser.userid"));
 	}
 
 	/**
@@ -77,7 +78,7 @@ public class NetworksUserControllerTest extends MockBase {
 	public void testSaveNetworksUserCancel() throws Exception {
 		NetworksUser o = getNetworksUser(1);
 
-		send(SEND_POST, "/networksUsers/save", "networksUser", o, ImmutableMap.of("action", "cancel"), ADMIN_USER,
+		send(SEND_POST, "/networksUsers/save", "networksUser", o, ImmutableMap.of("action", "cancel"), ADMIN_EMAIL,
 				"/networksUsers");
 	}
 
@@ -91,7 +92,7 @@ public class NetworksUserControllerTest extends MockBase {
 		NetworksUserForm form = NetworksUserForm.getInstance(o);
 		log.debug(form.toString());
 
-		send(SEND_POST, "/networksUsers/save", "networksUserForm", form, ImmutableMap.of("action", "save"), ADMIN_USER,
+		send(SEND_POST, "/networksUsers/save", "networksUserForm", form, ImmutableMap.of("action", "save"), ADMIN_EMAIL,
 				"/networksUsers");
 	}
 

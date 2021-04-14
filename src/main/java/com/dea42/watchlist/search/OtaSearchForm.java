@@ -15,10 +15,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 /**
  * Title: otaSearchForm <br>
  * Description: Class for holding data from the ota table for searching. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Data
 public class OtaSearchForm implements Serializable {
@@ -35,12 +36,11 @@ public class OtaSearchForm implements Serializable {
 	private String direction = null;
 	private String enabled = null;
 	private String fccinfo = null;
-	private String fccinfolink = null;
 	private Integer freqMin;
 	private Integer freqMax;
 	private Integer idMin;
 	private Integer idMax;
-	private String lang = null;
+	private String langfield = null;
 	private Integer listedMin;
 	private Integer listedMax;
 	private Integer mytivoavgstrengthMin;
@@ -55,8 +55,7 @@ public class OtaSearchForm implements Serializable {
 	private BigDecimal tvfoolchanMin;
 	private BigDecimal tvfoolchanMax;
 	private String tvfoolestsignal = null;
-	private Account accountMin;
-	private Account accountMax;
+	private AccountSearchForm account;
 	private String watchabletablo = null;
 	private String watchabletivo = null;
 	private String sortField = "id";
@@ -65,6 +64,8 @@ public class OtaSearchForm implements Serializable {
 	private boolean sortAsc = true;
 	private int totalPages = 0;
 	private long totalItems = 0;
+	private SearchType doOr = SearchType.ADD;
+	private boolean advanced = true;
 	/**
 	 * Clones Ota obj into form
 	 *
@@ -83,12 +84,11 @@ public class OtaSearchForm implements Serializable {
 		form.setDirection(obj.getDirection());
 		form.setEnabled(obj.getEnabled());
 		form.setFccinfo(obj.getFccinfo());
-		form.setFccinfolink(obj.getFccinfolink());
 		form.setFreqMin(obj.getFreq());
 		form.setFreqMax(obj.getFreq());
 		form.setIdMin(obj.getId());
 		form.setIdMax(obj.getId());
-		form.setLang(obj.getLang());
+		form.setLangfield(obj.getLangfield());
 		form.setListedMin(obj.getListed());
 		form.setListedMax(obj.getListed());
 		form.setMytivoavgstrengthMin(obj.getMytivoavgstrength());
@@ -103,6 +103,7 @@ public class OtaSearchForm implements Serializable {
 		form.setTvfoolchanMin(obj.getTvfoolchan());
 		form.setTvfoolchanMax(obj.getTvfoolchan());
 		form.setTvfoolestsignal(obj.getTvfoolestsignal());
+		form.setAccount(AccountSearchForm.getInstance(obj.getAccount()));
 		form.setWatchabletablo(obj.getWatchabletablo());
 		form.setWatchabletivo(obj.getWatchabletivo());
 		return form;

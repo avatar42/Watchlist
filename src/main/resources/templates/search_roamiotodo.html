@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
-<title th:text="#{edit.edit} + ' ' + #{class.Roamiotodo}"></title>
+<title th:text="#{search.advanced} + ' ' + #{class.Roamiotodo}"></title>
 </head>
 <body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header">&nbsp;</div>
 	<div class="wrapper flex-grow-1">
 
 		<form class="form-narrow form-horizontal" method="post"
-			th:action="@{/roamiotodos/search}" th:object="${roamiotodoSearchForm}"
+			th:action="@{/roamiotodos/search}" 
+			th:object="${roamiotodoSearchForm}"
 			th:fragment="roamiotodoSearchForm">
 			<!--/* Show general error messages when form contains errors */-->
 			<th:block th:if="${#fields.hasErrors('${roamiotodoSearchForm.*}')}">
-				<div th:each="fieldErrors : ${#fields.errors('${roamiotodoSearchForm.*}')}">
+				<div 
+					th:each="fieldErrors : ${#fields.errors('${roamiotodoSearchForm.*}')}">
 					<div th:each="message : ${fieldErrors.split(';')}">
 						<div
 							th:replace="fragments/alert :: alert (type='danger', message=${message})">Alert</div>
@@ -20,144 +22,137 @@
 				</div>
 			</th:block>
 			<fieldset>
-				<legend th:text="#{search.search} + ' ' + #{class.Roamiotodo}"></legend>
+				<legend th:text="#{search.advanced} + ' ' + #{class.Roamiotodo}"></legend>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('channel')}? 'has-error'">
+				<div class="form-group">
+					<label for="roamiotodoSearchForm.doOr"
+						th:text="#{search.doOr} + ' ' + #{search.like}">Select
+						type</label> <select class="form-control selectpicker" th:field="*{doOr}"
+						id="roamiotodoSearchForm.doOr">
+						<option
+							th:each="doOr : ${T(com.dea42.watchlist.search.SearchType).values()}"
+							th:value="${doOr}" th:text="${doOr}"></option>
+					</select>
+				</div>
+
+				<div class="form-group">
 					<label for="channel" class="col-lg-2 control-label"
 						th:text="#{Roamiotodo.channel} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="channel"
 							th:field="*{channel}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('channel')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('dateMin')}? 'has-error'">
-					<label for="dateMin" class="col-lg-2 control-label"
-						th:text="#{Roamiotodo.date} + ' ' + #{search.after}"></label>
+				<div class="form-group">
+					<label for="datefieldMin" class="col-lg-2 control-label"
+						th:text="#{Roamiotodo.datefield} + ' ' + #{search.after}"></label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="dateMin"
-							th:field="*{dateMin}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('dateMin')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
+						<input type="text" class="form-control" id="datefieldMin"
+							th:field="*{datefieldMin}" />
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('dateMax')}? 'has-error'">
-					<label for="dateMax" class="col-lg-2 control-label"
-						th:text="#{Roamiotodo.date} + ' ' + #{search.before}"></label>
+				<div class="form-group">
+					<label for="datefieldMax" class="col-lg-2 control-label"
+						th:text="#{Roamiotodo.datefield} + ' ' + #{search.before}"></label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="dateMax"
-							th:field="*{dateMax}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('dateMax')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
+						<input type="text" class="form-control" id="datefieldMax"
+							th:field="*{datefieldMax}" />
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('duration')}? 'has-error'">
+				<div class="form-group">
 					<label for="duration" class="col-lg-2 control-label"
 						th:text="#{Roamiotodo.duration} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="duration"
 							th:field="*{duration}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('duration')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('ep')}? 'has-error'">
+				<div class="form-group">
 					<label for="ep" class="col-lg-2 control-label"
 						th:text="#{Roamiotodo.ep} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="ep"
 							th:field="*{ep}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('ep')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('episodename')}? 'has-error'">
+				<div class="form-group">
 					<label for="episodename" class="col-lg-2 control-label"
 						th:text="#{Roamiotodo.episodename} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="episodename"
 							th:field="*{episodename}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('episodename')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('showname')}? 'has-error'">
+				<div class="form-group">
 					<label for="showname" class="col-lg-2 control-label"
 						th:text="#{Roamiotodo.showname} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="showname"
 							th:field="*{showname}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('showname')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('showtrimmed')}? 'has-error'">
+				<div class="form-group">
 					<label for="showtrimmed" class="col-lg-2 control-label"
 						th:text="#{Roamiotodo.showtrimmed} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="showtrimmed"
 							th:field="*{showtrimmed}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('showtrimmed')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="roamiotodoSearchForm.account.email" class="col-lg-2 control-label"
+						th:text="#{Account.email} + ':'"></label>
+					<div th:if="${roamiotodoSearchForm.account != null}" class="col-lg-10" id="roamiotodoSearchForm.account.email"
+	                        th:text="${roamiotodoSearchForm.account.email}">
+					</div>
+				<div th:unless="${roamiotodoSearchForm.account != null}" th:text="${roamiotodoSearchForm.account}"></div>
+				</div>
+				<input type="hidden" class="form-control" id="account.id" />
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="roamiotodoSearchForm.account.name" class="col-lg-2 control-label"
+						th:text="#{Account.name} + ':'"></label>
+					<div th:if="${roamiotodoSearchForm.account != null}" class="col-lg-10" id="roamiotodoSearchForm.account.name"
+	                        th:text="${roamiotodoSearchForm.account.name}">
+					</div>
+				<div th:unless="${roamiotodoSearchForm.account != null}" th:text="${roamiotodoSearchForm.account}"></div>
+				</div>
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="roamiotodoSearchForm.account.password" class="col-lg-2 control-label"
+						th:text="#{Account.password} + ':'"></label>
+					<div th:if="${roamiotodoSearchForm.account != null}" class="col-lg-10" id="roamiotodoSearchForm.account.password"
+	                        th:text="${roamiotodoSearchForm.account.password}">
+					</div>
+				<div th:unless="${roamiotodoSearchForm.account != null}" th:text="${roamiotodoSearchForm.account}"></div>
+				</div>
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="roamiotodoSearchForm.account.userrole" class="col-lg-2 control-label"
+						th:text="#{Account.userrole} + ':'"></label>
+					<div th:if="${roamiotodoSearchForm.account != null}" class="col-lg-10" id="roamiotodoSearchForm.account.userrole"
+	                        th:text="${roamiotodoSearchForm.account.userrole}">
+					</div>
+				<div th:unless="${roamiotodoSearchForm.account != null}" th:text="${roamiotodoSearchForm.account}"></div>
+				</div>
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
 						<button type="submit" name="action" value="search"
 							class="btn btn-default" th:text="#{search.search}"></button>
+						<button type="submit" name="action" value="reset"
+							class="btn btn-default" th:text="#{search.reset}"></button>
 					</div>
 				</div>
 			</fieldset>
 		</form>
 
-	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
-</body></html>
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

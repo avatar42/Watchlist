@@ -14,10 +14,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 /**
  * Title: roamiospSearchForm <br>
  * Description: Class for holding data from the roamiosp table for searching. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Data
 public class RoamiospSearchForm implements Serializable {
@@ -40,14 +41,15 @@ public class RoamiospSearchForm implements Serializable {
 	private String show = null;
 	private Integer startMin;
 	private Integer startMax;
-	private Account accountMin;
-	private Account accountMax;
+	private AccountSearchForm account;
 	private String sortField = "id";
 	private int page = 1;
 	private int pageSize = 10;
 	private boolean sortAsc = true;
 	private int totalPages = 0;
 	private long totalItems = 0;
+	private SearchType doOr = SearchType.ADD;
+	private boolean advanced = true;
 	/**
 	 * Clones Roamiosp obj into form
 	 *
@@ -72,6 +74,7 @@ public class RoamiospSearchForm implements Serializable {
 		form.setShow(obj.getShow());
 		form.setStartMin(obj.getStart());
 		form.setStartMax(obj.getStart());
+		form.setAccount(AccountSearchForm.getInstance(obj.getAccount()));
 		return form;
 	}
 

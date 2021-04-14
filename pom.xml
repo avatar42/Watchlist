@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.dea42</groupId>
 	<artifactId>watchlist</artifactId>
-	<version>0.6.3-SNAPSHOT</version>
+	<version>0.7.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<description>An application for tracking the show you want to watch.</description>
 
@@ -120,7 +120,18 @@
 			<artifactId>webjars-servlet-2.x</artifactId>
 			<version>1.4</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.5.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.webjars/datatables -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>datatables</artifactId>
+			<version>1.10.23</version>
+		</dependency>
+		
 		<!-- DB drivers -->
 		<dependency>
 			<groupId>org.xerial</groupId>
@@ -234,7 +245,7 @@
 							<groupId>org.codehaus.cargo</groupId>
 							<artifactId>watchlist-war</artifactId>
 							<type>war</type>
-							<location>${project.build.directory}/watchlist-0.6.3-SNAPSHOT.war</location>
+							<location>${project.build.directory}/watchlist-0.7.1-SNAPSHOT.war</location>
 							<properties>
 								<context>genSpring</context>
 							</properties>

@@ -1,170 +1,125 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
+<head th:replace="fragments/header :: common_header(~{::title},~{::links},~{::scripts})">
 <title th:text="#{edit.listView} + ' ' + #{class.Cablecard}"></title>
+<links>
+<link th:rel="stylesheet"
+	th:href="@{/webjars/datatables/css/jquery.dataTables.min.css} " />
+</links>
+<scripts> <script
+	th:src="@{/webjars/datatables/js/jquery.dataTables.min.js}"></script> </scripts>
 </head>
 <body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header">&nbsp;</div>
 	<div class="wrapper flex-grow-1">
 
-	<div class="container" th:with="SearchForm=${session.cablecardSearchForm}">
-		<h1 th:text="#{class.Cablecard} + ' ' + #{edit.list}"></h1>
-		<a th:href="@{/cablecards/search}" th:text="#{search.search} + ' ' + #{class.Cablecard}"></a> <br />
-		<a th:href="@{/cablecards/new}" th:text="#{edit.new} + ' ' + #{class.Cablecard}"></a> <br /><br />
+		<div class="container-fluid" th:with="SearchForm=${session.cablecardSearchForm}">
+			<h1 th:text="#{class.Cablecard} + ' ' + #{edit.list}"></h1>
+			<a th:href="@{/cablecards/search}"
+				th:text="#{search.advanced} + ' ' + #{class.Cablecard}"></a> <br /> <a
+				th:href="@{/cablecards/new}"
+				th:text="#{edit.new} + ' ' + #{class.Cablecard}"></a> <br /> <br />
+			<div style="float: right;" th:text="#{search.like}"></div>
 
-	    <table>
-	        <tr>
-            <th>
-				<a th:if="${SearchForm.sortField == 'channelname'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=channelname&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Cablecard.channelname}">ChannelName</a>
-					<a th:if="${SearchForm.sortField != 'channelname'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=channelname&sortDir=asc'}"
-					th:text="#{Cablecard.channelname}">ChannelName</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'channelnumber'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=channelnumber&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Cablecard.channelnumber}">ChannelNumber</a>
-					<a th:if="${SearchForm.sortField != 'channelnumber'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=channelnumber&sortDir=asc'}"
-					th:text="#{Cablecard.channelnumber}">ChannelNumber</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'dt'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=dt&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Cablecard.dt}">Dt</a>
-					<a th:if="${SearchForm.sortField != 'dt'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=dt&sortDir=asc'}"
-					th:text="#{Cablecard.dt}">Dt</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'hd'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=hd&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Cablecard.hd}">Hd</a>
-					<a th:if="${SearchForm.sortField != 'hd'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=hd&sortDir=asc'}"
-					th:text="#{Cablecard.hd}">Hd</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'innpl'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=innpl&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Cablecard.innpl}">InNpl</a>
-					<a th:if="${SearchForm.sortField != 'innpl'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=innpl&sortDir=asc'}"
-					th:text="#{Cablecard.innpl}">InNpl</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'lang'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=lang&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Cablecard.lang}">Lang</a>
-					<a th:if="${SearchForm.sortField != 'lang'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=lang&sortDir=asc'}"
-					th:text="#{Cablecard.lang}">Lang</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'net'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=net&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Cablecard.net}">Net</a>
-					<a th:if="${SearchForm.sortField != 'net'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=net&sortDir=asc'}"
-					th:text="#{Cablecard.net}">Net</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'receiving'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=receiving&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Cablecard.receiving}">Receiving</a>
-					<a th:if="${SearchForm.sortField != 'receiving'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=receiving&sortDir=asc'}"
-					th:text="#{Cablecard.receiving}">Receiving</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'shortfield'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=shortfield&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Cablecard.shortfield}">ShortField</a>
-					<a th:if="${SearchForm.sortField != 'shortfield'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=shortfield&sortDir=asc'}"
-					th:text="#{Cablecard.shortfield}">ShortField</a>
-            </th>
-            <th sec:authorize="hasRole('ROLE_ADMIN')" >
-				<a th:if="${SearchForm.sortField == 'email'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=email&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Account.email}">Email</a>
-					<a th:if="${SearchForm.sortField != 'email'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=email&sortDir=asc'}"
-					th:text="#{Account.email}">Email</a>
-            </th>
-            <th sec:authorize="hasRole('ROLE_ADMIN')" >
-				<a th:if="${SearchForm.sortField == 'role'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=role&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Account.role}">Role</a>
-					<a th:if="${SearchForm.sortField != 'role'}"
-					th:href="@{'/cablecards/search/' + ${SearchForm.page} + '?sortField=role&sortDir=asc'}"
-					th:text="#{Account.role}">Role</a>
-            </th>
-            <th th:text="#{edit.actions}"></th>
-	        </tr>
-	        <tr th:each="cablecard:${cablecards}">
-	            <td th:if="${cablecard != null}" th:text="${cablecard.channelname}"></td>
-				<td th:unless="${cablecard != null}"></td>
-	            <td th:if="${cablecard != null}" th:text="${cablecard.channelnumber}"></td>
-				<td th:unless="${cablecard != null}"></td>
-	            <td th:if="${cablecard != null}" th:text="${cablecard.dt}"></td>
-				<td th:unless="${cablecard != null}"></td>
-	            <td th:if="${cablecard != null}" th:text="${cablecard.hd}"></td>
-				<td th:unless="${cablecard != null}"></td>
-	            <td th:if="${cablecard != null}" th:text="${cablecard.innpl}"></td>
-				<td th:unless="${cablecard != null}"></td>
-	            <td th:if="${cablecard != null}" th:text="${cablecard.lang}"></td>
-				<td th:unless="${cablecard != null}"></td>
-	            <td th:if="${cablecard != null}" th:text="${cablecard.net}"></td>
-				<td th:unless="${cablecard != null}"></td>
-	            <td th:if="${cablecard != null}" th:text="${cablecard.receiving}"></td>
-				<td th:unless="${cablecard != null}"></td>
-	            <td th:if="${cablecard != null}" th:text="${cablecard.shortfield}"></td>
-				<td th:unless="${cablecard != null}"></td>
-	            <td th:if="${cablecard.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${cablecard.account.email}"></td>
-				<td th:unless="${cablecard.account != null}"></td>
-	            <td th:if="${cablecard.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${cablecard.account.role}"></td>
-				<td th:unless="${cablecard.account != null}"></td>
-				<td><a th:href="@{'/cablecards/edit/' + ${cablecard.id}}" th:text="#{edit.edit}"></a>
-					&nbsp;&nbsp;&nbsp; <a th:href="@{'/cablecards/delete/' + ${cablecard.id}}" th:text="#{edit.delete}"></a>
-				</td>
+			<table id="resultsTable" class="table table-bordered table-striped table-condensed"
+				style="width: 100%">
+				<thead>
+					<tr>
+						<th th:text="#{Cablecard.channelname}"></th>
+						<th th:text="#{Cablecard.channelnumber}"></th>
+						<th th:text="#{Cablecard.dt}"></th>
+						<th th:text="#{Cablecard.hd}"></th>
+						<th th:text="#{Cablecard.innpl}"></th>
+						<th th:text="#{Cablecard.langfield}"></th>
+						<th th:text="#{Cablecard.net}"></th>
+						<th th:text="#{Cablecard.receiving}"></th>
+						<th th:text="#{Cablecard.shortfield}"></th>
+						<th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.email}"></th>
+						<th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.userrole}"></th>
+						<th th:text="#{edit.actions}"></th>
+					</tr>
+				</thead>
+			</table>
+			<script th:inline="javascript">
+				var editLab = /*[[#{edit.edit}]]*/'[msg not found]';
+				var deleteLab = /*[[#{edit.delete}]]*/'[msg not found]';
+				var datatablesUrl = /*[[#{datatables.url}]]*/'[msg not found]';
+				var link = /*[[@{/api/cablecards/list}]]*/ '/api/cablecards/list';
+				var ctx = /*[[@{/}]]*/ '/';
+			</script>
+			<script>
+				$('#resultsTable').DataTable({
+					"processing" : true,
+					"serverSide" : true,
+				    "language" : {
+				        "url" : datatablesUrl
+					    },
+					"ajax" : {
+						"url" : link,
+						"type" : "POST",
+						"dataType" : "json",
+						"contentType" : "application/json",
+						"data" : function(d) {
+							return JSON.stringify(d);
+						}
+					},
+    				"columnDefs": [{
+        				"targets": '_all',
+        				"defaultContent": ""
+    				}],
+					"columns" : [ {
+						"name" : "channelname",
+						"data" : "channelname",
+					}, {
+						"name" : "channelnumber",
+						"data" : "channelnumber",
+					}, {
+						"name" : "dt",
+						"data" : "dt",
+					}, {
+						"name" : "hd",
+						"data" : "hd",
+					}, {
+						"name" : "innpl",
+						"data" : "innpl",
+					}, {
+						"name" : "langfield",
+						"data" : "langfield",
+					}, {
+						"name" : "net",
+						"data" : "net",
+					}, {
+						"name" : "receiving",
+						"data" : "receiving",
+					}, {
+						"name" : "shortfield",
+						"data" : "shortfield",
+					}, {
+						"name" : "email",
+						"data" : "account.email",
+					}, {
+						"name" : "userrole",
+						"data" : "account.userrole",
+					}, {
+						"data" : "id",
+						"render" : make_edit_links,
+						"width" : "10%"
+					} ]
+				});
 
-	        </tr>
-	    </table>
-		<div th:if="${SearchForm.page > 1}">
-			<div class="row col-sm-10">
-				<div class="col-sm-2">Total Rows:
-					[[${SearchForm.totalItems}]]</div>
-				<div class="col-sm-1">
-					<span
-						th:each="i: ${#numbers.sequence(1, SearchForm.totalPages)}">
-						<a th:if="${SearchForm.page != i}"
-						th:href="@{'/cablecards/search/' + ${i}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">[[${i}]]</a>
-						<span th:unless="${SearchForm.page != i}">[[${i}]]</span>
-						&nbsp; &nbsp;
-					</span>
-				</div>
-				<div class="col-sm-1">
-					<a
-						th:if="${SearchForm.page < SearchForm.totalPages}"
-						th:href="@{'/cablecards/search/' + ${SearchForm.page + 1}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">Next</a>
-					<span
-						th:unless="${SearchForm.page < SearchForm.totalPages}">Next</span>
-				</div>
 
-				<div class="col-sm-1">
-					<a
-						th:if="${SearchForm.page < SearchForm.totalPages}"
-						th:href="@{'/cablecards/search/' + ${SearchForm.totalPages}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">Last</a>
-					<span
-						th:unless="${SearchForm.page < SearchForm.totalPages}">Last</span>
-				</div>
-			</div>
+				function make_edit_links(id) {
+					return "<a href=\""+ctx+"cablecards/edit/" + id +"\" id=\"edit_"+id + "\">"
+							+ editLab
+							+ "</a> &nbsp;&nbsp;&nbsp;"
+							+ "<a href=\""+ctx+"cablecards/delete/" + id +"\" id=\"delete_"+id + "\">"
+							+ deleteLab + "</a>";
+				}
+			</script>
 		</div>
 
-    </div>
-
-	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
-</body></html>
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

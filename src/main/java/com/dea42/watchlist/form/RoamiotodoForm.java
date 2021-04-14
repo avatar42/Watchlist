@@ -13,10 +13,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 /**
  * Title: roamiotodo Form <br>
  * Description: Class for holding data from the roamiotodo table for editing. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 
 @Data
@@ -26,7 +27,7 @@ public class RoamiotodoForm implements Serializable {
     @Length(max=15)
 	private String channel;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-	private Date date;
+	private Date datefield;
     @Length(max=4)
 	private String duration;
     @Length(max=50)
@@ -49,7 +50,7 @@ public class RoamiotodoForm implements Serializable {
 		RoamiotodoForm form = new RoamiotodoForm();
 		if (obj != null) {
 			form.setChannel(obj.getChannel());
-			form.setDate(obj.getDate());
+			form.setDatefield(obj.getDatefield());
 			form.setDuration(obj.getDuration());
 			form.setEp(obj.getEp());
 			form.setEpisodename(obj.getEpisodename());

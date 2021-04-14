@@ -1,6 +1,7 @@
 package com.dea42.watchlist.controller;
 
 import java.util.Date;
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +24,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dea42.watchlist.entity.Ota;
 import com.dea42.watchlist.form.OtaForm;
+import com.dea42.watchlist.paging.PageInfo;
+import com.dea42.watchlist.paging.PagingRequest;
 import com.dea42.watchlist.search.OtaSearchForm;
 import com.dea42.watchlist.service.OtaServices;
 import com.dea42.watchlist.utils.Message;
@@ -32,10 +36,11 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Title: OtaController <br>
  * Description: OtaController. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @Controller
@@ -73,16 +78,28 @@ public class OtaController {
 	}
 
 	@PostMapping(value = "/search")
-	public ModelAndView search(HttpServletRequest request, @ModelAttribute OtaSearchForm form, RedirectAttributes ra,
-			@RequestParam(value = "action", required = true) String action) {
-		setForm(request, form);
-		ModelAndView mav = findPaginated(request, 1, "id", "asc");
-		@SuppressWarnings("unchecked")
-		List<Ota> list = (List<Ota>) mav.getModelMap().getAttribute("otas");
-		if (list == null || list.isEmpty()) {
-			mav.setViewName("search_ota");
+	public ModelAndView search(HttpServletRequest request, @ModelAttribute OtaSearchForm form, 
+			RedirectAttributes ra, @RequestParam(value = "action", required = true) String action) {
+		ModelAndView mav;
+		if (action.equals("search")) {
+			setForm(request, form);
+			form.setAdvanced(true);
+			mav = new ModelAndView("otas");
+//			mav = findPaginated(request, 1, "id", "asc");
+//			@SuppressWarnings("unchecked")
+//			List<Ota> list = (List<Ota>) mav.getModelMap().getAttribute("otas");
+//			if (list == null || list.isEmpty()) {
+//				mav.setViewName("search_ota");
+//				mav.getModelMap().addAttribute(Message.MESSAGE_ATTRIBUTE,
+//						new Message("search.noResult", Message.Type.WARNING));
+//			}
+		} else {
+			form = new OtaSearchForm();
+			setForm(request, form);
+			mav = new ModelAndView("search_ota");
+			mav.addObject("otaSearchForm", form);
 			mav.getModelMap().addAttribute(Message.MESSAGE_ATTRIBUTE,
-					new Message("search.noResult", Message.Type.WARNING));
+					new Message("search.formReset", Message.Type.WARNING));
 		}
 
 		return mav;
@@ -142,10 +159,9 @@ public class OtaController {
 			ota.setDirection(form.getDirection());
 			ota.setEnabled(form.getEnabled());
 			ota.setFccinfo(form.getFccinfo());
-			ota.setFccinfolink(form.getFccinfolink());
 			ota.setFreq(form.getFreq());
 			ota.setId(form.getId());
-			ota.setLang(form.getLang());
+			ota.setLangfield(form.getLangfield());
 			ota.setListed(form.getListed());
 			ota.setMytivoavgstrength(form.getMytivoavgstrength());
 			ota.setNetwork(form.getNetwork());
@@ -193,5 +209,9 @@ public class OtaController {
 		otaService.delete(id);
 		return "redirect:/otas";
 	}
-}
 
+	@GetMapping("/list")
+	String home(Principal principal) {
+		return "otas";
+	}
+}

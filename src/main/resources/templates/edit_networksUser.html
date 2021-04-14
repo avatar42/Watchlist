@@ -101,10 +101,10 @@
 				</div>
 				<input type="hidden" class="form-control" id="account.id" th:field="*{account.id}" />
 				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
-					<label for="networksUserForm.account.role" class="col-lg-2 control-label"
-						th:text="#{Account.role} + ':'"></label>
-					<div th:if="${networksUserForm.account != null}" class="col-lg-10" id="networksUserForm.account.role"
-	                        th:text="${networksUserForm.account.role}">
+					<label for="networksUserForm.account.userrole" class="col-lg-2 control-label"
+						th:text="#{Account.userrole} + ':'"></label>
+					<div th:if="${networksUserForm.account != null}" class="col-lg-10" id="networksUserForm.account.userrole"
+	                        th:text="${networksUserForm.account.userrole}">
 					</div>
 				<div th:unless="${networksUserForm.account != null}" th:text="${networksUserForm.account}"></div>
 				</div>
@@ -119,5 +119,8 @@
 			</fieldset>
 		</form>
 
-	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
-</body></html>
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

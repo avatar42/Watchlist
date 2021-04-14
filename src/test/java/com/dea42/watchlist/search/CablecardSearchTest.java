@@ -20,10 +20,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 /**
  * Title: cablecardSearch Test <br>
  * Description: Does regression tests of cablecard search from service to DB <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -233,33 +234,33 @@ public class CablecardSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testLang() {
-		// lang String 12
+	public void testLangfield() {
+		// langfield String 12
 		Cablecard rec = null;
 		CablecardSearchForm form = new CablecardSearchForm();
 		rec = getMidRecord(form, 0);
-		form.setLang("%");
+		form.setLangfield("%");
 		rec = getMidRecord(form, 0);
-		log.info("Searching for records with lang of " + rec.getLang());
+		log.info("Searching for records with langfield of " + rec.getLangfield());
 
 		form = new CablecardSearchForm();
-		String text = rec.getLang();
+		String text = rec.getLangfield();
 		if (text.length() < 2) {
-			form.setLang(text + "%");
+			form.setLangfield(text + "%");
 			confirmGotResult(form, rec.getId());
 
-			form.setLang("%" + text);
+			form.setLangfield("%" + text);
 			confirmGotResult(form, rec.getId());
-			form.setLang("%" + text + "%");
+			form.setLangfield("%" + text + "%");
 			confirmGotResult(form, rec.getId());
 		} else {
 			int mid = text.length() / 2;
-			form.setLang(text.substring(0, mid) + "%");
+			form.setLangfield(text.substring(0, mid) + "%");
 			confirmGotResult(form, rec.getId());
 
-			form.setLang("%" + text.substring(mid - 1, mid) + "%");
+			form.setLangfield("%" + text.substring(mid - 1, mid) + "%");
 			confirmGotResult(form, rec.getId());
-			form.setLang("%" + text.substring(mid, text.length()));
+			form.setLangfield("%" + text.substring(mid, text.length()));
 			confirmGotResult(form, rec.getId());
 		}
 	}

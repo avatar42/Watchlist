@@ -21,10 +21,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 /**
  * Title: showsSearch Test <br>
  * Description: Does regression tests of shows search from service to DB <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -130,38 +131,6 @@ public class ShowsSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testEpguidesshownamelink() {
-		// epguidesshownamelink String 12
-		Shows rec = null;
-		ShowsSearchForm form = new ShowsSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setEpguidesshownamelink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with epguidesshownamelink of " + rec.getEpguidesshownamelink());
-
-		form = new ShowsSearchForm();
-		String text = rec.getEpguidesshownamelink();
-		if (text.length() < 2) {
-			form.setEpguidesshownamelink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setEpguidesshownamelink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setEpguidesshownamelink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setEpguidesshownamelink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setEpguidesshownamelink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setEpguidesshownamelink("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
 	public void testIncanceledas() {
 		// incanceledas String 12
 		Shows rec = null;
@@ -189,38 +158,6 @@ public class ShowsSearchTest extends UnitBase {
 			form.setIncanceledas("%" + text.substring(mid - 1, mid) + "%");
 			confirmGotResult(form, rec.getId());
 			form.setIncanceledas("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
-	public void testIncanceledaslink() {
-		// incanceledaslink String 12
-		Shows rec = null;
-		ShowsSearchForm form = new ShowsSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setIncanceledaslink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with incanceledaslink of " + rec.getIncanceledaslink());
-
-		form = new ShowsSearchForm();
-		String text = rec.getIncanceledaslink();
-		if (text.length() < 2) {
-			form.setIncanceledaslink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setIncanceledaslink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setIncanceledaslink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setIncanceledaslink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setIncanceledaslink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setIncanceledaslink("%" + text.substring(mid, text.length()));
 			confirmGotResult(form, rec.getId());
 		}
 	}
@@ -285,38 +222,6 @@ public class ShowsSearchTest extends UnitBase {
 			form.setNetwork("%" + text.substring(mid - 1, mid) + "%");
 			confirmGotResult(form, rec.getId());
 			form.setNetwork("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
-	public void testNetworklink() {
-		// networklink String 12
-		Shows rec = null;
-		ShowsSearchForm form = new ShowsSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setNetworklink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with networklink of " + rec.getNetworklink());
-
-		form = new ShowsSearchForm();
-		String text = rec.getNetworklink();
-		if (text.length() < 2) {
-			form.setNetworklink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setNetworklink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setNetworklink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setNetworklink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setNetworklink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setNetworklink("%" + text.substring(mid, text.length()));
 			confirmGotResult(form, rec.getId());
 		}
 	}
@@ -448,38 +353,6 @@ public class ShowsSearchTest extends UnitBase {
 			form.setTivoname("%" + text.substring(mid - 1, mid) + "%");
 			confirmGotResult(form, rec.getId());
 			form.setTivoname("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
-	public void testTivonamelink() {
-		// tivonamelink String 12
-		Shows rec = null;
-		ShowsSearchForm form = new ShowsSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setTivonamelink("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with tivonamelink of " + rec.getTivonamelink());
-
-		form = new ShowsSearchForm();
-		String text = rec.getTivonamelink();
-		if (text.length() < 2) {
-			form.setTivonamelink(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setTivonamelink("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setTivonamelink("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setTivonamelink(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setTivonamelink("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setTivonamelink("%" + text.substring(mid, text.length()));
 			confirmGotResult(form, rec.getId());
 		}
 	}

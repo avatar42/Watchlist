@@ -1,270 +1,165 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
+<head th:replace="fragments/header :: common_header(~{::title},~{::links},~{::scripts})">
 <title th:text="#{edit.listView} + ' ' + #{class.ShowsUser}"></title>
+<links>
+<link th:rel="stylesheet"
+	th:href="@{/webjars/datatables/css/jquery.dataTables.min.css} " />
+</links>
+<scripts> <script
+	th:src="@{/webjars/datatables/js/jquery.dataTables.min.js}"></script> </scripts>
 </head>
 <body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header">&nbsp;</div>
 	<div class="wrapper flex-grow-1">
 
-	<div class="container" th:with="SearchForm=${session.showsUserSearchForm}">
-		<h1 th:text="#{class.ShowsUser} + ' ' + #{edit.list}"></h1>
-		<a th:href="@{/showsUsers/search}" th:text="#{search.search} + ' ' + #{class.ShowsUser}"></a> <br />
-		<a th:href="@{/showsUsers/new}" th:text="#{edit.new} + ' ' + #{class.ShowsUser}"></a> <br /><br />
+		<div class="container-fluid" th:with="SearchForm=${session.showsUserSearchForm}">
+			<h1 th:text="#{class.ShowsUser} + ' ' + #{edit.list}"></h1>
+			<a th:href="@{/showsUsers/search}"
+				th:text="#{search.advanced} + ' ' + #{class.ShowsUser}"></a> <br /> <a
+				th:href="@{/showsUsers/new}"
+				th:text="#{edit.new} + ' ' + #{class.ShowsUser}"></a> <br /> <br />
+			<div style="float: right;" th:text="#{search.like}"></div>
 
-	    <table>
-	        <tr>
-            <th>
-				<a th:if="${SearchForm.sortField == 'bestexperience'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=bestexperience&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{ShowsUser.bestexperience}">BestExperience</a>
-					<a th:if="${SearchForm.sortField != 'bestexperience'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=bestexperience&sortDir=asc'}"
-					th:text="#{ShowsUser.bestexperience}">BestExperience</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'comment'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=comment&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{ShowsUser.comment}">Comment</a>
-					<a th:if="${SearchForm.sortField != 'comment'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=comment&sortDir=asc'}"
-					th:text="#{ShowsUser.comment}">Comment</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'diff'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=diff&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{ShowsUser.diff}">Diff</a>
-					<a th:if="${SearchForm.sortField != 'diff'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=diff&sortDir=asc'}"
-					th:text="#{ShowsUser.diff}">Diff</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'imdb'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=imdb&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{ShowsUser.imdb}">Imdb</a>
-					<a th:if="${SearchForm.sortField != 'imdb'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=imdb&sortDir=asc'}"
-					th:text="#{ShowsUser.imdb}">Imdb</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'inrokufeed'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=inrokufeed&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{ShowsUser.inrokufeed}">InRokuFeed</a>
-					<a th:if="${SearchForm.sortField != 'inrokufeed'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=inrokufeed&sortDir=asc'}"
-					th:text="#{ShowsUser.inrokufeed}">InRokuFeed</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'inshowrssas'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=inshowrssas&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{ShowsUser.inshowrssas}">InShowRssAs</a>
-					<a th:if="${SearchForm.sortField != 'inshowrssas'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=inshowrssas&sortDir=asc'}"
-					th:text="#{ShowsUser.inshowrssas}">InShowRssAs</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'intablo'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=intablo&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{ShowsUser.intablo}">InTablo</a>
-					<a th:if="${SearchForm.sortField != 'intablo'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=intablo&sortDir=asc'}"
-					th:text="#{ShowsUser.intablo}">InTablo</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'justwatch'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=justwatch&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{ShowsUser.justwatch}">JustWatch</a>
-					<a th:if="${SearchForm.sortField != 'justwatch'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=justwatch&sortDir=asc'}"
-					th:text="#{ShowsUser.justwatch}">JustWatch</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'lastwatched'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=lastwatched&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{ShowsUser.lastwatched}">LastWatched</a>
-					<a th:if="${SearchForm.sortField != 'lastwatched'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=lastwatched&sortDir=asc'}"
-					th:text="#{ShowsUser.lastwatched}">LastWatched</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'ota'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=ota&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{ShowsUser.ota}">Ota</a>
-					<a th:if="${SearchForm.sortField != 'ota'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=ota&sortDir=asc'}"
-					th:text="#{ShowsUser.ota}">Ota</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'cancelled'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=cancelled&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.cancelled}">Cancelled</a>
-					<a th:if="${SearchForm.sortField != 'cancelled'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=cancelled&sortDir=asc'}"
-					th:text="#{Shows.cancelled}">Cancelled</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'epguidesshowname'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=epguidesshowname&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.epguidesshowname}">EpguidesShowName</a>
-					<a th:if="${SearchForm.sortField != 'epguidesshowname'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=epguidesshowname&sortDir=asc'}"
-					th:text="#{Shows.epguidesshowname}">EpguidesShowName</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'incanceledas'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=incanceledas&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.incanceledas}">InCanceledAs</a>
-					<a th:if="${SearchForm.sortField != 'incanceledas'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=incanceledas&sortDir=asc'}"
-					th:text="#{Shows.incanceledas}">InCanceledAs</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'lastshow'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=lastshow&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.lastshow}">LastShow</a>
-					<a th:if="${SearchForm.sortField != 'lastshow'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=lastshow&sortDir=asc'}"
-					th:text="#{Shows.lastshow}">LastShow</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'network'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=network&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.network}">Network</a>
-					<a th:if="${SearchForm.sortField != 'network'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=network&sortDir=asc'}"
-					th:text="#{Shows.network}">Network</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'premiere'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=premiere&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.premiere}">Premiere</a>
-					<a th:if="${SearchForm.sortField != 'premiere'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=premiere&sortDir=asc'}"
-					th:text="#{Shows.premiere}">Premiere</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'premieredate'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=premieredate&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.premieredate}">PremiereDate</a>
-					<a th:if="${SearchForm.sortField != 'premieredate'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=premieredate&sortDir=asc'}"
-					th:text="#{Shows.premieredate}">PremiereDate</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'status'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=status&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.status}">Status</a>
-					<a th:if="${SearchForm.sortField != 'status'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=status&sortDir=asc'}"
-					th:text="#{Shows.status}">Status</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'tivoname'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=tivoname&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.tivoname}">TivoName</a>
-					<a th:if="${SearchForm.sortField != 'tivoname'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=tivoname&sortDir=asc'}"
-					th:text="#{Shows.tivoname}">TivoName</a>
-            </th>
-            <th sec:authorize="hasRole('ROLE_ADMIN')" >
-				<a th:if="${SearchForm.sortField == 'email'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=email&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Account.email}">Email</a>
-					<a th:if="${SearchForm.sortField != 'email'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=email&sortDir=asc'}"
-					th:text="#{Account.email}">Email</a>
-            </th>
-            <th sec:authorize="hasRole('ROLE_ADMIN')" >
-				<a th:if="${SearchForm.sortField == 'role'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=role&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Account.role}">Role</a>
-					<a th:if="${SearchForm.sortField != 'role'}"
-					th:href="@{'/showsUsers/search/' + ${SearchForm.page} + '?sortField=role&sortDir=asc'}"
-					th:text="#{Account.role}">Role</a>
-            </th>
-            <th th:text="#{edit.actions}"></th>
-	        </tr>
-	        <tr th:each="showsUser:${showsUsers}">
-	            <td th:if="${showsUser != null}"><a th:href="@{${showsUser.bestexperiencelink}}" th:text="${showsUser.bestexperience}"></a></td>
-				<td th:unless="${showsUser != null}"></td>
-	            <td th:if="${showsUser != null}"><a th:href="@{${showsUser.commentlink}}" th:text="${showsUser.comment}"></a></td>
-				<td th:unless="${showsUser != null}"></td>
-	            <td th:if="${showsUser != null}" th:text="${showsUser.diff}"></td>
-				<td th:unless="${showsUser != null}"></td>
-	            <td th:if="${showsUser != null}"><a th:href="@{${showsUser.imdblink}}" th:text="${showsUser.imdb}"></a></td>
-				<td th:unless="${showsUser != null}"></td>
-	            <td th:if="${showsUser != null}" th:text="${showsUser.inrokufeed}"></td>
-				<td th:unless="${showsUser != null}"></td>
-	            <td th:if="${showsUser != null}"><a th:href="@{${showsUser.inshowrssaslink}}" th:text="${showsUser.inshowrssas}"></a></td>
-				<td th:unless="${showsUser != null}"></td>
-	            <td th:if="${showsUser != null}" th:text="${showsUser.intablo}"></td>
-				<td th:unless="${showsUser != null}"></td>
-	            <td th:if="${showsUser != null}"><a th:href="@{${showsUser.justwatchlink}}" th:text="${showsUser.justwatch}"></a></td>
-				<td th:unless="${showsUser != null}"></td>
-	            <td th:if="${showsUser != null}" th:text="${showsUser.lastwatched}"></td>
-				<td th:unless="${showsUser != null}"></td>
-	            <td th:if="${showsUser != null}" th:text="${showsUser.ota}"></td>
-				<td th:unless="${showsUser != null}"></td>
-	            <td th:if="${showsUser.shows != null}" th:text="${showsUser.shows.cancelled}"></td>
-				<td th:unless="${showsUser.shows != null}"></td>
-	            <td th:if="${showsUser.shows != null}"><a th:href="@{${showsUser.shows.epguidesshownamelink}}" th:text="${showsUser.shows.epguidesshowname}"></a></td>
-				<td th:unless="${showsUser.shows != null}"></td>
-	            <td th:if="${showsUser.shows != null}"><a th:href="@{${showsUser.shows.incanceledaslink}}" th:text="${showsUser.shows.incanceledas}"></a></td>
-				<td th:unless="${showsUser.shows != null}"></td>
-	            <td th:if="${showsUser.shows != null}" th:text="${showsUser.shows.lastshow}"></td>
-				<td th:unless="${showsUser.shows != null}"></td>
-	            <td th:if="${showsUser.shows != null}"><a th:href="@{${showsUser.shows.networklink}}" th:text="${showsUser.shows.network}"></a></td>
-				<td th:unless="${showsUser.shows != null}"></td>
-	            <td th:if="${showsUser.shows != null}" th:text="${showsUser.shows.premiere}"></td>
-				<td th:unless="${showsUser.shows != null}"></td>
-	            <td th:if="${showsUser.shows != null}" th:text="${showsUser.shows.premieredate}"></td>
-				<td th:unless="${showsUser.shows != null}"></td>
-	            <td th:if="${showsUser.shows != null}" th:text="${showsUser.shows.status}"></td>
-				<td th:unless="${showsUser.shows != null}"></td>
-	            <td th:if="${showsUser.shows != null}"><a th:href="@{${showsUser.shows.tivonamelink}}" th:text="${showsUser.shows.tivoname}"></a></td>
-				<td th:unless="${showsUser.shows != null}"></td>
-	            <td th:if="${showsUser.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${showsUser.account.email}"></td>
-				<td th:unless="${showsUser.account != null}"></td>
-	            <td th:if="${showsUser.account != null}" sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${showsUser.account.role}"></td>
-				<td th:unless="${showsUser.account != null}"></td>
-				<td><a th:href="@{'/showsUsers/edit/' + ${showsUser.id}}" th:text="#{edit.edit}"></a>
-					&nbsp;&nbsp;&nbsp; <a th:href="@{'/showsUsers/delete/' + ${showsUser.id}}" th:text="#{edit.delete}"></a>
-				</td>
+			<table id="resultsTable" class="table table-bordered table-striped table-condensed"
+				style="width: 100%">
+				<thead>
+					<tr>
+						<th th:text="#{ShowsUser.bestexperience}"></th>
+						<th th:text="#{ShowsUser.comment}"></th>
+						<th th:text="#{ShowsUser.diff}"></th>
+						<th th:text="#{ShowsUser.imdb}"></th>
+						<th th:text="#{ShowsUser.inrokufeed}"></th>
+						<th th:text="#{ShowsUser.inshowrssas}"></th>
+						<th th:text="#{ShowsUser.justwatch}"></th>
+						<th th:text="#{ShowsUser.lastwatched}"></th>
+						<th th:text="#{ShowsUser.ota}"></th>
+						<th th:text="#{Shows.cancelled}"></th>
+						<th th:text="#{Shows.epguidesshowname}"></th>
+						<th th:text="#{Shows.incanceledas}"></th>
+						<th th:text="#{Shows.lastshow}"></th>
+						<th th:text="#{Shows.network}"></th>
+						<th th:text="#{Shows.premiere}"></th>
+						<th th:text="#{Shows.premieredate}"></th>
+						<th th:text="#{Shows.status}"></th>
+						<th th:text="#{Shows.tivoname}"></th>
+						<th th:text="#{ShowsUser.tablolink}"></th>
+						<th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.email}"></th>
+						<th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.userrole}"></th>
+						<th th:text="#{edit.actions}"></th>
+					</tr>
+				</thead>
+			</table>
+			<script th:inline="javascript">
+				var editLab = /*[[#{edit.edit}]]*/'[msg not found]';
+				var deleteLab = /*[[#{edit.delete}]]*/'[msg not found]';
+				var datatablesUrl = /*[[#{datatables.url}]]*/'[msg not found]';
+				var link = /*[[@{/api/showsUsers/list}]]*/ '/api/showsUsers/list';
+				var ctx = /*[[@{/}]]*/ '/';
+			</script>
+			<script>
+				$('#resultsTable').DataTable({
+					"processing" : true,
+					"serverSide" : true,
+				    "language" : {
+				        "url" : datatablesUrl
+					    },
+					"ajax" : {
+						"url" : link,
+						"type" : "POST",
+						"dataType" : "json",
+						"contentType" : "application/json",
+						"data" : function(d) {
+							return JSON.stringify(d);
+						}
+					},
+    				"columnDefs": [{
+        				"targets": '_all',
+        				"defaultContent": ""
+    				}],
+					"columns" : [ {
+						"name" : "bestexperience",
+						"data" : "bestexperience",
+					}, {
+						"name" : "comment",
+						"data" : "comment",
+					}, {
+						"name" : "diff",
+						"data" : "diff",
+					}, {
+						"name" : "imdb",
+						"data" : "imdb",
+					}, {
+						"name" : "inrokufeed",
+						"data" : "inrokufeed",
+					}, {
+						"name" : "inshowrssas",
+						"data" : "inshowrssas",
+					}, {
+						"name" : "justwatch",
+						"data" : "justwatch",
+					}, {
+						"name" : "lastwatched",
+						"data" : "lastwatched",
+					}, {
+						"name" : "ota",
+						"data" : "ota",
+					}, {
+						"name" : "cancelled",
+						"data" : "shows.cancelled",
+					}, {
+						"name" : "epguidesshowname",
+						"data" : "shows.epguidesshowname",
+					}, {
+						"name" : "incanceledas",
+						"data" : "shows.incanceledas",
+					}, {
+						"name" : "lastshow",
+						"data" : "shows.lastshow",
+					}, {
+						"name" : "network",
+						"data" : "shows.network",
+					}, {
+						"name" : "premiere",
+						"data" : "shows.premiere",
+					}, {
+						"name" : "premieredate",
+						"data" : "shows.premieredate",
+					}, {
+						"name" : "status",
+						"data" : "shows.status",
+					}, {
+						"name" : "tivoname",
+						"data" : "shows.tivoname",
+					}, {
+						"name" : "tablolink",
+						"data" : "tablolink",
+					}, {
+						"name" : "email",
+						"data" : "account.email",
+					}, {
+						"name" : "userrole",
+						"data" : "account.userrole",
+					}, {
+						"data" : "id",
+						"render" : make_edit_links,
+						"width" : "10%"
+					} ]
+				});
 
-	        </tr>
-	    </table>
-		<div th:if="${SearchForm.page > 1}">
-			<div class="row col-sm-10">
-				<div class="col-sm-2">Total Rows:
-					[[${SearchForm.totalItems}]]</div>
-				<div class="col-sm-1">
-					<span
-						th:each="i: ${#numbers.sequence(1, SearchForm.totalPages)}">
-						<a th:if="${SearchForm.page != i}"
-						th:href="@{'/showsUsers/search/' + ${i}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">[[${i}]]</a>
-						<span th:unless="${SearchForm.page != i}">[[${i}]]</span>
-						&nbsp; &nbsp;
-					</span>
-				</div>
-				<div class="col-sm-1">
-					<a
-						th:if="${SearchForm.page < SearchForm.totalPages}"
-						th:href="@{'/showsUsers/search/' + ${SearchForm.page + 1}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">Next</a>
-					<span
-						th:unless="${SearchForm.page < SearchForm.totalPages}">Next</span>
-				</div>
 
-				<div class="col-sm-1">
-					<a
-						th:if="${SearchForm.page < SearchForm.totalPages}"
-						th:href="@{'/showsUsers/search/' + ${SearchForm.totalPages}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">Last</a>
-					<span
-						th:unless="${SearchForm.page < SearchForm.totalPages}">Last</span>
-				</div>
-			</div>
+				function make_edit_links(id) {
+					return "<a href=\""+ctx+"showsUsers/edit/" + id +"\" id=\"edit_"+id + "\">"
+							+ editLab
+							+ "</a> &nbsp;&nbsp;&nbsp;"
+							+ "<a href=\""+ctx+"showsUsers/delete/" + id +"\" id=\"delete_"+id + "\">"
+							+ deleteLab + "</a>";
+				}
+			</script>
 		</div>
 
-    </div>
-
-	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
-</body></html>
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

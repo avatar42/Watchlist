@@ -17,10 +17,11 @@ import com.dea42.watchlist.search.OtaSearchForm;
 /**
  * Title: OtaControllerTest <br>
  * Description: OtaController. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @WebMvcTest(OtaController.class)
@@ -35,8 +36,7 @@ public class OtaControllerTest extends MockBase {
         o.setDirection(getTestString(4));
         o.setEnabled(getTestString(3));
         o.setFccinfo(getTestString(10));
-        o.setFccinfolink(getTestString(6));
-        o.setLang(getTestString(2));
+        o.setLangfield(getTestString(2));
         o.setNetwork(getTestString(15));
         o.setOff(getTestString(5));
         o.setRecommendedantenna(getTestString(41));
@@ -63,47 +63,46 @@ public class OtaControllerTest extends MockBase {
 
 		ResultActions ra = getAsAdmin("/otas");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Ota") + " " + getMsg("edit.list") + "</h1>");
-		contentContainsMarkup(ra,getMsg("Ota.atticant"));
-		contentContainsMarkup(ra,getMsg("Ota.chan"));
-		contentContainsMarkup(ra,getTestString(10));
-		contentContainsMarkup(ra,getMsg("Ota.channelname"));
-		contentContainsMarkup(ra,getTestString(4));
-		contentContainsMarkup(ra,getMsg("Ota.channelnumber"));
-		contentContainsMarkup(ra,getTestString(18));
-		contentContainsMarkup(ra,getMsg("Ota.channelnumberchannelnameincluded"));
-		contentContainsMarkup(ra,getTestString(31));
-		contentContainsMarkup(ra,getMsg("Ota.comments"));
-		contentContainsMarkup(ra,getTestString(4));
-		contentContainsMarkup(ra,getMsg("Ota.direction"));
-		contentContainsMarkup(ra,getTestString(3));
-		contentContainsMarkup(ra,getMsg("Ota.enabled"));
-		contentContainsMarkup(ra,getTestString(10));
-		contentContainsMarkup(ra,getMsg("Ota.fccinfo"));
-		contentContainsMarkup(ra,getTestString(6));
-		contentContainsMarkup(ra,getMsg("Ota.freq"));
-		contentContainsMarkup(ra,getTestString(2));
-		contentContainsMarkup(ra,getMsg("Ota.lang"));
-		contentContainsMarkup(ra,getMsg("Ota.listed"));
-		contentContainsMarkup(ra,getMsg("Ota.mytivoavgstrength"));
-		contentContainsMarkup(ra,getTestString(15));
-		contentContainsMarkup(ra,getMsg("Ota.network"));
-		contentContainsMarkup(ra,getTestString(5));
-		contentContainsMarkup(ra,getMsg("Ota.off"));
-		contentContainsMarkup(ra,getTestString(41));
-		contentContainsMarkup(ra,getMsg("Ota.recommendedantenna"));
-		contentContainsMarkup(ra,getTestString(5));
-		contentContainsMarkup(ra,getMsg("Ota.rez"));
-		contentContainsMarkup(ra,getTestString(5));
-		contentContainsMarkup(ra,getMsg("Ota.station"));
-		contentContainsMarkup(ra,getMsg("Ota.subchan"));
-		contentContainsMarkup(ra,getMsg("Ota.tvfoolchan"));
-		contentContainsMarkup(ra,getTestString(5));
-		contentContainsMarkup(ra,getMsg("Ota.tvfoolestsignal"));
-		contentContainsMarkup(ra,getMsg("Ota.userid"));
-		contentContainsMarkup(ra,getTestString(7));
-		contentContainsMarkup(ra,getMsg("Ota.watchabletablo"));
-		contentContainsMarkup(ra,getTestString(4));
-		contentContainsMarkup(ra,getMsg("Ota.watchabletivo"));
+//		contentContainsMarkup(ra,getMsg("Ota.atticant"));
+//		contentContainsMarkup(ra,getMsg("Ota.chan"));
+//		contentContainsMarkup(ra,getTestString(10));
+//		contentContainsMarkup(ra,getMsg("Ota.channelname"));
+//		contentContainsMarkup(ra,getTestString(4));
+//		contentContainsMarkup(ra,getMsg("Ota.channelnumber"));
+//		contentContainsMarkup(ra,getTestString(18));
+//		contentContainsMarkup(ra,getMsg("Ota.channelnumberchannelnameincluded"));
+//		contentContainsMarkup(ra,getTestString(31));
+//		contentContainsMarkup(ra,getMsg("Ota.comments"));
+//		contentContainsMarkup(ra,getTestString(4));
+//		contentContainsMarkup(ra,getMsg("Ota.direction"));
+//		contentContainsMarkup(ra,getTestString(3));
+//		contentContainsMarkup(ra,getMsg("Ota.enabled"));
+//		contentContainsMarkup(ra,getTestString(10));
+//		contentContainsMarkup(ra,getMsg("Ota.fccinfo"));
+//		contentContainsMarkup(ra,getMsg("Ota.freq"));
+//		contentContainsMarkup(ra,getTestString(2));
+//		contentContainsMarkup(ra,getMsg("Ota.langfield"));
+//		contentContainsMarkup(ra,getMsg("Ota.listed"));
+//		contentContainsMarkup(ra,getMsg("Ota.mytivoavgstrength"));
+//		contentContainsMarkup(ra,getTestString(15));
+//		contentContainsMarkup(ra,getMsg("Ota.network"));
+//		contentContainsMarkup(ra,getTestString(5));
+//		contentContainsMarkup(ra,getMsg("Ota.off"));
+//		contentContainsMarkup(ra,getTestString(41));
+//		contentContainsMarkup(ra,getMsg("Ota.recommendedantenna"));
+//		contentContainsMarkup(ra,getTestString(5));
+//		contentContainsMarkup(ra,getMsg("Ota.rez"));
+//		contentContainsMarkup(ra,getTestString(5));
+//		contentContainsMarkup(ra,getMsg("Ota.station"));
+//		contentContainsMarkup(ra,getMsg("Ota.subchan"));
+//		contentContainsMarkup(ra,getMsg("Ota.tvfoolchan"));
+//		contentContainsMarkup(ra,getTestString(5));
+//		contentContainsMarkup(ra,getMsg("Ota.tvfoolestsignal"));
+//		contentContainsMarkup(ra,getMsg("Ota.userid"));
+//		contentContainsMarkup(ra,getTestString(7));
+//		contentContainsMarkup(ra,getMsg("Ota.watchabletablo"));
+//		contentContainsMarkup(ra,getTestString(4));
+//		contentContainsMarkup(ra,getMsg("Ota.watchabletivo"));
 	}
 
 	/**
@@ -116,32 +115,31 @@ public class OtaControllerTest extends MockBase {
 	public void testShowNewOtaPage() throws Exception {
 		ResultActions ra = getAsAdmin("/otas/new");
 		contentContainsMarkup(ra,"<legend>" + getMsg("edit.new") + " " + getMsg("class.Ota") + "</legend>");
-		contentContainsMarkup(ra,"Atticant");
-		contentContainsMarkup(ra,"Chan");
-		contentContainsMarkup(ra,"Channelname");
-		contentContainsMarkup(ra,"Channelnumber");
-		contentContainsMarkup(ra,"Channelnumberchannelnameincluded");
-		contentContainsMarkup(ra,"Comments");
-		contentContainsMarkup(ra,"Direction");
-		contentContainsMarkup(ra,"Enabled");
-		contentContainsMarkup(ra,"Fccinfo");
-		contentContainsMarkup(ra,"Fccinfolink");
-		contentContainsMarkup(ra,"Freq");
+		contentContainsMarkup(ra,getMsg("Ota.atticant"));
+		contentContainsMarkup(ra,getMsg("Ota.chan"));
+		contentContainsMarkup(ra,getMsg("Ota.channelname"));
+		contentContainsMarkup(ra,getMsg("Ota.channelnumber"));
+		contentContainsMarkup(ra,getMsg("Ota.channelnumberchannelnameincluded"));
+		contentContainsMarkup(ra,getMsg("Ota.comments"));
+		contentContainsMarkup(ra,getMsg("Ota.direction"));
+		contentContainsMarkup(ra,getMsg("Ota.enabled"));
+		contentContainsMarkup(ra,getMsg("Ota.fccinfo"));
+		contentContainsMarkup(ra,getMsg("Ota.freq"));
 		// TODO: confirm ignoring Ota.id
-		contentContainsMarkup(ra,"Lang");
-		contentContainsMarkup(ra,"Listed");
-		contentContainsMarkup(ra,"Mytivoavgstrength");
-		contentContainsMarkup(ra,"Network");
-		contentContainsMarkup(ra,"Off");
-		contentContainsMarkup(ra,"Recommendedantenna");
-		contentContainsMarkup(ra,"Rez");
-		contentContainsMarkup(ra,"Station");
-		contentContainsMarkup(ra,"Subchan");
-		contentContainsMarkup(ra,"Tvfoolchan");
-		contentContainsMarkup(ra,"Tvfoolestsignal");
-		contentContainsMarkup(ra,"Account");
-		contentContainsMarkup(ra,"Watchabletablo");
-		contentContainsMarkup(ra,"Watchabletivo");
+		contentContainsMarkup(ra,getMsg("Ota.langfield"));
+		contentContainsMarkup(ra,getMsg("Ota.listed"));
+		contentContainsMarkup(ra,getMsg("Ota.mytivoavgstrength"));
+		contentContainsMarkup(ra,getMsg("Ota.network"));
+		contentContainsMarkup(ra,getMsg("Ota.off"));
+		contentContainsMarkup(ra,getMsg("Ota.recommendedantenna"));
+		contentContainsMarkup(ra,getMsg("Ota.rez"));
+		contentContainsMarkup(ra,getMsg("Ota.station"));
+		contentContainsMarkup(ra,getMsg("Ota.subchan"));
+		contentContainsMarkup(ra,getMsg("Ota.tvfoolchan"));
+		contentContainsMarkup(ra,getMsg("Ota.tvfoolestsignal"));
+		contentContainsMarkup(ra,getMsg("Ota.userid"));
+		contentContainsMarkup(ra,getMsg("Ota.watchabletablo"));
+		contentContainsMarkup(ra,getMsg("Ota.watchabletivo"));
 	}
 
 	/**
@@ -152,7 +150,7 @@ public class OtaControllerTest extends MockBase {
 	public void testSaveOtaCancel() throws Exception {
 		Ota o = getOta(1);
 
-		send(SEND_POST, "/otas/save", "ota", o, ImmutableMap.of("action", "cancel"), ADMIN_USER,
+		send(SEND_POST, "/otas/save", "ota", o, ImmutableMap.of("action", "cancel"), ADMIN_EMAIL,
 				"/otas");
 	}
 
@@ -166,7 +164,7 @@ public class OtaControllerTest extends MockBase {
 		OtaForm form = OtaForm.getInstance(o);
 		log.debug(form.toString());
 
-		send(SEND_POST, "/otas/save", "otaForm", form, ImmutableMap.of("action", "save"), ADMIN_USER,
+		send(SEND_POST, "/otas/save", "otaForm", form, ImmutableMap.of("action", "save"), ADMIN_EMAIL,
 				"/otas");
 	}
 
@@ -199,12 +197,10 @@ public class OtaControllerTest extends MockBase {
 		contentContainsMarkup(ra,"Enabled");
 		contentContainsMarkup(ra,o.getFccinfo());
 		contentContainsMarkup(ra,"Fccinfo");
-		contentContainsMarkup(ra,o.getFccinfolink());
-		contentContainsMarkup(ra,"Fccinfolink");
 		contentContainsMarkup(ra,"Freq");
 		// TODO: confirm ignoring Ota.id
-		contentContainsMarkup(ra,o.getLang());
-		contentContainsMarkup(ra,"Lang");
+		contentContainsMarkup(ra,o.getLangfield());
+		contentContainsMarkup(ra,"Langfield");
 		contentContainsMarkup(ra,"Listed");
 		contentContainsMarkup(ra,"Mytivoavgstrength");
 		contentContainsMarkup(ra,o.getNetwork());

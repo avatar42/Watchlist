@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
-<title th:text="#{edit.edit} + ' ' + #{class.Roamionpl}"></title>
+<title th:text="#{search.advanced} + ' ' + #{class.Roamionpl}"></title>
 </head>
 <body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header">&nbsp;</div>
 	<div class="wrapper flex-grow-1">
 
 		<form class="form-narrow form-horizontal" method="post"
-			th:action="@{/roamionpls/search}" th:object="${roamionplSearchForm}"
+			th:action="@{/roamionpls/search}" 
+			th:object="${roamionplSearchForm}"
 			th:fragment="roamionplSearchForm">
 			<!--/* Show general error messages when form contains errors */-->
 			<th:block th:if="${#fields.hasErrors('${roamionplSearchForm.*}')}">
-				<div th:each="fieldErrors : ${#fields.errors('${roamionplSearchForm.*}')}">
+				<div 
+					th:each="fieldErrors : ${#fields.errors('${roamionplSearchForm.*}')}">
 					<div th:each="message : ${fieldErrors.split(';')}">
 						<div
 							th:replace="fragments/alert :: alert (type='danger', message=${message})">Alert</div>
@@ -20,341 +22,238 @@
 				</div>
 			</th:block>
 			<fieldset>
-				<legend th:text="#{search.search} + ' ' + #{class.Roamionpl}"></legend>
+				<legend th:text="#{search.advanced} + ' ' + #{class.Roamionpl}"></legend>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('bitratembpsMin')}? 'has-error'">
+				<div class="form-group">
+					<label for="roamionplSearchForm.doOr"
+						th:text="#{search.doOr} + ' ' + #{search.like}">Select
+						type</label> <select class="form-control selectpicker" th:field="*{doOr}"
+						id="roamionplSearchForm.doOr">
+						<option
+							th:each="doOr : ${T(com.dea42.watchlist.search.SearchType).values()}"
+							th:value="${doOr}" th:text="${doOr}"></option>
+					</select>
+				</div>
+
+				<div class="form-group">
 					<label for="bitratembpsMin" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.bitratembps} + ' ' + #{search.gte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="bitratembpsMin"
 							th:field="*{bitratembpsMin}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('bitratembpsMin')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('bitratembpsMax')}? 'has-error'">
+				<div class="form-group">
 					<label for="bitratembpsMax" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.bitratembps} + ' ' + #{search.lte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="bitratembpsMax"
 							th:field="*{bitratembpsMax}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('bitratembpsMax')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('channel')}? 'has-error'">
+				<div class="form-group">
 					<label for="channel" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.channel} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="channel"
 							th:field="*{channel}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('channel')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('dateMin')}? 'has-error'">
-					<label for="dateMin" class="col-lg-2 control-label"
-						th:text="#{Roamionpl.date} + ' ' + #{search.gte}"></label>
+				<div class="form-group">
+					<label for="datefieldMin" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.datefield} + ' ' + #{search.gte}"></label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="dateMin"
-							th:field="*{dateMin}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('dateMin')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
+						<input type="text" class="form-control" id="datefieldMin"
+							th:field="*{datefieldMin}" />
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('dateMax')}? 'has-error'">
-					<label for="dateMax" class="col-lg-2 control-label"
-						th:text="#{Roamionpl.date} + ' ' + #{search.lte}"></label>
+				<div class="form-group">
+					<label for="datefieldMax" class="col-lg-2 control-label"
+						th:text="#{Roamionpl.datefield} + ' ' + #{search.lte}"></label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="dateMax"
-							th:field="*{dateMax}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('dateMax')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
+						<input type="text" class="form-control" id="datefieldMax"
+							th:field="*{datefieldMax}" />
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('durationMin')}? 'has-error'">
+				<div class="form-group">
 					<label for="durationMin" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.duration} + ' ' + #{search.gte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="durationMin"
 							th:field="*{durationMin}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('durationMin')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('durationMax')}? 'has-error'">
+				<div class="form-group">
 					<label for="durationMax" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.duration} + ' ' + #{search.lte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="durationMax"
 							th:field="*{durationMax}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('durationMax')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('episode')}? 'has-error'">
+				<div class="form-group">
 					<label for="episode" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.episode} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="episode"
 							th:field="*{episode}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('episode')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('isnewMin')}? 'has-error'">
+				<div class="form-group">
 					<label for="isnewMin" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.isnew} + ' ' + #{search.gte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="isnewMin"
 							th:field="*{isnewMin}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('isnewMin')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('isnewMax')}? 'has-error'">
+				<div class="form-group">
 					<label for="isnewMax" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.isnew} + ' ' + #{search.lte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="isnewMax"
 							th:field="*{isnewMax}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('isnewMax')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('rowinshowsMin')}? 'has-error'">
+				<div class="form-group">
 					<label for="rowinshowsMin" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.rowinshows} + ' ' + #{search.gte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="rowinshowsMin"
 							th:field="*{rowinshowsMin}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('rowinshowsMin')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('rowinshowsMax')}? 'has-error'">
+				<div class="form-group">
 					<label for="rowinshowsMax" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.rowinshows} + ' ' + #{search.lte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="rowinshowsMax"
 							th:field="*{rowinshowsMax}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('rowinshowsMax')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('seriesep')}? 'has-error'">
+				<div class="form-group">
 					<label for="seriesep" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.seriesep} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="seriesep"
 							th:field="*{seriesep}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('seriesep')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('show')}? 'has-error'">
+				<div class="form-group">
 					<label for="show" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.show} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="show"
 							th:field="*{show}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('show')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('sizegbMin')}? 'has-error'">
+				<div class="form-group">
 					<label for="sizegbMin" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.sizegb} + ' ' + #{search.gte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="sizegbMin"
 							th:field="*{sizegbMin}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('sizegbMin')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('sizegbMax')}? 'has-error'">
+				<div class="form-group">
 					<label for="sizegbMax" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.sizegb} + ' ' + #{search.lte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="sizegbMax"
 							th:field="*{sizegbMax}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('sizegbMax')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('sortabledateMin')}? 'has-error'">
+				<div class="form-group">
 					<label for="sortabledateMin" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.sortabledate} + ' ' + #{search.gte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="sortabledateMin"
 							th:field="*{sortabledateMin}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('sortabledateMin')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('sortabledateMax')}? 'has-error'">
+				<div class="form-group">
 					<label for="sortabledateMax" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.sortabledate} + ' ' + #{search.lte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="sortabledateMax"
 							th:field="*{sortabledateMax}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('sortabledateMax')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('title')}? 'has-error'">
+				<div class="form-group">
 					<label for="title" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.title} + ' ' + #{search.like}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="title"
 							th:field="*{title}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('title')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('watchedtimeMin')}? 'has-error'">
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="roamionplSearchForm.account.email" class="col-lg-2 control-label"
+						th:text="#{Account.email} + ':'"></label>
+					<div th:if="${roamionplSearchForm.account != null}" class="col-lg-10" id="roamionplSearchForm.account.email"
+	                        th:text="${roamionplSearchForm.account.email}">
+					</div>
+				<div th:unless="${roamionplSearchForm.account != null}" th:text="${roamionplSearchForm.account}"></div>
+				</div>
+				<input type="hidden" class="form-control" id="account.id" />
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="roamionplSearchForm.account.name" class="col-lg-2 control-label"
+						th:text="#{Account.name} + ':'"></label>
+					<div th:if="${roamionplSearchForm.account != null}" class="col-lg-10" id="roamionplSearchForm.account.name"
+	                        th:text="${roamionplSearchForm.account.name}">
+					</div>
+				<div th:unless="${roamionplSearchForm.account != null}" th:text="${roamionplSearchForm.account}"></div>
+				</div>
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="roamionplSearchForm.account.password" class="col-lg-2 control-label"
+						th:text="#{Account.password} + ':'"></label>
+					<div th:if="${roamionplSearchForm.account != null}" class="col-lg-10" id="roamionplSearchForm.account.password"
+	                        th:text="${roamionplSearchForm.account.password}">
+					</div>
+				<div th:unless="${roamionplSearchForm.account != null}" th:text="${roamionplSearchForm.account}"></div>
+				</div>
+				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
+					<label for="roamionplSearchForm.account.userrole" class="col-lg-2 control-label"
+						th:text="#{Account.userrole} + ':'"></label>
+					<div th:if="${roamionplSearchForm.account != null}" class="col-lg-10" id="roamionplSearchForm.account.userrole"
+	                        th:text="${roamionplSearchForm.account.userrole}">
+					</div>
+				<div th:unless="${roamionplSearchForm.account != null}" th:text="${roamionplSearchForm.account}"></div>
+				</div>
+				<div class="form-group">
 					<label for="watchedtimeMin" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.watchedtime} + ' ' + #{search.gte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="watchedtimeMin"
 							th:field="*{watchedtimeMin}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('watchedtimeMin')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('watchedtimeMax')}? 'has-error'">
+				<div class="form-group">
 					<label for="watchedtimeMax" class="col-lg-2 control-label"
 						th:text="#{Roamionpl.watchedtime} + ' ' + #{search.lte}"></label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="watchedtimeMax"
 							th:field="*{watchedtimeMax}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('watchedtimeMax')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
@@ -362,10 +261,15 @@
 					<div class="col-lg-offset-2 col-lg-10">
 						<button type="submit" name="action" value="search"
 							class="btn btn-default" th:text="#{search.search}"></button>
+						<button type="submit" name="action" value="reset"
+							class="btn btn-default" th:text="#{search.reset}"></button>
 					</div>
 				</div>
 			</fieldset>
 		</form>
 
-	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
-</body></html>
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

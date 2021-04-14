@@ -16,10 +16,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 /**
  * Title: roamiotodo Bean <br>
  * Description: Class for holding data from the roamiotodo table. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  * Table name: roamiotodo<br>
  * Column name: id<br>
  * Catalog name: null<br>
@@ -29,7 +30,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * null => primary key table catalog being imported (may be null)<br>
  * null => primary key table schema being imported (may be null) <br>
  * Account => primary key table name being imported <br>
- * id => primary key column name being imported<br>
+ * Id => primary key column name being imported<br>
  * null => foreign key table catalog (may be null)<br>
  * null => foreign key table schema (may be null)<br>
  * roamiotodo => foreign key table name <br>
@@ -49,8 +50,8 @@ public class Roamiotodo implements Serializable {
 	@Column(name = "Channel", length = 15)
 	private String channel;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-	@Column(name = "Date", nullable = false)
-	private Date date;
+	@Column(name = "DateField", nullable = false)
+	private Date datefield;
 	@Column(name = "Duration", length = 4)
 	private String duration;
 	@Column(name = "Ep", length = 50)
@@ -66,6 +67,6 @@ public class Roamiotodo implements Serializable {
 	@Column(name = "ShowTrimmed", length = 47)
 	private String showtrimmed;
 	@ManyToOne
-	@JoinColumn(name = "Userid", referencedColumnName = "id")
+	@JoinColumn(name = "Userid", referencedColumnName = "Id")
 	private Account account;
 }

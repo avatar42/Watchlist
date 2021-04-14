@@ -1,6 +1,7 @@
 package com.dea42.watchlist.controller;
 
 import java.util.Date;
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +24,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dea42.watchlist.entity.Shows;
 import com.dea42.watchlist.form.ShowsForm;
+import com.dea42.watchlist.paging.PageInfo;
+import com.dea42.watchlist.paging.PagingRequest;
 import com.dea42.watchlist.search.ShowsSearchForm;
 import com.dea42.watchlist.service.ShowsServices;
 import com.dea42.watchlist.utils.Message;
@@ -32,10 +36,11 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Title: ShowsController <br>
  * Description: ShowsController. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @Controller
@@ -73,16 +78,28 @@ public class ShowsController {
 	}
 
 	@PostMapping(value = "/search")
-	public ModelAndView search(HttpServletRequest request, @ModelAttribute ShowsSearchForm form, RedirectAttributes ra,
-			@RequestParam(value = "action", required = true) String action) {
-		setForm(request, form);
-		ModelAndView mav = findPaginated(request, 1, "id", "asc");
-		@SuppressWarnings("unchecked")
-		List<Shows> list = (List<Shows>) mav.getModelMap().getAttribute("showss");
-		if (list == null || list.isEmpty()) {
-			mav.setViewName("search_shows");
+	public ModelAndView search(HttpServletRequest request, @ModelAttribute ShowsSearchForm form, 
+			RedirectAttributes ra, @RequestParam(value = "action", required = true) String action) {
+		ModelAndView mav;
+		if (action.equals("search")) {
+			setForm(request, form);
+			form.setAdvanced(true);
+			mav = new ModelAndView("showss");
+//			mav = findPaginated(request, 1, "id", "asc");
+//			@SuppressWarnings("unchecked")
+//			List<Shows> list = (List<Shows>) mav.getModelMap().getAttribute("showss");
+//			if (list == null || list.isEmpty()) {
+//				mav.setViewName("search_shows");
+//				mav.getModelMap().addAttribute(Message.MESSAGE_ATTRIBUTE,
+//						new Message("search.noResult", Message.Type.WARNING));
+//			}
+		} else {
+			form = new ShowsSearchForm();
+			setForm(request, form);
+			mav = new ModelAndView("search_shows");
+			mav.addObject("showsSearchForm", form);
 			mav.getModelMap().addAttribute(Message.MESSAGE_ATTRIBUTE,
-					new Message("search.noResult", Message.Type.WARNING));
+					new Message("search.formReset", Message.Type.WARNING));
 		}
 
 		return mav;
@@ -135,18 +152,14 @@ public class ShowsController {
 			Shows shows = new Shows();
 			shows.setCancelled(form.getCancelled());
 			shows.setEpguidesshowname(form.getEpguidesshowname());
-			shows.setEpguidesshownamelink(form.getEpguidesshownamelink());
 			shows.setId(form.getId());
 			shows.setIncanceledas(form.getIncanceledas());
-			shows.setIncanceledaslink(form.getIncanceledaslink());
 			shows.setLastshow(form.getLastshow());
 			shows.setNetwork(form.getNetwork());
-			shows.setNetworklink(form.getNetworklink());
 			shows.setPremiere(form.getPremiere());
 			shows.setPremieredate(form.getPremieredate());
 			shows.setStatus(form.getStatus());
 			shows.setTivoname(form.getTivoname());
-			shows.setTivonamelink(form.getTivonamelink());
 			try {
 				shows = showsService.save(shows);
 			} catch (Exception e) {
@@ -181,5 +194,9 @@ public class ShowsController {
 		showsService.delete(id);
 		return "redirect:/showss";
 	}
-}
 
+	@GetMapping("/list")
+	String home(Principal principal) {
+		return "showss";
+	}
+}

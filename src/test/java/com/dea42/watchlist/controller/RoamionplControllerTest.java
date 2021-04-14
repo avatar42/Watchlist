@@ -17,10 +17,11 @@ import com.dea42.watchlist.search.RoamionplSearchForm;
 /**
  * Title: RoamionplControllerTest <br>
  * Description: RoamionplController. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  */
 @Slf4j
 @WebMvcTest(RoamionplController.class)
@@ -51,25 +52,25 @@ public class RoamionplControllerTest extends MockBase {
 
 		ResultActions ra = getAsAdmin("/roamionpls");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Roamionpl") + " " + getMsg("edit.list") + "</h1>");
-		contentContainsMarkup(ra,getMsg("Roamionpl.bitratembps"));
-		contentContainsMarkup(ra,getTestString(16));
-		contentContainsMarkup(ra,getMsg("Roamionpl.channel"));
-		contentContainsMarkup(ra,getMsg("Roamionpl.date"));
-		contentContainsMarkup(ra,getMsg("Roamionpl.duration"));
-		contentContainsMarkup(ra,getTestString(10));
-		contentContainsMarkup(ra,getMsg("Roamionpl.episode"));
-		contentContainsMarkup(ra,getMsg("Roamionpl.isnew"));
-		contentContainsMarkup(ra,getMsg("Roamionpl.rowinshows"));
-		contentContainsMarkup(ra,getTestString(10));
-		contentContainsMarkup(ra,getMsg("Roamionpl.seriesep"));
-		contentContainsMarkup(ra,getTestString(73));
-		contentContainsMarkup(ra,getMsg("Roamionpl.show"));
-		contentContainsMarkup(ra,getMsg("Roamionpl.sizegb"));
-		contentContainsMarkup(ra,getMsg("Roamionpl.sortabledate"));
-		contentContainsMarkup(ra,getTestString(76));
-		contentContainsMarkup(ra,getMsg("Roamionpl.title"));
-		contentContainsMarkup(ra,getMsg("Roamionpl.userid"));
-		contentContainsMarkup(ra,getMsg("Roamionpl.watchedtime"));
+//		contentContainsMarkup(ra,getMsg("Roamionpl.bitratembps"));
+//		contentContainsMarkup(ra,getTestString(16));
+//		contentContainsMarkup(ra,getMsg("Roamionpl.channel"));
+//		contentContainsMarkup(ra,getMsg("Roamionpl.datefield"));
+//		contentContainsMarkup(ra,getMsg("Roamionpl.duration"));
+//		contentContainsMarkup(ra,getTestString(10));
+//		contentContainsMarkup(ra,getMsg("Roamionpl.episode"));
+//		contentContainsMarkup(ra,getMsg("Roamionpl.isnew"));
+//		contentContainsMarkup(ra,getMsg("Roamionpl.rowinshows"));
+//		contentContainsMarkup(ra,getTestString(10));
+//		contentContainsMarkup(ra,getMsg("Roamionpl.seriesep"));
+//		contentContainsMarkup(ra,getTestString(73));
+//		contentContainsMarkup(ra,getMsg("Roamionpl.show"));
+//		contentContainsMarkup(ra,getMsg("Roamionpl.sizegb"));
+//		contentContainsMarkup(ra,getMsg("Roamionpl.sortabledate"));
+//		contentContainsMarkup(ra,getTestString(76));
+//		contentContainsMarkup(ra,getMsg("Roamionpl.title"));
+//		contentContainsMarkup(ra,getMsg("Roamionpl.userid"));
+//		contentContainsMarkup(ra,getMsg("Roamionpl.watchedtime"));
 	}
 
 	/**
@@ -82,21 +83,21 @@ public class RoamionplControllerTest extends MockBase {
 	public void testShowNewRoamionplPage() throws Exception {
 		ResultActions ra = getAsAdmin("/roamionpls/new");
 		contentContainsMarkup(ra,"<legend>" + getMsg("edit.new") + " " + getMsg("class.Roamionpl") + "</legend>");
-		contentContainsMarkup(ra,"Bitratembps");
-		contentContainsMarkup(ra,"Channel");
-		contentContainsMarkup(ra,"Date");
-		contentContainsMarkup(ra,"Duration");
-		contentContainsMarkup(ra,"Episode");
+		contentContainsMarkup(ra,getMsg("Roamionpl.bitratembps"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.channel"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.datefield"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.duration"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.episode"));
 		// TODO: confirm ignoring Roamionpl.id
-		contentContainsMarkup(ra,"Isnew");
-		contentContainsMarkup(ra,"Rowinshows");
-		contentContainsMarkup(ra,"Seriesep");
-		contentContainsMarkup(ra,"Show");
-		contentContainsMarkup(ra,"Sizegb");
-		contentContainsMarkup(ra,"Sortabledate");
-		contentContainsMarkup(ra,"Title");
-		contentContainsMarkup(ra,"Account");
-		contentContainsMarkup(ra,"Watchedtime");
+		contentContainsMarkup(ra,getMsg("Roamionpl.isnew"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.rowinshows"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.seriesep"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.show"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.sizegb"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.sortabledate"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.title"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.userid"));
+		contentContainsMarkup(ra,getMsg("Roamionpl.watchedtime"));
 	}
 
 	/**
@@ -107,7 +108,7 @@ public class RoamionplControllerTest extends MockBase {
 	public void testSaveRoamionplCancel() throws Exception {
 		Roamionpl o = getRoamionpl(1);
 
-		send(SEND_POST, "/roamionpls/save", "roamionpl", o, ImmutableMap.of("action", "cancel"), ADMIN_USER,
+		send(SEND_POST, "/roamionpls/save", "roamionpl", o, ImmutableMap.of("action", "cancel"), ADMIN_EMAIL,
 				"/roamionpls");
 	}
 
@@ -121,7 +122,7 @@ public class RoamionplControllerTest extends MockBase {
 		RoamionplForm form = RoamionplForm.getInstance(o);
 		log.debug(form.toString());
 
-		send(SEND_POST, "/roamionpls/save", "roamionplForm", form, ImmutableMap.of("action", "save"), ADMIN_USER,
+		send(SEND_POST, "/roamionpls/save", "roamionplForm", form, ImmutableMap.of("action", "save"), ADMIN_EMAIL,
 				"/roamionpls");
 	}
 
@@ -141,7 +142,7 @@ public class RoamionplControllerTest extends MockBase {
 		contentContainsMarkup(ra,"Bitratembps");
 		contentContainsMarkup(ra,o.getChannel());
 		contentContainsMarkup(ra,"Channel");
-		contentContainsMarkup(ra,"Date");
+		contentContainsMarkup(ra,"Datefield");
 		contentContainsMarkup(ra,"Duration");
 		contentContainsMarkup(ra,o.getEpisode());
 		contentContainsMarkup(ra,"Episode");

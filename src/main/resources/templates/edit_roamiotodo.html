@@ -42,14 +42,14 @@
 				</div>
 
 				<div class="form-group"
-					th:classappend="${#fields.hasErrors('date')}? 'has-error'">
-					<label for="date" class="col-lg-2 control-label"
-						th:text="#{Roamiotodo.date} + ':'"></label>
+					th:classappend="${#fields.hasErrors('datefield')}? 'has-error'">
+					<label for="datefield" class="col-lg-2 control-label"
+						th:text="#{Roamiotodo.datefield} + ':'"></label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="date"
-							th:field="*{date}" />
+						<input type="text" class="form-control" id="datefield"
+							th:field="*{datefield}" />
 						<ul class="help-block"
-							th:each="error: ${#fields.errors('date')}">
+							th:each="error: ${#fields.errors('datefield')}">
 							<li th:each="message : ${error.split(';')}">
 								<p class="error-message" th:text="${message}"></p>
 							</li>
@@ -148,10 +148,10 @@
 				</div>
 				<input type="hidden" class="form-control" id="account.id" th:field="*{account.id}" />
 				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
-					<label for="roamiotodoForm.account.role" class="col-lg-2 control-label"
-						th:text="#{Account.role} + ':'"></label>
-					<div th:if="${roamiotodoForm.account != null}" class="col-lg-10" id="roamiotodoForm.account.role"
-	                        th:text="${roamiotodoForm.account.role}">
+					<label for="roamiotodoForm.account.userrole" class="col-lg-2 control-label"
+						th:text="#{Account.userrole} + ':'"></label>
+					<div th:if="${roamiotodoForm.account != null}" class="col-lg-10" id="roamiotodoForm.account.userrole"
+	                        th:text="${roamiotodoForm.account.userrole}">
 					</div>
 				<div th:unless="${roamiotodoForm.account != null}" th:text="${roamiotodoForm.account}"></div>
 				</div>
@@ -166,5 +166,8 @@
 			</fieldset>
 		</form>
 
-	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
-</body></html>
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

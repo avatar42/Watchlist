@@ -8,25 +8,25 @@
 				th:text="#{header.gui}"></span> <b class="caret"></b> </a>
 			<ul class="dropdown-menu bg-dark">
 								<li sec:authorize="hasRole('ROLE_ADMIN')"  th:classappend="${module == 'account' ? 'active' : ''}">
-    								<a id="guiItemAccount" th:href="@{/accounts}" th:text="#{class.Account}"></a></li>
+    								<a id="guiItemAccount" th:href="@{/accounts/list}" th:text="#{class.Account}"></a></li>
 								<li th:classappend="${module == 'networks' ? 'active' : ''}">
-    								<a id="guiItemNetworks" th:href="@{/networkss}" th:text="#{class.Networks}"></a></li>
+    								<a id="guiItemNetworks" th:href="@{/networkss/list}" th:text="#{class.Networks}"></a></li>
 								<li th:classappend="${module == 'shows' ? 'active' : ''}">
-    								<a id="guiItemShows" th:href="@{/showss}" th:text="#{class.Shows}"></a></li>
+    								<a id="guiItemShows" th:href="@{/showss/list}" th:text="#{class.Shows}"></a></li>
 								<li th:classappend="${module == 'roamiosp' ? 'active' : ''}">
-    								<a id="guiItemRoamiosp" th:href="@{/roamiosps}" th:text="#{class.Roamiosp}"></a></li>
+    								<a id="guiItemRoamiosp" th:href="@{/roamiosps/list}" th:text="#{class.Roamiosp}"></a></li>
 								<li th:classappend="${module == 'showsUser' ? 'active' : ''}">
-    								<a id="guiItemShowsUser" th:href="@{/showsUsers}" th:text="#{class.ShowsUser}"></a></li>
+    								<a id="guiItemShowsUser" th:href="@{/showsUsers/list}" th:text="#{class.ShowsUser}"></a></li>
 								<li th:classappend="${module == 'cablecard' ? 'active' : ''}">
-    								<a id="guiItemCablecard" th:href="@{/cablecards}" th:text="#{class.Cablecard}"></a></li>
+    								<a id="guiItemCablecard" th:href="@{/cablecards/list}" th:text="#{class.Cablecard}"></a></li>
 								<li th:classappend="${module == 'ota' ? 'active' : ''}">
-    								<a id="guiItemOta" th:href="@{/otas}" th:text="#{class.Ota}"></a></li>
+    								<a id="guiItemOta" th:href="@{/otas/list}" th:text="#{class.Ota}"></a></li>
 								<li th:classappend="${module == 'roamionpl' ? 'active' : ''}">
-    								<a id="guiItemRoamionpl" th:href="@{/roamionpls}" th:text="#{class.Roamionpl}"></a></li>
+    								<a id="guiItemRoamionpl" th:href="@{/roamionpls/list}" th:text="#{class.Roamionpl}"></a></li>
 								<li th:classappend="${module == 'networksUser' ? 'active' : ''}">
-    								<a id="guiItemNetworksUser" th:href="@{/networksUsers}" th:text="#{class.NetworksUser}"></a></li>
+    								<a id="guiItemNetworksUser" th:href="@{/networksUsers/list}" th:text="#{class.NetworksUser}"></a></li>
 								<li th:classappend="${module == 'roamiotodo' ? 'active' : ''}">
-    								<a id="guiItemRoamiotodo" th:href="@{/roamiotodos}" th:text="#{class.Roamiotodo}"></a></li>
+    								<a id="guiItemRoamiotodo" th:href="@{/roamiotodos/list}" th:text="#{class.Roamiotodo}"></a></li>
 			</ul></li>
 		<li th:fragment="restMenu" id="restMenu" class="nav-item dropdown"><a
 			href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"

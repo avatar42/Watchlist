@@ -1,150 +1,117 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
+<head th:replace="fragments/header :: common_header(~{::title},~{::links},~{::scripts})">
 <title th:text="#{edit.listView} + ' ' + #{class.Shows}"></title>
+<links>
+<link th:rel="stylesheet"
+	th:href="@{/webjars/datatables/css/jquery.dataTables.min.css} " />
+</links>
+<scripts> <script
+	th:src="@{/webjars/datatables/js/jquery.dataTables.min.js}"></script> </scripts>
 </head>
 <body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header">&nbsp;</div>
 	<div class="wrapper flex-grow-1">
 
-	<div class="container" th:with="SearchForm=${session.showsSearchForm}">
-		<h1 th:text="#{class.Shows} + ' ' + #{edit.list}"></h1>
-		<a th:href="@{/showss/search}" th:text="#{search.search} + ' ' + #{class.Shows}"></a> <br />
-		<a th:href="@{/showss/new}" th:text="#{edit.new} + ' ' + #{class.Shows}"></a> <br /><br />
+		<div class="container-fluid" th:with="SearchForm=${session.showsSearchForm}">
+			<h1 th:text="#{class.Shows} + ' ' + #{edit.list}"></h1>
+			<a th:href="@{/showss/search}"
+				th:text="#{search.advanced} + ' ' + #{class.Shows}"></a> <br /> <a
+				th:href="@{/showss/new}"
+				th:text="#{edit.new} + ' ' + #{class.Shows}"></a> <br /> <br />
+			<div style="float: right;" th:text="#{search.like}"></div>
 
-	    <table>
-	        <tr>
-            <th>
-				<a th:if="${SearchForm.sortField == 'cancelled'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=cancelled&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.cancelled}">Cancelled</a>
-					<a th:if="${SearchForm.sortField != 'cancelled'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=cancelled&sortDir=asc'}"
-					th:text="#{Shows.cancelled}">Cancelled</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'epguidesshowname'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=epguidesshowname&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.epguidesshowname}">EpguidesShowName</a>
-					<a th:if="${SearchForm.sortField != 'epguidesshowname'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=epguidesshowname&sortDir=asc'}"
-					th:text="#{Shows.epguidesshowname}">EpguidesShowName</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'incanceledas'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=incanceledas&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.incanceledas}">InCanceledAs</a>
-					<a th:if="${SearchForm.sortField != 'incanceledas'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=incanceledas&sortDir=asc'}"
-					th:text="#{Shows.incanceledas}">InCanceledAs</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'lastshow'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=lastshow&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.lastshow}">LastShow</a>
-					<a th:if="${SearchForm.sortField != 'lastshow'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=lastshow&sortDir=asc'}"
-					th:text="#{Shows.lastshow}">LastShow</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'network'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=network&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.network}">Network</a>
-					<a th:if="${SearchForm.sortField != 'network'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=network&sortDir=asc'}"
-					th:text="#{Shows.network}">Network</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'premiere'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=premiere&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.premiere}">Premiere</a>
-					<a th:if="${SearchForm.sortField != 'premiere'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=premiere&sortDir=asc'}"
-					th:text="#{Shows.premiere}">Premiere</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'premieredate'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=premieredate&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.premieredate}">PremiereDate</a>
-					<a th:if="${SearchForm.sortField != 'premieredate'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=premieredate&sortDir=asc'}"
-					th:text="#{Shows.premieredate}">PremiereDate</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'status'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=status&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.status}">Status</a>
-					<a th:if="${SearchForm.sortField != 'status'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=status&sortDir=asc'}"
-					th:text="#{Shows.status}">Status</a>
-            </th>
-            <th>
-				<a th:if="${SearchForm.sortField == 'tivoname'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=tivoname&sortDir=' + ${SearchForm.reverseSortDir}}"
-					th:text="#{Shows.tivoname}">TivoName</a>
-					<a th:if="${SearchForm.sortField != 'tivoname'}"
-					th:href="@{'/showss/search/' + ${SearchForm.page} + '?sortField=tivoname&sortDir=asc'}"
-					th:text="#{Shows.tivoname}">TivoName</a>
-            </th>
-            <th th:text="#{edit.actions}"></th>
-	        </tr>
-	        <tr th:each="shows:${showss}">
-	            <td th:if="${shows != null}" th:text="${shows.cancelled}"></td>
-				<td th:unless="${shows != null}"></td>
-	            <td th:if="${shows != null}"><a th:href="@{${shows.epguidesshownamelink}}" th:text="${shows.epguidesshowname}"></a></td>
-				<td th:unless="${shows != null}"></td>
-	            <td th:if="${shows != null}"><a th:href="@{${shows.incanceledaslink}}" th:text="${shows.incanceledas}"></a></td>
-				<td th:unless="${shows != null}"></td>
-	            <td th:if="${shows != null}" th:text="${shows.lastshow}"></td>
-				<td th:unless="${shows != null}"></td>
-	            <td th:if="${shows != null}"><a th:href="@{${shows.networklink}}" th:text="${shows.network}"></a></td>
-				<td th:unless="${shows != null}"></td>
-	            <td th:if="${shows != null}" th:text="${shows.premiere}"></td>
-				<td th:unless="${shows != null}"></td>
-	            <td th:if="${shows != null}" th:text="${shows.premieredate}"></td>
-				<td th:unless="${shows != null}"></td>
-	            <td th:if="${shows != null}" th:text="${shows.status}"></td>
-				<td th:unless="${shows != null}"></td>
-	            <td th:if="${shows != null}"><a th:href="@{${shows.tivonamelink}}" th:text="${shows.tivoname}"></a></td>
-				<td th:unless="${shows != null}"></td>
-				<td><a th:href="@{'/showss/edit/' + ${shows.id}}" th:text="#{edit.edit}"></a>
-					&nbsp;&nbsp;&nbsp; <a th:href="@{'/showss/delete/' + ${shows.id}}" th:text="#{edit.delete}"></a>
-				</td>
+			<table id="resultsTable" class="table table-bordered table-striped table-condensed"
+				style="width: 100%">
+				<thead>
+					<tr>
+						<th th:text="#{Shows.cancelled}"></th>
+						<th th:text="#{Shows.epguidesshowname}"></th>
+						<th th:text="#{Shows.incanceledas}"></th>
+						<th th:text="#{Shows.lastshow}"></th>
+						<th th:text="#{Shows.network}"></th>
+						<th th:text="#{Shows.premiere}"></th>
+						<th th:text="#{Shows.premieredate}"></th>
+						<th th:text="#{Shows.status}"></th>
+						<th th:text="#{Shows.tivoname}"></th>
+						<th th:text="#{edit.actions}"></th>
+					</tr>
+				</thead>
+			</table>
+			<script th:inline="javascript">
+				var editLab = /*[[#{edit.edit}]]*/'[msg not found]';
+				var deleteLab = /*[[#{edit.delete}]]*/'[msg not found]';
+				var datatablesUrl = /*[[#{datatables.url}]]*/'[msg not found]';
+				var link = /*[[@{/api/showss/list}]]*/ '/api/showss/list';
+				var ctx = /*[[@{/}]]*/ '/';
+			</script>
+			<script>
+				$('#resultsTable').DataTable({
+					"processing" : true,
+					"serverSide" : true,
+				    "language" : {
+				        "url" : datatablesUrl
+					    },
+					"ajax" : {
+						"url" : link,
+						"type" : "POST",
+						"dataType" : "json",
+						"contentType" : "application/json",
+						"data" : function(d) {
+							return JSON.stringify(d);
+						}
+					},
+    				"columnDefs": [{
+        				"targets": '_all',
+        				"defaultContent": ""
+    				}],
+					"columns" : [ {
+						"name" : "cancelled",
+						"data" : "cancelled",
+					}, {
+						"name" : "epguidesshowname",
+						"data" : "epguidesshowname",
+					}, {
+						"name" : "incanceledas",
+						"data" : "incanceledas",
+					}, {
+						"name" : "lastshow",
+						"data" : "lastshow",
+					}, {
+						"name" : "network",
+						"data" : "network",
+					}, {
+						"name" : "premiere",
+						"data" : "premiere",
+					}, {
+						"name" : "premieredate",
+						"data" : "premieredate",
+					}, {
+						"name" : "status",
+						"data" : "status",
+					}, {
+						"name" : "tivoname",
+						"data" : "tivoname",
+					}, {
+						"data" : "id",
+						"render" : make_edit_links,
+						"width" : "10%"
+					} ]
+				});
 
-	        </tr>
-	    </table>
-		<div th:if="${SearchForm.page > 1}">
-			<div class="row col-sm-10">
-				<div class="col-sm-2">Total Rows:
-					[[${SearchForm.totalItems}]]</div>
-				<div class="col-sm-1">
-					<span
-						th:each="i: ${#numbers.sequence(1, SearchForm.totalPages)}">
-						<a th:if="${SearchForm.page != i}"
-						th:href="@{'/showss/search/' + ${i}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">[[${i}]]</a>
-						<span th:unless="${SearchForm.page != i}">[[${i}]]</span>
-						&nbsp; &nbsp;
-					</span>
-				</div>
-				<div class="col-sm-1">
-					<a
-						th:if="${SearchForm.page < SearchForm.totalPages}"
-						th:href="@{'/showss/search/' + ${SearchForm.page + 1}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">Next</a>
-					<span
-						th:unless="${SearchForm.page < SearchForm.totalPages}">Next</span>
-				</div>
 
-				<div class="col-sm-1">
-					<a
-						th:if="${SearchForm.page < SearchForm.totalPages}"
-						th:href="@{'/showss/search/' + ${SearchForm.totalPages}+ '?sortField=' + ${SearchForm.sortField} + '&sortDir=' + ${SearchForm.sortDir}}">Last</a>
-					<span
-						th:unless="${SearchForm.page < SearchForm.totalPages}">Last</span>
-				</div>
-			</div>
+				function make_edit_links(id) {
+					return "<a href=\""+ctx+"showss/edit/" + id +"\" id=\"edit_"+id + "\">"
+							+ editLab
+							+ "</a> &nbsp;&nbsp;&nbsp;"
+							+ "<a href=\""+ctx+"showss/delete/" + id +"\" id=\"delete_"+id + "\">"
+							+ deleteLab + "</a>";
+				}
+			</script>
 		</div>
 
-    </div>
-
-	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
-</body></html>
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

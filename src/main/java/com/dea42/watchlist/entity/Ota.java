@@ -15,10 +15,11 @@ import lombok.Data;
 /**
  * Title: ota Bean <br>
  * Description: Class for holding data from the ota table. <br>
- * Copyright: Copyright (c) 2001-2020<br>
+ * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by com.dea42.build.GenSpring version 0.6.3<br>
- * @version 0.6.3<br>
+ *
+ * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
+ * @version 0.7.1<br>
  * Table name: ota<br>
  * Column name: id<br>
  * Catalog name: null<br>
@@ -28,7 +29,7 @@ import lombok.Data;
  * null => primary key table catalog being imported (may be null)<br>
  * null => primary key table schema being imported (may be null) <br>
  * Account => primary key table name being imported <br>
- * id => primary key column name being imported<br>
+ * Id => primary key column name being imported<br>
  * null => foreign key table catalog (may be null)<br>
  * null => foreign key table schema (may be null)<br>
  * ota => foreign key table name <br>
@@ -63,16 +64,14 @@ public class Ota implements Serializable {
 	private String enabled;
 	@Column(name = "FccInfo", length = 10)
 	private String fccinfo;
-	@Column(name = "FccInfoLink", length = 6)
-	private String fccinfolink;
 	@Column(name = "Freq")
 	private Integer freq;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Integer id;
-	@Column(name = "Lang", length = 2)
-	private String lang;
+	@Column(name = "LangField", length = 2)
+	private String langfield;
 	@Column(name = "Listed")
 	private Integer listed;
 	@Column(name = "MyTivoAvgStrength")
@@ -94,7 +93,7 @@ public class Ota implements Serializable {
 	@Column(name = "TvFoolEstSignal", length = 5)
 	private String tvfoolestsignal;
 	@ManyToOne
-	@JoinColumn(name = "Userid", referencedColumnName = "id")
+	@JoinColumn(name = "Userid", referencedColumnName = "Id")
 	private Account account;
 	@Column(name = "WatchableTablo", length = 7)
 	private String watchabletablo;

@@ -57,22 +57,6 @@
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('epguidesshownamelink')}? 'has-error'">
-					<label for="epguidesshownamelink" class="col-lg-2 control-label"
-						th:text="#{Shows.epguidesshownamelink} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="epguidesshownamelink"
-							th:field="*{epguidesshownamelink}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('epguidesshownamelink')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
 				<input type="hidden" class="form-control" id="id" th:field="*{id}" />
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('incanceledas')}? 'has-error'">
@@ -83,22 +67,6 @@
 							th:field="*{incanceledas}" />
 						<ul class="help-block"
 							th:each="error: ${#fields.errors('incanceledas')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('incanceledaslink')}? 'has-error'">
-					<label for="incanceledaslink" class="col-lg-2 control-label"
-						th:text="#{Shows.incanceledaslink} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="incanceledaslink"
-							th:field="*{incanceledaslink}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('incanceledaslink')}">
 							<li th:each="message : ${error.split(';')}">
 								<p class="error-message" th:text="${message}"></p>
 							</li>
@@ -131,22 +99,6 @@
 							th:field="*{network}" />
 						<ul class="help-block"
 							th:each="error: ${#fields.errors('network')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('networklink')}? 'has-error'">
-					<label for="networklink" class="col-lg-2 control-label"
-						th:text="#{Shows.networklink} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="networklink"
-							th:field="*{networklink}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('networklink')}">
 							<li th:each="message : ${error.split(';')}">
 								<p class="error-message" th:text="${message}"></p>
 							</li>
@@ -218,22 +170,6 @@
 					</div>
 				</div>
 
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('tivonamelink')}? 'has-error'">
-					<label for="tivonamelink" class="col-lg-2 control-label"
-						th:text="#{Shows.tivonamelink} + ':'"></label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="tivonamelink"
-							th:field="*{tivonamelink}" />
-						<ul class="help-block"
-							th:each="error: ${#fields.errors('tivonamelink')}">
-							<li th:each="message : ${error.split(';')}">
-								<p class="error-message" th:text="${message}"></p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
 						<button type="submit" name="action" value="save"
@@ -245,5 +181,8 @@
 			</fieldset>
 		</form>
 
-	</div>	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy; 2020 default</div>
-</body></html>
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

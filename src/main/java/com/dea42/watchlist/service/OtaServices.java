@@ -33,8 +33,8 @@ import org.springframework.stereotype.Service;
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @Service
@@ -103,13 +103,9 @@ public class OtaServices {
 				searchSpec.add(new SearchCriteria<String>(null,"langfield", form.getLangfield().toLowerCase(),
 					SearchOperation.LIKE));
 			}
-			if (form.getListedMin() != null) {
-				searchSpec.add(new SearchCriteria<Integer>(null,"listed", form.getListedMin(),
-					SearchOperation.GREATER_THAN_EQUAL));
-			}
-			if (form.getListedMax() != null) {
-				searchSpec.add(new SearchCriteria<Integer>(null,"listed", form.getListedMax(),
-					SearchOperation.LESS_THAN_EQUAL));
+			if (form.getListed() != null) {
+				searchSpec.add(new SearchCriteria<Boolean>(null,"listed", form.getListed(),
+					SearchOperation.EQUAL));
 			}
 			if (form.getMytivoavgstrengthMin() != null) {
 				searchSpec.add(new SearchCriteria<Integer>(null,"mytivoavgstrength", form.getMytivoavgstrengthMin(),
@@ -149,19 +145,11 @@ public class OtaServices {
 			}
 			if (form.getTvfoolchanMin() != null) {
 				BigDecimal bd = form.getTvfoolchanMin();
-// SQLite rounds scales > 10 in select where compare though returns all decimals
-				if (bd.scale() > 10) {
-					bd = bd.setScale(10, BigDecimal.ROUND_DOWN);
-				}
 				searchSpec.add(new SearchCriteria<BigDecimal>(null,"tvfoolchan",bd,
 					SearchOperation.GREATER_THAN_EQUAL));
 			}
 			if (form.getTvfoolchanMax() != null) {
 				BigDecimal bd = form.getTvfoolchanMax();
-// SQLite rounds scales > 10 in select where compare though returns all decimals
-				if (bd.scale() > 10) {
-					bd = bd.setScale(10, BigDecimal.ROUND_UP);
-				}
 				searchSpec.add(new SearchCriteria<BigDecimal>(null,"tvfoolchan",bd,
 					SearchOperation.LESS_THAN_EQUAL));
 			}
@@ -212,11 +200,11 @@ public class OtaServices {
 		return otaRepository.save(ota);
 	}
 	
-	public Ota get(Integer id) {
+	public Ota get(Long id) {
 		return otaRepository.findById(id).get();
 	}
 	
-	public void delete(Integer id) {
+	public void delete(Long id) {
 		otaRepository.deleteById(id);
 	}
 
@@ -249,7 +237,6 @@ public class OtaServices {
 			accountForm = new AccountSearchForm();
 		}
 			accountForm.setEmail(value);
-			accountForm.setUserrole(value);
 			form.setAccount(accountForm);
 			form.setWatchabletablo(value);
 			form.setWatchabletivo(value);

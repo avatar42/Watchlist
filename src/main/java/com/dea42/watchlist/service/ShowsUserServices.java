@@ -36,8 +36,8 @@ import org.springframework.stereotype.Service;
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @Service
@@ -58,10 +58,6 @@ public class ShowsUserServices {
 				searchSpec.add(new SearchCriteria<String>(null,"comment", form.getComment().toLowerCase(),
 					SearchOperation.LIKE));
 			}
-			if (!StringUtils.isBlank(form.getDiff())) {
-				searchSpec.add(new SearchCriteria<String>(null,"diff", form.getDiff().toLowerCase(),
-					SearchOperation.LIKE));
-			}
 			if (!StringUtils.isBlank(form.getImdb())) {
 				searchSpec.add(new SearchCriteria<String>(null,"imdb", form.getImdb().toLowerCase(),
 					SearchOperation.LIKE));
@@ -80,6 +76,10 @@ public class ShowsUserServices {
 			}
 			if (!StringUtils.isBlank(form.getLastwatched())) {
 				searchSpec.add(new SearchCriteria<String>(null,"lastwatched", form.getLastwatched().toLowerCase(),
+					SearchOperation.LIKE));
+			}
+			if (!StringUtils.isBlank(form.getN67())) {
+				searchSpec.add(new SearchCriteria<String>(null,"n67", form.getN67().toLowerCase(),
 					SearchOperation.LIKE));
 			}
 			if (!StringUtils.isBlank(form.getOta())) {
@@ -161,11 +161,11 @@ public class ShowsUserServices {
 		return showsUserRepository.save(showsUser);
 	}
 	
-	public ShowsUser get(Integer id) {
+	public ShowsUser get(Long id) {
 		return showsUserRepository.findById(id).get();
 	}
 	
-	public void delete(Integer id) {
+	public void delete(Long id) {
 		showsUserRepository.deleteById(id);
 	}
 
@@ -181,12 +181,12 @@ public class ShowsUserServices {
 			log.info("Searching for:" + value);
 			form.setBestexperience(value);
 			form.setComment(value);
-			form.setDiff(value);
 			form.setImdb(value);
 			form.setInrokufeed(value);
 			form.setInshowrssas(value);
 			form.setJustwatch(value);
 			form.setLastwatched(value);
+			form.setN67(value);
 			form.setOta(value);
 		ShowsSearchForm showsForm =  form.getShows();
 		if (showsForm == null) {
@@ -207,7 +207,6 @@ public class ShowsUserServices {
 			accountForm = new AccountSearchForm();
 		}
 			accountForm.setEmail(value);
-			accountForm.setUserrole(value);
 			form.setAccount(accountForm);
 			form.setDoOr(SearchType.OR);
 			form.setAdvanced(false);

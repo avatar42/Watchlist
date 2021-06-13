@@ -20,35 +20,35 @@ import com.dea42.watchlist.search.NetworksSearchForm;
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @WebMvcTest(NetworksController.class)
 public class NetworksControllerTest extends MockBase {
-	private Networks getNetworks(Integer id) {
+	private Networks getNetworks(Long id) {
 		Networks o = new Networks();
 		o.setId(id);
-		// TODO: confirm ignoring Networks.androidapp
-		// TODO: confirm ignoring Networks.comment
+		/* TODO: confirm ignoring ColInfo(fNum=16, colName=AndroidApp, msgKey=Networks.androidapp, vName=androidapp, type=String, jtype=null, stype=12, gsName=Androidapp, length=1, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=22, colName=Comment, msgKey=Networks.comment, vName=comment, type=String, jtype=null, stype=12, gsName=Comment, length=458, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
         o.setCommercials(getTestString(68));
-		// TODO: confirm ignoring Networks.fireapp
-		// TODO: confirm ignoring Networks.freewithtwcid
-		// TODO: confirm ignoring Networks.hasdirectbuyoption
-		// TODO: confirm ignoring Networks.haswatchlist
-		// TODO: confirm ignoring Networks.icanota
-		// TODO: confirm ignoring Networks.iptvservice
+		/* TODO: confirm ignoring ColInfo(fNum=19, colName=FireApp, msgKey=Networks.fireapp, vName=fireapp, type=String, jtype=null, stype=12, gsName=Fireapp, length=56, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=11, colName=FreeWithTwcId, msgKey=Networks.freewithtwcid, vName=freewithtwcid, type=String, jtype=null, stype=12, gsName=Freewithtwcid, length=57, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=12, colName=HasDirectBuyOption, msgKey=Networks.hasdirectbuyoption, vName=hasdirectbuyoption, type=String, jtype=null, stype=12, gsName=Hasdirectbuyoption, length=82, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=10, colName=HasWatchList, msgKey=Networks.haswatchlist, vName=haswatchlist, type=String, jtype=null, stype=12, gsName=Haswatchlist, length=46, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=14, colName=ICanOta, msgKey=Networks.icanota, vName=icanota, type=String, jtype=null, stype=12, gsName=Icanota, length=63, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=20, colName=IptvService, msgKey=Networks.iptvservice, vName=iptvservice, type=String, jtype=null, stype=12, gsName=Iptvservice, length=214, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
         o.setOnhulu(getTestString(14));
         o.setPersistance(getTestString(70));
-		// TODO: confirm ignoring Networks.remembersplaceinepisode
-		// TODO: confirm ignoring Networks.rememberswatchedepisodes
+		/* TODO: confirm ignoring ColInfo(fNum=8, colName=RemembersPlaceInEpisode, msgKey=Networks.remembersplaceinepisode, vName=remembersplaceinepisode, type=String, jtype=null, stype=12, gsName=Remembersplaceinepisode, length=57, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=9, colName=RemembersWatchedEpisodes, msgKey=Networks.rememberswatchedepisodes, vName=rememberswatchedepisodes, type=String, jtype=null, stype=12, gsName=Rememberswatchedepisodes, length=35, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
         o.setRokuapp(getTestString(97));
-		// TODO: confirm ignoring Networks.showsintivonpl
+		/* TODO: confirm ignoring ColInfo(fNum=5, colName=ShowsInTivoNpl, msgKey=Networks.showsintivonpl, vName=showsintivonpl, type=Integer, jtype=null, stype=4, gsName=Showsintivonpl, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
         o.setSite(getTestString(28));
         o.setStandardwait(getTestString(17));
-		// TODO: confirm ignoring Networks.tivoapp
-		// TODO: confirm ignoring Networks.tivoshortname
-		// TODO: confirm ignoring Networks.webinterface
+		/* TODO: confirm ignoring ColInfo(fNum=18, colName=TivoApp, msgKey=Networks.tivoapp, vName=tivoapp, type=String, jtype=null, stype=12, gsName=Tivoapp, length=61, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=4, colName=TivoShortName, msgKey=Networks.tivoshortname, vName=tivoshortname, type=String, jtype=null, stype=12, gsName=Tivoshortname, length=10, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=15, colName=WebInterface, msgKey=Networks.webinterface, vName=webinterface, type=String, jtype=null, stype=12, gsName=Webinterface, length=56, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 		return o;
 	}
 
@@ -59,7 +59,7 @@ public class NetworksControllerTest extends MockBase {
 	@Test
 	public void testGetAllNetworkss() throws Exception {
 		List<Networks> list = new ArrayList<>();
-		Networks o = getNetworks(1);
+		Networks o = getNetworks(1l);
 		list.add(o);
 
 		Page<Networks> p = getPage(list);
@@ -67,32 +67,32 @@ public class NetworksControllerTest extends MockBase {
 
 		ResultActions ra = getAsAdmin("/networkss");
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Networks") + " " + getMsg("edit.list") + "</h1>");
-		// TODO: confirm ignoring Networks.androidapp
-		// TODO: confirm ignoring Networks.comment
+		/* TODO: confirm ignoring ColInfo(fNum=16, colName=AndroidApp, msgKey=Networks.androidapp, vName=androidapp, type=String, jtype=null, stype=12, gsName=Androidapp, length=1, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=22, colName=Comment, msgKey=Networks.comment, vName=comment, type=String, jtype=null, stype=12, gsName=Comment, length=458, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 //		contentContainsMarkup(ra,getTestString(68));
 //		contentContainsMarkup(ra,getMsg("Networks.commercials"));
-		// TODO: confirm ignoring Networks.fireapp
-		// TODO: confirm ignoring Networks.freewithtwcid
-		// TODO: confirm ignoring Networks.hasdirectbuyoption
-		// TODO: confirm ignoring Networks.haswatchlist
-		// TODO: confirm ignoring Networks.icanota
-		// TODO: confirm ignoring Networks.iptvservice
+		/* TODO: confirm ignoring ColInfo(fNum=19, colName=FireApp, msgKey=Networks.fireapp, vName=fireapp, type=String, jtype=null, stype=12, gsName=Fireapp, length=56, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=11, colName=FreeWithTwcId, msgKey=Networks.freewithtwcid, vName=freewithtwcid, type=String, jtype=null, stype=12, gsName=Freewithtwcid, length=57, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=12, colName=HasDirectBuyOption, msgKey=Networks.hasdirectbuyoption, vName=hasdirectbuyoption, type=String, jtype=null, stype=12, gsName=Hasdirectbuyoption, length=82, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=10, colName=HasWatchList, msgKey=Networks.haswatchlist, vName=haswatchlist, type=String, jtype=null, stype=12, gsName=Haswatchlist, length=46, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=14, colName=ICanOta, msgKey=Networks.icanota, vName=icanota, type=String, jtype=null, stype=12, gsName=Icanota, length=63, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=20, colName=IptvService, msgKey=Networks.iptvservice, vName=iptvservice, type=String, jtype=null, stype=12, gsName=Iptvservice, length=214, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 //		contentContainsMarkup(ra,getTestString(14));
 //		contentContainsMarkup(ra,getMsg("Networks.onhulu"));
 //		contentContainsMarkup(ra,getTestString(70));
 //		contentContainsMarkup(ra,getMsg("Networks.persistance"));
-		// TODO: confirm ignoring Networks.remembersplaceinepisode
-		// TODO: confirm ignoring Networks.rememberswatchedepisodes
+		/* TODO: confirm ignoring ColInfo(fNum=8, colName=RemembersPlaceInEpisode, msgKey=Networks.remembersplaceinepisode, vName=remembersplaceinepisode, type=String, jtype=null, stype=12, gsName=Remembersplaceinepisode, length=57, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=9, colName=RemembersWatchedEpisodes, msgKey=Networks.rememberswatchedepisodes, vName=rememberswatchedepisodes, type=String, jtype=null, stype=12, gsName=Rememberswatchedepisodes, length=35, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 //		contentContainsMarkup(ra,getTestString(97));
 //		contentContainsMarkup(ra,getMsg("Networks.rokuapp"));
-		// TODO: confirm ignoring Networks.showsintivonpl
+		/* TODO: confirm ignoring ColInfo(fNum=5, colName=ShowsInTivoNpl, msgKey=Networks.showsintivonpl, vName=showsintivonpl, type=Integer, jtype=null, stype=4, gsName=Showsintivonpl, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 //		contentContainsMarkup(ra,getTestString(28));
 //		contentContainsMarkup(ra,getMsg("Networks.site"));
 //		contentContainsMarkup(ra,getTestString(17));
 //		contentContainsMarkup(ra,getMsg("Networks.standardwait"));
-		// TODO: confirm ignoring Networks.tivoapp
-		// TODO: confirm ignoring Networks.tivoshortname
-		// TODO: confirm ignoring Networks.webinterface
+		/* TODO: confirm ignoring ColInfo(fNum=18, colName=TivoApp, msgKey=Networks.tivoapp, vName=tivoapp, type=String, jtype=null, stype=12, gsName=Tivoapp, length=61, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=4, colName=TivoShortName, msgKey=Networks.tivoshortname, vName=tivoshortname, type=String, jtype=null, stype=12, gsName=Tivoshortname, length=10, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=15, colName=WebInterface, msgKey=Networks.webinterface, vName=webinterface, type=String, jtype=null, stype=12, gsName=Webinterface, length=56, pk=false, defaultVal=, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class NetworksControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveNetworksCancel() throws Exception {
-		Networks o = getNetworks(1);
+		Networks o = getNetworks(1l);
 
 		send(SEND_POST, "/networkss/save", "networks", o, ImmutableMap.of("action", "cancel"), ADMIN_EMAIL,
 				"/networkss");
@@ -146,7 +146,7 @@ public class NetworksControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveNetworksSave() throws Exception {
-		Networks o = getNetworks(0);
+		Networks o = getNetworks(0l);
 		NetworksForm form = NetworksForm.getInstance(o);
 		log.debug(form.toString());
 
@@ -162,9 +162,9 @@ public class NetworksControllerTest extends MockBase {
 	 */
 	@Test
 	public void testShowEditNetworksPage() throws Exception {
-		Networks o = getNetworks(1);
+		Networks o = getNetworks(1l);
 
-		given(networksServices.get(1)).willReturn(o);
+		given(networksServices.get(1l)).willReturn(o);
 
 		ResultActions ra = getAsAdmin("/networkss/edit/1");
 		contentContainsMarkup(ra,o.getAndroidapp());

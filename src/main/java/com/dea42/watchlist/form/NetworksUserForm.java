@@ -10,20 +10,20 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 /**
- * Title: networksuser Form <br>
- * Description: Class for holding data from the networksuser table for editing. <br>
+ * Title: NetworksUser Form <br>
+ * Description: Class for holding data from the NetworksUser table for editing. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 
 @Data
 public class NetworksUserForm implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private Integer id;
+	private Long id = 0l;
     @Length(max=1)
 	private String iusefreefreewithcablepayforhuluinstead;
 	private Networks networks;

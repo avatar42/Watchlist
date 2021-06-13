@@ -39,8 +39,8 @@ import lombok.extern.slf4j.Slf4j;
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @Controller
@@ -74,7 +74,7 @@ public class ShowsUserController {
 
 	@GetMapping("/new")
 	public ModelAndView showNewPage() {
-		return showEditPage(0);
+		return showEditPage(0l);
 	}
 
 	@PostMapping(value = "/search")
@@ -152,13 +152,13 @@ public class ShowsUserController {
 			ShowsUser showsUser = new ShowsUser();
 			showsUser.setBestexperience(form.getBestexperience());
 			showsUser.setComment(form.getComment());
-			showsUser.setDiff(form.getDiff());
 			showsUser.setId(form.getId());
 			showsUser.setImdb(form.getImdb());
 			showsUser.setInrokufeed(form.getInrokufeed());
 			showsUser.setInshowrssas(form.getInshowrssas());
 			showsUser.setJustwatch(form.getJustwatch());
 			showsUser.setLastwatched(form.getLastwatched());
+			showsUser.setN67(form.getN67());
 			showsUser.setOta(form.getOta());
 			showsUser.setShows(form.getShows());
 			showsUser.setTablolink(form.getTablolink());
@@ -182,7 +182,7 @@ public class ShowsUserController {
 	}
 
 	@GetMapping("/edit/{id}")
-	public ModelAndView showEditPage(@PathVariable(name = "id") Integer id) {
+	public ModelAndView showEditPage(@PathVariable(name = "id") Long id) {
 		ModelAndView mav = new ModelAndView("edit_showsUser");
 		ShowsUser showsUser = null;
 		if (id > 0)
@@ -193,7 +193,7 @@ public class ShowsUserController {
 	}
 
 	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable(name = "id") Integer id) {
+	public String delete(@PathVariable(name = "id") Long id) {
 		showsUserService.delete(id);
 		return "redirect:/showsUsers";
 	}

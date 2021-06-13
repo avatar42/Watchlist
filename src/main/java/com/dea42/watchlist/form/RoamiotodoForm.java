@@ -11,13 +11,13 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
- * Title: roamiotodo Form <br>
- * Description: Class for holding data from the roamiotodo table for editing. <br>
+ * Title: RoamioTodo Form <br>
+ * Description: Class for holding data from the RoamioTodo table for editing. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 
 @Data
@@ -34,7 +34,7 @@ public class RoamiotodoForm implements Serializable {
 	private String ep;
     @Length(max=59)
 	private String episodename;
-	private Integer id;
+	private Long id = 0l;
     @Length(max=48)
 	private String showname;
     @Length(max=47)

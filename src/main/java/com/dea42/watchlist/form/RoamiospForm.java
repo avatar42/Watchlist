@@ -9,13 +9,13 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 /**
- * Title: roamiosp Form <br>
- * Description: Class for holding data from the roamiosp table for editing. <br>
+ * Title: RoamioSp Form <br>
+ * Description: Class for holding data from the RoamioSp table for editing. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 
 @Data
@@ -25,7 +25,7 @@ public class RoamiospForm implements Serializable {
     @Length(max=14)
 	private String channel;
 	private Integer end;
-	private Integer id;
+	private Long id = 0l;
     @Length(max=8)
 	private String include;
     @Length(max=7)

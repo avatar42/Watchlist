@@ -16,24 +16,30 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 /**
- * Title: accountSearchForm <br>
- * Description: Class for holding data from the account table for searching. <br>
+ * Title: AccountSearchForm <br>
+ * Description: Class for holding data from the Account table for searching. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Data
 public class AccountSearchForm implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private String email = null;
-	private Integer idMin;
-	private Integer idMax;
-	private String name = null;
-	private String password = null;
-	private String userrole = null;
+	private String email = "";
+/* info=ColInfo(fNum=2, colName=id, msgKey=Account.id, vName=id, type=Long, jtype=null, stype=-5, gsName=Id, length=0, pk=true, defaultVal=null, constraint=null, required=true, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment= * Table name: Account<br>
+ * Column name: id<br>
+ * Catalog name: Watchlist<br>
+ * Primary key sequence: 1<br>
+ * Primary key name: PRIMARY<br>
+ *  <br>) */
+	private Long idMin;
+	private Long idMax;
+	private String name = "";
+	private String password = "";
+	private String userrole = "";
 	private String sortField = "id";
 	private int page = 1;
 	private int pageSize = 10;

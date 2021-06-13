@@ -19,13 +19,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 /**
- * Title: otaSearch Test <br>
- * Description: Does regression tests of ota search from service to DB <br>
+ * Title: OtaSearch Test <br>
+ * Description: Does regression tests of Ota search from service to DB <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -35,7 +35,7 @@ public class OtaSearchTest extends UnitBase {
 	@Autowired
 	private OtaServices otaServices;
 
-	private Page<Ota> confirmGotResult(OtaSearchForm form, Integer expectedID) {
+	private Page<Ota> confirmGotResult(OtaSearchForm form, Long expectedID) {
 		log.info("form:"+form);
 		Page<Ota> list = otaServices.listAll(form);
 		assertNotNull("Checking return not null", list);
@@ -53,7 +53,7 @@ public class OtaSearchTest extends UnitBase {
 		return list;
 	}
 
-	private Ota getMidRecord(OtaSearchForm form, Integer expectedID) {
+	private Ota getMidRecord(OtaSearchForm form, Long expectedID) {
 		Page<Ota> list = confirmGotResult(form, expectedID);
 		assertNotNull("Checking return not null", list);
 		int size = list.toList().size();
@@ -71,9 +71,9 @@ public class OtaSearchTest extends UnitBase {
 		// atticant Integer 4
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setAtticantMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with atticant of " + rec.getAtticant());
 
 		form = new OtaSearchForm();
@@ -105,9 +105,9 @@ public class OtaSearchTest extends UnitBase {
 		// chan Integer 4
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setChanMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with chan of " + rec.getChan());
 
 		form = new OtaSearchForm();
@@ -139,9 +139,9 @@ public class OtaSearchTest extends UnitBase {
 		// channelname String 12
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setChannelname("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with channelname of " + rec.getChannelname());
 
 		form = new OtaSearchForm();
@@ -171,9 +171,9 @@ public class OtaSearchTest extends UnitBase {
 		// channelnumber String 12
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setChannelnumber("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with channelnumber of " + rec.getChannelnumber());
 
 		form = new OtaSearchForm();
@@ -203,9 +203,9 @@ public class OtaSearchTest extends UnitBase {
 		// channelnumberchannelnameincluded String 12
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setChannelnumberchannelnameincluded("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with channelnumberchannelnameincluded of " + rec.getChannelnumberchannelnameincluded());
 
 		form = new OtaSearchForm();
@@ -235,9 +235,9 @@ public class OtaSearchTest extends UnitBase {
 		// comments String 12
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setComments("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with comments of " + rec.getComments());
 
 		form = new OtaSearchForm();
@@ -267,9 +267,9 @@ public class OtaSearchTest extends UnitBase {
 		// direction String 12
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setDirection("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with direction of " + rec.getDirection());
 
 		form = new OtaSearchForm();
@@ -299,9 +299,9 @@ public class OtaSearchTest extends UnitBase {
 		// enabled String 12
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setEnabled("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with enabled of " + rec.getEnabled());
 
 		form = new OtaSearchForm();
@@ -331,9 +331,9 @@ public class OtaSearchTest extends UnitBase {
 		// fccinfo String 12
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setFccinfo("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with fccinfo of " + rec.getFccinfo());
 
 		form = new OtaSearchForm();
@@ -363,9 +363,9 @@ public class OtaSearchTest extends UnitBase {
 		// freq Integer 4
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setFreqMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with freq of " + rec.getFreq());
 
 		form = new OtaSearchForm();
@@ -397,9 +397,9 @@ public class OtaSearchTest extends UnitBase {
 		// langfield String 12
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setLangfield("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with langfield of " + rec.getLangfield());
 
 		form = new OtaSearchForm();
@@ -426,36 +426,15 @@ public class OtaSearchTest extends UnitBase {
 
 	@Test
 	public void testListed() {
-		// listed Integer 4
+		// listed Boolean -7
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setListedMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with listed of " + rec.getListed());
-
-		form = new OtaSearchForm();
-		form.setListedMin(rec.getListed());
-		form.setListedMax(rec.getListed() + 1);
-		confirmGotResult(form, rec.getId());
-
-		form = new OtaSearchForm();
-		form.setListedMin(rec.getListed() - 1);
-		form.setListedMax(rec.getListed());
-		confirmGotResult(form, rec.getId());
-
-		form = new OtaSearchForm();
-		form.setListedMin(rec.getListed());
-		confirmGotResult(form, rec.getId());
-
-		form = new OtaSearchForm();
-		form.setListedMax(rec.getListed());
-		confirmGotResult(form, rec.getId());
-
-		form = new OtaSearchForm();
-		form.setListedMin(rec.getListed());
-		form.setListedMax(rec.getListed());
-		confirmGotResult(form, rec.getId());
+		rec = getMidRecord(form, 0l);
+		log.info("Searching for records with listed");
+		form.setListed(Boolean.FALSE);
+		confirmGotResult(form, 0l);
+		form.setListed(Boolean.TRUE);
+		confirmGotResult(form, 0l);
 	}
 
 	@Test
@@ -463,9 +442,9 @@ public class OtaSearchTest extends UnitBase {
 		// mytivoavgstrength Integer 4
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setMytivoavgstrengthMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with mytivoavgstrength of " + rec.getMytivoavgstrength());
 
 		form = new OtaSearchForm();
@@ -497,9 +476,9 @@ public class OtaSearchTest extends UnitBase {
 		// network String 12
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setNetwork("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with network of " + rec.getNetwork());
 
 		form = new OtaSearchForm();
@@ -529,9 +508,9 @@ public class OtaSearchTest extends UnitBase {
 		// off String 12
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setOff("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with off of " + rec.getOff());
 
 		form = new OtaSearchForm();
@@ -561,9 +540,9 @@ public class OtaSearchTest extends UnitBase {
 		// recommendedantenna String 12
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setRecommendedantenna("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with recommendedantenna of " + rec.getRecommendedantenna());
 
 		form = new OtaSearchForm();
@@ -593,9 +572,9 @@ public class OtaSearchTest extends UnitBase {
 		// rez String 12
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setRez("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with rez of " + rec.getRez());
 
 		form = new OtaSearchForm();
@@ -625,9 +604,9 @@ public class OtaSearchTest extends UnitBase {
 		// station String 12
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setStation("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with station of " + rec.getStation());
 
 		form = new OtaSearchForm();
@@ -657,9 +636,9 @@ public class OtaSearchTest extends UnitBase {
 		// subchan Integer 4
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setSubchanMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with subchan of " + rec.getSubchan());
 
 		form = new OtaSearchForm();
@@ -688,12 +667,12 @@ public class OtaSearchTest extends UnitBase {
 
 	@Test
 	public void testTvfoolchan() {
-		// tvfoolchan BigDecimal 6
+		// tvfoolchan BigDecimal 8
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setTvfoolchanMin(new BigDecimal(Integer.MIN_VALUE));
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with tvfoolchan of " + rec.getTvfoolchan());
 
 		form = new OtaSearchForm();
@@ -725,9 +704,9 @@ public class OtaSearchTest extends UnitBase {
 		// tvfoolestsignal String 12
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setTvfoolestsignal("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with tvfoolestsignal of " + rec.getTvfoolestsignal());
 
 		form = new OtaSearchForm();
@@ -754,10 +733,10 @@ public class OtaSearchTest extends UnitBase {
 
 	@Test
 	public void testAccount() {
-		// account Account 4
+		// account Account -5
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 // TODO: skip further tests now
 	}
 
@@ -766,9 +745,9 @@ public class OtaSearchTest extends UnitBase {
 		// watchabletablo String 12
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setWatchabletablo("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with watchabletablo of " + rec.getWatchabletablo());
 
 		form = new OtaSearchForm();
@@ -798,9 +777,9 @@ public class OtaSearchTest extends UnitBase {
 		// watchabletivo String 12
 		Ota rec = null;
 		OtaSearchForm form = new OtaSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setWatchabletivo("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with watchabletivo of " + rec.getWatchabletivo());
 
 		form = new OtaSearchForm();

@@ -20,13 +20,13 @@ import com.dea42.watchlist.search.RoamiospSearchForm;
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @WebMvcTest(RoamiospController.class)
 public class RoamiospControllerTest extends MockBase {
-	private Roamiosp getRoamiosp(Integer id) {
+	private Roamiosp getRoamiosp(Long id) {
 		Roamiosp o = new Roamiosp();
 		o.setId(id);
         o.setChannel(getTestString(14));
@@ -44,7 +44,7 @@ public class RoamiospControllerTest extends MockBase {
 	@Test
 	public void testGetAllRoamiosps() throws Exception {
 		List<Roamiosp> list = new ArrayList<>();
-		Roamiosp o = getRoamiosp(1);
+		Roamiosp o = getRoamiosp(1l);
 		list.add(o);
 
 		Page<Roamiosp> p = getPage(list);
@@ -100,7 +100,7 @@ public class RoamiospControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveRoamiospCancel() throws Exception {
-		Roamiosp o = getRoamiosp(1);
+		Roamiosp o = getRoamiosp(1l);
 
 		send(SEND_POST, "/roamiosps/save", "roamiosp", o, ImmutableMap.of("action", "cancel"), ADMIN_EMAIL,
 				"/roamiosps");
@@ -112,7 +112,7 @@ public class RoamiospControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveRoamiospSave() throws Exception {
-		Roamiosp o = getRoamiosp(0);
+		Roamiosp o = getRoamiosp(0l);
 		RoamiospForm form = RoamiospForm.getInstance(o);
 		log.debug(form.toString());
 
@@ -128,9 +128,9 @@ public class RoamiospControllerTest extends MockBase {
 	 */
 	@Test
 	public void testShowEditRoamiospPage() throws Exception {
-		Roamiosp o = getRoamiosp(1);
+		Roamiosp o = getRoamiosp(1l);
 
-		given(roamiospServices.get(1)).willReturn(o);
+		given(roamiospServices.get(1l)).willReturn(o);
 
 		ResultActions ra = getAsAdmin("/roamiosps/edit/1");
 		contentContainsMarkup(ra,o.getChannel());

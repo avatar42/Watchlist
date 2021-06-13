@@ -13,31 +13,37 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 /**
- * Title: showsuserSearchForm <br>
- * Description: Class for holding data from the showsuser table for searching. <br>
+ * Title: ShowsUserSearchForm <br>
+ * Description: Class for holding data from the ShowsUser table for searching. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Data
 public class ShowsUserSearchForm implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private String bestexperience = null;
-	private String comment = null;
-	private String diff = null;
-	private Integer idMin;
-	private Integer idMax;
-	private String imdb = null;
-	private String inrokufeed = null;
-	private String inshowrssas = null;
-	private String justwatch = null;
-	private String lastwatched = null;
-	private String ota = null;
+	private String bestexperience = "";
+	private String comment = "";
+/* info=ColInfo(fNum=2, colName=id, msgKey=ShowsUser.id, vName=id, type=Long, jtype=null, stype=-5, gsName=Id, length=0, pk=true, defaultVal=null, constraint=null, required=true, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment= * Table name: ShowsUser<br>
+ * Column name: id<br>
+ * Catalog name: Watchlist<br>
+ * Primary key sequence: 1<br>
+ * Primary key name: PRIMARY<br>
+ *  <br>) */
+	private Long idMin;
+	private Long idMax;
+	private String imdb = "";
+	private String inrokufeed = "";
+	private String inshowrssas = "";
+	private String justwatch = "";
+	private String lastwatched = "";
+	private String n67 = "";
+	private String ota = "";
 	private ShowsSearchForm shows;
-	private String tablolink = null;
+	private String tablolink = "";
 	private AccountSearchForm account;
 	private String sortField = "id";
 	private int page = 1;
@@ -56,7 +62,6 @@ public class ShowsUserSearchForm implements Serializable {
 		ShowsUserSearchForm form = new ShowsUserSearchForm();
 		form.setBestexperience(obj.getBestexperience());
 		form.setComment(obj.getComment());
-		form.setDiff(obj.getDiff());
 		form.setIdMin(obj.getId());
 		form.setIdMax(obj.getId());
 		form.setImdb(obj.getImdb());
@@ -64,6 +69,7 @@ public class ShowsUserSearchForm implements Serializable {
 		form.setInshowrssas(obj.getInshowrssas());
 		form.setJustwatch(obj.getJustwatch());
 		form.setLastwatched(obj.getLastwatched());
+		form.setN67(obj.getN67());
 		form.setOta(obj.getOta());
 		form.setShows(ShowsSearchForm.getInstance(obj.getShows()));
 		form.setTablolink(obj.getTablolink());

@@ -17,13 +17,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 /**
- * Title: networksSearch Test <br>
- * Description: Does regression tests of networks search from service to DB <br>
+ * Title: NetworksSearch Test <br>
+ * Description: Does regression tests of Networks search from service to DB <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -33,7 +33,7 @@ public class NetworksSearchTest extends UnitBase {
 	@Autowired
 	private NetworksServices networksServices;
 
-	private Page<Networks> confirmGotResult(NetworksSearchForm form, Integer expectedID) {
+	private Page<Networks> confirmGotResult(NetworksSearchForm form, Long expectedID) {
 		log.info("form:"+form);
 		Page<Networks> list = networksServices.listAll(form);
 		assertNotNull("Checking return not null", list);
@@ -51,7 +51,7 @@ public class NetworksSearchTest extends UnitBase {
 		return list;
 	}
 
-	private Networks getMidRecord(NetworksSearchForm form, Integer expectedID) {
+	private Networks getMidRecord(NetworksSearchForm form, Long expectedID) {
 		Page<Networks> list = confirmGotResult(form, expectedID);
 		assertNotNull("Checking return not null", list);
 		int size = list.toList().size();
@@ -69,9 +69,9 @@ public class NetworksSearchTest extends UnitBase {
 		// androidapp String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setAndroidapp("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with androidapp of " + rec.getAndroidapp());
 
 		form = new NetworksSearchForm();
@@ -101,9 +101,9 @@ public class NetworksSearchTest extends UnitBase {
 		// comment String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setComment("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with comment of " + rec.getComment());
 
 		form = new NetworksSearchForm();
@@ -133,9 +133,9 @@ public class NetworksSearchTest extends UnitBase {
 		// commercials String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setCommercials("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with commercials of " + rec.getCommercials());
 
 		form = new NetworksSearchForm();
@@ -165,9 +165,9 @@ public class NetworksSearchTest extends UnitBase {
 		// fireapp String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setFireapp("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with fireapp of " + rec.getFireapp());
 
 		form = new NetworksSearchForm();
@@ -197,9 +197,9 @@ public class NetworksSearchTest extends UnitBase {
 		// freewithtwcid String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setFreewithtwcid("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with freewithtwcid of " + rec.getFreewithtwcid());
 
 		form = new NetworksSearchForm();
@@ -229,9 +229,9 @@ public class NetworksSearchTest extends UnitBase {
 		// hasdirectbuyoption String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setHasdirectbuyoption("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with hasdirectbuyoption of " + rec.getHasdirectbuyoption());
 
 		form = new NetworksSearchForm();
@@ -261,9 +261,9 @@ public class NetworksSearchTest extends UnitBase {
 		// haswatchlist String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setHaswatchlist("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with haswatchlist of " + rec.getHaswatchlist());
 
 		form = new NetworksSearchForm();
@@ -293,9 +293,9 @@ public class NetworksSearchTest extends UnitBase {
 		// icanota String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setIcanota("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with icanota of " + rec.getIcanota());
 
 		form = new NetworksSearchForm();
@@ -325,9 +325,9 @@ public class NetworksSearchTest extends UnitBase {
 		// iptvservice String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setIptvservice("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with iptvservice of " + rec.getIptvservice());
 
 		form = new NetworksSearchForm();
@@ -357,9 +357,9 @@ public class NetworksSearchTest extends UnitBase {
 		// onhulu String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setOnhulu("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with onhulu of " + rec.getOnhulu());
 
 		form = new NetworksSearchForm();
@@ -389,9 +389,9 @@ public class NetworksSearchTest extends UnitBase {
 		// persistance String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setPersistance("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with persistance of " + rec.getPersistance());
 
 		form = new NetworksSearchForm();
@@ -421,9 +421,9 @@ public class NetworksSearchTest extends UnitBase {
 		// remembersplaceinepisode String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setRemembersplaceinepisode("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with remembersplaceinepisode of " + rec.getRemembersplaceinepisode());
 
 		form = new NetworksSearchForm();
@@ -453,9 +453,9 @@ public class NetworksSearchTest extends UnitBase {
 		// rememberswatchedepisodes String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setRememberswatchedepisodes("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with rememberswatchedepisodes of " + rec.getRememberswatchedepisodes());
 
 		form = new NetworksSearchForm();
@@ -485,9 +485,9 @@ public class NetworksSearchTest extends UnitBase {
 		// rokuapp String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setRokuapp("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with rokuapp of " + rec.getRokuapp());
 
 		form = new NetworksSearchForm();
@@ -517,9 +517,9 @@ public class NetworksSearchTest extends UnitBase {
 		// showsintivonpl Integer 4
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setShowsintivonplMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with showsintivonpl of " + rec.getShowsintivonpl());
 
 		form = new NetworksSearchForm();
@@ -551,9 +551,9 @@ public class NetworksSearchTest extends UnitBase {
 		// site String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setSite("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with site of " + rec.getSite());
 
 		form = new NetworksSearchForm();
@@ -583,9 +583,9 @@ public class NetworksSearchTest extends UnitBase {
 		// standardwait String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setStandardwait("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with standardwait of " + rec.getStandardwait());
 
 		form = new NetworksSearchForm();
@@ -615,9 +615,9 @@ public class NetworksSearchTest extends UnitBase {
 		// tivoapp String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setTivoapp("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with tivoapp of " + rec.getTivoapp());
 
 		form = new NetworksSearchForm();
@@ -647,9 +647,9 @@ public class NetworksSearchTest extends UnitBase {
 		// tivoshortname String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setTivoshortname("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with tivoshortname of " + rec.getTivoshortname());
 
 		form = new NetworksSearchForm();
@@ -679,9 +679,9 @@ public class NetworksSearchTest extends UnitBase {
 		// webinterface String 12
 		Networks rec = null;
 		NetworksSearchForm form = new NetworksSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setWebinterface("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with webinterface of " + rec.getWebinterface());
 
 		form = new NetworksSearchForm();

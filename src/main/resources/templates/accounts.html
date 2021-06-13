@@ -26,7 +26,6 @@
 				<thead>
 					<tr>
 						<th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.email}"></th>
-						<th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.userrole}"></th>
 						<th th:text="#{edit.actions}"></th>
 					</tr>
 				</thead>
@@ -61,9 +60,6 @@
 					"columns" : [ {
 						"name" : "email",
 						"data" : "email",
-					}, {
-						"name" : "userrole",
-						"data" : "userrole",
 					}, {
 						"data" : "id",
 						"render" : make_edit_links,

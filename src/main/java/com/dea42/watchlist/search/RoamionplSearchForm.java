@@ -13,40 +13,54 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 /**
- * Title: roamionplSearchForm <br>
- * Description: Class for holding data from the roamionpl table for searching. <br>
+ * Title: RoamioNplSearchForm <br>
+ * Description: Class for holding data from the RoamioNpl table for searching. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Data
 public class RoamionplSearchForm implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+/* info=ColInfo(fNum=12, colName=BitrateMbps, msgKey=Roamionpl.bitratembps, vName=bitratembps, type=Integer, jtype=null, stype=4, gsName=Bitratembps, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 	private Integer bitratembpsMin;
 	private Integer bitratembpsMax;
-	private String channel = null;
+	private String channel = "";
+/* info=ColInfo(fNum=7, colName=DateField, msgKey=Roamionpl.datefield, vName=datefield, type=BigDecimal, jtype=null, stype=8, gsName=Datefield, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=22, comment=null) */
 	private BigDecimal datefieldMin;
 	private BigDecimal datefieldMax;
+/* info=ColInfo(fNum=10, colName=Duration, msgKey=Roamionpl.duration, vName=duration, type=BigDecimal, jtype=null, stype=8, gsName=Duration, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=22, comment=null) */
 	private BigDecimal durationMin;
 	private BigDecimal durationMax;
-	private String episode = null;
-	private Integer idMin;
-	private Integer idMax;
+	private String episode = "";
+/* info=ColInfo(fNum=2, colName=id, msgKey=Roamionpl.id, vName=id, type=Long, jtype=null, stype=-5, gsName=Id, length=0, pk=true, defaultVal=null, constraint=null, required=true, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment= * Table name: RoamioNpl<br>
+ * Column name: id<br>
+ * Catalog name: Watchlist<br>
+ * Primary key sequence: 1<br>
+ * Primary key name: PRIMARY<br>
+ *  <br>) */
+	private Long idMin;
+	private Long idMax;
+/* info=ColInfo(fNum=14, colName=Isnew, msgKey=Roamionpl.isnew, vName=isnew, type=BigDecimal, jtype=null, stype=8, gsName=Isnew, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=22, comment=null) */
 	private BigDecimal isnewMin;
 	private BigDecimal isnewMax;
+/* info=ColInfo(fNum=16, colName=RowInShows, msgKey=Roamionpl.rowinshows, vName=rowinshows, type=Integer, jtype=null, stype=4, gsName=Rowinshows, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 	private Integer rowinshowsMin;
 	private Integer rowinshowsMax;
-	private String seriesep = null;
-	private String show = null;
+	private String seriesep = "";
+	private String show = "";
+/* info=ColInfo(fNum=11, colName=SizeGb, msgKey=Roamionpl.sizegb, vName=sizegb, type=Integer, jtype=null, stype=4, gsName=Sizegb, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 	private Integer sizegbMin;
 	private Integer sizegbMax;
+/* info=ColInfo(fNum=8, colName=SortableDate, msgKey=Roamionpl.sortabledate, vName=sortabledate, type=Long, jtype=null, stype=-5, gsName=Sortabledate, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 	private Long sortabledateMin;
 	private Long sortabledateMax;
-	private String title = null;
+	private String title = "";
 	private AccountSearchForm account;
+/* info=ColInfo(fNum=13, colName=Watchedtime, msgKey=Roamionpl.watchedtime, vName=watchedtime, type=Integer, jtype=null, stype=4, gsName=Watchedtime, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 	private Integer watchedtimeMin;
 	private Integer watchedtimeMax;
 	private String sortField = "id";

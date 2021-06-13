@@ -33,8 +33,8 @@ import org.springframework.stereotype.Service;
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @Service
@@ -61,37 +61,21 @@ public class RoamionplServices {
 			}
 			if (form.getDatefieldMin() != null) {
 				BigDecimal bd = form.getDatefieldMin();
-// SQLite rounds scales > 10 in select where compare though returns all decimals
-				if (bd.scale() > 10) {
-					bd = bd.setScale(10, BigDecimal.ROUND_DOWN);
-				}
 				searchSpec.add(new SearchCriteria<BigDecimal>(null,"datefield",bd,
 					SearchOperation.GREATER_THAN_EQUAL));
 			}
 			if (form.getDatefieldMax() != null) {
 				BigDecimal bd = form.getDatefieldMax();
-// SQLite rounds scales > 10 in select where compare though returns all decimals
-				if (bd.scale() > 10) {
-					bd = bd.setScale(10, BigDecimal.ROUND_UP);
-				}
 				searchSpec.add(new SearchCriteria<BigDecimal>(null,"datefield",bd,
 					SearchOperation.LESS_THAN_EQUAL));
 			}
 			if (form.getDurationMin() != null) {
 				BigDecimal bd = form.getDurationMin();
-// SQLite rounds scales > 10 in select where compare though returns all decimals
-				if (bd.scale() > 10) {
-					bd = bd.setScale(10, BigDecimal.ROUND_DOWN);
-				}
 				searchSpec.add(new SearchCriteria<BigDecimal>(null,"duration",bd,
 					SearchOperation.GREATER_THAN_EQUAL));
 			}
 			if (form.getDurationMax() != null) {
 				BigDecimal bd = form.getDurationMax();
-// SQLite rounds scales > 10 in select where compare though returns all decimals
-				if (bd.scale() > 10) {
-					bd = bd.setScale(10, BigDecimal.ROUND_UP);
-				}
 				searchSpec.add(new SearchCriteria<BigDecimal>(null,"duration",bd,
 					SearchOperation.LESS_THAN_EQUAL));
 			}
@@ -101,19 +85,11 @@ public class RoamionplServices {
 			}
 			if (form.getIsnewMin() != null) {
 				BigDecimal bd = form.getIsnewMin();
-// SQLite rounds scales > 10 in select where compare though returns all decimals
-				if (bd.scale() > 10) {
-					bd = bd.setScale(10, BigDecimal.ROUND_DOWN);
-				}
 				searchSpec.add(new SearchCriteria<BigDecimal>(null,"isnew",bd,
 					SearchOperation.GREATER_THAN_EQUAL));
 			}
 			if (form.getIsnewMax() != null) {
 				BigDecimal bd = form.getIsnewMax();
-// SQLite rounds scales > 10 in select where compare though returns all decimals
-				if (bd.scale() > 10) {
-					bd = bd.setScale(10, BigDecimal.ROUND_UP);
-				}
 				searchSpec.add(new SearchCriteria<BigDecimal>(null,"isnew",bd,
 					SearchOperation.LESS_THAN_EQUAL));
 			}
@@ -196,11 +172,11 @@ public class RoamionplServices {
 		return roamionplRepository.save(roamionpl);
 	}
 	
-	public Roamionpl get(Integer id) {
+	public Roamionpl get(Long id) {
 		return roamionplRepository.findById(id).get();
 	}
 	
-	public void delete(Integer id) {
+	public void delete(Long id) {
 		roamionplRepository.deleteById(id);
 	}
 
@@ -224,7 +200,6 @@ public class RoamionplServices {
 			accountForm = new AccountSearchForm();
 		}
 			accountForm.setEmail(value);
-			accountForm.setUserrole(value);
 			form.setAccount(accountForm);
 			form.setDoOr(SearchType.OR);
 			form.setAdvanced(false);

@@ -10,22 +10,22 @@ import javax.persistence.Table;
 import lombok.Data;
 
 /**
- * Title: networks Bean <br>
- * Description: Class for holding data from the networks table. <br>
+ * Title: Networks Bean <br>
+ * Description: Class for holding data from the Networks table. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
- * Table name: networks<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
+ * Table name: Networks<br>
  * Column name: id<br>
- * Catalog name: null<br>
- * Primary key sequence: 0<br>
- * Primary key name: null<br>
+ * Catalog name: Watchlist<br>
+ * Primary key sequence: 1<br>
+ * Primary key name: PRIMARY<br>
  *  <br> */
 @Data
 @Entity
-@Table(name = "`networks`")
+@Table(name = "`Networks`")
 public class Networks implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -48,7 +48,7 @@ public class Networks implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
-	private Integer id;
+	private Long id;
 	@Column(name = "IptvService", length = 214)
 	private String iptvservice;
 	@Column(name = "OnHulu", length = 14)

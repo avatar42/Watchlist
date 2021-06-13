@@ -10,13 +10,13 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 /**
- * Title: ota Form <br>
- * Description: Class for holding data from the ota table for editing. <br>
+ * Title: Ota Form <br>
+ * Description: Class for holding data from the Ota table for editing. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 
 @Data
@@ -40,10 +40,10 @@ public class OtaForm implements Serializable {
     @Length(max=10)
 	private String fccinfo;
 	private Integer freq;
-	private Integer id;
+	private Long id = 0l;
     @Length(max=2)
 	private String langfield;
-	private Integer listed;
+	private Boolean listed;
 	private Integer mytivoavgstrength;
     @Length(max=15)
 	private String network;

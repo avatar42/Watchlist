@@ -20,13 +20,13 @@ import com.dea42.watchlist.search.ShowsSearchForm;
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @WebMvcTest(ShowsController.class)
 public class ShowsControllerTest extends MockBase {
-	private Shows getShows(Integer id) {
+	private Shows getShows(Long id) {
 		Shows o = new Shows();
 		o.setId(id);
         o.setCancelled(getTestString(56));
@@ -47,7 +47,7 @@ public class ShowsControllerTest extends MockBase {
 	@Test
 	public void testGetAllShowss() throws Exception {
 		List<Shows> list = new ArrayList<>();
-		Shows o = getShows(1);
+		Shows o = getShows(1l);
 		list.add(o);
 
 		Page<Shows> p = getPage(list);
@@ -102,7 +102,7 @@ public class ShowsControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveShowsCancel() throws Exception {
-		Shows o = getShows(1);
+		Shows o = getShows(1l);
 
 		send(SEND_POST, "/showss/save", "shows", o, ImmutableMap.of("action", "cancel"), ADMIN_EMAIL,
 				"/showss");
@@ -114,7 +114,7 @@ public class ShowsControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveShowsSave() throws Exception {
-		Shows o = getShows(0);
+		Shows o = getShows(0l);
 		ShowsForm form = ShowsForm.getInstance(o);
 		log.debug(form.toString());
 
@@ -130,9 +130,9 @@ public class ShowsControllerTest extends MockBase {
 	 */
 	@Test
 	public void testShowEditShowsPage() throws Exception {
-		Shows o = getShows(1);
+		Shows o = getShows(1l);
 
-		given(showsServices.get(1)).willReturn(o);
+		given(showsServices.get(1l)).willReturn(o);
 
 		ResultActions ra = getAsAdmin("/showss/edit/1");
 		contentContainsMarkup(ra,o.getCancelled());

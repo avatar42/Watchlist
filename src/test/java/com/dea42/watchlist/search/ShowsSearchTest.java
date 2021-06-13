@@ -19,13 +19,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 /**
- * Title: showsSearch Test <br>
- * Description: Does regression tests of shows search from service to DB <br>
+ * Title: ShowsSearch Test <br>
+ * Description: Does regression tests of Shows search from service to DB <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -35,7 +35,7 @@ public class ShowsSearchTest extends UnitBase {
 	@Autowired
 	private ShowsServices showsServices;
 
-	private Page<Shows> confirmGotResult(ShowsSearchForm form, Integer expectedID) {
+	private Page<Shows> confirmGotResult(ShowsSearchForm form, Long expectedID) {
 		log.info("form:"+form);
 		Page<Shows> list = showsServices.listAll(form);
 		assertNotNull("Checking return not null", list);
@@ -53,7 +53,7 @@ public class ShowsSearchTest extends UnitBase {
 		return list;
 	}
 
-	private Shows getMidRecord(ShowsSearchForm form, Integer expectedID) {
+	private Shows getMidRecord(ShowsSearchForm form, Long expectedID) {
 		Page<Shows> list = confirmGotResult(form, expectedID);
 		assertNotNull("Checking return not null", list);
 		int size = list.toList().size();
@@ -71,9 +71,9 @@ public class ShowsSearchTest extends UnitBase {
 		// cancelled String 12
 		Shows rec = null;
 		ShowsSearchForm form = new ShowsSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setCancelled("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with cancelled of " + rec.getCancelled());
 
 		form = new ShowsSearchForm();
@@ -103,9 +103,9 @@ public class ShowsSearchTest extends UnitBase {
 		// epguidesshowname String 12
 		Shows rec = null;
 		ShowsSearchForm form = new ShowsSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setEpguidesshowname("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with epguidesshowname of " + rec.getEpguidesshowname());
 
 		form = new ShowsSearchForm();
@@ -135,9 +135,9 @@ public class ShowsSearchTest extends UnitBase {
 		// incanceledas String 12
 		Shows rec = null;
 		ShowsSearchForm form = new ShowsSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setIncanceledas("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with incanceledas of " + rec.getIncanceledas());
 
 		form = new ShowsSearchForm();
@@ -167,9 +167,9 @@ public class ShowsSearchTest extends UnitBase {
 		// lastshow String 12
 		Shows rec = null;
 		ShowsSearchForm form = new ShowsSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setLastshow("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with lastshow of " + rec.getLastshow());
 
 		form = new ShowsSearchForm();
@@ -199,9 +199,9 @@ public class ShowsSearchTest extends UnitBase {
 		// network String 12
 		Shows rec = null;
 		ShowsSearchForm form = new ShowsSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setNetwork("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with network of " + rec.getNetwork());
 
 		form = new ShowsSearchForm();
@@ -231,9 +231,9 @@ public class ShowsSearchTest extends UnitBase {
 		// premiere String 12
 		Shows rec = null;
 		ShowsSearchForm form = new ShowsSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setPremiere("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with premiere of " + rec.getPremiere());
 
 		form = new ShowsSearchForm();
@@ -263,9 +263,9 @@ public class ShowsSearchTest extends UnitBase {
 		// premieredate Date 93
 		Shows rec = null;
 		ShowsSearchForm form = new ShowsSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setPremieredateMin(new Date(0));
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with premieredate of " + rec.getPremieredate());
 
 		form = new ShowsSearchForm();
@@ -298,9 +298,9 @@ public class ShowsSearchTest extends UnitBase {
 		// status String 12
 		Shows rec = null;
 		ShowsSearchForm form = new ShowsSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setStatus("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with status of " + rec.getStatus());
 
 		form = new ShowsSearchForm();
@@ -330,9 +330,9 @@ public class ShowsSearchTest extends UnitBase {
 		// tivoname String 12
 		Shows rec = null;
 		ShowsSearchForm form = new ShowsSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setTivoname("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with tivoname of " + rec.getTivoname());
 
 		form = new ShowsSearchForm();

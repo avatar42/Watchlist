@@ -20,13 +20,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 /**
- * Title: roamiotodoSearch Test <br>
- * Description: Does regression tests of roamiotodo search from service to DB <br>
+ * Title: RoamioTodoSearch Test <br>
+ * Description: Does regression tests of RoamioTodo search from service to DB <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -36,7 +36,7 @@ public class RoamiotodoSearchTest extends UnitBase {
 	@Autowired
 	private RoamiotodoServices roamiotodoServices;
 
-	private Page<Roamiotodo> confirmGotResult(RoamiotodoSearchForm form, Integer expectedID) {
+	private Page<Roamiotodo> confirmGotResult(RoamiotodoSearchForm form, Long expectedID) {
 		log.info("form:"+form);
 		Page<Roamiotodo> list = roamiotodoServices.listAll(form);
 		assertNotNull("Checking return not null", list);
@@ -54,7 +54,7 @@ public class RoamiotodoSearchTest extends UnitBase {
 		return list;
 	}
 
-	private Roamiotodo getMidRecord(RoamiotodoSearchForm form, Integer expectedID) {
+	private Roamiotodo getMidRecord(RoamiotodoSearchForm form, Long expectedID) {
 		Page<Roamiotodo> list = confirmGotResult(form, expectedID);
 		assertNotNull("Checking return not null", list);
 		int size = list.toList().size();
@@ -72,9 +72,9 @@ public class RoamiotodoSearchTest extends UnitBase {
 		// channel String 12
 		Roamiotodo rec = null;
 		RoamiotodoSearchForm form = new RoamiotodoSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setChannel("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with channel of " + rec.getChannel());
 
 		form = new RoamiotodoSearchForm();
@@ -104,9 +104,9 @@ public class RoamiotodoSearchTest extends UnitBase {
 		// datefield Date 93
 		Roamiotodo rec = null;
 		RoamiotodoSearchForm form = new RoamiotodoSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setDatefieldMin(new Date(0));
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with datefield of " + rec.getDatefield());
 
 		form = new RoamiotodoSearchForm();
@@ -139,9 +139,9 @@ public class RoamiotodoSearchTest extends UnitBase {
 		// duration String 12
 		Roamiotodo rec = null;
 		RoamiotodoSearchForm form = new RoamiotodoSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setDuration("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with duration of " + rec.getDuration());
 
 		form = new RoamiotodoSearchForm();
@@ -171,9 +171,9 @@ public class RoamiotodoSearchTest extends UnitBase {
 		// ep String 12
 		Roamiotodo rec = null;
 		RoamiotodoSearchForm form = new RoamiotodoSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setEp("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with ep of " + rec.getEp());
 
 		form = new RoamiotodoSearchForm();
@@ -203,9 +203,9 @@ public class RoamiotodoSearchTest extends UnitBase {
 		// episodename String 12
 		Roamiotodo rec = null;
 		RoamiotodoSearchForm form = new RoamiotodoSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setEpisodename("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with episodename of " + rec.getEpisodename());
 
 		form = new RoamiotodoSearchForm();
@@ -235,9 +235,9 @@ public class RoamiotodoSearchTest extends UnitBase {
 		// showname String 12
 		Roamiotodo rec = null;
 		RoamiotodoSearchForm form = new RoamiotodoSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setShowname("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with showname of " + rec.getShowname());
 
 		form = new RoamiotodoSearchForm();
@@ -267,9 +267,9 @@ public class RoamiotodoSearchTest extends UnitBase {
 		// showtrimmed String 12
 		Roamiotodo rec = null;
 		RoamiotodoSearchForm form = new RoamiotodoSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setShowtrimmed("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with showtrimmed of " + rec.getShowtrimmed());
 
 		form = new RoamiotodoSearchForm();
@@ -296,10 +296,10 @@ public class RoamiotodoSearchTest extends UnitBase {
 
 	@Test
 	public void testAccount() {
-		// account Account 4
+		// account Account -5
 		Roamiotodo rec = null;
 		RoamiotodoSearchForm form = new RoamiotodoSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 // TODO: skip further tests now
 	}
 }

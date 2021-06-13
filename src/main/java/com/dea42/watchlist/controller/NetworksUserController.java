@@ -39,8 +39,8 @@ import lombok.extern.slf4j.Slf4j;
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @Controller
@@ -74,7 +74,7 @@ public class NetworksUserController {
 
 	@GetMapping("/new")
 	public ModelAndView showNewPage() {
-		return showEditPage(0);
+		return showEditPage(0l);
 	}
 
 	@PostMapping(value = "/search")
@@ -173,7 +173,7 @@ public class NetworksUserController {
 	}
 
 	@GetMapping("/edit/{id}")
-	public ModelAndView showEditPage(@PathVariable(name = "id") Integer id) {
+	public ModelAndView showEditPage(@PathVariable(name = "id") Long id) {
 		ModelAndView mav = new ModelAndView("edit_networksUser");
 		NetworksUser networksUser = null;
 		if (id > 0)
@@ -184,7 +184,7 @@ public class NetworksUserController {
 	}
 
 	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable(name = "id") Integer id) {
+	public String delete(@PathVariable(name = "id") Long id) {
 		networksUserService.delete(id);
 		return "redirect:/networksUsers";
 	}

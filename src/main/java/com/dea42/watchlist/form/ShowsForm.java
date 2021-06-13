@@ -10,13 +10,13 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
- * Title: shows Form <br>
- * Description: Class for holding data from the shows table for editing. <br>
+ * Title: Shows Form <br>
+ * Description: Class for holding data from the Shows table for editing. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 
 @Data
@@ -28,7 +28,7 @@ public class ShowsForm implements Serializable {
     @Length(max=47)
     @NotBlank(message = "{"+MessageHelper.notBlank_message+"}")
 	private String epguidesshowname;
-	private Integer id;
+	private Long id = 0l;
     @Length(max=47)
 	private String incanceledas;
     @Length(max=10)

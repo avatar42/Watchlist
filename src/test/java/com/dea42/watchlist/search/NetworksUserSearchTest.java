@@ -19,13 +19,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 /**
- * Title: networksuserSearch Test <br>
- * Description: Does regression tests of networksuser search from service to DB <br>
+ * Title: NetworksUserSearch Test <br>
+ * Description: Does regression tests of NetworksUser search from service to DB <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -35,7 +35,7 @@ public class NetworksUserSearchTest extends UnitBase {
 	@Autowired
 	private NetworksUserServices networksUserServices;
 
-	private Page<NetworksUser> confirmGotResult(NetworksUserSearchForm form, Integer expectedID) {
+	private Page<NetworksUser> confirmGotResult(NetworksUserSearchForm form, Long expectedID) {
 		log.info("form:"+form);
 		Page<NetworksUser> list = networksUserServices.listAll(form);
 		assertNotNull("Checking return not null", list);
@@ -53,7 +53,7 @@ public class NetworksUserSearchTest extends UnitBase {
 		return list;
 	}
 
-	private NetworksUser getMidRecord(NetworksUserSearchForm form, Integer expectedID) {
+	private NetworksUser getMidRecord(NetworksUserSearchForm form, Long expectedID) {
 		Page<NetworksUser> list = confirmGotResult(form, expectedID);
 		assertNotNull("Checking return not null", list);
 		int size = list.toList().size();
@@ -71,9 +71,9 @@ public class NetworksUserSearchTest extends UnitBase {
 		// iusefreefreewithcablepayforhuluinstead String 12
 		NetworksUser rec = null;
 		NetworksUserSearchForm form = new NetworksUserSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setIusefreefreewithcablepayforhuluinstead("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with iusefreefreewithcablepayforhuluinstead of " + rec.getIusefreefreewithcablepayforhuluinstead());
 
 		form = new NetworksUserSearchForm();
@@ -100,19 +100,19 @@ public class NetworksUserSearchTest extends UnitBase {
 
 	@Test
 	public void testNetworks() {
-		// networks Networks 4
+		// networks Networks -5
 		NetworksUser rec = null;
 		NetworksUserSearchForm form = new NetworksUserSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 // TODO: skip further tests now
 	}
 
 	@Test
 	public void testAccount() {
-		// account Account 4
+		// account Account -5
 		NetworksUser rec = null;
 		NetworksUserSearchForm form = new NetworksUserSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 // TODO: skip further tests now
 	}
 }

@@ -10,13 +10,13 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 /**
- * Title: roamionpl Form <br>
- * Description: Class for holding data from the roamionpl table for editing. <br>
+ * Title: RoamioNpl Form <br>
+ * Description: Class for holding data from the RoamioNpl table for editing. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 
 @Data
@@ -30,7 +30,7 @@ public class RoamionplForm implements Serializable {
 	private BigDecimal duration;
     @Length(max=10)
 	private String episode;
-	private Integer id;
+	private Long id = 0l;
 	private BigDecimal isnew;
 	private Integer rowinshows;
     @Length(max=10)

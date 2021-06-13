@@ -20,13 +20,13 @@ import com.dea42.watchlist.search.CablecardSearchForm;
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @WebMvcTest(CablecardController.class)
 public class CablecardControllerTest extends MockBase {
-	private Cablecard getCablecard(Integer id) {
+	private Cablecard getCablecard(Long id) {
 		Cablecard o = new Cablecard();
 		o.setId(id);
         o.setChannelname(getTestString(12));
@@ -44,7 +44,7 @@ public class CablecardControllerTest extends MockBase {
 	@Test
 	public void testGetAllCablecards() throws Exception {
 		List<Cablecard> list = new ArrayList<>();
-		Cablecard o = getCablecard(1);
+		Cablecard o = getCablecard(1l);
 		list.add(o);
 
 		Page<Cablecard> p = getPage(list);
@@ -98,7 +98,7 @@ public class CablecardControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveCablecardCancel() throws Exception {
-		Cablecard o = getCablecard(1);
+		Cablecard o = getCablecard(1l);
 
 		send(SEND_POST, "/cablecards/save", "cablecard", o, ImmutableMap.of("action", "cancel"), ADMIN_EMAIL,
 				"/cablecards");
@@ -110,7 +110,7 @@ public class CablecardControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveCablecardSave() throws Exception {
-		Cablecard o = getCablecard(0);
+		Cablecard o = getCablecard(0l);
 		CablecardForm form = CablecardForm.getInstance(o);
 		log.debug(form.toString());
 
@@ -126,9 +126,9 @@ public class CablecardControllerTest extends MockBase {
 	 */
 	@Test
 	public void testShowEditCablecardPage() throws Exception {
-		Cablecard o = getCablecard(1);
+		Cablecard o = getCablecard(1l);
 
-		given(cablecardServices.get(1)).willReturn(o);
+		given(cablecardServices.get(1l)).willReturn(o);
 
 		ResultActions ra = getAsAdmin("/cablecards/edit/1");
 		contentContainsMarkup(ra,o.getChannelname());

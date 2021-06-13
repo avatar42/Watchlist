@@ -12,22 +12,22 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
- * Title: shows Bean <br>
- * Description: Class for holding data from the shows table. <br>
+ * Title: Shows Bean <br>
+ * Description: Class for holding data from the Shows table. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
- * Table name: shows<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
+ * Table name: Shows<br>
  * Column name: id<br>
- * Catalog name: null<br>
- * Primary key sequence: 0<br>
- * Primary key name: null<br>
+ * Catalog name: Watchlist<br>
+ * Primary key sequence: 1<br>
+ * Primary key name: PRIMARY<br>
  *  <br> */
 @Data
 @Entity
-@Table(name = "`shows`")
+@Table(name = "`Shows`")
 public class Shows implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -38,7 +38,7 @@ public class Shows implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
-	private Integer id;
+	private Long id;
 	@Column(name = "InCanceledAs", length = 47)
 	private String incanceledas;
 	@Column(name = "LastShow", length = 10)

@@ -20,23 +20,23 @@ import com.dea42.watchlist.search.ShowsUserSearchForm;
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @WebMvcTest(ShowsUserController.class)
 public class ShowsUserControllerTest extends MockBase {
-	private ShowsUser getShowsUser(Integer id) {
+	private ShowsUser getShowsUser(Long id) {
 		ShowsUser o = new ShowsUser();
 		o.setId(id);
         o.setBestexperience(getTestString(17));
         o.setComment(getTestString(187));
-        o.setDiff(getTestString(3));
         o.setImdb(getTestString(2));
         o.setInrokufeed(getTestString(1));
         o.setInshowrssas(getTestString(47));
         o.setJustwatch(getTestString(2));
         o.setLastwatched(getTestString(10));
+        o.setN67(getTestString(3));
         o.setOta(getTestString(1));
         o.setTablolink(getTestString(6));
 		return o;
@@ -49,7 +49,7 @@ public class ShowsUserControllerTest extends MockBase {
 	@Test
 	public void testGetAllShowsUsers() throws Exception {
 		List<ShowsUser> list = new ArrayList<>();
-		ShowsUser o = getShowsUser(1);
+		ShowsUser o = getShowsUser(1l);
 		list.add(o);
 
 		Page<ShowsUser> p = getPage(list);
@@ -61,8 +61,6 @@ public class ShowsUserControllerTest extends MockBase {
 //		contentContainsMarkup(ra,getMsg("ShowsUser.bestexperience"));
 //		contentContainsMarkup(ra,getTestString(187));
 //		contentContainsMarkup(ra,getMsg("ShowsUser.comment"));
-//		contentContainsMarkup(ra,getTestString(3));
-//		contentContainsMarkup(ra,getMsg("ShowsUser.diff"));
 //		contentContainsMarkup(ra,getTestString(2));
 //		contentContainsMarkup(ra,getMsg("ShowsUser.imdb"));
 //		contentContainsMarkup(ra,getTestString(1));
@@ -73,6 +71,8 @@ public class ShowsUserControllerTest extends MockBase {
 //		contentContainsMarkup(ra,getMsg("ShowsUser.justwatch"));
 //		contentContainsMarkup(ra,getTestString(10));
 //		contentContainsMarkup(ra,getMsg("ShowsUser.lastwatched"));
+//		contentContainsMarkup(ra,getTestString(3));
+//		contentContainsMarkup(ra,getMsg("ShowsUser.n67"));
 //		contentContainsMarkup(ra,getTestString(1));
 //		contentContainsMarkup(ra,getMsg("ShowsUser.ota"));
 //		contentContainsMarkup(ra,getMsg("ShowsUser.showsid"));
@@ -92,13 +92,13 @@ public class ShowsUserControllerTest extends MockBase {
 		contentContainsMarkup(ra,"<legend>" + getMsg("edit.new") + " " + getMsg("class.ShowsUser") + "</legend>");
 		contentContainsMarkup(ra,getMsg("ShowsUser.bestexperience"));
 		contentContainsMarkup(ra,getMsg("ShowsUser.comment"));
-		contentContainsMarkup(ra,getMsg("ShowsUser.diff"));
 		// TODO: confirm ignoring ShowsUser.id
 		contentContainsMarkup(ra,getMsg("ShowsUser.imdb"));
 		contentContainsMarkup(ra,getMsg("ShowsUser.inrokufeed"));
 		contentContainsMarkup(ra,getMsg("ShowsUser.inshowrssas"));
 		contentContainsMarkup(ra,getMsg("ShowsUser.justwatch"));
 		contentContainsMarkup(ra,getMsg("ShowsUser.lastwatched"));
+		contentContainsMarkup(ra,getMsg("ShowsUser.n67"));
 		contentContainsMarkup(ra,getMsg("ShowsUser.ota"));
 		contentContainsMarkup(ra,getMsg("ShowsUser.showsid"));
 		contentContainsMarkup(ra,getMsg("ShowsUser.tablolink"));
@@ -111,7 +111,7 @@ public class ShowsUserControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveShowsUserCancel() throws Exception {
-		ShowsUser o = getShowsUser(1);
+		ShowsUser o = getShowsUser(1l);
 
 		send(SEND_POST, "/showsUsers/save", "showsUser", o, ImmutableMap.of("action", "cancel"), ADMIN_EMAIL,
 				"/showsUsers");
@@ -123,7 +123,7 @@ public class ShowsUserControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveShowsUserSave() throws Exception {
-		ShowsUser o = getShowsUser(0);
+		ShowsUser o = getShowsUser(0l);
 		ShowsUserForm form = ShowsUserForm.getInstance(o);
 		log.debug(form.toString());
 
@@ -139,17 +139,15 @@ public class ShowsUserControllerTest extends MockBase {
 	 */
 	@Test
 	public void testShowEditShowsUserPage() throws Exception {
-		ShowsUser o = getShowsUser(1);
+		ShowsUser o = getShowsUser(1l);
 
-		given(showsUserServices.get(1)).willReturn(o);
+		given(showsUserServices.get(1l)).willReturn(o);
 
 		ResultActions ra = getAsAdmin("/showsUsers/edit/1");
 		contentContainsMarkup(ra,o.getBestexperience());
 		contentContainsMarkup(ra,"Bestexperience");
 		contentContainsMarkup(ra,o.getComment());
 		contentContainsMarkup(ra,"Comment");
-		contentContainsMarkup(ra,o.getDiff());
-		contentContainsMarkup(ra,"Diff");
 		// TODO: confirm ignoring ShowsUser.id
 		contentContainsMarkup(ra,o.getImdb());
 		contentContainsMarkup(ra,"Imdb");
@@ -161,6 +159,8 @@ public class ShowsUserControllerTest extends MockBase {
 		contentContainsMarkup(ra,"Justwatch");
 		contentContainsMarkup(ra,o.getLastwatched());
 		contentContainsMarkup(ra,"Lastwatched");
+		contentContainsMarkup(ra,o.getN67());
+		contentContainsMarkup(ra,"N67");
 		contentContainsMarkup(ra,o.getOta());
 		contentContainsMarkup(ra,"Ota");
 		contentContainsMarkup(ra,"Shows");

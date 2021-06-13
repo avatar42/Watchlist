@@ -35,8 +35,8 @@ import org.springframework.stereotype.Service;
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @Service
@@ -121,11 +121,11 @@ public class RoamiotodoServices {
 		return roamiotodoRepository.save(roamiotodo);
 	}
 	
-	public Roamiotodo get(Integer id) {
+	public Roamiotodo get(Long id) {
 		return roamiotodoRepository.findById(id).get();
 	}
 	
-	public void delete(Integer id) {
+	public void delete(Long id) {
 		roamiotodoRepository.deleteById(id);
 	}
 
@@ -150,7 +150,6 @@ public class RoamiotodoServices {
 			accountForm = new AccountSearchForm();
 		}
 			accountForm.setEmail(value);
-			accountForm.setUserrole(value);
 			form.setAccount(accountForm);
 			form.setDoOr(SearchType.OR);
 			form.setAdvanced(false);

@@ -13,30 +13,36 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 /**
- * Title: roamiotodoSearchForm <br>
- * Description: Class for holding data from the roamiotodo table for searching. <br>
+ * Title: RoamioTodoSearchForm <br>
+ * Description: Class for holding data from the RoamioTodo table for searching. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Data
 public class RoamiotodoSearchForm implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private String channel = null;
+	private String channel = "";
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private Date datefieldMin;
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private Date datefieldMax;
-	private String duration = null;
-	private String ep = null;
-	private String episodename = null;
-	private Integer idMin;
-	private Integer idMax;
-	private String showname = null;
-	private String showtrimmed = null;
+	private String duration = "";
+	private String ep = "";
+	private String episodename = "";
+/* info=ColInfo(fNum=2, colName=id, msgKey=Roamiotodo.id, vName=id, type=Long, jtype=null, stype=-5, gsName=Id, length=0, pk=true, defaultVal=null, constraint=null, required=true, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment= * Table name: RoamioTodo<br>
+ * Column name: id<br>
+ * Catalog name: Watchlist<br>
+ * Primary key sequence: 1<br>
+ * Primary key name: PRIMARY<br>
+ *  <br>) */
+	private Long idMin;
+	private Long idMax;
+	private String showname = "";
+	private String showtrimmed = "";
 	private AccountSearchForm account;
 	private String sortField = "id";
 	private int page = 1;

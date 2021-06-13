@@ -12,33 +12,44 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 /**
- * Title: roamiospSearchForm <br>
- * Description: Class for holding data from the roamiosp table for searching. <br>
+ * Title: RoamioSpSearchForm <br>
+ * Description: Class for holding data from the RoamioSp table for searching. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Data
 public class RoamiospSearchForm implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private String channel = null;
+	private String channel = "";
+/* info=ColInfo(fNum=13, colName=End, msgKey=Roamiosp.end, vName=end, type=Integer, jtype=null, stype=4, gsName=End, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 	private Integer endMin;
 	private Integer endMax;
-	private Integer idMin;
-	private Integer idMax;
-	private String include = null;
-	private String keep = null;
+/* info=ColInfo(fNum=2, colName=id, msgKey=Roamiosp.id, vName=id, type=Long, jtype=null, stype=-5, gsName=Id, length=0, pk=true, defaultVal=null, constraint=null, required=true, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment= * Table name: RoamioSp<br>
+ * Column name: id<br>
+ * Catalog name: Watchlist<br>
+ * Primary key sequence: 1<br>
+ * Primary key name: PRIMARY<br>
+ *  <br>) */
+	private Long idMin;
+	private Long idMax;
+	private String include = "";
+	private String keep = "";
+/* info=ColInfo(fNum=11, colName=Num, msgKey=Roamiosp.num, vName=num, type=Integer, jtype=null, stype=4, gsName=Num, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 	private Integer numMin;
 	private Integer numMax;
+/* info=ColInfo(fNum=4, colName=Priority, msgKey=Roamiosp.priority, vName=priority, type=Integer, jtype=null, stype=4, gsName=Priority, length=0, pk=false, defaultVal=null, constraint=null, required=true, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 	private Integer priorityMin;
 	private Integer priorityMax;
-	private String record = null;
+	private String record = "";
+/* info=ColInfo(fNum=7, colName=Season, msgKey=Roamiosp.season, vName=season, type=Integer, jtype=null, stype=4, gsName=Season, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 	private Integer seasonMin;
 	private Integer seasonMax;
-	private String show = null;
+	private String show = "";
+/* info=ColInfo(fNum=12, colName=Start, msgKey=Roamiosp.start, vName=start, type=Integer, jtype=null, stype=4, gsName=Start, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 	private Integer startMin;
 	private Integer startMax;
 	private AccountSearchForm account;

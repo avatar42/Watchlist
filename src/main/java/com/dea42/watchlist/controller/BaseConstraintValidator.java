@@ -71,7 +71,7 @@ public class BaseConstraintValidator<A extends Annotation, T> implements Constra
 		try {
 			String s = BeanUtils.getProperty(data, idfieldName);
 			if (s != null) {
-				Integer id = Integer.parseInt(s);
+				Long id = Long.parseLong(s);
 				return (id != null && id == 0);
 			} else {
 				return true;

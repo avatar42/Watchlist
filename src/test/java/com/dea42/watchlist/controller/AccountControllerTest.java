@@ -20,13 +20,13 @@ import com.dea42.watchlist.search.AccountSearchForm;
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @WebMvcTest(AccountController.class)
 public class AccountControllerTest extends MockBase {
-	private Account getAccount(Integer id) {
+	private Account getAccount(Long id) {
 		Account o = new Account();
 		o.setId(id);
         o.setEmail(getTestEmailString(254));
@@ -43,7 +43,7 @@ public class AccountControllerTest extends MockBase {
 	@Test
 	public void testGetAllAccounts() throws Exception {
 		List<Account> list = new ArrayList<>();
-		Account o = getAccount(1);
+		Account o = getAccount(1l);
 		list.add(o);
 
 		Page<Account> p = getPage(list);
@@ -53,10 +53,9 @@ public class AccountControllerTest extends MockBase {
 		contentContainsMarkup(ra,"<h1>" + getMsg("class.Account") + " " + getMsg("edit.list") + "</h1>");
 //        contentContainsMarkup(ra,getTestEmailString(254));
 //		contentContainsMarkup(ra,getMsg("Account.email"));
-		// TODO: confirm ignoring Account.name
-		// TODO: confirm ignoring Account.password
-//		contentContainsMarkup(ra,getTestString(25));
-//		contentContainsMarkup(ra,getMsg("Account.userrole"));
+		/* TODO: confirm ignoring ColInfo(fNum=4, colName=Name, msgKey=Account.name, vName=name, type=String, jtype=null, stype=12, gsName=Name, length=254, pk=false, defaultVal=, constraint=null, required=true, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=5, colName=Password, msgKey=Account.password, vName=password, type=String, jtype=null, stype=12, gsName=Password, length=30, pk=false, defaultVal=, constraint=null, required=true, list=false, jsonIgnore=true, unique=false, hidden=true, password=true, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
+		/* TODO: confirm ignoring ColInfo(fNum=6, colName=Userrole, msgKey=Account.userrole, vName=userrole, type=String, jtype=null, stype=12, gsName=Userrole, length=25, pk=false, defaultVal=, constraint=null, required=true, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 	}
 
 	/**
@@ -82,7 +81,7 @@ public class AccountControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveAccountCancel() throws Exception {
-		Account o = getAccount(1);
+		Account o = getAccount(1l);
 
 		send(SEND_POST, "/accounts/save", "account", o, ImmutableMap.of("action", "cancel"), ADMIN_EMAIL,
 				"/accounts");
@@ -94,7 +93,7 @@ public class AccountControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveAccountSave() throws Exception {
-		Account o = getAccount(0);
+		Account o = getAccount(0l);
 		AccountForm form = AccountForm.getInstance(o);
 		form.setPassword(getTestPasswordString(30));
 		form.setPasswordConfirm(form.getPassword());
@@ -112,9 +111,9 @@ public class AccountControllerTest extends MockBase {
 	 */
 	@Test
 	public void testShowEditAccountPage() throws Exception {
-		Account o = getAccount(1);
+		Account o = getAccount(1l);
 
-		given(accountServices.get(1)).willReturn(o);
+		given(accountServices.get(1l)).willReturn(o);
 
 		ResultActions ra = getAsAdmin("/accounts/edit/1");
 		contentContainsMarkup(ra,o.getEmail());

@@ -10,13 +10,13 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 /**
- * Title: showsuser Form <br>
- * Description: Class for holding data from the showsuser table for editing. <br>
+ * Title: ShowsUser Form <br>
+ * Description: Class for holding data from the ShowsUser table for editing. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 
 @Data
@@ -27,9 +27,7 @@ public class ShowsUserForm implements Serializable {
 	private String bestexperience;
     @Length(max=187)
 	private String comment;
-    @Length(max=3)
-	private String diff;
-	private Integer id;
+	private Long id = 0l;
     @Length(max=2)
 	private String imdb;
     @Length(max=1)
@@ -41,6 +39,8 @@ public class ShowsUserForm implements Serializable {
     @Length(max=10)
     @NotBlank(message = "{"+MessageHelper.notBlank_message+"}")
 	private String lastwatched;
+    @Length(max=3)
+	private String n67;
     @Length(max=1)
 	private String ota;
 	private Shows shows;
@@ -58,13 +58,13 @@ public class ShowsUserForm implements Serializable {
 		if (obj != null) {
 			form.setBestexperience(obj.getBestexperience());
 			form.setComment(obj.getComment());
-			form.setDiff(obj.getDiff());
 			form.setId(obj.getId());
 			form.setImdb(obj.getImdb());
 			form.setInrokufeed(obj.getInrokufeed());
 			form.setInshowrssas(obj.getInshowrssas());
 			form.setJustwatch(obj.getJustwatch());
 			form.setLastwatched(obj.getLastwatched());
+			form.setN67(obj.getN67());
 			form.setOta(obj.getOta());
 			form.setShows(obj.getShows());
 			form.setTablolink(obj.getTablolink());

@@ -33,7 +33,6 @@
 						<th th:text="#{Networks.site}"></th>
 						<th th:text="#{Networks.standardwait}"></th>
 						<th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.email}"></th>
-						<th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.userrole}"></th>
 						<th th:text="#{edit.actions}"></th>
 					</tr>
 				</thead>
@@ -89,9 +88,6 @@
 					}, {
 						"name" : "email",
 						"data" : "account.email",
-					}, {
-						"name" : "userrole",
-						"data" : "account.userrole",
 					}, {
 						"data" : "id",
 						"render" : make_edit_links,

@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.dea42</groupId>
 	<artifactId>watchlist</artifactId>
-	<version>0.7.1-SNAPSHOT</version>
+	<version>0.7.2-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<description>An application for tracking the show you want to watch.</description>
 
@@ -157,7 +157,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>28.0-jre</version>
+			<version>[30.0-jre,)</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.passay/passay -->
 		<dependency>
@@ -245,7 +245,7 @@
 							<groupId>org.codehaus.cargo</groupId>
 							<artifactId>watchlist-war</artifactId>
 							<type>war</type>
-							<location>${project.build.directory}/watchlist-0.7.1-SNAPSHOT.war</location>
+							<location>${project.build.directory}/watchlist-0.7.2-SNAPSHOT.war</location>
 							<properties>
 								<context>genSpring</context>
 							</properties>

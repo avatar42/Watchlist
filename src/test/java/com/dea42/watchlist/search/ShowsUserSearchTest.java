@@ -19,13 +19,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 /**
- * Title: showsuserSearch Test <br>
- * Description: Does regression tests of showsuser search from service to DB <br>
+ * Title: ShowsUserSearch Test <br>
+ * Description: Does regression tests of ShowsUser search from service to DB <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -35,7 +35,7 @@ public class ShowsUserSearchTest extends UnitBase {
 	@Autowired
 	private ShowsUserServices showsUserServices;
 
-	private Page<ShowsUser> confirmGotResult(ShowsUserSearchForm form, Integer expectedID) {
+	private Page<ShowsUser> confirmGotResult(ShowsUserSearchForm form, Long expectedID) {
 		log.info("form:"+form);
 		Page<ShowsUser> list = showsUserServices.listAll(form);
 		assertNotNull("Checking return not null", list);
@@ -53,7 +53,7 @@ public class ShowsUserSearchTest extends UnitBase {
 		return list;
 	}
 
-	private ShowsUser getMidRecord(ShowsUserSearchForm form, Integer expectedID) {
+	private ShowsUser getMidRecord(ShowsUserSearchForm form, Long expectedID) {
 		Page<ShowsUser> list = confirmGotResult(form, expectedID);
 		assertNotNull("Checking return not null", list);
 		int size = list.toList().size();
@@ -71,9 +71,9 @@ public class ShowsUserSearchTest extends UnitBase {
 		// bestexperience String 12
 		ShowsUser rec = null;
 		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setBestexperience("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with bestexperience of " + rec.getBestexperience());
 
 		form = new ShowsUserSearchForm();
@@ -103,9 +103,9 @@ public class ShowsUserSearchTest extends UnitBase {
 		// comment String 12
 		ShowsUser rec = null;
 		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setComment("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with comment of " + rec.getComment());
 
 		form = new ShowsUserSearchForm();
@@ -131,45 +131,13 @@ public class ShowsUserSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testDiff() {
-		// diff String 12
-		ShowsUser rec = null;
-		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
-		form.setDiff("%");
-		rec = getMidRecord(form, 0);
-		log.info("Searching for records with diff of " + rec.getDiff());
-
-		form = new ShowsUserSearchForm();
-		String text = rec.getDiff();
-		if (text.length() < 2) {
-			form.setDiff(text + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setDiff("%" + text);
-			confirmGotResult(form, rec.getId());
-			form.setDiff("%" + text + "%");
-			confirmGotResult(form, rec.getId());
-		} else {
-			int mid = text.length() / 2;
-			form.setDiff(text.substring(0, mid) + "%");
-			confirmGotResult(form, rec.getId());
-
-			form.setDiff("%" + text.substring(mid - 1, mid) + "%");
-			confirmGotResult(form, rec.getId());
-			form.setDiff("%" + text.substring(mid, text.length()));
-			confirmGotResult(form, rec.getId());
-		}
-	}
-
-	@Test
 	public void testImdb() {
 		// imdb String 12
 		ShowsUser rec = null;
 		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setImdb("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with imdb of " + rec.getImdb());
 
 		form = new ShowsUserSearchForm();
@@ -199,9 +167,9 @@ public class ShowsUserSearchTest extends UnitBase {
 		// inrokufeed String 12
 		ShowsUser rec = null;
 		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setInrokufeed("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with inrokufeed of " + rec.getInrokufeed());
 
 		form = new ShowsUserSearchForm();
@@ -231,9 +199,9 @@ public class ShowsUserSearchTest extends UnitBase {
 		// inshowrssas String 12
 		ShowsUser rec = null;
 		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setInshowrssas("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with inshowrssas of " + rec.getInshowrssas());
 
 		form = new ShowsUserSearchForm();
@@ -263,9 +231,9 @@ public class ShowsUserSearchTest extends UnitBase {
 		// justwatch String 12
 		ShowsUser rec = null;
 		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setJustwatch("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with justwatch of " + rec.getJustwatch());
 
 		form = new ShowsUserSearchForm();
@@ -295,9 +263,9 @@ public class ShowsUserSearchTest extends UnitBase {
 		// lastwatched String 12
 		ShowsUser rec = null;
 		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setLastwatched("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with lastwatched of " + rec.getLastwatched());
 
 		form = new ShowsUserSearchForm();
@@ -323,13 +291,45 @@ public class ShowsUserSearchTest extends UnitBase {
 	}
 
 	@Test
+	public void testN67() {
+		// n67 String 12
+		ShowsUser rec = null;
+		ShowsUserSearchForm form = new ShowsUserSearchForm();
+		rec = getMidRecord(form, 0l);
+		form.setN67("%");
+		rec = getMidRecord(form, 0l);
+		log.info("Searching for records with n67 of " + rec.getN67());
+
+		form = new ShowsUserSearchForm();
+		String text = rec.getN67();
+		if (text.length() < 2) {
+			form.setN67(text + "%");
+			confirmGotResult(form, rec.getId());
+
+			form.setN67("%" + text);
+			confirmGotResult(form, rec.getId());
+			form.setN67("%" + text + "%");
+			confirmGotResult(form, rec.getId());
+		} else {
+			int mid = text.length() / 2;
+			form.setN67(text.substring(0, mid) + "%");
+			confirmGotResult(form, rec.getId());
+
+			form.setN67("%" + text.substring(mid - 1, mid) + "%");
+			confirmGotResult(form, rec.getId());
+			form.setN67("%" + text.substring(mid, text.length()));
+			confirmGotResult(form, rec.getId());
+		}
+	}
+
+	@Test
 	public void testOta() {
 		// ota String 12
 		ShowsUser rec = null;
 		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setOta("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with ota of " + rec.getOta());
 
 		form = new ShowsUserSearchForm();
@@ -356,10 +356,10 @@ public class ShowsUserSearchTest extends UnitBase {
 
 	@Test
 	public void testShows() {
-		// shows Shows 4
+		// shows Shows -5
 		ShowsUser rec = null;
 		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 // TODO: skip further tests now
 	}
 
@@ -368,9 +368,9 @@ public class ShowsUserSearchTest extends UnitBase {
 		// tablolink String 12
 		ShowsUser rec = null;
 		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setTablolink("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with tablolink of " + rec.getTablolink());
 
 		form = new ShowsUserSearchForm();
@@ -397,10 +397,10 @@ public class ShowsUserSearchTest extends UnitBase {
 
 	@Test
 	public void testAccount() {
-		// account Account 4
+		// account Account -5
 		ShowsUser rec = null;
 		ShowsUserSearchForm form = new ShowsUserSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 // TODO: skip further tests now
 	}
 }

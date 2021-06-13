@@ -20,13 +20,13 @@ import com.dea42.watchlist.search.OtaSearchForm;
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @WebMvcTest(OtaController.class)
 public class OtaControllerTest extends MockBase {
-	private Ota getOta(Integer id) {
+	private Ota getOta(Long id) {
 		Ota o = new Ota();
 		o.setId(id);
         o.setChannelname(getTestString(10));
@@ -55,7 +55,7 @@ public class OtaControllerTest extends MockBase {
 	@Test
 	public void testGetAllOtas() throws Exception {
 		List<Ota> list = new ArrayList<>();
-		Ota o = getOta(1);
+		Ota o = getOta(1l);
 		list.add(o);
 
 		Page<Ota> p = getPage(list);
@@ -148,7 +148,7 @@ public class OtaControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveOtaCancel() throws Exception {
-		Ota o = getOta(1);
+		Ota o = getOta(1l);
 
 		send(SEND_POST, "/otas/save", "ota", o, ImmutableMap.of("action", "cancel"), ADMIN_EMAIL,
 				"/otas");
@@ -160,7 +160,7 @@ public class OtaControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveOtaSave() throws Exception {
-		Ota o = getOta(0);
+		Ota o = getOta(0l);
 		OtaForm form = OtaForm.getInstance(o);
 		log.debug(form.toString());
 
@@ -176,9 +176,9 @@ public class OtaControllerTest extends MockBase {
 	 */
 	@Test
 	public void testShowEditOtaPage() throws Exception {
-		Ota o = getOta(1);
+		Ota o = getOta(1l);
 
-		given(otaServices.get(1)).willReturn(o);
+		given(otaServices.get(1l)).willReturn(o);
 
 		ResultActions ra = getAsAdmin("/otas/edit/1");
 		contentContainsMarkup(ra,"Atticant");

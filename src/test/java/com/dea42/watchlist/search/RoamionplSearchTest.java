@@ -19,13 +19,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 /**
- * Title: roamionplSearch Test <br>
- * Description: Does regression tests of roamionpl search from service to DB <br>
+ * Title: RoamioNplSearch Test <br>
+ * Description: Does regression tests of RoamioNpl search from service to DB <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -35,7 +35,7 @@ public class RoamionplSearchTest extends UnitBase {
 	@Autowired
 	private RoamionplServices roamionplServices;
 
-	private Page<Roamionpl> confirmGotResult(RoamionplSearchForm form, Integer expectedID) {
+	private Page<Roamionpl> confirmGotResult(RoamionplSearchForm form, Long expectedID) {
 		log.info("form:"+form);
 		Page<Roamionpl> list = roamionplServices.listAll(form);
 		assertNotNull("Checking return not null", list);
@@ -53,7 +53,7 @@ public class RoamionplSearchTest extends UnitBase {
 		return list;
 	}
 
-	private Roamionpl getMidRecord(RoamionplSearchForm form, Integer expectedID) {
+	private Roamionpl getMidRecord(RoamionplSearchForm form, Long expectedID) {
 		Page<Roamionpl> list = confirmGotResult(form, expectedID);
 		assertNotNull("Checking return not null", list);
 		int size = list.toList().size();
@@ -71,9 +71,9 @@ public class RoamionplSearchTest extends UnitBase {
 		// bitratembps Integer 4
 		Roamionpl rec = null;
 		RoamionplSearchForm form = new RoamionplSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setBitratembpsMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with bitratembps of " + rec.getBitratembps());
 
 		form = new RoamionplSearchForm();
@@ -105,9 +105,9 @@ public class RoamionplSearchTest extends UnitBase {
 		// channel String 12
 		Roamionpl rec = null;
 		RoamionplSearchForm form = new RoamionplSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setChannel("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with channel of " + rec.getChannel());
 
 		form = new RoamionplSearchForm();
@@ -134,12 +134,12 @@ public class RoamionplSearchTest extends UnitBase {
 
 	@Test
 	public void testDatefield() {
-		// datefield BigDecimal 6
+		// datefield BigDecimal 8
 		Roamionpl rec = null;
 		RoamionplSearchForm form = new RoamionplSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setDatefieldMin(new BigDecimal(Integer.MIN_VALUE));
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with datefield of " + rec.getDatefield());
 
 		form = new RoamionplSearchForm();
@@ -168,12 +168,12 @@ public class RoamionplSearchTest extends UnitBase {
 
 	@Test
 	public void testDuration() {
-		// duration BigDecimal 6
+		// duration BigDecimal 8
 		Roamionpl rec = null;
 		RoamionplSearchForm form = new RoamionplSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setDurationMin(new BigDecimal(Integer.MIN_VALUE));
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with duration of " + rec.getDuration());
 
 		form = new RoamionplSearchForm();
@@ -205,9 +205,9 @@ public class RoamionplSearchTest extends UnitBase {
 		// episode String 12
 		Roamionpl rec = null;
 		RoamionplSearchForm form = new RoamionplSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setEpisode("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with episode of " + rec.getEpisode());
 
 		form = new RoamionplSearchForm();
@@ -234,12 +234,12 @@ public class RoamionplSearchTest extends UnitBase {
 
 	@Test
 	public void testIsnew() {
-		// isnew BigDecimal 6
+		// isnew BigDecimal 8
 		Roamionpl rec = null;
 		RoamionplSearchForm form = new RoamionplSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setIsnewMin(new BigDecimal(Integer.MIN_VALUE));
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with isnew of " + rec.getIsnew());
 
 		form = new RoamionplSearchForm();
@@ -271,9 +271,9 @@ public class RoamionplSearchTest extends UnitBase {
 		// rowinshows Integer 4
 		Roamionpl rec = null;
 		RoamionplSearchForm form = new RoamionplSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setRowinshowsMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with rowinshows of " + rec.getRowinshows());
 
 		form = new RoamionplSearchForm();
@@ -305,9 +305,9 @@ public class RoamionplSearchTest extends UnitBase {
 		// seriesep String 12
 		Roamionpl rec = null;
 		RoamionplSearchForm form = new RoamionplSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setSeriesep("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with seriesep of " + rec.getSeriesep());
 
 		form = new RoamionplSearchForm();
@@ -337,9 +337,9 @@ public class RoamionplSearchTest extends UnitBase {
 		// show String 12
 		Roamionpl rec = null;
 		RoamionplSearchForm form = new RoamionplSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setShow("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with show of " + rec.getShow());
 
 		form = new RoamionplSearchForm();
@@ -369,9 +369,9 @@ public class RoamionplSearchTest extends UnitBase {
 		// sizegb Integer 4
 		Roamionpl rec = null;
 		RoamionplSearchForm form = new RoamionplSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setSizegbMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with sizegb of " + rec.getSizegb());
 
 		form = new RoamionplSearchForm();
@@ -403,9 +403,9 @@ public class RoamionplSearchTest extends UnitBase {
 		// sortabledate Long -5
 		Roamionpl rec = null;
 		RoamionplSearchForm form = new RoamionplSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setSortabledateMin(0l);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with sortabledate of " + rec.getSortabledate());
 
 		form = new RoamionplSearchForm();
@@ -437,9 +437,9 @@ public class RoamionplSearchTest extends UnitBase {
 		// title String 12
 		Roamionpl rec = null;
 		RoamionplSearchForm form = new RoamionplSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setTitle("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with title of " + rec.getTitle());
 
 		form = new RoamionplSearchForm();
@@ -466,10 +466,10 @@ public class RoamionplSearchTest extends UnitBase {
 
 	@Test
 	public void testAccount() {
-		// account Account 4
+		// account Account -5
 		Roamionpl rec = null;
 		RoamionplSearchForm form = new RoamionplSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 // TODO: skip further tests now
 	}
 
@@ -478,9 +478,9 @@ public class RoamionplSearchTest extends UnitBase {
 		// watchedtime Integer 4
 		Roamionpl rec = null;
 		RoamionplSearchForm form = new RoamionplSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setWatchedtimeMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with watchedtime of " + rec.getWatchedtime());
 
 		form = new RoamionplSearchForm();

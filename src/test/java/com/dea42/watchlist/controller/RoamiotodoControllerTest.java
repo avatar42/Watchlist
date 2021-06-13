@@ -20,13 +20,13 @@ import com.dea42.watchlist.search.RoamiotodoSearchForm;
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @WebMvcTest(RoamiotodoController.class)
 public class RoamiotodoControllerTest extends MockBase {
-	private Roamiotodo getRoamiotodo(Integer id) {
+	private Roamiotodo getRoamiotodo(Long id) {
 		Roamiotodo o = new Roamiotodo();
 		o.setId(id);
         o.setChannel(getTestString(15));
@@ -45,7 +45,7 @@ public class RoamiotodoControllerTest extends MockBase {
 	@Test
 	public void testGetAllRoamiotodos() throws Exception {
 		List<Roamiotodo> list = new ArrayList<>();
-		Roamiotodo o = getRoamiotodo(1);
+		Roamiotodo o = getRoamiotodo(1l);
 		list.add(o);
 
 		Page<Roamiotodo> p = getPage(list);
@@ -96,7 +96,7 @@ public class RoamiotodoControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveRoamiotodoCancel() throws Exception {
-		Roamiotodo o = getRoamiotodo(1);
+		Roamiotodo o = getRoamiotodo(1l);
 
 		send(SEND_POST, "/roamiotodos/save", "roamiotodo", o, ImmutableMap.of("action", "cancel"), ADMIN_EMAIL,
 				"/roamiotodos");
@@ -108,7 +108,7 @@ public class RoamiotodoControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveRoamiotodoSave() throws Exception {
-		Roamiotodo o = getRoamiotodo(0);
+		Roamiotodo o = getRoamiotodo(0l);
 		RoamiotodoForm form = RoamiotodoForm.getInstance(o);
 		log.debug(form.toString());
 
@@ -124,9 +124,9 @@ public class RoamiotodoControllerTest extends MockBase {
 	 */
 	@Test
 	public void testShowEditRoamiotodoPage() throws Exception {
-		Roamiotodo o = getRoamiotodo(1);
+		Roamiotodo o = getRoamiotodo(1l);
 
-		given(roamiotodoServices.get(1)).willReturn(o);
+		given(roamiotodoServices.get(1l)).willReturn(o);
 
 		ResultActions ra = getAsAdmin("/roamiotodos/edit/1");
 		contentContainsMarkup(ra,o.getChannel());

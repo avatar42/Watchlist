@@ -47,7 +47,6 @@
 						<th th:text="#{Ota.tvfoolchan}"></th>
 						<th th:text="#{Ota.tvfoolestsignal}"></th>
 						<th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.email}"></th>
-						<th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.userrole}"></th>
 						<th th:text="#{Ota.watchabletablo}"></th>
 						<th th:text="#{Ota.watchabletivo}"></th>
 						<th th:text="#{edit.actions}"></th>
@@ -147,9 +146,6 @@
 					}, {
 						"name" : "email",
 						"data" : "account.email",
-					}, {
-						"name" : "userrole",
-						"data" : "account.userrole",
 					}, {
 						"name" : "watchabletablo",
 						"data" : "watchabletablo",

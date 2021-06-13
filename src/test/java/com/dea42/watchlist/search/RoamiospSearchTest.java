@@ -18,13 +18,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 /**
- * Title: roamiospSearch Test <br>
- * Description: Does regression tests of roamiosp search from service to DB <br>
+ * Title: RoamioSpSearch Test <br>
+ * Description: Does regression tests of RoamioSp search from service to DB <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -34,7 +34,7 @@ public class RoamiospSearchTest extends UnitBase {
 	@Autowired
 	private RoamiospServices roamiospServices;
 
-	private Page<Roamiosp> confirmGotResult(RoamiospSearchForm form, Integer expectedID) {
+	private Page<Roamiosp> confirmGotResult(RoamiospSearchForm form, Long expectedID) {
 		log.info("form:"+form);
 		Page<Roamiosp> list = roamiospServices.listAll(form);
 		assertNotNull("Checking return not null", list);
@@ -52,7 +52,7 @@ public class RoamiospSearchTest extends UnitBase {
 		return list;
 	}
 
-	private Roamiosp getMidRecord(RoamiospSearchForm form, Integer expectedID) {
+	private Roamiosp getMidRecord(RoamiospSearchForm form, Long expectedID) {
 		Page<Roamiosp> list = confirmGotResult(form, expectedID);
 		assertNotNull("Checking return not null", list);
 		int size = list.toList().size();
@@ -70,9 +70,9 @@ public class RoamiospSearchTest extends UnitBase {
 		// channel String 12
 		Roamiosp rec = null;
 		RoamiospSearchForm form = new RoamiospSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setChannel("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with channel of " + rec.getChannel());
 
 		form = new RoamiospSearchForm();
@@ -102,9 +102,9 @@ public class RoamiospSearchTest extends UnitBase {
 		// end Integer 4
 		Roamiosp rec = null;
 		RoamiospSearchForm form = new RoamiospSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setEndMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with end of " + rec.getEnd());
 
 		form = new RoamiospSearchForm();
@@ -136,9 +136,9 @@ public class RoamiospSearchTest extends UnitBase {
 		// include String 12
 		Roamiosp rec = null;
 		RoamiospSearchForm form = new RoamiospSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setInclude("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with include of " + rec.getInclude());
 
 		form = new RoamiospSearchForm();
@@ -168,9 +168,9 @@ public class RoamiospSearchTest extends UnitBase {
 		// keep String 12
 		Roamiosp rec = null;
 		RoamiospSearchForm form = new RoamiospSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setKeep("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with keep of " + rec.getKeep());
 
 		form = new RoamiospSearchForm();
@@ -200,9 +200,9 @@ public class RoamiospSearchTest extends UnitBase {
 		// num Integer 4
 		Roamiosp rec = null;
 		RoamiospSearchForm form = new RoamiospSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setNumMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with num of " + rec.getNum());
 
 		form = new RoamiospSearchForm();
@@ -234,9 +234,9 @@ public class RoamiospSearchTest extends UnitBase {
 		// priority Integer 4
 		Roamiosp rec = null;
 		RoamiospSearchForm form = new RoamiospSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setPriorityMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with priority of " + rec.getPriority());
 
 		form = new RoamiospSearchForm();
@@ -268,9 +268,9 @@ public class RoamiospSearchTest extends UnitBase {
 		// record String 12
 		Roamiosp rec = null;
 		RoamiospSearchForm form = new RoamiospSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setRecord("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with record of " + rec.getRecord());
 
 		form = new RoamiospSearchForm();
@@ -300,9 +300,9 @@ public class RoamiospSearchTest extends UnitBase {
 		// season Integer 4
 		Roamiosp rec = null;
 		RoamiospSearchForm form = new RoamiospSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setSeasonMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with season of " + rec.getSeason());
 
 		form = new RoamiospSearchForm();
@@ -334,9 +334,9 @@ public class RoamiospSearchTest extends UnitBase {
 		// show String 12
 		Roamiosp rec = null;
 		RoamiospSearchForm form = new RoamiospSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setShow("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with show of " + rec.getShow());
 
 		form = new RoamiospSearchForm();
@@ -366,9 +366,9 @@ public class RoamiospSearchTest extends UnitBase {
 		// start Integer 4
 		Roamiosp rec = null;
 		RoamiospSearchForm form = new RoamiospSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setStartMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with start of " + rec.getStart());
 
 		form = new RoamiospSearchForm();
@@ -397,10 +397,10 @@ public class RoamiospSearchTest extends UnitBase {
 
 	@Test
 	public void testAccount() {
-		// account Account 4
+		// account Account -5
 		Roamiosp rec = null;
 		RoamiospSearchForm form = new RoamiospSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 // TODO: skip further tests now
 	}
 }

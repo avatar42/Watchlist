@@ -20,13 +20,13 @@ import com.dea42.watchlist.search.NetworksUserSearchForm;
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @WebMvcTest(NetworksUserController.class)
 public class NetworksUserControllerTest extends MockBase {
-	private NetworksUser getNetworksUser(Integer id) {
+	private NetworksUser getNetworksUser(Long id) {
 		NetworksUser o = new NetworksUser();
 		o.setId(id);
         o.setIusefreefreewithcablepayforhuluinstead(getTestString(1));
@@ -40,7 +40,7 @@ public class NetworksUserControllerTest extends MockBase {
 	@Test
 	public void testGetAllNetworksUsers() throws Exception {
 		List<NetworksUser> list = new ArrayList<>();
-		NetworksUser o = getNetworksUser(1);
+		NetworksUser o = getNetworksUser(1l);
 		list.add(o);
 
 		Page<NetworksUser> p = getPage(list);
@@ -76,7 +76,7 @@ public class NetworksUserControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveNetworksUserCancel() throws Exception {
-		NetworksUser o = getNetworksUser(1);
+		NetworksUser o = getNetworksUser(1l);
 
 		send(SEND_POST, "/networksUsers/save", "networksUser", o, ImmutableMap.of("action", "cancel"), ADMIN_EMAIL,
 				"/networksUsers");
@@ -88,7 +88,7 @@ public class NetworksUserControllerTest extends MockBase {
 	 */
 	@Test
 	public void testSaveNetworksUserSave() throws Exception {
-		NetworksUser o = getNetworksUser(0);
+		NetworksUser o = getNetworksUser(0l);
 		NetworksUserForm form = NetworksUserForm.getInstance(o);
 		log.debug(form.toString());
 
@@ -104,9 +104,9 @@ public class NetworksUserControllerTest extends MockBase {
 	 */
 	@Test
 	public void testShowEditNetworksUserPage() throws Exception {
-		NetworksUser o = getNetworksUser(1);
+		NetworksUser o = getNetworksUser(1l);
 
-		given(networksUserServices.get(1)).willReturn(o);
+		given(networksUserServices.get(1l)).willReturn(o);
 
 		ResultActions ra = getAsAdmin("/networksUsers/edit/1");
 		// TODO: confirm ignoring NetworksUser.id

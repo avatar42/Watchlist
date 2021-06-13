@@ -371,14 +371,6 @@
 				<div th:unless="${otaForm.account != null}" th:text="${otaForm.account}"></div>
 				</div>
 				<input type="hidden" class="form-control" id="account.id" th:field="*{account.id}" />
-				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
-					<label for="otaForm.account.userrole" class="col-lg-2 control-label"
-						th:text="#{Account.userrole} + ':'"></label>
-					<div th:if="${otaForm.account != null}" class="col-lg-10" id="otaForm.account.userrole"
-	                        th:text="${otaForm.account.userrole}">
-					</div>
-				<div th:unless="${otaForm.account != null}" th:text="${otaForm.account}"></div>
-				</div>
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('watchabletablo')}? 'has-error'">
 					<label for="watchabletablo" class="col-lg-2 control-label"

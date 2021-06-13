@@ -23,8 +23,8 @@ import junit.framework.TestCase;
  * Description: The base class for testing. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * @author Gened by GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
@@ -45,13 +45,13 @@ public abstract class UnitBase extends TestCase {
 
 	protected Set<String> headless = new HashSet<String>();
 
-	protected static int TEST_USER_ID;
+	protected static long TEST_USER_ID;
 	protected static String TEST_EMAIL;
 	protected static String TEST_USER;
 	protected static String TEST_PASS;
 	protected static String TEST_ROLE;
 
-	protected static int ADMIN_USER_ID;
+	protected static long ADMIN_USER_ID;
 	protected static String ADMIN_EMAIL;
 	protected static String ADMIN_USER;
 	protected static String ADMIN_PASS;
@@ -62,14 +62,14 @@ public abstract class UnitBase extends TestCase {
 		msgEnBundle = ResourceBundle.getBundle("messages");
 
 		if (TEST_EMAIL == null) {
-			TEST_USER_ID = Utils.getProp(appBundle, "default.userid", 1);
+			TEST_USER_ID = Utils.getProp(appBundle, "default.userid", 1l);
 			TEST_EMAIL = Utils.getProp(appBundle, "default.email", null);
 			TEST_USER = Utils.getProp(appBundle, "default.user", "user");
 			TEST_PASS = Utils.getProp(appBundle, "default.userpass", null);
 			TEST_ROLE = Utils.getProp(appBundle, "default.userrole", null);
 		}
 		if (ADMIN_EMAIL == null) {
-			ADMIN_USER_ID = Utils.getProp(appBundle, "default.adminid", 2);
+			ADMIN_USER_ID = Utils.getProp(appBundle, "default.adminid", 2l);
 			ADMIN_EMAIL = Utils.getProp(appBundle, "default.adminEmail", null);
 			ADMIN_USER = Utils.getProp(appBundle, "default.admin", "admin");
 			ADMIN_PASS = Utils.getProp(appBundle, "default.adminpass", null);

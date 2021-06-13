@@ -11,41 +11,48 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 /**
- * Title: networksSearchForm <br>
- * Description: Class for holding data from the networks table for searching. <br>
+ * Title: NetworksSearchForm <br>
+ * Description: Class for holding data from the Networks table for searching. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Data
 public class NetworksSearchForm implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private String androidapp = null;
-	private String comment = null;
-	private String commercials = null;
-	private String fireapp = null;
-	private String freewithtwcid = null;
-	private String hasdirectbuyoption = null;
-	private String haswatchlist = null;
-	private String icanota = null;
-	private Integer idMin;
-	private Integer idMax;
-	private String iptvservice = null;
-	private String onhulu = null;
-	private String persistance = null;
-	private String remembersplaceinepisode = null;
-	private String rememberswatchedepisodes = null;
-	private String rokuapp = null;
+	private String androidapp = "";
+	private String comment = "";
+	private String commercials = "";
+	private String fireapp = "";
+	private String freewithtwcid = "";
+	private String hasdirectbuyoption = "";
+	private String haswatchlist = "";
+	private String icanota = "";
+/* info=ColInfo(fNum=2, colName=id, msgKey=Networks.id, vName=id, type=Long, jtype=null, stype=-5, gsName=Id, length=0, pk=true, defaultVal=null, constraint=null, required=true, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment= * Table name: Networks<br>
+ * Column name: id<br>
+ * Catalog name: Watchlist<br>
+ * Primary key sequence: 1<br>
+ * Primary key name: PRIMARY<br>
+ *  <br>) */
+	private Long idMin;
+	private Long idMax;
+	private String iptvservice = "";
+	private String onhulu = "";
+	private String persistance = "";
+	private String remembersplaceinepisode = "";
+	private String rememberswatchedepisodes = "";
+	private String rokuapp = "";
+/* info=ColInfo(fNum=5, colName=ShowsInTivoNpl, msgKey=Networks.showsintivonpl, vName=showsintivonpl, type=Integer, jtype=null, stype=4, gsName=Showsintivonpl, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=false, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) */
 	private Integer showsintivonplMin;
 	private Integer showsintivonplMax;
-	private String site = null;
-	private String standardwait = null;
-	private String tivoapp = null;
-	private String tivoshortname = null;
-	private String webinterface = null;
+	private String site = "";
+	private String standardwait = "";
+	private String tivoapp = "";
+	private String tivoshortname = "";
+	private String webinterface = "";
 	private String sortField = "id";
 	private int page = 1;
 	private int pageSize = 10;

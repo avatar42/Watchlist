@@ -35,8 +35,8 @@ import org.springframework.stereotype.Service;
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @Service
@@ -58,7 +58,7 @@ public class AccountServices extends UserServices<Account> {
 			String email = Utils.getProp(bundle, "default.email", null);
 			String user = Utils.getProp(bundle, "default.user", null);
 			if (!StringUtils.isBlank(user)) {
-				Integer id = Utils.getProp(bundle, "default.userid", 1);
+				Long id = Utils.getProp(bundle, "default.userid", 1l);
 				String userpass = Utils.getProp(bundle, "default.userpass", null);
 				String userrole = ROLE_PREFIX + Utils.getProp(bundle, "default.userrole", null);
 				Account a = new Account();
@@ -73,7 +73,7 @@ public class AccountServices extends UserServices<Account> {
 			email = Utils.getProp(bundle, "default.adminEmail", null);
 			user = Utils.getProp(bundle, "default.admin", null);
 			if (!StringUtils.isBlank(user)) {
-				Integer id = Utils.getProp(bundle, "default.adminid", 2);
+				Long id = Utils.getProp(bundle, "default.adminid", 2l);
 				String userpass = Utils.getProp(bundle, "default.adminpass", null);
 				String userrole = ROLE_PREFIX + Utils.getProp(bundle, "default.adminrole", null);
 				Account a = new Account();
@@ -139,11 +139,11 @@ public class AccountServices extends UserServices<Account> {
 		return accountRepository.save(account);
 	}
 	
-	public Account get(Integer id) {
+	public Account get(Long id) {
 		return accountRepository.findById(id).get();
 	}
 	
-	public void delete(Integer id) {
+	public void delete(Long id) {
 		accountRepository.deleteById(id);
 	}
 
@@ -158,7 +158,6 @@ public class AccountServices extends UserServices<Account> {
 			String value = pagingRequest.getSearch().getValue();
 			log.info("Searching for:" + value);
 			form.setEmail(value);
-			form.setUserrole(value);
 			form.setDoOr(SearchType.OR);
 			form.setAdvanced(false);
 		} else if (!form.isAdvanced() && StringUtils.isBlank(pagingRequest.getSearch().getValue())) {

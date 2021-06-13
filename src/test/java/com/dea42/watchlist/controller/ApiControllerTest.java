@@ -34,8 +34,8 @@ import com.dea42.watchlist.entity.Roamiotodo;
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebMvcTest(ApiController.class)
@@ -51,7 +51,7 @@ public class ApiControllerTest extends MockBase {
 		List<Account> list = new ArrayList<>();
 		Account o = new Account();
         o.setEmail(getTestEmailString(254));
-		o.setId(1);
+		o.setId(1l);
         o.setName(getTestString(254));
         o.setPassword(getTestPasswordString(30));
         o.setUserrole(getTestString(25));
@@ -83,7 +83,7 @@ public class ApiControllerTest extends MockBase {
         o.setHasdirectbuyoption(getTestString(82));
         o.setHaswatchlist(getTestString(46));
         o.setIcanota(getTestString(63));
-		o.setId(1);
+		o.setId(1l);
         o.setIptvservice(getTestString(214));
         o.setOnhulu(getTestString(14));
         o.setPersistance(getTestString(70));
@@ -133,7 +133,7 @@ public class ApiControllerTest extends MockBase {
 		Shows o = new Shows();
         o.setCancelled(getTestString(56));
         o.setEpguidesshowname(getTestString(47));
-		o.setId(1);
+		o.setId(1l);
         o.setIncanceledas(getTestString(47));
         o.setLastshow(getTestString(10));
         o.setNetwork(getTestString(14));
@@ -166,7 +166,7 @@ public class ApiControllerTest extends MockBase {
 		List<Roamiosp> list = new ArrayList<>();
 		Roamiosp o = new Roamiosp();
         o.setChannel(getTestString(14));
-		o.setId(1);
+		o.setId(1l);
         o.setInclude(getTestString(8));
         o.setKeep(getTestString(7));
         o.setRecord(getTestString(13));
@@ -195,13 +195,13 @@ public class ApiControllerTest extends MockBase {
 		ShowsUser o = new ShowsUser();
         o.setBestexperience(getTestString(17));
         o.setComment(getTestString(187));
-        o.setDiff(getTestString(3));
-		o.setId(1);
+		o.setId(1l);
         o.setImdb(getTestString(2));
         o.setInrokufeed(getTestString(1));
         o.setInshowrssas(getTestString(47));
         o.setJustwatch(getTestString(2));
         o.setLastwatched(getTestString(10));
+        o.setN67(getTestString(3));
         o.setOta(getTestString(1));
         o.setTablolink(getTestString(6));
 		list.add(o);
@@ -211,13 +211,13 @@ public class ApiControllerTest extends MockBase {
 		this.mockMvc.perform(get("/api/showsUsers").with(user("user").roles("ADMIN"))).andExpect(status().isOk())
 				.andExpect(content().string(containsString(o.getBestexperience())))
 				.andExpect(content().string(containsString("bestexperience")))				.andExpect(content().string(containsString(o.getComment())))
-				.andExpect(content().string(containsString("comment")))				.andExpect(content().string(containsString(o.getDiff())))
-				.andExpect(content().string(containsString("diff")))				.andExpect(content().string(containsString("id")))				.andExpect(content().string(containsString(o.getImdb())))
+				.andExpect(content().string(containsString("comment")))				.andExpect(content().string(containsString("id")))				.andExpect(content().string(containsString(o.getImdb())))
 				.andExpect(content().string(containsString("imdb")))				.andExpect(content().string(containsString(o.getInrokufeed())))
 				.andExpect(content().string(containsString("inrokufeed")))				.andExpect(content().string(containsString(o.getInshowrssas())))
 				.andExpect(content().string(containsString("inshowrssas")))				.andExpect(content().string(containsString(o.getJustwatch())))
 				.andExpect(content().string(containsString("justwatch")))				.andExpect(content().string(containsString(o.getLastwatched())))
-				.andExpect(content().string(containsString("lastwatched")))				.andExpect(content().string(containsString(o.getOta())))
+				.andExpect(content().string(containsString("lastwatched")))				.andExpect(content().string(containsString(o.getN67())))
+				.andExpect(content().string(containsString("n67")))				.andExpect(content().string(containsString(o.getOta())))
 				.andExpect(content().string(containsString("ota")))				.andExpect(content().string(containsString("shows")))				.andExpect(content().string(containsString(o.getTablolink())))
 				.andExpect(content().string(containsString("tablolink")))				.andExpect(content().string(containsString("account")));
 	}
@@ -232,7 +232,7 @@ public class ApiControllerTest extends MockBase {
 		List<Cablecard> list = new ArrayList<>();
 		Cablecard o = new Cablecard();
         o.setChannelname(getTestString(12));
-		o.setId(1);
+		o.setId(1l);
         o.setLangfield(getTestString(2));
         o.setNet(getTestString(12));
         o.setReceiving(getTestString(3));
@@ -266,7 +266,7 @@ public class ApiControllerTest extends MockBase {
         o.setDirection(getTestString(4));
         o.setEnabled(getTestString(3));
         o.setFccinfo(getTestString(10));
-		o.setId(1);
+		o.setId(1l);
         o.setLangfield(getTestString(2));
         o.setNetwork(getTestString(15));
         o.setOff(getTestString(5));
@@ -311,7 +311,7 @@ public class ApiControllerTest extends MockBase {
 		Roamionpl o = new Roamionpl();
         o.setChannel(getTestString(16));
         o.setEpisode(getTestString(10));
-		o.setId(1);
+		o.setId(1l);
         o.setSeriesep(getTestString(10));
         o.setShow(getTestString(73));
         o.setTitle(getTestString(76));
@@ -337,7 +337,7 @@ public class ApiControllerTest extends MockBase {
 	public void testGetAllNetworksUsers() throws Exception {
 		List<NetworksUser> list = new ArrayList<>();
 		NetworksUser o = new NetworksUser();
-		o.setId(1);
+		o.setId(1l);
         o.setIusefreefreewithcablepayforhuluinstead(getTestString(1));
 		list.add(o);
 		Page<NetworksUser> p = getPage(list);
@@ -361,7 +361,7 @@ public class ApiControllerTest extends MockBase {
         o.setDuration(getTestString(4));
         o.setEp(getTestString(50));
         o.setEpisodename(getTestString(59));
-		o.setId(1);
+		o.setId(1l);
         o.setShowname(getTestString(48));
         o.setShowtrimmed(getTestString(47));
 		list.add(o);

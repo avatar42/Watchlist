@@ -11,22 +11,22 @@ import javax.persistence.Table;
 import lombok.Data;
 
 /**
- * Title: account Bean <br>
- * Description: Class for holding data from the account table. <br>
+ * Title: Account Bean <br>
+ * Description: Class for holding data from the Account table. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
- * Table name: account<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
+ * Table name: Account<br>
  * Column name: id<br>
- * Catalog name: null<br>
- * Primary key sequence: 0<br>
- * Primary key name: null<br>
+ * Catalog name: Watchlist<br>
+ * Primary key sequence: 1<br>
+ * Primary key name: PRIMARY<br>
  *  <br> */
 @Data
 @Entity
-@Table(name = "`account`")
+@Table(name = "`Account`")
 public class Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -35,7 +35,7 @@ public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
-	private Integer id;
+	private Long id;
 	@Column(name = "Name", nullable = false, length = 254)
 	private String name;
     @JsonIgnore

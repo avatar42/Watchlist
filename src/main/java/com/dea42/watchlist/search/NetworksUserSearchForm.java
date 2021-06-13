@@ -13,21 +13,27 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 /**
- * Title: networksuserSearchForm <br>
- * Description: Class for holding data from the networksuser table for searching. <br>
+ * Title: NetworksUserSearchForm <br>
+ * Description: Class for holding data from the NetworksUser table for searching. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Data
 public class NetworksUserSearchForm implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private Integer idMin;
-	private Integer idMax;
-	private String iusefreefreewithcablepayforhuluinstead = null;
+/* info=ColInfo(fNum=2, colName=id, msgKey=NetworksUser.id, vName=id, type=Long, jtype=null, stype=-5, gsName=Id, length=0, pk=true, defaultVal=null, constraint=null, required=true, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment= * Table name: NetworksUser<br>
+ * Column name: id<br>
+ * Catalog name: Watchlist<br>
+ * Primary key sequence: 1<br>
+ * Primary key name: PRIMARY<br>
+ *  <br>) */
+	private Long idMin;
+	private Long idMax;
+	private String iusefreefreewithcablepayforhuluinstead = "";
 	private NetworksSearchForm networks;
 	private AccountSearchForm account;
 	private String sortField = "id";

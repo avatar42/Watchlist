@@ -12,6 +12,7 @@ import com.dea42.watchlist.MockBase;
 import com.dea42.watchlist.entity.Account;
 import com.dea42.watchlist.form.AccountForm;
 import com.dea42.watchlist.form.LoginForm;
+import com.dea42.watchlist.service.UserServices;
 import com.dea42.watchlist.utils.MessageHelper;
 import com.google.common.collect.ImmutableMap;
 
@@ -96,7 +97,8 @@ public class AppControllerTest extends MockBase {
 	@Test
 	public void testSignupAccountFormErrorsRedirectAttributes() throws Exception {
 		Account account = getDefaultUserAccount();
-		account.setId(0);
+		account.setId(0l);
+		account.setUserrole(UserServices.ROLE_PREFIX + account.getUserrole());
 
 		given(accountServices.save(account)).willReturn(account);
 		given(accountServices.login(account.getEmail(), account.getPassword())).willReturn(true);
@@ -189,7 +191,7 @@ public class AppControllerTest extends MockBase {
 	public void testLoginModelAccountFormErrorsRedirectAttributes() throws Exception {
 		// set up
 		Account account = getDefaultAdminAccount();
-		account.setId(0);
+		account.setId(0l);
 
 		given(accountServices.save(account)).willReturn(account);
 		given(accountServices.login(account.getEmail(), account.getPassword())).willReturn(true);

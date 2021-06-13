@@ -18,13 +18,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 /**
- * Title: cablecardSearch Test <br>
- * Description: Does regression tests of cablecard search from service to DB <br>
+ * Title: CablecardSearch Test <br>
+ * Description: Does regression tests of Cablecard search from service to DB <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -34,7 +34,7 @@ public class CablecardSearchTest extends UnitBase {
 	@Autowired
 	private CablecardServices cablecardServices;
 
-	private Page<Cablecard> confirmGotResult(CablecardSearchForm form, Integer expectedID) {
+	private Page<Cablecard> confirmGotResult(CablecardSearchForm form, Long expectedID) {
 		log.info("form:"+form);
 		Page<Cablecard> list = cablecardServices.listAll(form);
 		assertNotNull("Checking return not null", list);
@@ -52,7 +52,7 @@ public class CablecardSearchTest extends UnitBase {
 		return list;
 	}
 
-	private Cablecard getMidRecord(CablecardSearchForm form, Integer expectedID) {
+	private Cablecard getMidRecord(CablecardSearchForm form, Long expectedID) {
 		Page<Cablecard> list = confirmGotResult(form, expectedID);
 		assertNotNull("Checking return not null", list);
 		int size = list.toList().size();
@@ -70,9 +70,9 @@ public class CablecardSearchTest extends UnitBase {
 		// channelname String 12
 		Cablecard rec = null;
 		CablecardSearchForm form = new CablecardSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setChannelname("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with channelname of " + rec.getChannelname());
 
 		form = new CablecardSearchForm();
@@ -102,9 +102,9 @@ public class CablecardSearchTest extends UnitBase {
 		// channelnumber Integer 4
 		Cablecard rec = null;
 		CablecardSearchForm form = new CablecardSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setChannelnumberMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with channelnumber of " + rec.getChannelnumber());
 
 		form = new CablecardSearchForm();
@@ -136,9 +136,9 @@ public class CablecardSearchTest extends UnitBase {
 		// dt Integer 4
 		Cablecard rec = null;
 		CablecardSearchForm form = new CablecardSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setDtMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with dt of " + rec.getDt());
 
 		form = new CablecardSearchForm();
@@ -170,9 +170,9 @@ public class CablecardSearchTest extends UnitBase {
 		// hd Integer 4
 		Cablecard rec = null;
 		CablecardSearchForm form = new CablecardSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setHdMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with hd of " + rec.getHd());
 
 		form = new CablecardSearchForm();
@@ -204,9 +204,9 @@ public class CablecardSearchTest extends UnitBase {
 		// innpl Integer 4
 		Cablecard rec = null;
 		CablecardSearchForm form = new CablecardSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setInnplMin(Integer.MIN_VALUE);
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with innpl of " + rec.getInnpl());
 
 		form = new CablecardSearchForm();
@@ -238,9 +238,9 @@ public class CablecardSearchTest extends UnitBase {
 		// langfield String 12
 		Cablecard rec = null;
 		CablecardSearchForm form = new CablecardSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setLangfield("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with langfield of " + rec.getLangfield());
 
 		form = new CablecardSearchForm();
@@ -270,9 +270,9 @@ public class CablecardSearchTest extends UnitBase {
 		// net String 12
 		Cablecard rec = null;
 		CablecardSearchForm form = new CablecardSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setNet("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with net of " + rec.getNet());
 
 		form = new CablecardSearchForm();
@@ -302,9 +302,9 @@ public class CablecardSearchTest extends UnitBase {
 		// receiving String 12
 		Cablecard rec = null;
 		CablecardSearchForm form = new CablecardSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setReceiving("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with receiving of " + rec.getReceiving());
 
 		form = new CablecardSearchForm();
@@ -334,9 +334,9 @@ public class CablecardSearchTest extends UnitBase {
 		// shortfield String 12
 		Cablecard rec = null;
 		CablecardSearchForm form = new CablecardSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setShortfield("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with shortfield of " + rec.getShortfield());
 
 		form = new CablecardSearchForm();
@@ -363,10 +363,10 @@ public class CablecardSearchTest extends UnitBase {
 
 	@Test
 	public void testAccount() {
-		// account Account 4
+		// account Account -5
 		Cablecard rec = null;
 		CablecardSearchForm form = new CablecardSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 // TODO: skip further tests now
 	}
 }

@@ -227,14 +227,6 @@
 				<div th:unless="${roamionplForm.account != null}" th:text="${roamionplForm.account}"></div>
 				</div>
 				<input type="hidden" class="form-control" id="account.id" th:field="*{account.id}" />
-				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
-					<label for="roamionplForm.account.userrole" class="col-lg-2 control-label"
-						th:text="#{Account.userrole} + ':'"></label>
-					<div th:if="${roamionplForm.account != null}" class="col-lg-10" id="roamionplForm.account.userrole"
-	                        th:text="${roamionplForm.account.userrole}">
-					</div>
-				<div th:unless="${roamionplForm.account != null}" th:text="${roamionplForm.account}"></div>
-				</div>
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('watchedtime')}? 'has-error'">
 					<label for="watchedtime" class="col-lg-2 control-label"

@@ -195,14 +195,6 @@
 				<div th:unless="${roamiospForm.account != null}" th:text="${roamiospForm.account}"></div>
 				</div>
 				<input type="hidden" class="form-control" id="account.id" th:field="*{account.id}" />
-				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
-					<label for="roamiospForm.account.userrole" class="col-lg-2 control-label"
-						th:text="#{Account.userrole} + ':'"></label>
-					<div th:if="${roamiospForm.account != null}" class="col-lg-10" id="roamiospForm.account.userrole"
-	                        th:text="${roamiospForm.account.userrole}">
-					</div>
-				<div th:unless="${roamiospForm.account != null}" th:text="${roamiospForm.account}"></div>
-				</div>
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
 						<button type="submit" name="action" value="save"

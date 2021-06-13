@@ -22,13 +22,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 /**
- * Title: accountSearch Test <br>
- * Description: Does regression tests of account search from service to DB <br>
+ * Title: AccountSearch Test <br>
+ * Description: Does regression tests of Account search from service to DB <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -38,7 +38,7 @@ public class AccountSearchTest extends UnitBase {
 	@Autowired
 	private AccountServices accountServices;
 
-	private Page<Account> confirmGotResult(AccountSearchForm form, Integer expectedID) {
+	private Page<Account> confirmGotResult(AccountSearchForm form, Long expectedID) {
 		log.info("form:"+form);
 		Page<Account> list = accountServices.listAll(form);
 		assertNotNull("Checking return not null", list);
@@ -56,7 +56,7 @@ public class AccountSearchTest extends UnitBase {
 		return list;
 	}
 
-	private Account getMidRecord(AccountSearchForm form, Integer expectedID) {
+	private Account getMidRecord(AccountSearchForm form, Long expectedID) {
 		Page<Account> list = confirmGotResult(form, expectedID);
 		assertNotNull("Checking return not null", list);
 		int size = list.toList().size();
@@ -74,9 +74,9 @@ public class AccountSearchTest extends UnitBase {
 		// email String 12
 		Account rec = null;
 		AccountSearchForm form = new AccountSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setEmail("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with email of " + rec.getEmail());
 
 		form = new AccountSearchForm();
@@ -106,9 +106,9 @@ public class AccountSearchTest extends UnitBase {
 		// name String 12
 		Account rec = null;
 		AccountSearchForm form = new AccountSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setName("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with name of " + rec.getName());
 
 		form = new AccountSearchForm();
@@ -138,9 +138,9 @@ public class AccountSearchTest extends UnitBase {
 		// password String 12
 		Account rec = null;
 		AccountSearchForm form = new AccountSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setPassword("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with password of " + rec.getPassword());
 
 		form = new AccountSearchForm();
@@ -170,9 +170,9 @@ public class AccountSearchTest extends UnitBase {
 		// userrole String 12
 		Account rec = null;
 		AccountSearchForm form = new AccountSearchForm();
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		form.setUserrole("%");
-		rec = getMidRecord(form, 0);
+		rec = getMidRecord(form, 0l);
 		log.info("Searching for records with userrole of " + rec.getUserrole());
 
 		form = new AccountSearchForm();

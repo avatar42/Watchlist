@@ -100,14 +100,6 @@
 				<div th:unless="${networksUserForm.account != null}" th:text="${networksUserForm.account}"></div>
 				</div>
 				<input type="hidden" class="form-control" id="account.id" th:field="*{account.id}" />
-				<div sec:authorize="hasRole('ROLE_ADMIN')"  class="form-group">
-					<label for="networksUserForm.account.userrole" class="col-lg-2 control-label"
-						th:text="#{Account.userrole} + ':'"></label>
-					<div th:if="${networksUserForm.account != null}" class="col-lg-10" id="networksUserForm.account.userrole"
-	                        th:text="${networksUserForm.account.userrole}">
-					</div>
-				<div th:unless="${networksUserForm.account != null}" th:text="${networksUserForm.account}"></div>
-				</div>
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
 						<button type="submit" name="action" value="save"

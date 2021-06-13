@@ -9,13 +9,13 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 /**
- * Title: cablecard Form <br>
- * Description: Class for holding data from the cablecard table for editing. <br>
+ * Title: Cablecard Form <br>
+ * Description: Class for holding data from the Cablecard table for editing. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
  *
- * @author Gened by com.dea42.build.GenSpring version 0.7.1<br>
- * @version 0.7.1<br>
+ * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
+ * @version 0.7.2<br>
  */
 
 @Data
@@ -28,7 +28,7 @@ public class CablecardForm implements Serializable {
 	private Integer channelnumber;
 	private Integer dt;
 	private Integer hd;
-	private Integer id;
+	private Long id = 0l;
 	private Integer innpl;
     @Length(max=2)
 	private String langfield;

@@ -131,7 +131,7 @@
 			<artifactId>datatables</artifactId>
 			<version>1.10.23</version>
 		</dependency>
-		
+
 		<!-- DB drivers -->
 		<dependency>
 			<groupId>org.xerial</groupId>
@@ -166,6 +166,13 @@
 			<version>1.6.0</version>
 		</dependency>
 		<!-- Test dependencies -->
+		<!-- https://mvnrepository.com/artifact/org.apache.tika/tika-parsers -->
+		<dependency>
+			<groupId>org.apache.tika</groupId>
+			<artifactId>tika-parsers</artifactId>
+			<version>1.24.1</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -239,18 +246,9 @@
 							</zipUrlInstaller> -->
 						<timeout>500000</timeout>
 					</container>
-					<!-- 
-					<deployables>
-						<deployable>
-							<groupId>org.codehaus.cargo</groupId>
-							<artifactId>watchlist-war</artifactId>
-							<type>war</type>
-							<location>${project.build.directory}/watchlist-0.7.2-SNAPSHOT.war</location>
-							<properties>
-								<context>genSpring</context>
-							</properties>
-						</deployable>
-					</deployables>  -->
+					<!-- <deployables> <deployable> <groupId>org.codehaus.cargo</groupId> 
+						<artifactId>watchlist-war</artifactId> <type>war</type> <location>${project.build.directory}/watchlist-0.7.2-SNAPSHOT.war</location> 
+						<properties> <context>genSpring</context> </properties> </deployable> </deployables> -->
 					<configuration>
 						<properties>
 							<!-- cargo.servlet.port default is 8080 but can be reset to avoid 

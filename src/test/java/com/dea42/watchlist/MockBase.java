@@ -1,6 +1,5 @@
 package com.dea42.watchlist;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.anonymous;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -328,14 +327,24 @@ public class MockBase extends UnitBase {
 
 		try {
 			CharsetDetector detector = new CharsetDetector();
-			detector.setText(htmlString.getBytes());
-			log.error("Expected in '" + detector.detect().getName());
-			detector.setText(content().toString().getBytes());
-			log.error("HTML in '" + detector.detect().getName());
-			result.andExpect(content().string(containsString(htmlString)));
-			if (failIfExists) {
-				log.error("Found '" + htmlString + "' in " + content());
-				fail("Found '" + htmlString + "' in content");
+			String expected = detector.getString(htmlString.getBytes(), "utf-8");
+			String content = detector.getString(content().toString().getBytes(), "utf-8");
+//			detector.setText(htmlString.getBytes());
+//			log.error("Expected in '" + detector.detect().getName());
+//			detector.setText(content().toString().getBytes());
+//			log.error("HTML in '" + detector.detect().getName());
+//			result.andExpect(content().string(containsString(htmlString)));
+			boolean found = content.contains(expected);
+			if (found) {
+				if (failIfExists) {
+					log.error("Found '" + htmlString + "' in " + content());
+					fail("Found '" + htmlString + "' in content");
+				}
+			} else {
+				if (!failIfExists) {
+					log.error("Did not find '" + htmlString + "' in " + content());
+					fail("Did not find '" + htmlString + "' in content");
+				}
 			}
 		} catch (Throwable e) {
 			if (!failIfExists) {

@@ -328,7 +328,7 @@ public class MockBase extends UnitBase {
 		try {
 			CharsetDetector detector = new CharsetDetector();
 			String expected = detector.getString(htmlString.getBytes(), "utf-8");
-			String content = detector.getString(content().toString().getBytes(), "utf-8");
+			String content = detector.getString(result.andReturn().getResponse().getContentAsByteArray(), "utf-8");
 //			detector.setText(htmlString.getBytes());
 //			log.error("Expected in '" + detector.detect().getName());
 //			detector.setText(content().toString().getBytes());
@@ -337,12 +337,12 @@ public class MockBase extends UnitBase {
 			boolean found = content.contains(expected);
 			if (found) {
 				if (failIfExists) {
-					log.error("Found '" + htmlString + "' in " + content());
+					log.error("Found '" + htmlString + "' in " + content);
 					fail("Found '" + htmlString + "' in content");
 				}
 			} else {
 				if (!failIfExists) {
-					log.error("Did not find '" + htmlString + "' in " + content());
+					log.error("Did not find '" + htmlString + "' in " + content);
 					fail("Did not find '" + htmlString + "' in content");
 				}
 			}

@@ -1,5 +1,5 @@
 # Watchlist
-An application for tracking the show you want to watch. 
+An application for tracking the shows you want to watch. 
 
 [Files list](files.md)
 

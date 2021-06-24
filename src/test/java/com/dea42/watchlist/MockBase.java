@@ -1,5 +1,6 @@
 package com.dea42.watchlist;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.anonymous;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -16,15 +17,14 @@ import java.util.function.Function;
 
 import javax.servlet.Filter;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.tika.parser.txt.CharsetDetector;
 import org.apache.tools.ant.UnsupportedAttributeException;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.UserRequestPostProcessor;
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers;
 import org.springframework.test.web.servlet.ResultActions;
@@ -32,32 +32,32 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-import com.dea42.watchlist.repo.AccountRepository;
-import com.dea42.watchlist.repo.CablecardRepository;
-import com.dea42.watchlist.repo.NetworksRepository;
-import com.dea42.watchlist.repo.NetworksUserRepository;
-import com.dea42.watchlist.repo.OtaRepository;
-import com.dea42.watchlist.repo.RoamionplRepository;
-import com.dea42.watchlist.repo.RoamiospRepository;
-import com.dea42.watchlist.repo.RoamiotodoRepository;
-import com.dea42.watchlist.repo.ShowsRepository;
-import com.dea42.watchlist.repo.ShowsUserRepository;
-import com.dea42.watchlist.repo.UserRepository;
-import com.dea42.watchlist.service.AccountServices;
-import com.dea42.watchlist.service.CablecardServices;
-import com.dea42.watchlist.service.NetworksServices;
-import com.dea42.watchlist.service.NetworksUserServices;
-import com.dea42.watchlist.service.OtaServices;
-import com.dea42.watchlist.service.RoamionplServices;
-import com.dea42.watchlist.service.RoamiospServices;
-import com.dea42.watchlist.service.RoamiotodoServices;
-import com.dea42.watchlist.service.ShowsServices;
-import com.dea42.watchlist.service.ShowsUserServices;
 import com.dea42.watchlist.service.UserServices;
+import com.dea42.watchlist.repo.UserRepository;
+import com.dea42.watchlist.repo.AccountRepository;
+import com.dea42.watchlist.service.AccountServices;
+import com.dea42.watchlist.repo.NetworksRepository;
+import com.dea42.watchlist.service.NetworksServices;
+import com.dea42.watchlist.repo.ShowsRepository;
+import com.dea42.watchlist.service.ShowsServices;
+import com.dea42.watchlist.repo.RoamiospRepository;
+import com.dea42.watchlist.service.RoamiospServices;
+import com.dea42.watchlist.repo.ShowsUserRepository;
+import com.dea42.watchlist.service.ShowsUserServices;
+import com.dea42.watchlist.repo.CablecardRepository;
+import com.dea42.watchlist.service.CablecardServices;
+import com.dea42.watchlist.repo.OtaRepository;
+import com.dea42.watchlist.service.OtaServices;
+import com.dea42.watchlist.repo.RoamionplRepository;
+import com.dea42.watchlist.service.RoamionplServices;
+import com.dea42.watchlist.repo.NetworksUserRepository;
+import com.dea42.watchlist.service.NetworksUserServices;
+import com.dea42.watchlist.repo.RoamiotodoRepository;
+import com.dea42.watchlist.service.RoamiotodoServices;
+
+
 import com.dea42.watchlist.utils.Message;
 import com.dea42.watchlist.utils.Utils;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -65,57 +65,57 @@ import lombok.extern.slf4j.Slf4j;
  * Description: The base class for mock testing. <br>
  * Copyright: Copyright (c) 2001-2021<br>
  * Company: RMRR<br>
- * 
  * @author Gened by GenSpring version 0.7.2<br>
  * @version 0.7.2<br>
  */
 @Slf4j
 public class MockBase extends UnitBase {
-	@MockBean
-	protected UserServices<?> userServices;
-	@MockBean
-	protected UserRepository userRepository;
+    @MockBean
+    protected UserServices<?> userServices;
+    @MockBean
+    protected UserRepository userRepository;
 
-	@MockBean
-	protected AccountServices accountServices;
-	@MockBean
-	protected AccountRepository accountRepository;
-	@MockBean
-	protected NetworksServices networksServices;
-	@MockBean
-	protected NetworksRepository networksRepository;
-	@MockBean
-	protected ShowsServices showsServices;
-	@MockBean
-	protected ShowsRepository showsRepository;
-	@MockBean
-	protected RoamiospServices roamiospServices;
-	@MockBean
-	protected RoamiospRepository roamiospRepository;
-	@MockBean
-	protected ShowsUserServices showsUserServices;
-	@MockBean
-	protected ShowsUserRepository showsUserRepository;
-	@MockBean
-	protected CablecardServices cablecardServices;
-	@MockBean
-	protected CablecardRepository cablecardRepository;
-	@MockBean
-	protected OtaServices otaServices;
-	@MockBean
-	protected OtaRepository otaRepository;
-	@MockBean
-	protected RoamionplServices roamionplServices;
-	@MockBean
-	protected RoamionplRepository roamionplRepository;
-	@MockBean
-	protected NetworksUserServices networksUserServices;
-	@MockBean
-	protected NetworksUserRepository networksUserRepository;
-	@MockBean
-	protected RoamiotodoServices roamiotodoServices;
-	@MockBean
-	protected RoamiotodoRepository roamiotodoRepository;
+     @MockBean
+    protected AccountServices accountServices;
+    @MockBean
+    protected AccountRepository accountRepository;
+    @MockBean
+    protected NetworksServices networksServices;
+    @MockBean
+    protected NetworksRepository networksRepository;
+    @MockBean
+    protected ShowsServices showsServices;
+    @MockBean
+    protected ShowsRepository showsRepository;
+    @MockBean
+    protected RoamiospServices roamiospServices;
+    @MockBean
+    protected RoamiospRepository roamiospRepository;
+    @MockBean
+    protected ShowsUserServices showsUserServices;
+    @MockBean
+    protected ShowsUserRepository showsUserRepository;
+    @MockBean
+    protected CablecardServices cablecardServices;
+    @MockBean
+    protected CablecardRepository cablecardRepository;
+    @MockBean
+    protected OtaServices otaServices;
+    @MockBean
+    protected OtaRepository otaRepository;
+    @MockBean
+    protected RoamionplServices roamionplServices;
+    @MockBean
+    protected RoamionplRepository roamionplRepository;
+    @MockBean
+    protected NetworksUserServices networksUserServices;
+    @MockBean
+    protected NetworksUserRepository networksUserRepository;
+    @MockBean
+    protected RoamiotodoServices roamiotodoServices;
+    @MockBean
+    protected RoamiotodoRepository roamiotodoRepository;
+
 
 	@Autowired
 	protected WebApplicationContext webApplicationContext;
@@ -204,7 +204,7 @@ public class MockBase extends UnitBase {
 		contentContainsKey(result, "app.name");
 		// GUI menu
 		contentContainsKey(result, "header.gui");
-		if ("admin@dea42.com".equals(user))
+		if ("admin@dea42.com".equals(user)) 
 			contentContainsKey(result, "class.Account", false);
 		contentContainsKey(result, "class.Networks", false);
 		contentContainsKey(result, "class.Shows", false);
@@ -217,7 +217,7 @@ public class MockBase extends UnitBase {
 		contentContainsKey(result, "class.Roamiotodo", false);
 // REST menu
 		contentContainsKey(result, "header.restApi");
-		if ("admin@dea42.com".equals(user))
+		if ("admin@dea42.com".equals(user)) 
 			contentContainsMarkup(result, "/api/accounts", false);
 		contentContainsMarkup(result, "/api/networkss", false);
 		contentContainsMarkup(result, "/api/showss", false);
@@ -228,6 +228,7 @@ public class MockBase extends UnitBase {
 		contentContainsMarkup(result, "/api/roamionpls", false);
 		contentContainsMarkup(result, "/api/networksUsers", false);
 		contentContainsMarkup(result, "/api/roamiotodos", false);
+
 
 		// Login / out
 		contentContainsKey(result, "lang.en");
@@ -326,25 +327,10 @@ public class MockBase extends UnitBase {
 			return;
 
 		try {
-			CharsetDetector detector = new CharsetDetector();
-			String expected = detector.getString(htmlString.getBytes(), "utf-8");
-			String content = detector.getString(result.andReturn().getResponse().getContentAsByteArray(), "utf-8");
-//			detector.setText(htmlString.getBytes());
-//			log.error("Expected in '" + detector.detect().getName());
-//			detector.setText(content().toString().getBytes());
-//			log.error("HTML in '" + detector.detect().getName());
-//			result.andExpect(content().string(containsString(htmlString)));
-			boolean found = content.contains(expected);
-			if (found) {
-				if (failIfExists) {
-					log.error("Found '" + htmlString + "' in " + content);
-					fail("Found '" + htmlString + "' in content");
-				}
-			} else {
-				if (!failIfExists) {
-					log.error("Did not find '" + htmlString + "' in " + content);
-					fail("Did not find '" + htmlString + "' in content");
-				}
+			result.andExpect(content().string(containsString(htmlString)));
+			if (failIfExists) {
+				log.error("Found '" + htmlString + "' in " + content());
+				fail("Found '" + htmlString + "' in content");
 			}
 		} catch (Throwable e) {
 			if (!failIfExists) {
@@ -395,7 +381,6 @@ public class MockBase extends UnitBase {
 		log.debug("Returning:" + rtn);
 		return rtn;
 	}
-
 	/**
 	 * Converts a List<T> to Page<T> for mock returns
 	 * 
@@ -490,3 +475,5 @@ public class MockBase extends UnitBase {
 		return p;
 	}
 }
+
+

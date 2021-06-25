@@ -29,11 +29,11 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.test.web.servlet.ResultActions;
 
 import com.dea42.watchlist.UnitBase;
 import com.dea42.watchlist.utils.Utils;
@@ -372,7 +372,9 @@ public class SeleniumBase extends UnitBase {
 		} else {
 			WebDriverManager.firefoxdriver().setup();
 		}
-		driver = new FirefoxDriver();
+		FirefoxOptions opts = new FirefoxOptions();
+		opts.addArguments("--headless");
+		driver = new FirefoxDriver(opts);
 		if (this.getClass().getName().endsWith("IT"))
 			this.base = "http://localhost:8089/" + context;
 		else
